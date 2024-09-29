@@ -1,7 +1,5 @@
 @module("../themes") external themes: array<string> = "default"
 
-open Heroicons
-
 @react.component
 let make = () => {
   let themeCards = Array.map(themes, theme =>
