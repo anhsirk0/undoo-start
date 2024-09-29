@@ -1,5 +1,5 @@
-@module("./logos/youtube.jpg") external youtubeLogo: string = "default"
-@module("./logos/lichess.png") external lichessLogo: string = "default"
+@module("./assets/youtube.jpg") external youtubeLogo: string = "default"
+@module("./assets/lichess.png") external lichessLogo: string = "default"
 
 module Site = {
   type t = {
@@ -8,6 +8,11 @@ module Site = {
     url: string,
     icon: string,
     showLabel: bool,
+  }
+
+  let startsWithAny = (str, terms) => {
+    let startsWith = s => String.startsWith(str, s)
+    Array.some(terms, startsWith)
   }
 
   let defaultSites: array<t> = [

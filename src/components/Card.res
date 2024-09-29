@@ -2,7 +2,8 @@ include Site
 
 @react.component
 let make = (~site: Site.t) => {
-  let isIconUrl = String.startsWith(site.icon, "http") || String.startsWith(site.icon, "/src")
+  let isIconUrl = Site.startsWithAny(site.icon, ["http", "/src", "/assets"])
+
   <a
     href={site.url}
     target="_blank"
