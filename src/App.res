@@ -25,8 +25,7 @@ let make = () => {
 
   let cards = Array.map(Site.defaultSites, site => {
     <div
-      key={Int.toString(site.id)}
-      className="col-span-6 sm:col-span-4 md:col-span-3 lg:col-span-2 xxl:col-span-2">
+      key={Int.toString(site.id)} className="col-span-6 sm:col-span-4 md:col-span-3 lg:col-span-2">
       <Card site />
     </div>
   })
@@ -34,8 +33,8 @@ let make = () => {
   <div className="h-screen w-screen center flex-col p-16 transitional">
     <Sidebar />
     <SearchBar />
-    <div className="center grow w-full max-w-5xl xxl:max-w-screen-xxl ml-16">
-      <div className="grid grid-cols-12 gap-4 lg:gap-8 xl:gap-10 xxl:gap-12 w-full -mt-16">
+    <div className="grow w-full max-w-5xl xxl:max-w-screen-xxl ml-16 py-4 lg:py-8 xxl:py-16">
+      <div className="grid grid-cols-12 gap-4 lg:gap-6 xl:gap-8 xxl:gap-12 w-full">
         {React.array(cards)}
       </div>
     </div>

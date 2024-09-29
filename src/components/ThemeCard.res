@@ -1,3 +1,5 @@
+@module("../helpers/setTheme") external setTheme: string => unit = "default"
+
 module MyOverrides = {
   module Elements = {
     type props = {
@@ -21,7 +23,10 @@ module MyOverrides = {
 
 @react.component
 let make = (~theme, ~children) => {
-  let onClick = _ => Js.log(theme)
+  let onClick = _ => {
+    Dom.Storage2.setItem(Dom.Storage2.localStorage, "undooStartpageTheme", theme)
+    setTheme(theme)
+  }
 
   <li className="btn h-10 justify-between w-full theme-card" onClick tabIndex={0} dataTheme={theme}>
     {React.string(theme)}
