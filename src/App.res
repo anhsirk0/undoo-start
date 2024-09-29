@@ -1,4 +1,4 @@
-include Site
+include Page
 // type point = {
 //   x: float,
 //   y: float,
@@ -21,22 +21,18 @@ include Site
 
 @react.component
 let make = () => {
-  Js.log(Site.defaultSites)
+  let (activePage, setActivePage) = React.useState(_ => 0)
 
-  let cards = Array.map(Site.defaultSites, site => {
-    <div
-      key={Int.toString(site.id)} className="col-span-6 sm:col-span-4 md:col-span-3 lg:col-span-2">
-      <Card site />
-    </div>
-  })
+  let page = Array.find(Page.defaultPages, p => p.id == activePage)
 
   <div className="h-screen w-screen center flex-col p-16 transitional">
-    <Sidebar />
+    <Sidebar activePage onClick={id => setActivePage(_ => id)} />
     <SearchBar />
     <div className="grow w-full max-w-5xl xxl:max-w-screen-xxl ml-16 py-4 lg:py-8 xxl:py-16">
-      <div className="grid grid-cols-12 gap-4 lg:gap-6 xl:gap-8 xxl:gap-12 w-full">
-        {React.array(cards)}
-      </div>
+      {switch page {
+      | Some(p) => <PageCards sites={p.sites} key={p.title} />
+      | None => React.null
+      }}
     </div>
   </div>
 }

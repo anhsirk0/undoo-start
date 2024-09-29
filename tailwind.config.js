@@ -12,6 +12,25 @@ export default {
       xl: "1380px",
       xxl: "1536px",
     },
+    keyframes: {
+      slide: {
+        "0%": { transform: "translateY(200px)" },
+        "100%": { transform: "translateY(0)" },
+      },
+      grow: {
+        "0%": { transform: "scale(0)" },
+        "100%": { transform: "scale(1)" },
+      },
+      fade: {
+        "0%": { opacity: 0 },
+        "100%": { opacity: 1 },
+      },
+    },
+    animation: {
+      slide: "slide 400ms ease-in-out",
+      grow: "grow 200ms ease-in-out",
+      fade: "fade 400ms ease-in-out",
+    },
   },
   plugins: [require("daisyui")],
   daisyui: {
