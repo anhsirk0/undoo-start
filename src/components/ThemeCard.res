@@ -1,6 +1,5 @@
 module MyOverrides = {
   module Elements = {
-    // Extend the available lowercase JSX props here.
     type props = {
       ...JsxDOM.domProps,
       @as("data-theme") dataTheme?: string,
@@ -8,6 +7,7 @@ module MyOverrides = {
 
     @module("react/jsx-runtime")
     external jsx: (string, props) => Jsx.element = "jsx"
+
     @module("react/jsx-runtime")
     external jsxs: (string, props) => Jsx.element = "jsx"
     external someElement: Jsx.element => option<Jsx.element> = "%identity"
@@ -20,10 +20,10 @@ module MyOverrides = {
 @@jsxConfig({module_: "MyOverrides", mode: "automatic"})
 
 @react.component
-let make = (~theme: string, ~children) => {
+let make = (~theme, ~children) => {
   let onClick = _ => Js.log(theme)
 
-  <li className="btn h-10 justify-between w-full" onClick tabIndex={0} dataTheme={theme}>
+  <li className="btn h-10 justify-between w-full theme-card" onClick tabIndex={0} dataTheme={theme}>
     {React.string(theme)}
     {children}
   </li>

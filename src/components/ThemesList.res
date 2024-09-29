@@ -15,13 +15,5 @@ let make = () => {
     </ThemeCard>
   )
 
-  <div className="dropdown dropdown-top dropdown-right">
-    <div role="button" tabIndex={0} className="btn h-20 w-full btn-primary xxl:text-xl">
-      <Solid.ColorSwatchIcon className="w-8 h-8" />
-    </div>
-    <ul
-      className="dropdown-content z-[1] flex flex-col gap-2 p-4 bg-accent rounded-box h-96 min-h-0 overflow-y-auto mb-4 w-56 shadow-xl">
-      {React.array(themeCards)}
-    </ul>
-  </div>
+  {React.array(themeCards)}
 }

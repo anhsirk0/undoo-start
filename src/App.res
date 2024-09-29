@@ -26,10 +26,10 @@ let make = () => {
     </div>
   })
 
-  <div className="h-screen w-screen center flex-col p-16">
+  <div className="h-screen w-screen center flex-col p-16 transition-all duration-400">
     <Sidebar />
     <SearchBar />
-    <div className="center grow w-full max-w-7xl">
+    <div className="center grow w-full max-w-5xl xxl:max-w-7xl">
       <div className="grid grid-cols-12 gap-8 w-full"> {React.array(cards)} </div>
     </div>
   </div>
