@@ -10,7 +10,7 @@ let make = (~activePage, ~onClick) => {
     let btnClass = activePage == page.id ? "btn-primary" : "btn-ghost"
     <button
       key={Int.toString(page.id)}
-      className={`btn sidebar-btn h-16 rounded-box w-full center ${btnClass} text-4xl truncate`}
+      className={`btn sidebar-btn w-full center ${btnClass} text-4xl truncate`}
       onClick={_ => onClick(page.id)}>
       {React.string(page.icon)}
     </button>
@@ -30,8 +30,7 @@ let make = (~activePage, ~onClick) => {
       // <button className="btn sidebar-btn resp-btn btn-neutral">
       //   <Solid.AdjustmentsIcon className="w-8 h-8" />
       // </button>
-      <button
-        id="theme-btn" className="btn btn-neutral sidebar-btn resp-btn w-full focus:btn-accent">
+      <button id="theme-btn" className="btn btn-neutral sidebar-btn w-full">
         <Solid.ColorSwatchIcon className="w-8 h-8" />
       </button>
     </div>
