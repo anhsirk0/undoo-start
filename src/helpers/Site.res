@@ -10,10 +10,7 @@ module Site = {
     showLabel: bool,
   }
 
-  let startsWith = (str, terms) => {
-    let startsWith = s => String.startsWith(str, s)
-    Array.some(terms, startsWith)
-  }
+  let startsWith = (str, terms) => Array.some(terms, s => String.startsWith(str, s))
 
   let defaultSites: array<t> = [
     {

@@ -1,8 +1,24 @@
 include Page
-// type point = {
-//   x: float,
-//   y: float,
-// }
+
+@react.component
+let make = () => {
+  let (activePage, setActivePage) = React.useState(_ => 0)
+  let (isEditing, setIsEditing) = React.useState(_ => false)
+  let page = Array.find(Page.defaultPages, p => p.id == activePage)
+
+  <div className="h-screen w-screen center flex-col p-16 transitional">
+    <Sidebar activePage setActivePage isEditing setIsEditing />
+    <SearchBar />
+    <div className="grow w-full max-w-5xl xxl:max-w-screen-xxl ml-16 py-4 lg:py-8 xxl:py-16">
+      {switch page {
+      | Some(p) => <PageCards sites={p.sites} key={p.title} isEditing />
+      | None => React.null
+      }}
+    </div>
+  </div>
+}
+
+// type point = {x: float, y: float}
 
 // module Codecs = {
 //   let point = Jzon.object2(
@@ -18,21 +34,3 @@ include Page
 // | None => Js.log("no point")
 // | Some(val) => Js.log(val->Jzon.decodeStringWith(Codecs.point))
 // }
-
-@react.component
-let make = () => {
-  let (activePage, setActivePage) = React.useState(_ => 0)
-
-  let page = Array.find(Page.defaultPages, p => p.id == activePage)
-
-  <div className="h-screen w-screen center flex-col p-16 transitional">
-    <Sidebar activePage onClick={id => setActivePage(_ => id)} />
-    <SearchBar />
-    <div className="grow w-full max-w-5xl xxl:max-w-screen-xxl ml-16 py-4 lg:py-8 xxl:py-16">
-      {switch page {
-      | Some(p) => <PageCards sites={p.sites} key={p.title} />
-      | None => React.null
-      }}
-    </div>
-  </div>
-}
