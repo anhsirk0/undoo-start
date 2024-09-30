@@ -10,6 +10,10 @@
   @apply text-sm xl:text-base xxl:text-lg;
 }
 
+.resp-text {
+  @apply text-sm md:text-base lg:text-lg xl:text-2xl xxl:text-4xl;
+}
+
 .resp-btn {
   @apply btn-xs xl:btn-sm xxl:btn-md;
 }

@@ -6,8 +6,9 @@ module Card = {
   let make = (~site: Site.t, ~isEditing) => {
     let isIconUrl = Site.startsWith(site.icon, ["http", "/src", "/assets"])
 
-    <div className="col-span-6 sm:col-span-4 md:col-span-3 lg:col-span-2 animate-grow">
-      <div className="card w-full h-28 lg:h-32 xl:h-36 xxl:h-48 overflow-hidden isolate">
+    <div
+      className="col-span-12 xs:col-span-6 sm:col-span-4 md:col-span-3 lg:col-span-2 animate-grow">
+      <div className="card w-full h-24 md:h-28 lg:h-32 xl:h-36 xxl:h-48 overflow-hidden isolate">
         <a
           href={site.url}
           target="_blank"

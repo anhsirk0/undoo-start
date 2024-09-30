@@ -9,14 +9,10 @@ let make = (~activePage, ~setActivePage, ~isEditing, ~setIsEditing) => {
     let btnClass = activePage == page.id ? "btn-primary" : "btn-ghost"
     <button
       key={Int.toString(page.id)}
-      className={`btn sidebar-btn w-full center ${btnClass} text-4xl truncate relative`}
+      className={`btn sidebar-btn w-full center ${btnClass} text-4xl truncate relative resp-text`}
       onClick={_ => setActivePage(_ => page.id)}>
       {React.string(page.icon)}
-      {isEditing
-        ? <div className="bg-base-100/70 absolute inset-0 size-full center">
-            <Solid.PencilIcon className="w-10 h-10 text-base-content" />
-          </div>
-        : React.null}
+      {isEditing ? <EditPageButton /> : React.null}
     </button>
   })
 
