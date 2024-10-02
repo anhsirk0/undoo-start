@@ -1,4 +1,6 @@
 @module("../assets/youtube.jpg") external youtubeLogo: string = "default"
+@module("../assets/whatsapp.jpg") external whatsappLogo: string = "default"
+@module("../assets/github.png") external githubLogo: string = "default"
 @module("../assets/lichess.png") external lichessLogo: string = "default"
 @module("../assets/reddit.jpg") external redditLogo: string = "default"
 @module("../assets/duolingo.jpg") external duolingoLogo: string = "default"
@@ -33,6 +35,13 @@ module Site = {
       showLabel: false,
     },
     {
+      id: 2,
+      title: "Github",
+      url: "https://github.com",
+      icon: githubLogo,
+      showLabel: false,
+    },
+    {
       id: 3,
       title: "Reddit",
       url: "https://reddit.com",
@@ -62,6 +71,13 @@ module Site = {
     },
     {
       id: 7,
+      title: "Whatsapp",
+      url: "https://web.whatsapp.com",
+      icon: whatsappLogo,
+      showLabel: false,
+    },
+    {
+      id: 8,
       title: "Messenger",
       url: "https://messenger.com",
       icon: messengerLogo,

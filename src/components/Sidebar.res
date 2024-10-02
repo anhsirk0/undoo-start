@@ -11,7 +11,7 @@ let make = (~activePage, ~setActivePage, ~isEditing, ~setIsEditing) => {
   })
 
   <React.Fragment>
-    <div className={`fixed top-0 ${leftPos} z-10 w-fit h-full flex flex-row transitional`}>
+    <div className={`fixed top-0 ${leftPos} z-10 w-fit h-full flex flex-row transitional shadow`}>
       <ul
         id="theme-container"
         tabIndex={0}

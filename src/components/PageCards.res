@@ -8,11 +8,12 @@ module Card = {
 
     <div
       className="col-span-12 xs:col-span-6 sm:col-span-4 md:col-span-3 lg:col-span-2 animate-grow">
-      <div className="card w-full h-24 md:h-28 lg:h-32 xl:h-36 xxl:h-48 overflow-hidden isolate">
+      <div
+        className="card w-full h-24 md:h-28 lg:h-32 xl:h-36 xxl:h-48 overflow-hidden isolate shadow border border-base-200">
         <a
           href={site.url}
           target="_blank"
-          className="relative size-full shadow-xl group cursor-pointer relative">
+          className="relative size-full group cursor-pointer relative">
           {isIconUrl
             ? <figure className="absolute inset-0 -z-10 group-hover:scale-105 transitional">
                 <img className="h-full w-full object-cover" src={site.icon} alt={site.title} />
