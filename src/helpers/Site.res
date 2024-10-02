@@ -1,6 +1,7 @@
 @module("../assets/youtube.jpg") external youtubeLogo: string = "default"
 @module("../assets/whatsapp.jpg") external whatsappLogo: string = "default"
 @module("../assets/github.png") external githubLogo: string = "default"
+@module("../assets/netflix.png") external netflixLogo: string = "default"
 @module("../assets/lichess.png") external lichessLogo: string = "default"
 @module("../assets/reddit.jpg") external redditLogo: string = "default"
 @module("../assets/duolingo.jpg") external duolingoLogo: string = "default"
@@ -50,34 +51,41 @@ module Site = {
     },
     {
       id: 4,
+      title: "Netflix",
+      url: "https://netflix.com",
+      icon: netflixLogo,
+      showLabel: false,
+    },
+    {
+      id: 5,
       title: "Duolingo",
       url: "https://duolingo.com",
       icon: duolingoLogo,
       showLabel: false,
     },
     {
-      id: 5,
+      id: 6,
       title: "Fb",
       url: "https://fb.com",
       icon: fbLogo,
       showLabel: false,
     },
     {
-      id: 6,
+      id: 7,
       title: "Instagram",
       url: "https://instagram.com",
       icon: instagramLogo,
       showLabel: false,
     },
     {
-      id: 7,
+      id: 8,
       title: "Whatsapp",
       url: "https://web.whatsapp.com",
       icon: whatsappLogo,
       showLabel: false,
     },
     {
-      id: 8,
+      id: 9,
       title: "Messenger",
       url: "https://messenger.com",
       icon: messengerLogo,
