@@ -2,13 +2,12 @@ include Page
 
 @react.component
 let make = () => {
-  let (activePage, setActivePage) = React.useState(_ => 0)
+  let (pages, setPages) = React.useState(_ => Page.defaultPages)
+  let (page, setPage) = React.useState(_ => pages[0])
   let (isEditing, setIsEditing) = React.useState(_ => false)
 
-  let page = Array.find(Page.defaultPages, p => p.id == activePage)
-
   <div className="h-screen w-screen center flex-col p-16 transitional">
-    <Sidebar activePage setActivePage isEditing setIsEditing />
+    <Sidebar page setPage pages isEditing setIsEditing />
     <SearchBar />
     <div
       className="grow w-full max-w-5xl xxl:max-w-screen-xxl ml-16 py-4 lg:py-8 xxl:py-16 min-h-0 overflow-y-auto">

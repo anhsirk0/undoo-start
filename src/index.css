@@ -15,7 +15,11 @@
 }
 
 .resp-btn {
-  @apply btn-xs xl:btn-sm xxl:btn-md;
+  @apply btn-xs md:btn-sm xxl:btn-md;
+}
+
+.resp-icon {
+  @apply size-4 lg:size-6 xxl:size-8;
 }
 
 .sidebar-btn {

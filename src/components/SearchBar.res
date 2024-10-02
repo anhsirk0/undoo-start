@@ -15,7 +15,7 @@ let make = () => {
     <label
       className="input input-primary xxl:input-lg flex items-center w-full max-w-3xl xxl:max-w-5xl">
       <input name="query" type_="text" className="grow " placeholder="Search" />
-      <Solid.SearchIcon className="w-8 h-8" />
+      <Solid.SearchIcon className="resp-icon" />
     </label>
   </form>
 }
