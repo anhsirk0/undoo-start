@@ -14,7 +14,7 @@ let make = (~activePage, ~setActivePage, ~isEditing, ~setIsEditing) => {
     <div className={`fixed top-0 ${leftPos} z-10 w-fit h-full flex flex-row transitional shadow`}>
       <ul
         id="theme-container"
-        tabIndex={0}
+        tabIndex=0
         className="flex flex-col gap-4 w-56 p-4 min-h-0 overflow-y-auto bg-accent">
         <ThemesList />
       </ul>

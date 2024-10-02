@@ -8,13 +8,13 @@ module EditModal = {
       <div className="modal-box flex flex-col max-h-[60vh]">
         <div className="flex flex-row items-center justify-between mb-4 -mt-1">
           <p className="font-bold text-lg"> {React.string(page.title)} </p>
-          <button onClick={onClose} className="btn btn-sm btn-circle btn-ghost -mt-2">
+          <button onClick=onClose className="btn btn-sm btn-circle btn-ghost -mt-2">
             {React.string(`✕`)}
           </button>
         </div>
         <form className="flex flex-col gap-4">
-          <Input defaultValue={page.title} label="Title" />
-          <Input defaultValue={page.icon} label="Icon" />
+          <Input name="title" defaultValue=page.title label="Title" />
+          <Input name="icon" defaultValue=page.icon label="Icon" />
         </form>
       </div>
     </div>
@@ -30,8 +30,8 @@ let make = (~page: Page.t, ~isActive, ~isEditing, ~setActivePage) => {
   let className = `btn sidebar-btn w-full center ${btnClass} text-4xl truncate relative resp-text ${ring}`
 
   let onClick = _ => setActivePage(_ => page.id)
-  let toggleOpen = ev => {
-    JsxEvent.Mouse.stopPropagation(ev)
+  let toggleOpen = evt => {
+    JsxEvent.Mouse.stopPropagation(evt)
     setIsOpen(val => !val)
   }
 
@@ -41,11 +41,11 @@ let make = (~page: Page.t, ~isActive, ~isEditing, ~setActivePage) => {
           {React.string(page.icon)}
           <div
             className="bg-base-100/70 absolute bottom-0 right-0 size-3/5 xxl:size-1/2 center resp-text rounded-tl-box"
-            onClick={toggleOpen}>
+            onClick=toggleOpen>
             <Solid.PencilIcon className="size-4 xxl:size-8 text-base-content" />
           </div>
         </div>
       : <button className onClick> {React.string(page.icon)} </button>}
-    {isOpen ? <EditModal page onClose={toggleOpen} /> : React.null}
+    {isOpen ? <EditModal page onClose=toggleOpen /> : React.null}
   </React.Fragment>
 }

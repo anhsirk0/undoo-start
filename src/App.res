@@ -13,7 +13,7 @@ let make = () => {
     <div
       className="grow w-full max-w-5xl xxl:max-w-screen-xxl ml-16 py-4 lg:py-8 xxl:py-16 min-h-0 overflow-y-auto">
       {switch page {
-      | Some(p) => <PageCards sites={p.sites} key={p.title} isEditing />
+      | Some(p) => <PageCards sites=p.sites key=p.title isEditing />
       | None => React.null
       }}
     </div>

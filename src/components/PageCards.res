@@ -11,12 +11,12 @@ module Card = {
       <div
         className="card w-full h-24 md:h-28 lg:h-32 xl:h-36 xxl:h-48 overflow-hidden isolate shadow border border-base-200">
         <a
-          href={site.url}
+          href=site.url
           target="_blank"
           className="relative size-full group cursor-pointer relative">
           {isIconUrl
             ? <figure className="absolute inset-0 -z-10 group-hover:scale-105 transitional">
-                <img className="h-full w-full object-cover" src={site.icon} alt={site.title} />
+                <img className="h-full w-full object-cover" src=site.icon alt=site.title />
               </figure>
             : <div className="absolute inset-0 size-full bg-primary center">
                 <p

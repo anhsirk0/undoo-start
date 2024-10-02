@@ -28,7 +28,7 @@ let make = (~theme, ~children) => {
     setTheme(theme)
   }
 
-  <li className="btn h-10 justify-between w-full theme-card" onClick tabIndex={0} dataTheme={theme}>
+  <li className="btn h-10 justify-between w-full theme-card" onClick tabIndex=0 dataTheme=theme>
     {React.string(theme)}
     {children}
   </li>
