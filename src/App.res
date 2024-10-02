@@ -4,6 +4,7 @@ include Page
 let make = () => {
   let (activePage, setActivePage) = React.useState(_ => 0)
   let (isEditing, setIsEditing) = React.useState(_ => false)
+
   let page = Array.find(Page.defaultPages, p => p.id == activePage)
 
   <div className="h-screen w-screen center flex-col p-16 transitional">
