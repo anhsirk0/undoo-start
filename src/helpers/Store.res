@@ -25,6 +25,7 @@ module StoreData = {
     title: string,
     pages: array<Page.t>,
     updateTitle: string => unit,
+    deletePage: int => unit,
   }
 }
 
@@ -35,6 +36,7 @@ module Store = {
     title: "Undoo Startpage",
     pages: Page.defaultPages,
     updateTitle: title => set(.state => {...state, title}),
+    deletePage: id => set(.state => {...state, pages: Array.filter(state.pages, p => p.id != id)}),
   })
 
   let use = _ => store->AppStore.use(state => state)

@@ -1,8 +1,10 @@
-include Page
+include Store
 open Heroicons
 
 @react.component
 let make = (~page: Page.t, ~isActive, ~isEditing, ~setActivePage) => {
+  let store = Store.use()
+
   let (isOpen, setIsOpen) = React.useState(_ => false)
 
   let btnClass = isActive ? "btn-primary" : "btn-ghost"
@@ -16,6 +18,12 @@ let make = (~page: Page.t, ~isActive, ~isEditing, ~setActivePage) => {
     setIsOpen(val => !val)
   }
 
+  let afterDelete = _ => {
+    if isActive {
+      setActivePage(_ => store.pages[0])
+    }
+  }
+
   <React.Fragment>
     {isEditing
       ? <div role="button" className onClick>
@@ -27,6 +35,6 @@ let make = (~page: Page.t, ~isActive, ~isEditing, ~setActivePage) => {
           </div>
         </div>
       : <button className onClick> {React.string(page.icon)} </button>}
-    {isOpen ? <EditPageModal page onClose=toggleOpen /> : React.null}
+    {isOpen ? <EditPageModal page=Some(page) onClose=toggleOpen afterDelete /> : React.null}
   </React.Fragment>
 }

@@ -1,4 +1,4 @@
-include Site
+include Page
 open Heroicons
 
 module Card = {
@@ -41,8 +41,8 @@ module Card = {
 }
 
 @react.component
-let make = (~sites, ~isEditing) => {
-  let cards = Array.map(sites, site => <Card site key={Int.toString(site.id)} isEditing />)
+let make = (~page: Page.t, ~isEditing) => {
+  let cards = Array.map(page.sites, site => <Card site key={Int.toString(site.id)} isEditing />)
 
   <div className="grid grid-cols-12 gap-4 lg:gap-6 xl:gap-8 xxl:gap-12 w-full">
     {React.array(cards)}

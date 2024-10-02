@@ -27,7 +27,7 @@ let make = (~page: option<Page.t>, ~setPage, ~isEditing, ~setIsEditing) => {
         <button
           onClick={_ => setIsEditing(val => !val)}
           className={`btn sidebar-btn ${isEditing ? "btn-accent" : "btn-ghost"}`}>
-          <Solid.AdjustmentsIcon className="resp-icon" />
+          <Solid.PencilIcon className="resp-icon" />
         </button>
         <button id="theme-btn" className="btn btn-ghost sidebar-btn w-full">
           <Solid.ColorSwatchIcon className="resp-icon" />
