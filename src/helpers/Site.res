@@ -1,5 +1,10 @@
 @module("../assets/youtube.jpg") external youtubeLogo: string = "default"
 @module("../assets/lichess.png") external lichessLogo: string = "default"
+@module("../assets/reddit.jpg") external redditLogo: string = "default"
+@module("../assets/duolingo.jpg") external duolingoLogo: string = "default"
+@module("../assets/fb.jpg") external fbLogo: string = "default"
+@module("../assets/instagram.jpg") external instagramLogo: string = "default"
+@module("../assets/messenger.jpg") external messengerLogo: string = "default"
 
 module Site = {
   type t = {
@@ -22,31 +27,45 @@ module Site = {
     },
     {
       id: 1,
-      title: "Lichess",
-      url: "https://lichess.org",
-      icon: "https://repository-images.githubusercontent.com/127672405/07285800-15e5-11ea-9d25-3875007e9e97",
-      showLabel: true,
-    },
-    {
-      id: 2,
-      title: "Lichess",
-      url: "https://lichess.org",
-      icon: "Lichess",
-      showLabel: true,
-    },
-    {
-      id: 3,
       title: "Youtube",
       url: "https://youtube.com",
       icon: youtubeLogo,
       showLabel: false,
     },
     {
+      id: 3,
+      title: "Reddit",
+      url: "https://reddit.com",
+      icon: redditLogo,
+      showLabel: false,
+    },
+    {
       id: 4,
-      title: "Youtube",
-      url: "https://youtube.com",
-      icon: youtubeLogo,
-      showLabel: true,
+      title: "Duolingo",
+      url: "https://duolingo.com",
+      icon: duolingoLogo,
+      showLabel: false,
+    },
+    {
+      id: 5,
+      title: "Fb",
+      url: "https://fb.com",
+      icon: fbLogo,
+      showLabel: false,
+    },
+    {
+      id: 6,
+      title: "Instagram",
+      url: "https://instagram.com",
+      icon: instagramLogo,
+      showLabel: false,
+    },
+    {
+      id: 7,
+      title: "Messenger",
+      url: "https://messenger.com",
+      icon: messengerLogo,
+      showLabel: false,
     },
   ]
 }
