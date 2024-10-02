@@ -1,13 +1,15 @@
-include Page
+include Store
 open Heroicons
 
 @react.component
-let make = (~page: option<Page.t>, ~setPage, ~pages: array<Page.t>, ~isEditing, ~setIsEditing) => {
+let make = (~page: option<Page.t>, ~setPage, ~isEditing, ~setIsEditing) => {
+  let store = Store.use()
+
   let leftPos = "-left-56 has-[#theme-btn:focus]:left-0 has-[#theme-container>*:focus]:left-0"
 
-  let pagesBtns = Array.map(pages, p => {
+  let pagesBtns = Array.map(store.pages, p => {
     let key = Int.toString(p.id)
-    let isActive = page->Option.map(activeP => activeP.id == p.id)->Option.getWithDefault(false)
+    let isActive = page->Option.map(activeP => activeP.id == p.id)->Option.getOr(false)
     <PageButton page=p key isActive setActivePage=setPage isEditing />
   })
 

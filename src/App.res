@@ -1,13 +1,13 @@
-include Page
+include Store
 
 @react.component
 let make = () => {
-  let (pages, setPages) = React.useState(_ => Page.defaultPages)
-  let (page, setPage) = React.useState(_ => pages[0])
+  let store = Store.use()
+  let (page, setPage) = React.useState(_ => store.pages[0])
   let (isEditing, setIsEditing) = React.useState(_ => false)
 
   <div className="h-screen w-screen center flex-col p-16 transitional">
-    <Sidebar page setPage pages isEditing setIsEditing />
+    <Sidebar page setPage isEditing setIsEditing />
     <SearchBar />
     <div
       className="grow w-full max-w-5xl xxl:max-w-screen-xxl ml-16 py-4 lg:py-8 xxl:py-16 min-h-0 overflow-y-auto">
