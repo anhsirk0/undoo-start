@@ -35,6 +35,6 @@ let make = (~page: Page.t, ~isActive, ~isEditing, ~setActivePage) => {
           </div>
         </div>
       : <button className onClick> {React.string(page.icon)} </button>}
-    {isOpen ? <EditPageModal page=Some(page) onClose=toggleOpen afterDelete /> : React.null}
+    {isOpen ? <EditPageModal page onClose=toggleOpen afterDelete /> : React.null}
   </React.Fragment>
 }

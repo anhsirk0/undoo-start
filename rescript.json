@@ -16,8 +16,7 @@
   "bs-dependencies": [
     "@rescript/core",
     "@rescript/react",
-    "rescript-heroicons",
-    "rescript-jzon"
+    "rescript-heroicons"
   ],
   "bsc-flags": ["-open RescriptCore"],
   "jsx": {

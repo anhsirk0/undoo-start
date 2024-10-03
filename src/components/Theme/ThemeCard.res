@@ -1,4 +1,4 @@
-@module("../helpers/setTheme") external setTheme: string => unit = "default"
+@module("../../helpers/setTheme") external setTheme: string => unit = "default"
 
 module MyOverrides = {
   module Elements = {

@@ -32,9 +32,6 @@ importers:
       rescript-heroicons:
         specifier: ^0.0.3
         version: 0.0.3
-      rescript-jzon:
-        specifier: ^2.0.0
-        version: 2.0.0(rescript@11.1.4)
       zustand:
         specifier: 5.0.0-rc.2
         version: 5.0.0-rc.2(react@18.3.1)
@@ -862,9 +859,6 @@ packages:
 
   rescript-heroicons@0.0.3:
     resolution: {integrity: sha512-sPiNPtVTqJqAZpgmuxCgzonb1GPgmPZzecaaziNwIAIone4wYE69I4uRrktcsbE6MSmFyxTCSnoIYPHGVLTrsw==}
-
-  rescript-jzon@2.0.0:
-    resolution: {integrity: sha512-rgiQZCLsp2oQVHDL0ra4VVJAA+tC9HgYVKuAdVTAQpllIowTqvjEKRIuR1TntyruKs2WfOf7P5/PrjYf41c0lQ==}
 
   rescript@11.1.4:
     resolution: {integrity: sha512-0bGU0bocihjSC6MsE3TMjHjY0EUpchyrREquLS8VsZ3ohSMD+VHUEwimEfB3kpBI1vYkw3UFZ3WD8R28guz/Vw==}
@@ -1758,12 +1752,6 @@ snapshots:
       picomatch: 2.3.1
 
   rescript-heroicons@0.0.3: {}
-
-  rescript-jzon@2.0.0(rescript@11.1.4):
-    dependencies:
-      '@rescript/core': 1.6.0(rescript@11.1.4)
-    transitivePeerDependencies:
-      - rescript
 
   rescript@11.1.4: {}
 

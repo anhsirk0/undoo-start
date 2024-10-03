@@ -1,5 +1,5 @@
-@module("../themes") external themes: array<string> = "default"
-@module("../helpers/setTheme") external setTheme: string => unit = "default"
+@module("../../themes") external themes: array<string> = "default"
+@module("../../helpers/setTheme") external setTheme: string => unit = "default"
 
 @react.component
 let make = () => {
