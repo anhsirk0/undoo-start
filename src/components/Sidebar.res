@@ -18,7 +18,7 @@ let make = (~page: option<Page.t>, ~setPage, ~isEditing, ~setIsEditing) => {
       <ul
         id="theme-container"
         tabIndex=0
-        className="flex flex-col gap-4 w-56 p-4 min-h-0 overflow-y-auto bg-accent">
+        className="flex flex-col gap-4 w-56 p-4 min-h-0 overflow-y-auto bg-secondary">
         <ThemesList />
       </ul>
       <div className="w-16 xxl:w-28 p-2 xxl:p-4 flex flex-col gap-2 xxl:gap-4 h-full bg-base-200">
