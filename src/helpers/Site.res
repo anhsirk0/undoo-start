@@ -9,6 +9,7 @@
 @module("../assets/fb.jpg") external fbLogo: string = "default"
 @module("../assets/instagram.jpg") external instagramLogo: string = "default"
 @module("../assets/messenger.jpg") external messengerLogo: string = "default"
+@module("../assets/spotify.jpg") external spotifyLogo: string = "default"
 
 module Site = {
   type t = {
@@ -97,6 +98,13 @@ module Site = {
       title: "Messenger",
       url: "https://messenger.com",
       icon: messengerLogo,
+      showLabel: false,
+    },
+    {
+      id: 10,
+      title: "Spotify",
+      url: "https://spotify.com",
+      icon: spotifyLogo,
       showLabel: false,
     },
   ]
