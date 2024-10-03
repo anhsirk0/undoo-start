@@ -1,6 +1,7 @@
 @module("../assets/youtube.jpg") external youtubeLogo: string = "default"
 @module("../assets/whatsapp.jpg") external whatsappLogo: string = "default"
 @module("../assets/github.png") external githubLogo: string = "default"
+@module("../assets/codeberg.png") external codebergLogo: string = "default"
 @module("../assets/netflix.png") external netflixLogo: string = "default"
 @module("../assets/lichess.png") external lichessLogo: string = "default"
 @module("../assets/reddit.jpg") external redditLogo: string = "default"
@@ -33,6 +34,13 @@ module Site = {
       title: "Youtube",
       url: "https://youtube.com",
       icon: youtubeLogo,
+      showLabel: false,
+    },
+    {
+      id: 11,
+      title: "Codeberg",
+      url: "https://codeberg.com",
+      icon: codebergLogo,
       showLabel: false,
     },
     {
