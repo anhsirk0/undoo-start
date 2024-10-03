@@ -13,8 +13,11 @@ let make = (~page: Page.t, ~isActive, ~isEditing, ~setActivePage) => {
 
   let onClick = _ => setActivePage(_ => Some(page))
 
-  let toggleOpen = evt => {
-    JsxEvent.Mouse.stopPropagation(evt)
+  let toggleOpen = (~evt=?) => {
+    switch evt {
+    | Some(e) => JsxEvent.Mouse.stopPropagation(e)
+    | None => ()
+    }
     setIsOpen(val => !val)
   }
 
@@ -30,11 +33,11 @@ let make = (~page: Page.t, ~isActive, ~isEditing, ~setActivePage) => {
           {React.string(page.icon)}
           <div
             className="bg-base-100/70 absolute bottom-0 right-0 size-3/5 xxl:size-1/2 center resp-text rounded-tl-box"
-            onClick=toggleOpen>
+            onClick={evt => toggleOpen(~evt)}>
             <Solid.PencilIcon className="resp-icon text-base-content" />
           </div>
         </div>
       : <button className onClick> {React.string(page.icon)} </button>}
-    {isOpen ? <EditPageModal page onClose=toggleOpen afterDelete /> : React.null}
+    {isOpen ? <EditPageModal page onClose={_ => toggleOpen()} afterDelete /> : React.null}
   </React.Fragment>
 }

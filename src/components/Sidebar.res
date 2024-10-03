@@ -4,7 +4,6 @@ open Heroicons
 @react.component
 let make = (~page: option<Page.t>, ~setPage, ~isEditing, ~setIsEditing) => {
   let store = Store.use()
-  let (isAdding, setIsAdding) = React.useState(_ => false)
 
   let leftPos = "-left-56 has-[#theme-btn:focus]:left-0 has-[#theme-container>*:focus]:left-0"
 
