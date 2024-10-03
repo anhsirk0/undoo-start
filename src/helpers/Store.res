@@ -27,6 +27,7 @@ module StoreData = {
     updateTitle: string => unit,
     deletePage: int => unit,
     addPage: Page.t => unit,
+    updatePage: Page.t => unit,
   }
 }
 
@@ -37,8 +38,13 @@ module Store = {
     title: "Undoo Startpage",
     pages: Page.defaultPages,
     updateTitle: title => set(.state => {...state, title}),
-    deletePage: id => set(.state => {...state, pages: Array.filter(state.pages, p => p.id != id)}),
+    deletePage: id => set(.state => {...state, pages: state.pages->Array.filter(p => p.id != id)}),
     addPage: page => set(.state => {...state, pages: Array.concat(state.pages, [page])}),
+    updatePage: page =>
+      set(.state => {
+        ...state,
+        pages: state.pages->Array.map(p => p.id == page.id ? page : p),
+      }),
   })
 
   let use = _ => store->AppStore.use(state => state)

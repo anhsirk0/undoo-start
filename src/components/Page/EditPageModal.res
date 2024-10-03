@@ -23,8 +23,11 @@ let make = (~page: Page.t, ~onClose, ~afterDelete) => {
 
   let onSubmit = evt => {
     JsxEvent.Form.preventDefault(evt)
-    // let title = ReactEvent.Form.target(evt)["title"]["value"]
-    // let icon = ReactEvent.Form.target(evt)["icon"]["value"]
+    let title = ReactEvent.Form.target(evt)["title"]["value"]
+    let icon = ReactEvent.Form.target(evt)["icon"]["value"]
+
+    store.updatePage({...page, title, icon})
+    onClose()
   }
 
   <Modal title=page.title onClose>

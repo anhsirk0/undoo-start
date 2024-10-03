@@ -19,7 +19,7 @@ module Page = {
       id: 1,
       title: "Second",
       icon: `🏛`,
-      sites: Array.slice(Site.defaultSites, ~start=0, ~end=1),
+      sites: Array.slice(Site.defaultSites, ~start=0, ~end=4),
     },
   ]
 }
