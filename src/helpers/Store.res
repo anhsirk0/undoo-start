@@ -26,6 +26,7 @@ module StoreData = {
     pages: array<Page.t>,
     updateTitle: string => unit,
     deletePage: int => unit,
+    addPage: Page.t => unit,
   }
 }
 
@@ -37,6 +38,7 @@ module Store = {
     pages: Page.defaultPages,
     updateTitle: title => set(.state => {...state, title}),
     deletePage: id => set(.state => {...state, pages: Array.filter(state.pages, p => p.id != id)}),
+    addPage: page => set(.state => {...state, pages: Array.concat(state.pages, [page])}),
   })
 
   let use = _ => store->AppStore.use(state => state)

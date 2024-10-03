@@ -4,6 +4,7 @@ open Heroicons
 @react.component
 let make = (~page: option<Page.t>, ~setPage, ~isEditing, ~setIsEditing) => {
   let store = Store.use()
+  let (isAdding, setIsAdding) = React.useState(_ => false)
 
   let leftPos = "-left-56 has-[#theme-btn:focus]:left-0 has-[#theme-container>*:focus]:left-0"
 
@@ -23,6 +24,13 @@ let make = (~page: option<Page.t>, ~setPage, ~isEditing, ~setIsEditing) => {
       </ul>
       <div className="w-16 xxl:w-28 p-2 xxl:p-4 flex flex-col gap-2 xxl:gap-4 h-full bg-base-200">
         {React.array(pagesBtns)}
+        {isEditing
+          ? <button
+              onClick={_ => setIsAdding(val => !val)}
+              className={`btn animate-grow sidebar-btn ${isAdding ? "btn-accent" : "btn-ghost"}`}>
+              <Solid.PlusIcon className="resp-icon" />
+            </button>
+          : React.null}
         <div className="grow" />
         <button
           onClick={_ => setIsEditing(val => !val)}
