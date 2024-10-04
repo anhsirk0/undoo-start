@@ -37,7 +37,7 @@ let make = (~page: Page.t, ~onClose, ~afterDelete) => {
       <div className="flex flex-row gap-4 mt-4">
         {Array.length(store.pages) != 1 ? <DeleteButton id=page.id afterDelete /> : React.null}
         <div className="grow" />
-        <button className="btn resp-btn btn-success"> {React.string("Update page")} </button>
+        <button className="btn resp-btn btn-primary"> {React.string("Update page")} </button>
       </div>
     </form>
   </Modal>

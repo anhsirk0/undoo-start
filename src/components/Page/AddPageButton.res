@@ -35,7 +35,7 @@ let make = () => {
             <Input name="icon" label="Icon" required=true />
             <div className="flex flex-row gap-4 mt-4">
               <div className="grow" />
-              <button className="btn resp-btn btn-success"> {React.string("Add new Page")} </button>
+              <button className="btn resp-btn btn-primary"> {React.string("Add new Page")} </button>
             </div>
           </form>
         </Modal>

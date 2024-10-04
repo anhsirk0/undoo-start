@@ -29,3 +29,7 @@
 .transitional {
   @apply transition-all duration-200 ease-in-out;
 }
+
+.card-image {
+  image-rendering:-webkit-optimize-contrast;  /* Chrome (and eventually Safari) */
+}

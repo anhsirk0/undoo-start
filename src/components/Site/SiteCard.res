@@ -1,11 +1,26 @@
-include Store
+include Site
 open Heroicons
 
-module Card = {
+module DeletButton = {
   @react.component
-  let make = (~site: Site.t, ~isEditing, ~onDelete) => {
-    let isIconUrl = Site.startsWith(site.icon, ["http", "/src", "/assets"])
+  let make = (~onDelete) => {
+    <div
+      role="button"
+      onClick=onDelete
+      className="bg-error/60 absolute top-0 right-0 size-8 lg:size-10 xxl:size-12 center resp-text rounded-bl-box">
+      <Solid.TrashIcon className="resp-icon text-base-content" />
+    </div>
+  }
+}
 
+@react.component
+let make = (~site: Site.t, ~isEditing, ~onDelete, ~updateSite) => {
+  let (isOpen, setIsOpen) = React.useState(_ => false)
+  let toggleOpen = _ => setIsOpen(val => !val)
+
+  let isIconUrl = Site.startsWith(site.icon, ["http", "/src", "/assets"])
+
+  <React.Fragment>
     <div
       className="col-span-12 xs:col-span-6 sm:col-span-4 md:col-span-3 lg:col-span-2 animate-grow">
       <div
@@ -16,7 +31,9 @@ module Card = {
           className="relative size-full group cursor-pointer relative">
           {isIconUrl
             ? <figure className="absolute inset-0 -z-10 group-hover:scale-105 transitional">
-                <img className="h-full w-full object-cover" src=site.icon alt=site.title />
+                <img
+                  className="h-full w-full object-cover card-image" src=site.icon alt=site.title
+                />
               </figure>
             : <div className="absolute inset-0 size-full bg-primary center">
                 <p
@@ -25,7 +42,7 @@ module Card = {
                 </p>
               </div>}
           {site.showLabel
-            ? <div className="center p-4 bg-base-100/20 absolute bottom-0 h-12 w-full">
+            ? <div className="center p-4 bg-base-100/50 absolute bottom-0 h-12 w-full">
                 <p className="title truncate"> {React.string(site.title)} </p>
               </div>
             : React.null}
@@ -33,35 +50,14 @@ module Card = {
         {isEditing
           ? <div
               role="button"
+              onClick=toggleOpen
               className="bg-base-100/80 absolute inset-0 size-full center animate-fade">
-              <div
-                onClick=onDelete
-                className="bg-error/60 absolute top-0 right-0 size-8 lg:size-10 xxl:size-12 center resp-text rounded-bl-box">
-                <Solid.TrashIcon className="resp-icon text-base-content" />
-              </div>
+              <DeletButton onDelete />
               <Solid.PencilIcon className="w-12 h-12 text-base-content" />
             </div>
           : React.null}
       </div>
     </div>
-  }
-}
-
-@react.component
-let make = (~page: Page.t, ~isEditing) => {
-  let store = Store.use()
-
-  let cards = Array.map(page.sites, site => {
-    let onDelete = evt => {
-      JsxEvent.Mouse.stopPropagation(evt)
-      store.updatePage({...page, sites: page.sites->Array.filter(s => s.id != site.id)})
-      Js.log(site)
-    }
-
-    <Card site key={Int.toString(site.id)} isEditing onDelete />
-  })
-
-  <div className="grid grid-cols-12 gap-4 lg:gap-6 xl:gap-8 xxl:gap-12 w-full">
-    {React.array(cards)}
-  </div>
+    {isOpen ? <EditSiteModal site updateSite onClose=toggleOpen /> : React.null}
+  </React.Fragment>
 }
