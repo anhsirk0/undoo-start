@@ -42,8 +42,8 @@ let make = (~site: Site.t, ~isEditing, ~onDelete, ~updateSite) => {
                 </p>
               </div>}
           {site.showLabel
-            ? <div className="center p-4 bg-base-100/50 absolute bottom-0 h-12 w-full">
-                <p className="title truncate"> {React.string(site.title)} </p>
+            ? <div className="center p-2 bg-base-100/80 absolute bottom-0 h-6 xxl:h-8 w-full">
+                <p className="title font-bold truncate"> {React.string(site.title)} </p>
               </div>
             : React.null}
         </a>

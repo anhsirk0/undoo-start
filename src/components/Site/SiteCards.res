@@ -14,7 +14,6 @@ let make = (~page: Page.t, ~isEditing) => {
     let onDelete = evt => {
       JsxEvent.Mouse.stopPropagation(evt)
       store.updatePage({...page, sites: page.sites->Array.filter(s => s.id != site.id)})
-      Js.log(site)
     }
 
     <SiteCard site key={Int.toString(site.id)} isEditing onDelete updateSite />
