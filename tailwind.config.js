@@ -25,7 +25,7 @@ export default {
     },
     animation: {
       grow: "grow 200ms ease-in-out",
-      fade: "fade 400ms ease-in-out",
+      fade: "fade 200ms ease-in-out",
     },
   },
   plugins: [require("daisyui")],

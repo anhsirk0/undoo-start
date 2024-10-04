@@ -1,9 +1,9 @@
-include Page
+include Store
 open Heroicons
 
 module Card = {
   @react.component
-  let make = (~site: Site.t, ~isEditing) => {
+  let make = (~site: Site.t, ~isEditing, ~onDelete) => {
     let isIconUrl = Site.startsWith(site.icon, ["http", "/src", "/assets"])
 
     <div
@@ -31,7 +31,14 @@ module Card = {
             : React.null}
         </a>
         {isEditing
-          ? <div className="bg-base-100/70 absolute inset-0 size-full center">
+          ? <div
+              role="button"
+              className="bg-base-100/80 absolute inset-0 size-full center animate-fade">
+              <div
+                onClick=onDelete
+                className="bg-error/60 absolute top-0 right-0 size-8 lg:size-10 xxl:size-12 center resp-text rounded-bl-box">
+                <Solid.TrashIcon className="resp-icon text-base-content" />
+              </div>
               <Solid.PencilIcon className="w-12 h-12 text-base-content" />
             </div>
           : React.null}
@@ -42,7 +49,17 @@ module Card = {
 
 @react.component
 let make = (~page: Page.t, ~isEditing) => {
-  let cards = Array.map(page.sites, site => <Card site key={Int.toString(site.id)} isEditing />)
+  let store = Store.use()
+
+  let cards = Array.map(page.sites, site => {
+    let onDelete = evt => {
+      JsxEvent.Mouse.stopPropagation(evt)
+      store.updatePage({...page, sites: page.sites->Array.filter(s => s.id != site.id)})
+      Js.log(site)
+    }
+
+    <Card site key={Int.toString(site.id)} isEditing onDelete />
+  })
 
   <div className="grid grid-cols-12 gap-4 lg:gap-6 xl:gap-8 xxl:gap-12 w-full">
     {React.array(cards)}

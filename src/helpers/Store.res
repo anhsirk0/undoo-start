@@ -39,7 +39,7 @@ module Store = {
     pages: Page.defaultPages,
     updateTitle: title => set(.state => {...state, title}),
     deletePage: id => set(.state => {...state, pages: state.pages->Array.filter(p => p.id != id)}),
-    addPage: page => set(.state => {...state, pages: Array.concat(state.pages, [page])}),
+    addPage: page => set(.state => {...state, pages: state.pages->Array.concat([page])}),
     updatePage: page =>
       set(.state => {
         ...state,

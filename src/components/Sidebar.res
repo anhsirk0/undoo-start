@@ -2,7 +2,7 @@ include Store
 open Heroicons
 
 @react.component
-let make = (~page: option<Page.t>, ~setPage, ~isEditing, ~setIsEditing) => {
+let make = (~page: option<Page.t>, ~setPageId, ~isEditing, ~setIsEditing) => {
   let store = Store.use()
 
   let leftPos = "-left-56 has-[#theme-btn:focus]:left-0 has-[#theme-container>*:focus]:left-0"
@@ -10,7 +10,7 @@ let make = (~page: option<Page.t>, ~setPage, ~isEditing, ~setIsEditing) => {
   let pagesBtns = Array.map(store.pages, p => {
     let key = Int.toString(p.id)
     let isActive = page->Option.map(activeP => activeP.id == p.id)->Option.getOr(false)
-    <PageButton page=p key isActive setActivePage=setPage isEditing />
+    <PageButton page=p key isActive setPageId isEditing />
   })
 
   <React.Fragment>

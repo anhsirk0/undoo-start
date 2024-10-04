@@ -2,7 +2,7 @@ include Store
 open Heroicons
 
 @react.component
-let make = (~page: Page.t, ~isActive, ~isEditing, ~setActivePage) => {
+let make = (~page: Page.t, ~setPageId, ~isActive, ~isEditing) => {
   let store = Store.use()
 
   let (isOpen, setIsOpen) = React.useState(_ => false)
@@ -11,7 +11,7 @@ let make = (~page: Page.t, ~isActive, ~isEditing, ~setActivePage) => {
   let ring = isOpen ? "ring" : ""
   let className = `btn sidebar-btn w-full center ${btnClass} text-4xl truncate relative resp-text ${ring}`
 
-  let onClick = _ => setActivePage(_ => Some(page))
+  let onClick = _ => setPageId(_ => Some(page.id))
 
   let toggleOpen = (~evt=?) => {
     switch evt {
@@ -23,7 +23,7 @@ let make = (~page: Page.t, ~isActive, ~isEditing, ~setActivePage) => {
 
   let afterDelete = _ => {
     if isActive {
-      setActivePage(_ => store.pages[0])
+      setPageId(_ => store.pages[0]->Option.map(p => p.id))
     }
   }
 
@@ -32,7 +32,8 @@ let make = (~page: Page.t, ~isActive, ~isEditing, ~setActivePage) => {
       ? <div role="button" className onClick>
           {React.string(page.icon)}
           <div
-            className="bg-base-100/70 absolute bottom-0 right-0 size-3/5 xxl:size-1/2 center resp-text rounded-tl-box"
+            role="button"
+            className="bg-base-100/70 absolute top-0 right-0 size-3/5 xxl:size-1/2 center resp-text rounded-bl-box"
             onClick={evt => toggleOpen(~evt)}>
             <Solid.PencilIcon className="resp-icon text-base-content" />
           </div>
