@@ -7,6 +7,9 @@ let make = (~page: Page.t, ~isEditing) => {
   let updateSite = (site: Site.t) =>
     store.updatePage({...page, sites: page.sites->Array.map(s => s.id == site.id ? site : s)})
 
+  let addSite = (site: Site.t) =>
+    store.updatePage({...page, sites: page.sites->Array.concat([site])})
+
   let cards = Array.map(page.sites, site => {
     let onDelete = evt => {
       JsxEvent.Mouse.stopPropagation(evt)
@@ -17,7 +20,10 @@ let make = (~page: Page.t, ~isEditing) => {
     <SiteCard site key={Int.toString(site.id)} isEditing onDelete updateSite />
   })
 
-  <div className="grid grid-cols-12 gap-4 lg:gap-6 xl:gap-8 xxl:gap-12 w-full">
-    {React.array(cards)}
-  </div>
+  <React.Fragment>
+    <div className="grid grid-cols-12 gap-4 lg:gap-6 xl:gap-8 xxl:gap-12 w-full">
+      {React.array(cards)}
+    </div>
+    <AddSiteButton addSite />
+  </React.Fragment>
 }
