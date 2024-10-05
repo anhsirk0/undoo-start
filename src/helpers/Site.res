@@ -1,15 +1,15 @@
-@module("../assets/youtube.jpg") external youtubeLogo: string = "default"
-@module("../assets/whatsapp.jpg") external whatsappLogo: string = "default"
-@module("../assets/github.png") external githubLogo: string = "default"
-@module("../assets/codeberg.png") external codebergLogo: string = "default"
-@module("../assets/netflix.png") external netflixLogo: string = "default"
-@module("../assets/lichess.png") external lichessLogo: string = "default"
-@module("../assets/reddit.jpg") external redditLogo: string = "default"
-@module("../assets/duolingo.jpg") external duolingoLogo: string = "default"
-@module("../assets/fb.jpg") external fbLogo: string = "default"
-@module("../assets/instagram.jpg") external instagramLogo: string = "default"
-@module("../assets/messenger.jpg") external messengerLogo: string = "default"
-@module("../assets/spotify.jpg") external spotifyLogo: string = "default"
+@module("../assets/youtube.svg") external youtubeLogo: string = "default"
+@module("../assets/whatsapp.svg") external whatsappLogo: string = "default"
+@module("../assets/github.svg") external githubLogo: string = "default"
+@module("../assets/codeberg.svg") external codebergLogo: string = "default"
+@module("../assets/netflix.svg") external netflixLogo: string = "default"
+@module("../assets/lichess.svg") external lichessLogo: string = "default"
+@module("../assets/reddit.svg") external redditLogo: string = "default"
+@module("../assets/duolingo.svg") external duolingoLogo: string = "default"
+@module("../assets/facebook.svg") external facebookLogo: string = "default"
+@module("../assets/instagram.svg") external instagramLogo: string = "default"
+@module("../assets/messenger.svg") external messengerLogo: string = "default"
+@module("../assets/spotify.svg") external spotifyLogo: string = "default"
 
 module Site = {
   type t = {
@@ -74,9 +74,9 @@ module Site = {
     },
     {
       id: 6,
-      title: "Fb",
-      url: "https://fb.com",
-      icon: fbLogo,
+      title: "Facebook",
+      url: "https://facebook.com",
+      icon: facebookLogo,
       showLabel: false,
     },
     {

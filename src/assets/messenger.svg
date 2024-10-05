@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+
+<svg
+   width="800px"
+   height="800px"
+   viewBox="0 0 48 48"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="messenger.svg"
+   inkscape:version="1.3.2 (091e20ef0f, 2023-11-25, custom)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="0.91224418"
+     inkscape:cx="351.87947"
+     inkscape:cy="394.08308"
+     inkscape:window-width="1920"
+     inkscape:window-height="1058"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg1" />
+  <title
+     id="title1">Messenger-color</title>
+  <desc
+     id="desc1">Created with Sketch.</desc>
+  <defs
+     id="defs1" />
+  <rect
+     style="fill:#0866ff;fill-rule:evenodd;stroke-width:0.06;fill-opacity:1"
+     id="rect1"
+     width="48"
+     height="48"
+     x="0"
+     y="0" />
+  <path
+     d="m 23.999998,8.47307 c -8.575305,0 -15.5269325,6.436683 -15.5269325,14.376787 0,4.52438 2.2578685,8.560037 5.7864345,11.195397 v 5.48168 l 5.286778,-2.901524 c 1.41092,0.390476 2.905652,0.601235 4.45372,0.601235 8.575304,0 15.526932,-6.436677 15.526932,-14.376788 0,-7.940104 -6.951628,-14.376787 -15.526932,-14.376787 z m 1.543047,19.360745 -3.954063,-4.217192 -7.715242,4.217192 8.486769,-9.009457 4.050504,4.217192 7.618807,-4.217192 z"
+     id="Messenger"
+     style="fill:#f9f9f9;fill-rule:evenodd;stroke:none;stroke-width:0.646955" />
+</svg>

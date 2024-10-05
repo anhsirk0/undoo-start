@@ -33,8 +33,8 @@ let make = (~addSite: Site.t => unit) => {
       ? <Modal title="New Site" onClose=toggleOpen>
           <form onSubmit className="flex flex-col gap-4">
             <Input name="title" label="Title" required=true />
-            <Input name="icon" label="Icon" required=true />
             <Input name="url" label="Url" required=true />
+            <Input name="icon" label="Icon" required=true />
             <div className="form-control">
               <label className="label cursor-pointer">
                 <span className="label-text"> {React.string("Show label")} </span>
