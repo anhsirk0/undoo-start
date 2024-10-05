@@ -18,7 +18,7 @@ let make = (~site: Site.t, ~isEditing, ~onDelete, ~updateSite) => {
   let (isOpen, setIsOpen) = React.useState(_ => false)
   let toggleOpen = _ => setIsOpen(val => !val)
 
-  let isIconUrl = Site.startsWith(site.icon, ["http", "/src", "/assets"])
+  let isIconUrl = Site.startsWith(site.icon, ["http", "/src", "/assets", "data:image"])
 
   <React.Fragment>
     <div
