@@ -1,4 +1,4 @@
-import themes from "./src/themes";
+import { themes } from "./src/Themes.res.mjs";
 
 /** @type {import('tailwindcss').Config} */
 export default {
