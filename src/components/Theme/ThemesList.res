@@ -1,17 +1,16 @@
-@module("../../themes") external themes: array<string> = "default"
 @module("../../helpers/setTheme") external setTheme: string => unit = "default"
+
+include Themes
 
 @react.component
 let make = () => {
   React.useEffect(() => {
-    // Run effects
     let theme = Dom.Storage2.getItem(Dom.Storage2.localStorage, "undooStartpageTheme")
     switch theme {
     | Some(theme) => setTheme(theme)
     | None => Js.log("theme not found")
     }
-
-    None // or Some(() => {})
+    None
   }, [])
 
   let themeCards = Array.map(themes, theme =>

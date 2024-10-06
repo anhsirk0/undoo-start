@@ -1,5 +1,5 @@
 // DaisyUI themes
-const themes = [
+let themes = [
   "cupcake",
   "light",
   "dark",
@@ -32,6 +32,4 @@ const themes = [
   "dim",
   "nord",
   "sunset",
-];
-
-export default themes;
+]
