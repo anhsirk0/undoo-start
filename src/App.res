@@ -9,6 +9,7 @@ let make = () => {
   let page = pageId->Option.flatMap(id => store.pages->Array.find(p => p.id == id))
 
   <div className="h-screen w-screen center flex-col p-8 transitional">
+    <DocumentTitle page />
     <Sidebar page setPageId isEditing setIsEditing />
     <SearchBar />
     <div
