@@ -31,7 +31,7 @@ let make = (~page: Page.t, ~onClose, ~afterDelete) => {
   }
 
   <Modal title=page.title onClose>
-    <form onSubmit className="flex flex-col gap-4">
+    <form onSubmit className="flex flex-col gap-2 xl:gap-4">
       <Input name="title" defaultValue=page.title label="Title" />
       <Input name="icon" defaultValue=page.icon label="Icon" />
       <div className="flex flex-row gap-4 mt-4">

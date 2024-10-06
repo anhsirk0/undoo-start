@@ -1,3 +1,5 @@
+@module("../../helpers/setValue") external setValue: (Dom.element, string) => unit = "default"
+
 include Site
 open Heroicons
 
@@ -11,6 +13,10 @@ let make = (~addSite: Site.t => unit) => {
   let onChoose = str => {
     setChosenIcon(_ => Some(str))
     setIsIconError(_ => false)
+    switch ReactDOM.querySelector("input[name='icon'") {
+    | Some(el) => el->setValue(str)
+    | None => ()
+    }
   }
 
   let onSubmit = evt => {
@@ -44,17 +50,18 @@ let make = (~addSite: Site.t => unit) => {
     </button>
     {isOpen
       ? <Modal title="New Site" onClose=toggleOpen>
-          <form onSubmit className="flex flex-col gap-4">
+          <form onSubmit className="flex flex-col gap-2 xl:gap-4">
             <Input name="title" label="Title" required=true />
-            <div className="form-control w-fit">
-              <label className="label cursor-pointer">
-                <span className="label-text pr-4"> {React.string("Show label")} </span>
-                <input name="label" type_="checkbox" defaultChecked=true className="checkbox" />
-              </label>
-            </div>
             <Input name="url" label="Url" required=true />
+            <Input name="icon" label="Icon" />
             <ChooseIcon chosen=chosenIcon onChoose isIconError />
             <div className="flex flex-row gap-4 mt-4">
+              <div className="form-control w-fit">
+                <label className="label cursor-pointer">
+                  <span className="label-text pr-4"> {React.string("Show label")} </span>
+                  <input name="label" type_="checkbox" defaultChecked=true className="checkbox" />
+                </label>
+              </div>
               <div className="grow" />
               <button className="btn resp-btn btn-primary"> {React.string("Add Site")} </button>
             </div>

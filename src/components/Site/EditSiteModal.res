@@ -1,13 +1,20 @@
+@module("../../helpers/setValue") external setValue: (Dom.element, string) => unit = "default"
+
 include Site
 
 @react.component
 let make = (~site: Site.t, ~onClose, ~updateSite) => {
-  let (chosenIcon, setChosenIcon) = React.useState(_ => None)
+  let (chosenIcon, setChosenIcon) = React.useState(_ => Some(site.icon))
   let (isIconError, setIsIconError) = React.useState(_ => false)
 
   let onChoose = str => {
     setChosenIcon(_ => Some(str))
     setIsIconError(_ => false)
+
+    switch ReactDOM.querySelector("input[name='icon'") {
+    | Some(el) => el->setValue(str)
+    | None => ()
+    }
   }
 
   let onSubmit = evt => {
@@ -28,17 +35,21 @@ let make = (~site: Site.t, ~onClose, ~updateSite) => {
   }
 
   <Modal title=site.title onClose>
-    <form onSubmit className="flex flex-col gap-4">
+    <form onSubmit className="flex flex-col gap-2 xl:gap-4">
       <Input name="title" defaultValue=site.title label="Title" />
-      <div className="form-control w-fit">
-        <label className="label cursor-pointer">
-          <span className="label-text pr-4"> {React.string("Show label")} </span>
-          <input name="label" type_="checkbox" defaultChecked=site.showLabel className="checkbox" />
-        </label>
-      </div>
       <Input name="url" defaultValue=site.url label="Url" />
+      <Input name="icon" label="Icon" defaultValue=site.icon />
       <ChooseIcon chosen=chosenIcon onChoose isIconError />
-      <div className="flex flex-row gap-4 mt-4 justify-end">
+      <div className="flex flex-row gap-4 mt-4">
+        <div className="form-control w-fit">
+          <label className="label cursor-pointer">
+            <span className="label-text pr-4"> {React.string("Show label")} </span>
+            <input
+              name="label" type_="checkbox" defaultChecked=site.showLabel className="checkbox"
+            />
+          </label>
+        </div>
+        <div className="grow" />
         <button className="btn resp-btn btn-primary"> {React.string("Update site")} </button>
       </div>
     </form>
