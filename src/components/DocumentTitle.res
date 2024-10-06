@@ -16,7 +16,8 @@ module UpdateTitleForm = {
       store.updateTitle(newTitle)
     }
 
-    <form onSubmit className="join animate-grow fixed top-4 left-[30vw] w-[40vw]">
+    <form
+      onSubmit className="join animate-grow fixed bottom-4 left-16 md:left-[30vw] w-[40vw] z-10">
       <input
         name="title"
         defaultValue=store.title
@@ -24,7 +25,7 @@ module UpdateTitleForm = {
         placeholder="Page title"
       />
       <button className="btn btn-accent join-item rounded-r-box">
-        {React.string("Change title")}
+        {React.string("Update page title")}
       </button>
     </form>
   }

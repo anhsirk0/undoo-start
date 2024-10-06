@@ -15,14 +15,21 @@ module Zustand = {
 
     let use = (store: store, selector: selector<'a>): 'a => unsafeStoreToAny(store)(. selector)
 
+    type createFnParam = set => Config.state
+    type persistOptions = {name: string}
+
     @module("zustand")
-    external create: (set => Config.state) => store = "create"
+    external create: createFnParam => store = "create"
+    @module("zustand/middleware")
+    external persist: (createFnParam, persistOptions) => createFnParam = "persist"
   }
 }
 
 module StoreData = {
   type state = {
     title: string,
+    searchEngineId: int,
+    updateSearchEngineId: int => unit,
     pages: array<Page.t>,
     updateTitle: string => unit,
     deletePage: int => unit,
@@ -34,18 +41,21 @@ module StoreData = {
 module AppStore = Zustand.MakeStore(StoreData)
 
 module Store = {
-  let store = AppStore.create(set => {
-    title: "Undoo Startpage",
-    pages: Page.defaultPages,
-    updateTitle: title => set(.state => {...state, title}),
-    deletePage: id => set(.state => {...state, pages: state.pages->Array.filter(p => p.id != id)}),
-    addPage: page => set(.state => {...state, pages: state.pages->Array.concat([page])}),
-    updatePage: page =>
-      set(.state => {
-        ...state,
-        pages: state.pages->Array.map(p => p.id == page.id ? page : p),
-      }),
-  })
+  let store = AppStore.create(AppStore.persist(set => {
+      title: "Undoo Startpage",
+      searchEngineId: 0,
+      updateSearchEngineId: id => set(.state => {...state, searchEngineId: id}),
+      pages: Page.defaultPages,
+      updateTitle: title => set(.state => {...state, title}),
+      deletePage: id =>
+        set(.state => {...state, pages: state.pages->Array.filter(p => p.id != id)}),
+      addPage: page => set(.state => {...state, pages: state.pages->Array.concat([page])}),
+      updatePage: page =>
+        set(.state => {
+          ...state,
+          pages: state.pages->Array.map(p => p.id == page.id ? page : p),
+        }),
+    }, {name: "undoo-startpage"}))
 
   let use = _ => store->AppStore.use(state => state)
 }

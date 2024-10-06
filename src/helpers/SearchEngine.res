@@ -19,5 +19,11 @@ module SearchEngine = {
       url: "https://www.startpage.com/sp/search?query=<Q>",
       icon: `🪿`,
     },
+    {
+      id: 2,
+      title: "Google",
+      url: "https://www.google.com/search?q=<Q>",
+      icon: `G`,
+    },
   ]
 }
