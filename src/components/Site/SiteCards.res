@@ -1,4 +1,6 @@
 include Store
+include Utils
+open Heroicons
 
 @react.component
 let make = (~page: Page.t, ~isEditing) => {
@@ -10,13 +12,45 @@ let make = (~page: Page.t, ~isEditing) => {
   let addSite = (site: Site.t) =>
     store.updatePage({...page, sites: page.sites->Array.concat([site])})
 
-  let cards = Array.map(page.sites, site => {
+  let cards = Array.mapWithIndex(page.sites, (site, index) => {
     let onDelete = evt => {
       JsxEvent.Mouse.stopPropagation(evt)
       store.updatePage({...page, sites: page.sites->Array.filter(s => s.id != site.id)})
     }
 
-    <SiteCard site key={Int.toString(site.id)} isEditing onDelete updateSite />
+    let onMoveLeft = evt => {
+      JsxEvent.Mouse.stopPropagation(evt)
+      store.updatePage({...page, sites: page.sites->Utils.moveLeft(index)})
+    }
+
+    let onMoveRight = evt => {
+      JsxEvent.Mouse.stopPropagation(evt)
+      store.updatePage({...page, sites: page.sites->Utils.moveRight(index)})
+    }
+
+    <SiteCard site key={Int.toString(site.id)} isEditing updateSite>
+      <div
+        role="button"
+        ariaLabel={`delete-site-${site.title}-btn`}
+        onClick=onDelete
+        className="bg-error/60 absolute top-0 right-0 size-8 lg:size-10 xxl:size-12 center resp-text rounded-bl-box">
+        <Solid.TrashIcon className="resp-icon text-base-content" />
+      </div>
+      <div
+        role="button"
+        ariaLabel={`move-left-site-${site.title}-btn`}
+        onClick=onMoveLeft
+        className="absolute bottom-0 left-0 size-8 lg:size-10 xxl:size-12 center resp-text">
+        <Solid.ArrowLeftIcon className="resp-icon text-base-content" />
+      </div>
+      <div
+        role="button"
+        ariaLabel={`move-right-site-${site.title}-btn`}
+        onClick=onMoveRight
+        className="absolute bottom-0 right-0 size-8 lg:size-10 xxl:size-12 center resp-text">
+        <Solid.ArrowRightIcon className="resp-icon text-base-content" />
+      </div>
+    </SiteCard>
   })
 
   <React.Fragment>

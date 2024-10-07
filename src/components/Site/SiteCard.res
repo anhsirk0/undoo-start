@@ -1,21 +1,8 @@
 include Site
 open Heroicons
 
-module DeletButton = {
-  @react.component
-  let make = (~onDelete, ~title) => {
-    <div
-      role="button"
-      ariaLabel={`delete-site-${title}-btn`}
-      onClick=onDelete
-      className="bg-error/60 absolute top-0 right-0 size-8 lg:size-10 xxl:size-12 center resp-text rounded-bl-box">
-      <Solid.TrashIcon className="resp-icon text-base-content" />
-    </div>
-  }
-}
-
 @react.component
-let make = (~site: Site.t, ~isEditing, ~onDelete, ~updateSite) => {
+let make = (~site: Site.t, ~isEditing, ~updateSite, ~children) => {
   let (isOpen, setIsOpen) = React.useState(_ => false)
   let toggleOpen = _ => setIsOpen(val => !val)
 
@@ -49,8 +36,8 @@ let make = (~site: Site.t, ~isEditing, ~onDelete, ~updateSite) => {
               ariaLabel={`edit-site-${site.title}-btn`}
               onClick=toggleOpen
               className="bg-base-100/80 absolute inset-0 size-full center animate-fade">
-              <DeletButton onDelete title=site.title />
               <Solid.PencilIcon className="w-12 h-12 text-base-content" />
+              {children}
             </div>
           : React.null}
       </div>
