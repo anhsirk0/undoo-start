@@ -20,8 +20,6 @@ module Site = {
     showLabel: bool,
   }
 
-  let startsWith = (str, terms) => Array.some(terms, s => String.startsWith(str, s))
-
   let defaultSites: array<t> = [
     {
       id: 0,

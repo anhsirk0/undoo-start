@@ -1,4 +1,6 @@
 module Utils = {
+  let startsWith = (str, terms) => Array.some(terms, s => String.startsWith(str, s))
+
   let moveLeft = (arr: array<'a>, index: int) => {
     if index == 0 {
       arr->Array.sliceToEnd(~start=1)->Array.concat(arr->Array.slice(~start=0, ~end=1))

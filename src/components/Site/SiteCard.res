@@ -1,4 +1,5 @@
 include Site
+include Utils
 open Heroicons
 
 @react.component
@@ -6,7 +7,7 @@ let make = (~site: Site.t, ~isEditing, ~updateSite, ~children) => {
   let (isOpen, setIsOpen) = React.useState(_ => false)
   let toggleOpen = _ => setIsOpen(val => !val)
 
-  let isIconUrl = Site.startsWith(site.icon, ["http", "/src", "/assets", "data:image"])
+  let isIconUrl = Utils.startsWith(site.icon, ["http", "/src", "/assets", "data:image"])
 
   <React.Fragment>
     <div
