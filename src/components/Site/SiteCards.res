@@ -12,7 +12,7 @@ let make = (~page: Page.t, ~isEditing) => {
   let addSite = (site: Site.t) =>
     store.updatePage({...page, sites: page.sites->Array.concat([site])})
 
-  let cards = Array.mapWithIndex(page.sites, (site, index) => {
+  let cards = page.sites->Array.mapWithIndex((site, index) => {
     let onDelete = evt => {
       JsxEvent.Mouse.stopPropagation(evt)
       store.updatePage({...page, sites: page.sites->Array.filter(s => s.id != site.id)})
@@ -35,10 +35,10 @@ let make = (~page: Page.t, ~isEditing) => {
         onClick=onDelete
         className="bg-error/60 absolute top-0 right-0 size-8 lg:size-10 xxl:size-12 center resp-text rounded-bl-box">
         <Solid.TrashIcon className="resp-icon text-base-content" />
-        {page.sites->Array.length > 1
-          ? <MoveSiteButtons onMoveLeft onMoveRight title=site.title />
-          : React.null}
       </div>
+      {page.sites->Array.length > 1
+        ? <MoveSiteButtons onMoveLeft onMoveRight title=site.title />
+        : React.null}
     </SiteCard>
   })
 

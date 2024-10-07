@@ -1,7 +1,7 @@
 open Heroicons
 
 @react.component
-let make = (~onMoveLeft, ~onMoveRight, title) => {
+let make = (~onMoveLeft, ~onMoveRight, ~title) => {
   <React.Fragment>
     <div
       role="button"
