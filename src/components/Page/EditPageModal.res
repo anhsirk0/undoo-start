@@ -11,7 +11,7 @@ module DeleteButton = {
       afterDelete()
     }
 
-    <button onClick type_="button" className="btn resp-btn btn-error">
+    <button ariaLabel="delete-page-btn" onClick type_="button" className="btn resp-btn btn-error">
       <Solid.TrashIcon className="resp-icon" />
     </button>
   }

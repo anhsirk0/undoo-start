@@ -33,6 +33,7 @@ let make = (~page: Page.t, ~setPageId, ~isActive, ~isEditing) => {
           {React.string(page.icon)}
           <div
             role="button"
+            ariaLabel={`edit-page-${page.id->Int.toString}-btn`}
             className="bg-base-100/70 absolute top-0 right-0 size-3/5 xxl:size-1/2 center resp-text rounded-bl-box"
             onClick={evt => toggleOpen(~evt)}>
             <Solid.PencilIcon className="resp-icon text-base-content" />

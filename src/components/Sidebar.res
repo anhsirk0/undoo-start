@@ -26,11 +26,13 @@ let make = (~page: option<Page.t>, ~setPageId, ~isEditing, ~setIsEditing) => {
         {isEditing ? <AddPageButton /> : React.null}
         <div className="grow" />
         <button
+          ariaLabel="toggle-edit-mode-btn"
           onClick={_ => setIsEditing(val => !val)}
           className={`btn sidebar-btn ${isEditing ? "btn-accent" : "btn-ghost"}`}>
           <Solid.PencilIcon className="resp-icon" />
         </button>
-        <button id="theme-btn" className="btn btn-ghost sidebar-btn w-full">
+        <button
+          ariaLabel="select-theme-btn" id="theme-btn" className="btn btn-ghost sidebar-btn w-full">
           <Solid.ColorSwatchIcon className="resp-icon" />
         </button>
       </div>

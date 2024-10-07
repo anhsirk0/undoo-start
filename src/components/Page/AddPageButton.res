@@ -24,6 +24,7 @@ let make = () => {
 
   <React.Fragment>
     <button
+      ariaLabel="add-page-btn"
       onClick=toggleOpen
       className={`btn animate-grow sidebar-btn ${isOpen ? "btn-accent" : "btn-ghost"}`}>
       <Solid.PlusIcon className="resp-icon" />

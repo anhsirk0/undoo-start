@@ -44,6 +44,7 @@ let make = (~addSite: Site.t => unit) => {
 
   <React.Fragment>
     <button
+      ariaLabel="add-site-btn"
       onClick=toggleOpen
       className="fixed bottom-4 right-4 btn btn-neutral resp-btn btn-circle animate-grow">
       <Solid.PlusIcon className="resp-icon" />
