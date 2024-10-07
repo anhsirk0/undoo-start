@@ -17,9 +17,9 @@ module Page = {
     },
     {
       id: 1,
-      title: "Second",
+      title: "Localhost",
       icon: `🏛`,
-      sites: Array.slice(Site.defaultSites, ~start=0, ~end=4),
+      sites: Site.localServers,
     },
   ]
 }

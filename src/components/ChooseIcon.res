@@ -2,21 +2,24 @@ include Site
 
 @react.component
 let make = (~chosen, ~onChoose, ~isIconError) => {
-  let icons = Site.defaultSites->Array.map(site => {
-    let activeClass =
-      chosen->Option.filter(icon => icon == site.icon)->Option.isSome ? "ring ring-accent" : ""
+  let icons =
+    Site.defaultSites
+    ->Array.concatMany([Site.localServers, Site.extras])
+    ->Array.map(site => {
+      let activeClass =
+        chosen->Option.filter(icon => icon == site.icon)->Option.isSome ? "ring ring-accent" : ""
 
-    <div
-      key={site.id->Int.toString}
-      className={`col-span-2 cursor-pointer rounded-box ${activeClass}`}
-      onClick={_ => onChoose(site.icon)}>
-      <img
-        src=site.icon
-        alt=site.title
-        className="size-full object-cover rounded-box border border-base-200"
-      />
-    </div>
-  })
+      <div
+        key={site.id->Int.toString}
+        className={`col-span-2 cursor-pointer rounded-box ${activeClass}`}
+        onClick={_ => onChoose(site.icon)}>
+        <img
+          src=site.icon
+          alt=site.title
+          className="size-full object-cover rounded-box border border-base-200"
+        />
+      </div>
+    })
 
   <React.Fragment>
     {isIconError

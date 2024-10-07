@@ -11,6 +11,14 @@
 @module("../assets/messenger.svg") external messengerLogo: string = "default"
 @module("../assets/spotify.svg") external spotifyLogo: string = "default"
 
+@module("../assets/svelte.svg") external svelteLogo: string = "default"
+@module("../assets/react.svg") external reactLogo: string = "default"
+@module("../assets/vue.svg") external vueLogo: string = "default"
+@module("../assets/angular.svg") external angularLogo: string = "default"
+@module("../assets/django.svg") external djangoLogo: string = "default"
+
+@module("../assets/yandex.svg") external yandexLogo: string = "default"
+
 module Site = {
   type t = {
     id: int,
@@ -103,6 +111,54 @@ module Site = {
       title: "Spotify",
       url: "https://spotify.com",
       icon: spotifyLogo,
+      showLabel: false,
+    },
+  ]
+
+  let localServers: array<t> = [
+    {
+      id: 100,
+      title: "Svelte",
+      url: "http://localhost:5173",
+      icon: svelteLogo,
+      showLabel: false,
+    },
+    {
+      id: 101,
+      title: "React",
+      url: "http://localhost:3000",
+      icon: reactLogo,
+      showLabel: false,
+    },
+    {
+      id: 102,
+      title: "Vue",
+      url: "http://localhost:5173",
+      icon: vueLogo,
+      showLabel: false,
+    },
+    {
+      id: 103,
+      title: "Angular",
+      url: "http://localhost:4200",
+      icon: angularLogo,
+      showLabel: false,
+    },
+    {
+      id: 104,
+      title: "Django",
+      url: "http://localhost:8000",
+      icon: djangoLogo,
+      showLabel: false,
+    },
+  ]
+
+  let extras: array<t> = [
+    {
+      id: 200,
+      title: "Yandex",
+      url: "http://yandex.com",
+      icon: yandexLogo,
       showLabel: false,
     },
   ]

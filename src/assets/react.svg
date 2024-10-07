@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+
+<svg
+   width="800px"
+   height="800px"
+   viewBox="0 0 3618.6 3618.6"
+   id="Layer_2"
+   version="1.1"
+   sodipodi:docname="react-1-logo-svgrepo-com.svg"
+   inkscape:version="1.3.2 (091e20ef0f, 2023-11-25, custom)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="namedview4"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="1.05625"
+     inkscape:cx="399.52663"
+     inkscape:cy="400"
+     inkscape:window-width="1920"
+     inkscape:window-height="1058"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="Layer_2" />
+  <style
+     id="style1">.st0{fill:#222}.st1{fill:#00d8ff}.st2{fill:none;stroke:#00d8ff;stroke-width:144.7456;stroke-miterlimit:10}</style>
+  <path
+     class="st0"
+     d="M0 0h3618.6v3618.6H0z"
+     id="path1" />
+  <g
+     id="g4">
+    <circle
+       class="st1"
+       cx="1806.4918"
+       cy="1807.8154"
+       r="253.11182"
+       id="circle1"
+       style="stroke-width:0.836457" />
+    <path
+       class="st2"
+       d="m 1806.4918,1293.2273 c 339.7688,0 655.4475,48.7654 893.4195,130.6545 286.7374,98.7019 463.0624,248.344 463.0624,383.85 0,141.1939 -186.8644,300.2044 -494.7641,402.1684 -232.7859,77.1214 -539.1801,117.4386 -861.7178,117.4386 -330.735,0 -643.8207,-37.8079 -879.28331,-118.275 -297.86225,-101.7968 -477.28223,-262.8147 -477.28223,-401.332 0,-134.4186 168.37875,-282.8896 451.10113,-381.4242 238.89201,-83.2275 562.34991,-133.0803 905.46441,-133.0803 z"
+       id="path2" />
+    <path
+       class="st2"
+       d="m 1358.5692,1552.027 c 169.7171,-294.3491 369.7139,-543.4459 559.5896,-708.64615 228.7709,-199.07671 446.5006,-277.03448 563.8555,-209.36513 122.29,70.51331 166.7058,311.83108 101.2113,629.60098 -49.5183,240.2304 -167.626,525.7131 -328.8112,805.1733 -165.2002,286.4864 -354.4067,538.8454 -541.6894,702.6237 -236.9682,207.1903 -466.1573,282.1368 -586.1052,212.9618 -116.4348,-67.1674 -160.9343,-287.1556 -105.1426,-581.3374 47.1761,-248.7622 165.6184,-553.818 337.092,-851.0111 z"
+       id="path3" />
+    <path
+       class="st2"
+       d="m 1358.9875,2069.3755 c -170.219,-294.0982 -286.1519,-591.7095 -334.4991,-838.7152 -58.21738,-297.61129 -17.0637,-525.21117 100.2075,-593.04781 122.2064,-70.76425 353.403,11.29216 595.9755,226.67978 183.4349,162.85813 371.7213,407.77263 533.3248,686.98193 165.7021,286.2355 289.9159,576.1514 338.1794,820.1458 61.145,308.8199 11.6268,544.7843 -108.2375,614.1266 -116.3511,67.3348 -329.1457,-3.9314 -556.16,-199.244 -191.7159,-165.0329 -396.8988,-419.9849 -568.7906,-716.9271 z"
+       id="path4" />
+  </g>
+</svg>
