@@ -8,7 +8,7 @@ let make = () => {
     let theme = Dom.Storage2.getItem(Dom.Storage2.localStorage, "undooStartpageTheme")
     switch theme {
     | Some(theme) => setTheme(theme)
-    | None => Js.log("theme not found")
+    | None => ()
     }
     None
   }, [])
