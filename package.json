@@ -20,6 +20,8 @@
     "react-dom": "^18.2.0",
     "rescript": "^11.1.4",
     "rescript-heroicons": "^0.0.3",
+    "vite-plugin-pwa": "^0.20.5",
+    "workbox-window": "^7.1.0",
     "zustand": "5.0.0-rc.2"
   },
   "devDependencies": {

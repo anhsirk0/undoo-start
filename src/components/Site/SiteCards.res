@@ -35,20 +35,9 @@ let make = (~page: Page.t, ~isEditing) => {
         onClick=onDelete
         className="bg-error/60 absolute top-0 right-0 size-8 lg:size-10 xxl:size-12 center resp-text rounded-bl-box">
         <Solid.TrashIcon className="resp-icon text-base-content" />
-      </div>
-      <div
-        role="button"
-        ariaLabel={`move-left-site-${site.title}-btn`}
-        onClick=onMoveLeft
-        className="absolute bottom-0 left-0 size-8 lg:size-10 xxl:size-12 center resp-text">
-        <Solid.ArrowLeftIcon className="resp-icon text-base-content" />
-      </div>
-      <div
-        role="button"
-        ariaLabel={`move-right-site-${site.title}-btn`}
-        onClick=onMoveRight
-        className="absolute bottom-0 right-0 size-8 lg:size-10 xxl:size-12 center resp-text">
-        <Solid.ArrowRightIcon className="resp-icon text-base-content" />
+        {page.sites->Array.length > 1
+          ? <MoveSiteButtons onMoveLeft onMoveRight title=site.title />
+          : React.null}
       </div>
     </SiteCard>
   })
