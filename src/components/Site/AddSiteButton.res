@@ -8,7 +8,10 @@ let make = (~addSite: Site.t => unit) => {
   let (chosenIcon, setChosenIcon) = React.useState(_ => None)
   let (isIconError, setIsIconError) = React.useState(_ => false)
   let (isOpen, setIsOpen) = React.useState(_ => false)
-  let toggleOpen = _ => setIsOpen(val => !val)
+  let toggleOpen = _ => {
+    setIsOpen(val => !val)
+    setChosenIcon(_ => None)
+  }
 
   let onChoose = str => {
     setChosenIcon(_ => Some(str))
@@ -50,12 +53,18 @@ let make = (~addSite: Site.t => unit) => {
       <Solid.PlusIcon className="resp-icon" />
     </button>
     {isOpen
-      ? <Modal title="New Site" onClose=toggleOpen>
+      ? <Modal title="New Site" onClose=toggleOpen classes="min-w-[60vw]">
           <form onSubmit className="flex flex-col gap-2 xl:gap-4">
-            <Input name="title" label="Title" required=true />
-            <Input name="url" label="Url" required=true />
-            <Input name="icon" label="Icon" />
-            <ChooseIcon chosen=chosenIcon onChoose isIconError />
+            <div className="flex flex-col lg:flex-row gap-4 xxl:gap-8">
+              <div className="flex flex-col gap-2 xl:gap-4 w-1/3 shrink-0">
+                <Input name="title" label="Title" required=true />
+                <Input name="url" label="Url" required=true />
+                <Input name="icon" label="Icon" />
+              </div>
+              <div className="flex flex-col">
+                <ChooseIcon chosen=chosenIcon onChoose isIconError />
+              </div>
+            </div>
             <div className="flex flex-row gap-4 mt-4">
               <div className="form-control w-fit">
                 <label className="label cursor-pointer">
