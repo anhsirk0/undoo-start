@@ -1,21 +1,23 @@
-include Site
+include Icon
 
 @react.component
 let make = (~chosen, ~onChoose, ~isIconError) => {
   let icons =
     Site.defaultSites
-    ->Array.concatMany([Site.localServers, Site.extras])
-    ->Array.map(site => {
+    ->Array.concat(Site.localServers)
+    ->Array.map(Icon.fromSite)
+    ->Array.concat(Icon.icons)
+    ->Array.map(icon => {
       let activeClass =
-        chosen->Option.filter(icon => icon == site.icon)->Option.isSome ? "ring ring-accent" : ""
+        chosen->Option.filter(src => src == icon.src)->Option.isSome ? "ring ring-accent" : ""
 
       <div
-        key={site.id->Int.toString}
+        key={icon.id->Int.toString}
         className={`col-span-2 cursor-pointer rounded-box ${activeClass}`}
-        onClick={_ => onChoose(site.icon)}>
+        onClick={_ => onChoose(icon.src)}>
         <img
-          src=site.icon
-          alt=site.title
+          src=icon.src
+          alt=icon.title
           className="size-full object-cover rounded-box border border-base-200"
         />
       </div>

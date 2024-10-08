@@ -17,8 +17,6 @@
 @module("../assets/angular.svg") external angularLogo: string = "default"
 @module("../assets/django.svg") external djangoLogo: string = "default"
 
-@module("../assets/yandex.svg") external yandexLogo: string = "default"
-
 module Site = {
   type t = {
     id: int,
@@ -149,16 +147,6 @@ module Site = {
       title: "Django",
       url: "http://localhost:8000",
       icon: djangoLogo,
-      showLabel: false,
-    },
-  ]
-
-  let extras: array<t> = [
-    {
-      id: 200,
-      title: "Yandex",
-      url: "http://yandex.com",
-      icon: yandexLogo,
       showLabel: false,
     },
   ]
