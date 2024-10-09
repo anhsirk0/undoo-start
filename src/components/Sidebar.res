@@ -16,13 +16,16 @@ let make = (~page: option<Page.t>, ~setPageId, ~isEditing) => {
   <React.Fragment>
     <div className={`fixed top-0 ${leftPos} z-10 w-fit h-full flex flex-row transitional shadow`}>
       <ul
+        onWheel=ReactEvent.Wheel.stopPropagation
         id="theme-container"
         tabIndex=0
         className="flex flex-col gap-4 w-56 p-4 min-h-0 overflow-y-auto bg-secondary">
         <ThemesList />
       </ul>
       <div className="w-16 xxl:w-28 p-2 xxl:p-4 flex flex-col gap-2 xxl:gap-4 h-full bg-base-200">
-        <div className="min-w-0 flex flex-col gap-2 xxl:gap-4 overflow-y-auto">
+        <div
+          onWheel=ReactEvent.Wheel.stopPropagation
+          className="min-w-0 flex flex-col gap-2 xxl:gap-4 overflow-y-auto">
           {React.array(pagesBtns)}
         </div>
         {isEditing ? <AddPageButton /> : React.null}

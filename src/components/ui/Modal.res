@@ -1,6 +1,6 @@
 @react.component
 let make = (~title, ~onClose, ~children, ~classes=?) => {
-  let className = "modal-box flex flex-col max-h-[90vh] min-w-[36vw] " ++ classes->Option.getOr("")
+  let className = "modal-box flex flex-col max-h-[94vh] min-w-[36vw] " ++ classes->Option.getOr("")
 
   <div
     onContextMenu=JsxEvent.Mouse.stopPropagation

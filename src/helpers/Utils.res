@@ -26,4 +26,14 @@ module Utils = {
       ])
     }
   }
+
+  let getNextIndex = (index, length, dir) => {
+    if dir > 0 {
+      mod(index + 1, length)
+    } else if index > 0 {
+      mod(index - 1, length)
+    } else {
+      length - 1
+    }
+  }
 }
