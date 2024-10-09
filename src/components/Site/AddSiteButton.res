@@ -49,7 +49,7 @@ let make = (~addSite: Site.t => unit) => {
     <button
       ariaLabel="add-site-btn"
       onClick=toggleOpen
-      className="fixed bottom-5 right-4 btn btn-ghost resp-btn btn-circle animate-grow">
+      className="fixed bottom-2 xxl:bottom-5 right-2 xxl:right-4 btn btn-ghost resp-btn btn-circle animate-grow">
       <Solid.PlusIcon className="resp-icon" />
     </button>
     {isOpen
