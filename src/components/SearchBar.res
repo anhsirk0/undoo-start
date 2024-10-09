@@ -27,7 +27,8 @@ module SearchForm = {
     let onSubmit = evt => {
       JsxEvent.Form.preventDefault(evt)
       let q = ReactEvent.Form.target(evt)["query"]["value"]
-      openUrl(engine.url->String.replace("<Q>", q), "_blank")
+      let target = store.openLinkInNewTab ? "_blank" : "_self"
+      openUrl(engine.url->String.replace("<Q>", q), target)
     }
 
     <form onSubmit className="center h-[20vh] w-full p-4 ml-16 join w-full max-w-3xl xxl:max-w-5xl">

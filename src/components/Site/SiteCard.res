@@ -1,20 +1,23 @@
-include Site
+include Store
 include Utils
 open Heroicons
 
 @react.component
 let make = (~site: Site.t, ~isEditing, ~updateSite, ~children) => {
+  let store = Store.use()
   let (isOpen, setIsOpen) = React.useState(_ => false)
   let toggleOpen = _ => setIsOpen(val => !val)
 
   let isIconUrl = Utils.startsWith(site.icon, ["http", "/src", "/assets", "data:image"])
+  let target = store.openLinkInNewTab ? "_blank" : "_self"
 
   <React.Fragment>
     <div
-      className="col-span-12 xs:col-span-6 sm:col-span-4 md:col-span-3 lg:col-span-2 animate-grow">
+      onContextMenu=JsxEvent.Mouse.stopPropagation
+      className="col-span-12 xs:col-span-6 sm:col-span-4 md:col-span-3 lg:col-span-2 animate-grow animate-fade">
       <div
         className="card w-full h-24 md:h-28 lg:h-32 xl:h-36 xxl:h-48 overflow-hidden isolate border border-base-200">
-        <a href=site.url target="_blank" className="relative size-full group cursor-pointer">
+        <a href=site.url target className="relative size-full group cursor-pointer">
           {isIconUrl
             ? <figure className="absolute inset-0 -z-10 group-hover:scale-105 transitional">
                 <img className="h-full w-full object-cover" src=site.icon alt=site.title />

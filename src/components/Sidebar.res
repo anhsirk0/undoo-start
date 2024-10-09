@@ -2,7 +2,7 @@ include Store
 open Heroicons
 
 @react.component
-let make = (~page: option<Page.t>, ~setPageId, ~isEditing, ~setIsEditing) => {
+let make = (~page: option<Page.t>, ~setPageId, ~isEditing) => {
   let store = Store.use()
 
   let leftPos = "-left-56 has-[#theme-btn:focus]:left-0 has-[#theme-container>*:focus]:left-0"
@@ -22,15 +22,12 @@ let make = (~page: option<Page.t>, ~setPageId, ~isEditing, ~setIsEditing) => {
         <ThemesList />
       </ul>
       <div className="w-16 xxl:w-28 p-2 xxl:p-4 flex flex-col gap-2 xxl:gap-4 h-full bg-base-200">
-        {React.array(pagesBtns)}
+        <div className="min-w-0 flex flex-col gap-2 xxl:gap-4 overflow-y-auto">
+          {React.array(pagesBtns)}
+        </div>
         {isEditing ? <AddPageButton /> : React.null}
         <div className="grow" />
-        <button
-          ariaLabel="toggle-edit-mode-btn"
-          onClick={_ => setIsEditing(val => !val)}
-          className={`btn sidebar-btn ${isEditing ? "btn-accent" : "btn-ghost"}`}>
-          <Solid.PencilIcon className="resp-icon" />
-        </button>
+        <OptionsButton page />
         <button
           ariaLabel="select-theme-btn" id="theme-btn" className="btn btn-ghost sidebar-btn w-full">
           <Solid.ColorSwatchIcon className="resp-icon" />

@@ -28,6 +28,8 @@ module Zustand = {
 module StoreData = {
   type state = {
     title: string,
+    openLinkInNewTab: bool,
+    updateOpenLinkInNewTab: bool => unit,
     searchEngineId: int,
     updateSearchEngineId: int => unit,
     pages: array<Page.t>,
@@ -43,6 +45,8 @@ module AppStore = Zustand.MakeStore(StoreData)
 module Store = {
   let store = AppStore.create(AppStore.persist(set => {
       title: "Undoo Startpage",
+      openLinkInNewTab: true,
+      updateOpenLinkInNewTab: val => set(.state => {...state, openLinkInNewTab: val}),
       searchEngineId: 0,
       updateSearchEngineId: id => set(.state => {...state, searchEngineId: id}),
       pages: Page.defaultPages,

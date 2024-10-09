@@ -34,7 +34,7 @@ let make = (~site: Site.t, ~onClose, ~updateSite) => {
     }
   }
 
-  <Modal title=site.title onClose classes="min-w-[60vw]">
+  <Modal title=site.title onClose classes="min-w-[62vw]">
     <form onSubmit className="flex flex-col gap-2 xl:gap-4">
       <div className="flex flex-col lg:flex-row gap-4 xxl:gap-8">
         <div className="flex flex-col gap-2 xl:gap-4 w-1/3 shrink-0">
@@ -47,14 +47,7 @@ let make = (~site: Site.t, ~onClose, ~updateSite) => {
         </div>
       </div>
       <div className="flex flex-row gap-4 mt-4">
-        <div className="form-control w-fit">
-          <label className="label cursor-pointer">
-            <span className="label-text pr-4"> {React.string("Show label")} </span>
-            <input
-              name="label" type_="checkbox" defaultChecked=site.showLabel className="checkbox"
-            />
-          </label>
-        </div>
+        <Checkbox name="label" defaultChecked=site.showLabel label="Show label" />
         <div className="grow" />
         <button className="btn resp-btn btn-primary"> {React.string("Update site")} </button>
       </div>

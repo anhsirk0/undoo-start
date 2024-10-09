@@ -49,11 +49,11 @@ let make = (~addSite: Site.t => unit) => {
     <button
       ariaLabel="add-site-btn"
       onClick=toggleOpen
-      className="fixed bottom-4 right-4 btn btn-neutral resp-btn btn-circle animate-grow">
+      className="fixed bottom-5 right-4 btn btn-ghost resp-btn btn-circle animate-grow">
       <Solid.PlusIcon className="resp-icon" />
     </button>
     {isOpen
-      ? <Modal title="New Site" onClose=toggleOpen classes="min-w-[60vw]">
+      ? <Modal title="New Site" onClose=toggleOpen classes="min-w-[62vw]">
           <form onSubmit className="flex flex-col gap-2 xl:gap-4">
             <div className="flex flex-col lg:flex-row gap-4 xxl:gap-8">
               <div className="flex flex-col gap-2 xl:gap-4 w-1/3 shrink-0">
@@ -66,12 +66,7 @@ let make = (~addSite: Site.t => unit) => {
               </div>
             </div>
             <div className="flex flex-row gap-4 mt-4">
-              <div className="form-control w-fit">
-                <label className="label cursor-pointer">
-                  <span className="label-text pr-4"> {React.string("Show label")} </span>
-                  <input name="label" type_="checkbox" defaultChecked=true className="checkbox" />
-                </label>
-              </div>
+              <Checkbox name="label" defaultChecked=true label="Show label" />
               <div className="grow" />
               <button className="btn resp-btn btn-primary"> {React.string("Add Site")} </button>
             </div>
