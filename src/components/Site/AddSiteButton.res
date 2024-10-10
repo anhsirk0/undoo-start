@@ -53,10 +53,10 @@ let make = (~addSite: Site.t => unit) => {
       <Solid.PlusIcon className="resp-icon" />
     </button>
     {isOpen
-      ? <Modal title="New Site" onClose=toggleOpen classes="min-w-[62vw]">
+      ? <Modal title="New Site" onClose=toggleOpen classes="min-w-[70vw] xl:min-w-[60vw]">
           <form onSubmit className="flex flex-col gap-2 xl:gap-4">
             <div className="flex flex-col lg:flex-row gap-4 xxl:gap-8">
-              <div className="flex flex-col gap-2 xl:gap-4 w-1/3 shrink-0">
+              <div className="flex flex-col gap-2 xl:gap-4 w-1/2 shrink-0">
                 <Input name="title" label="Title" required=true />
                 <Input name="url" label="Url" required=true />
                 <Input name="icon" label="Icon" />
