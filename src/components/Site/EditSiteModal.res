@@ -34,10 +34,10 @@ let make = (~site: Site.t, ~onClose, ~updateSite) => {
     }
   }
 
-  <Modal title=site.title onClose classes="min-w-[62vw]">
+  <Modal title=site.title onClose classes="min-w-[70vw] xl:min-w-[62vw]">
     <form onSubmit className="flex flex-col gap-2 xl:gap-4">
       <div className="flex flex-col lg:flex-row gap-4 xxl:gap-8">
-        <div className="flex flex-col gap-2 xl:gap-4 w-1/3 shrink-0">
+        <div className="flex flex-col gap-2 xl:gap-4 w-1/2 shrink-0">
           <Input name="title" defaultValue=site.title label="Title" />
           <Input name="url" defaultValue=site.url label="Url" />
           <Input name="icon" label="Icon" defaultValue=site.icon />
