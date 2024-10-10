@@ -46,8 +46,13 @@ let make = () => {
     <Sidebar page setPageId isEditing />
     <SearchBar />
     <div
-      onWheel=ReactEvent.Wheel.stopPropagation
-      className="grow w-full max-w-5xl xxl:max-w-screen-xxl ml-16 py-4 lg:py-4 xxl:py-8 min-h-0 overflow-y-auto">
+      onWheel={evt => {
+        let target = ReactEvent.Wheel.target(evt)
+        if target["scrollHeight"] > target["clientHeight"] {
+          ReactEvent.Wheel.stopPropagation(evt)
+        }
+      }}
+      className="grow w-full max-w-5xl xxl:max-w-screen-xxl ml-16 p-4 lg:py-4 xxl:py-8 min-h-0 overflow-y-auto">
       {switch page {
       | Some(page) => <SiteCards page key=page.title isEditing />
       | None => React.null
