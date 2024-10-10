@@ -7,6 +7,7 @@ let make = () => {
   let store = Store.use()
   let (pageId, setPageId) = React.useState(_ => store.pages[0]->Option.map(p => p.id))
   let (isEditing, setIsEditing) = React.useState(_ => false)
+  let (isDebounced, setIsDebounced) = React.useState(_ => true)
 
   let onContextMenu = evt => {
     setIsEditing(v => !v)
@@ -14,16 +15,23 @@ let make = () => {
   }
 
   let onWheel = evt => {
-    let dir = ReactEvent.Wheel.deltaY(evt)->Float.toInt
-    let nextPageId =
-      pageId
-      ->Option.map(id => store.pages->Array.findIndex(p => p.id == id))
-      ->Option.map(index => index->Utils.getNextIndex(store.pages->Array.length, dir))
-      ->Option.flatMap(index => store.pages[index])
-      ->Option.map(p => p.id)
+    if isDebounced {
+      setIsDebounced(_ => false)
 
-    setPageId(_ => nextPageId)
+      let deltaY = ReactEvent.Wheel.deltaY(evt)->Float.toInt
+      let nextPageId =
+        pageId
+        ->Option.map(id => store.pages->Array.findIndex(p => p.id == id))
+        ->Option.map(index => index->Utils.getNextIndex(store.pages->Array.length, deltaY))
+        ->Option.flatMap(index => store.pages[index])
+        ->Option.map(p => p.id)
+
+      setPageId(_ => nextPageId)
+
+      let _ = setTimeout(_ => setIsDebounced(_ => true), 200)
+    }
   }
+
   let page = pageId->Option.flatMap(id => store.pages->Array.find(p => p.id == id))
 
   <div onContextMenu onWheel className="h-screen w-screen center flex-col p-8 transitional">
