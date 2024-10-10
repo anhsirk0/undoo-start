@@ -19,10 +19,11 @@ let make = (~site: Site.t, ~onClose, ~updateSite) => {
 
   let onSubmit = evt => {
     JsxEvent.Form.preventDefault(evt)
-    let title = ReactEvent.Form.target(evt)["title"]["value"]
-    let url = ReactEvent.Form.target(evt)["url"]["value"]
-    let iconVal = ReactEvent.Form.target(evt)["icon"]["value"]
-    let showLabel = ReactEvent.Form.target(evt)["label"]["checked"]
+    let target = ReactEvent.Form.target(evt)
+    let title = target["title"]["value"]
+    let url = target["url"]["value"]
+    let iconVal = target["icon"]["value"]
+    let showLabel = target["label"]["checked"]
 
     let icon = iconVal->String.length > 0 ? Some(iconVal) : chosenIcon
     switch icon {
