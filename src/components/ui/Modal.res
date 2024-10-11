@@ -4,6 +4,7 @@ let make = (~title, ~onClose, ~children, ~classes=?) => {
 
   <div
     onContextMenu=JsxEvent.Mouse.stopPropagation
+    onWheel=ReactEvent.Wheel.stopPropagation
     className="modal modal-open modal-bottom sm:modal-middle">
     <div className>
       <div className="flex flex-row items-center justify-between mb-4 -mt-1">
