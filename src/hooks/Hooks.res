@@ -10,7 +10,7 @@ module Hooks = {
   let useDocTitle = (page: option<Page.t>) => {
     let store = Store.use()
 
-    let title = switch page {
+    let title = switch page->Option.filter(_ => store.showPageTitle) {
     | Some(p) => `${p.title} - ${store.title}`
     | None => store.title
     }

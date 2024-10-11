@@ -12,11 +12,10 @@ let make = (~page: option<Page.t>) => {
 
   let onSubmit = evt => {
     JsxEvent.Form.preventDefault(evt)
-    let newTitle = ReactEvent.Form.target(evt)["title"]["value"]
-    let linksInNewTab = ReactEvent.Form.target(evt)["link-in-new-tab"]["checked"]
-    store.updateTitle(newTitle)
-    store.updateOpenLinkInNewTab(linksInNewTab)
-
+    let title = ReactEvent.Form.target(evt)["title"]["value"]
+    let openLinkInNewTab = ReactEvent.Form.target(evt)["link-in-new-tab"]["checked"]
+    let showPageTitle = ReactEvent.Form.target(evt)["page-title-in-document-title"]["checked"]
+    store.updateOptions(~title, ~showPageTitle, ~openLinkInNewTab)
     toggleOpen()
   }
 
@@ -29,8 +28,13 @@ let make = (~page: option<Page.t>) => {
     </button>
     {isOpen
       ? <Modal title="Options" onClose=toggleOpen>
-          <form onSubmit className="flex flex-col gap-2 xl:gap-4">
+          <form onSubmit className="flex flex-col gap-2 xl:gap-4 [&>div]:min-w-[50%]">
             <Input name="title" label="Document title" required=true defaultValue=store.title />
+            <Checkbox
+              name="page-title-in-document-title"
+              defaultChecked=store.showPageTitle
+              label="Show active page title in Document title"
+            />
             <Checkbox
               name="link-in-new-tab"
               defaultChecked=store.openLinkInNewTab
