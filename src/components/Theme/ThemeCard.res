@@ -1,4 +1,4 @@
-@module("../../helpers/setTheme") external setTheme: string => unit = "default"
+include Utils
 
 module MyOverrides = {
   module Elements = {
@@ -25,7 +25,7 @@ module MyOverrides = {
 let make = (~theme, ~children) => {
   let onClick = _ => {
     Dom.Storage2.setItem(Dom.Storage2.localStorage, "undooStartpageTheme", theme)
-    setTheme(theme)
+    theme->Utils.setTheme
   }
 
   <li className="btn h-10 justify-between w-full theme-card" onClick tabIndex=0 dataTheme=theme>

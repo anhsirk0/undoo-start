@@ -1,13 +1,12 @@
-@module("../../helpers/setTheme") external setTheme: string => unit = "default"
-
 include Themes
+include Utils
 
 @react.component
 let make = () => {
   React.useEffect(() => {
     let theme = Dom.Storage2.getItem(Dom.Storage2.localStorage, "undooStartpageTheme")
     switch theme {
-    | Some(theme) => setTheme(theme)
+    | Some(theme) => theme->Utils.setTheme
     | None => ()
     }
     None

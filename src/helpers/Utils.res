@@ -2,8 +2,17 @@ module Utils = {
   @val @scope("window")
   external openUrl: (string, string) => unit = "open"
 
-  let blur = %raw(`function blur(element)  { element.blur() }`)
-  let focus = %raw(`function focus(element)  { element.focus() }`)
+  let blur = %raw(`function blur(el)  { el.blur() }`)
+  let focus = %raw(`function focus(el)  { el.focus() }`)
+  let setValue = %raw(`function setValue(el, value)  { el.value = value }`)
+  let setAttribute = %raw(`function setAttribute(el, attr, val)  { el.setAttribute(attr, val) }`)
+
+  let setTheme = theme => {
+    switch ReactDOM.querySelector("html") {
+    | Some(html) => html->setAttribute("data-theme", theme)
+    | None => ()
+    }
+  }
 
   let startsWith = (str, terms) => Array.some(terms, s => String.startsWith(str, s))
 

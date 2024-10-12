@@ -1,6 +1,5 @@
-@module("../../helpers/setValue") external setValue: (Dom.element, string) => unit = "default"
-
 include Site
+include Utils
 open Heroicons
 
 @react.component
@@ -17,7 +16,7 @@ let make = (~addSite: Site.t => unit) => {
     setChosenIcon(_ => Some(str))
     setIsIconError(_ => false)
     switch ReactDOM.querySelector("input[name='icon'") {
-    | Some(el) => el->setValue(str)
+    | Some(el) => el->Utils.setValue(str)
     | None => ()
     }
   }

@@ -1,6 +1,5 @@
-@module("../../helpers/setValue") external setValue: (Dom.element, string) => unit = "default"
-
 include Site
+include Utils
 
 @react.component
 let make = (~site: Site.t, ~onClose, ~updateSite) => {
@@ -12,7 +11,7 @@ let make = (~site: Site.t, ~onClose, ~updateSite) => {
     setIsIconError(_ => false)
 
     switch ReactDOM.querySelector("input[name='icon'") {
-    | Some(el) => el->setValue(str)
+    | Some(el) => el->Utils.setValue(str)
     | None => ()
     }
   }
