@@ -8,7 +8,7 @@
     + GitHub: <https://github.com/anhsirk0/undoo-start>
 
 * About
-Minimal elegand startpage
+Minimal elegant startpage
 * Screnshots
 #+CAPTION: Screenshot
 #+NAME: main.png
