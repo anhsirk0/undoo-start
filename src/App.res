@@ -72,10 +72,10 @@ let make = () => {
     }
   }
 
-  React.useEffect0(() => {
+  React.useEffect(() => {
     Document.addKeyListener("keydown", onKeyDown)
     Some(() => Document.removeKeyListener("keydown", onKeyDown))
-  })
+  }, [page])
 
   <div onContextMenu onWheel className="h-screen w-screen center flex-col p-8 transitional">
     <button
