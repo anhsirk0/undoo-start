@@ -12,7 +12,7 @@ Minimal elegand startpage
 * Screnshots
 #+CAPTION: In Action
 #+NAME: demo.mkv
-[[https://codeberg.org/anhsirk0/undoo-start/raw/branch/main/screenshots/demo.mkv]]
+[[https://codeberg.org/anhsirk0/undoo-start/raw/branch/main/screenshots/demo.mp4]]
 * Keyboard/Mouse shortcuts
 ** SPACE
 Show hints
