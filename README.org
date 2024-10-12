@@ -1,0 +1,37 @@
+#+title:                 Undoo-Startpage
+#+author:                Krishna (Anshirk0)
+#+email:                 krishna404@yandex.com
+#+language:              en
+
++ Git repo on Codeberg: <https://codeberg.org/anhsirk0/undoo-start>
+  - Mirrors:
+    + GitHub: <https://github.com/anhsirk0/undoo-start>
+
+* About
+Minimal elegand startpage
+* Screnshots
+#+CAPTION: In Action
+#+NAME: demo.mkv
+[[https://codeberg.org/anhsirk0/undoo-start/raw/branch/main/screenshots/demo.mkv]]
+* Keyboard/Mouse shortcuts
+** SPACE
+Show hints
+** [1-9]
+Switch to the page by index
+** [a-z]
+Open link by index
+** /
+Focuses the seachbar
+** Right-click
+Toggle Edit mode
+** Scroll Up/down
+Switches page Up/down
+* Development
+** Run rescript in watch mode
+#+BEGIN_SRC shell
+pnpm run res:dev
+#+END_SRC
+** Run vite server
+#+BEGIN_SRC shell
+pnpm run dev
+#+END_SRC
