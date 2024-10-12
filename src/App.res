@@ -59,12 +59,20 @@ let make = () => {
         }
       } else {
         let keyCode = Keyboard.keyCode(evt) - 65
-        let site = page->Option.flatMap(p => p.sites[keyCode])->Option.map(s => s.url)
+        let site = page->Option.flatMap(p => p.sites[keyCode])
 
         switch site {
-        | Some(url) => {
+        | Some(s) => {
+            switch ReactDOM.querySelector("#site-" ++ s.id->Int.toString) {
+            | Some(el) => {
+                let _ = el->Utils.addClass("animate-shake")
+                let _ = setTimeout(_ => el->Utils.removeClass("animate-shake"), 900)
+              }
+            | None => ()
+            }
+
             let target = store.openLinkInNewTab ? "_blank" : "_self"
-            Utils.openUrl(url, target)
+            Utils.openUrl(s.url, target)
           }
         | None => ()
         }

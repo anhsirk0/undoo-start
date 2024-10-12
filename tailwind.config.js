@@ -14,6 +14,11 @@ export default {
       xxl: "1536px",
     },
     keyframes: {
+      shake: {
+        "25%": { transform: "rotate(-4deg)" },
+        "75%": { transform: "rotate(4deg)" },
+        "100%": { transform: "rotate(0)" },
+      },
       grow: {
         "0%": { transform: "scale(0)" },
         "100%": { transform: "scale(1)" },
@@ -24,6 +29,7 @@ export default {
       },
     },
     animation: {
+      shake: "shake 200ms ease-in-out infinite",
       grow: "grow 400ms ease-in-out",
       fade: "fade 200ms ease-in-out",
     },

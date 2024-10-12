@@ -6,6 +6,8 @@ module Utils = {
   let focus = %raw(`function focus(el)  { el.focus() }`)
   let setValue = %raw(`function setValue(el, value)  { el.value = value }`)
   let setAttribute = %raw(`function setAttribute(el, attr, val)  { el.setAttribute(attr, val) }`)
+  let addClass = %raw(`function addClass(el, cls)  { el.classList.add(cls) }`)
+  let removeClass = %raw(`function removeClass(el, cls)  { el.classList.remove(cls) }`)
 
   let setTheme = theme => {
     switch ReactDOM.querySelector("html") {
