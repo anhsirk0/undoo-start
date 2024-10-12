@@ -3,7 +3,7 @@ include Utils
 open Heroicons
 
 @react.component
-let make = (~site: Site.t, ~isEditing, ~updateSite, ~children) => {
+let make = (~site: Site.t, ~isEditing, ~updateSite, ~children, ~index) => {
   let store = Store.use()
   let (isOpen, setIsOpen) = React.useState(_ => false)
   let toggleOpen = _ => setIsOpen(val => !val)
@@ -34,6 +34,14 @@ let make = (~site: Site.t, ~isEditing, ~updateSite, ~children) => {
               </div>
             : React.null}
         </a>
+        {switch index {
+        | Some(idx) =>
+          <div
+            className="bg-base-100/80 absolute top-0 left-0 size-8 lg:size-10 xxl:size-12 center resp-text rounded-br-box animate-fade">
+            {React.string(idx->String.fromCharCode)}
+          </div>
+        | None => React.null
+        }}
         {isEditing
           ? <div
               role="button"

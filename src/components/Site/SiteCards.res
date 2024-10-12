@@ -3,7 +3,7 @@ include Utils
 open Heroicons
 
 @react.component
-let make = (~page: Page.t, ~isEditing) => {
+let make = (~page: Page.t, ~isEditing, ~isVisiting) => {
   let store = Store.use()
 
   let updateSite = (site: Site.t) =>
@@ -28,7 +28,9 @@ let make = (~page: Page.t, ~isEditing) => {
       store.updatePage({...page, sites: page.sites->Utils.moveRight(index)})
     }
 
-    <SiteCard site key={Int.toString(site.id)} isEditing updateSite>
+    let index = Some(index + 97)->Option.filter(_ => isVisiting)
+
+    <SiteCard site key={Int.toString(site.id)} isEditing updateSite index>
       <div
         role="button"
         ariaLabel={`delete-site-${site.title}-btn`}

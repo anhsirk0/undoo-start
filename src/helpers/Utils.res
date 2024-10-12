@@ -1,4 +1,10 @@
 module Utils = {
+  @val @scope("window")
+  external openUrl: (string, string) => unit = "open"
+
+  let blur = %raw(`function blur(element)  { element.blur() }`)
+  let focus = %raw(`function focus(element)  { element.focus() }`)
+
   let startsWith = (str, terms) => Array.some(terms, s => String.startsWith(str, s))
 
   let moveLeft = (arr: array<'a>, index: int) => {

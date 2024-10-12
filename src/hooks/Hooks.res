@@ -1,10 +1,5 @@
 include Store
-
-module Document = {
-  type t
-  @val external document: t = "document"
-  @set external setTitle: (t, string) => unit = "title"
-}
+include Document
 
 module Hooks = {
   let useDocTitle = (page: option<Page.t>) => {

@@ -1,10 +1,8 @@
 include SearchEngine
 include Store
+include Utils
 
 open Heroicons
-
-@val @scope("window")
-external openUrl: (string, string) => unit = "open"
 
 module SearchForm = {
   @react.component
@@ -28,7 +26,14 @@ module SearchForm = {
       JsxEvent.Form.preventDefault(evt)
       let q = ReactEvent.Form.target(evt)["query"]["value"]
       let target = store.openLinkInNewTab ? "_blank" : "_self"
-      openUrl(engine.url->String.replace("<Q>", q), target)
+      Utils.openUrl(engine.url->String.replace("<Q>", q), target)
+    }
+
+    let onKeyDown = evt => {
+      ReactEvent.Keyboard.stopPropagation(evt)
+      if ReactEvent.Keyboard.key(evt) == "Escape" {
+        evt->ReactEvent.Keyboard.target->Utils.blur
+      }
     }
 
     <form onSubmit className="center h-[20vh] w-full p-4 ml-16 join w-full max-w-3xl xxl:max-w-5xl">
@@ -40,7 +45,7 @@ module SearchForm = {
         {React.array(options)}
       </select>
       <label className="input input-primary xxl:input-lg flex items-center join-item grow">
-        <input name="query" className="grow" placeholder={`Search on ${engine.title}`} />
+        <input onKeyDown name="query" className="grow" placeholder={`Search on ${engine.title}`} />
         <Solid.SearchIcon className="resp-icon" />
       </label>
     </form>
@@ -50,7 +55,6 @@ module SearchForm = {
 @react.component
 let make = () => {
   let store = Store.use()
-  // let (id, setId) = React.useState(_ => SearchEngine.defaultEngines[0]->Option.map(e => e.id))
   let engine = SearchEngine.defaultEngines->Array.find(e => e.id == store.searchEngineId)
 
   switch engine {
