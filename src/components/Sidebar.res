@@ -2,7 +2,7 @@ include Store
 open Heroicons
 
 @react.component
-let make = (~page: option<Page.t>, ~setPageId, ~isEditing) => {
+let make = (~page: option<Page.t>, ~setPageId, ~isEditing, ~isSearching) => {
   let store = Store.use()
 
   let leftPos = "-left-56 has-[#theme-btn:focus]:left-0 has-[#theme-container>*:focus]:left-0"
@@ -22,7 +22,7 @@ let make = (~page: option<Page.t>, ~setPageId, ~isEditing) => {
         className="flex flex-col gap-4 w-56 p-4 min-h-0 overflow-y-auto bg-secondary">
         <ThemesList />
       </ul>
-      <div className="w-16 xxl:w-28 p-2 xxl:p-4 flex flex-col gap-2 xxl:gap-4 h-full bg-base-200">
+      <div className="w-16 xxl:w-28 p-2 xxl:p-4 flex flex-col gap-2 xxl:gap-4 h-full bg-base-100">
         <div
           onWheel=ReactEvent.Wheel.stopPropagation
           className="min-w-0 flex flex-col gap-2 xxl:gap-4 overflow-y-auto">
@@ -30,6 +30,12 @@ let make = (~page: option<Page.t>, ~setPageId, ~isEditing) => {
         </div>
         {isEditing ? <AddPageButton /> : React.null}
         <div className="grow" />
+        <button
+          onClick={_ => setPageId(_ => Some(-1))}
+          ariaLabel="searcher-btn"
+          className={`btn sidebar-btn ${isSearching ? "btn-primary" : "btn-ghost"}`}>
+          <Solid.SearchIcon className="resp-icon" />
+        </button>
         <OptionsButton page />
         <button
           ariaLabel="select-theme-btn" id="theme-btn" className="btn btn-ghost sidebar-btn w-full">

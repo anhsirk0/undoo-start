@@ -44,7 +44,8 @@ module SearchForm = {
         onChange>
         {React.array(options)}
       </select>
-      <label className="input input-primary xxl:input-lg flex items-center join-item grow">
+      <label
+        className="input input-bordered input-primary xxl:input-lg flex items-center join-item grow">
         <input onKeyDown name="query" className="grow" placeholder={`Search on ${engine.title}`} />
         <Solid.SearchIcon className="resp-icon" />
       </label>

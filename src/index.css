@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.main {
+  @apply center h-screen w-screen transitional bg-base-200;
+}
+
 .center {
   @apply flex items-center justify-center;
 }

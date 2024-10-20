@@ -13,6 +13,7 @@ let make = () => {
   let (isVisiting, setIsVisiting) = React.useState(_ => false)
   let (isDebounced, setIsDebounced) = React.useState(_ => true)
   let page = pageId->Option.flatMap(id => store.pages->Array.find(p => p.id == id))
+  let isSearching = pageId->Option.filter(id => id == -1)->Option.isSome
 
   let onContextMenu = evt => {
     setIsEditing(v => !v)
@@ -85,7 +86,7 @@ let make = () => {
     Some(() => Document.removeKeyListener("keydown", onKeyDown))
   }, [page])
 
-  <div onContextMenu onWheel className="h-screen w-screen center flex-col p-8 transitional">
+  <div onContextMenu onWheel className="main flex-col p-8">
     <button
       ariaLabel="toggle-edit-mode-btn"
       onClick={_ => setIsEditing(val => !val)}
@@ -94,8 +95,8 @@ let make = () => {
           : "btn-ghost"}`}>
       <Solid.PencilIcon className="resp-icon" />
     </button>
-    <Sidebar page setPageId isEditing />
-    <SearchBar />
+    <Sidebar page setPageId isEditing isSearching />
+    {isSearching ? <Searcher /> : <SearchBar />}
     <div
       onWheel={evt => {
         let target = Wheel.target(evt)
