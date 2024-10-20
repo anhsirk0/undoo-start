@@ -27,6 +27,16 @@ let make = () => {
     }
   }
 
+  let clearText = _ => {
+    switch ReactDOM.querySelector("input[name='query'") {
+    | Some(el) => {
+        let _ = el->Utils.setValue("")
+        let _ = el->Utils.focus
+      }
+    | None => ()
+    }
+  }
+
   let rows = store.engines->Array.map(item => {
     let checked = store.checkedIds->Array.includes(item.id)
     let toggleOne = _ => store.toggleOne(item.id, checked)
@@ -72,6 +82,12 @@ let make = () => {
     <form onSubmit className="center h-[20vh] p-4 ml-16 join w-full max-w-5xl xxl:max-w-6xl">
       <label className="input input-primary xxl:input-lg flex items-center join-item grow">
         <input required=true onKeyDown name="query" className="grow" />
+        <button
+          onClick=clearText
+          type_="button"
+          className="btn btn-sm btn-ghost btn-circle text-base-content/60">
+          <Solid.XIcon />
+        </button>
       </label>
       <button className="btn btn-primary xxl:btn-lg join-item">
         <Solid.SearchIcon className="resp-icon" />
