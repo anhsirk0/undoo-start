@@ -36,7 +36,7 @@ module SearchForm = {
       }
     }
 
-    <form onSubmit className="center h-[20vh] w-full p-4 ml-16 join w-full max-w-3xl xxl:max-w-6xl">
+    <form onSubmit className="center h-[20vh] w-full p-4 ml-16 join w-full max-w-5xl xxl:max-w-6xl">
       <select
         ariaLabel="select-search-engine"
         className="select select-primary xxl:select-lg join-item"
