@@ -6,13 +6,19 @@ module StoreData = {
     title: string,
     openLinkInNewTab: bool,
     showPageTitle: bool,
+    useSearcher: bool,
     searchEngineId: int,
     updateSearchEngineId: int => unit,
     pages: array<Page.t>,
     deletePage: int => unit,
     addPage: Page.t => unit,
     updatePage: Page.t => unit,
-    updateOptions: (~title: string, ~showPageTitle: bool, ~openLinkInNewTab: bool) => unit,
+    updateOptions: (
+      ~title: string,
+      ~showPageTitle: bool,
+      ~useSearcher: bool,
+      ~openLinkInNewTab: bool,
+    ) => unit,
   }
 }
 
@@ -22,9 +28,14 @@ module Store = {
   let store = AppStore.create(AppStore.persist(set => {
       title: "Undoo Startpage",
       showPageTitle: true,
+      useSearcher: true,
       openLinkInNewTab: true,
-      updateOptions: (~title: string, ~showPageTitle: bool, ~openLinkInNewTab: bool) =>
-        set(.state => {...state, title, showPageTitle, openLinkInNewTab}),
+      updateOptions: (
+        ~title: string,
+        ~showPageTitle: bool,
+        ~useSearcher: bool,
+        ~openLinkInNewTab: bool,
+      ) => set(.state => {...state, title, showPageTitle, useSearcher, openLinkInNewTab}),
       searchEngineId: 0,
       updateSearchEngineId: id => set(.state => {...state, searchEngineId: id}),
       pages: Page.defaultPages,

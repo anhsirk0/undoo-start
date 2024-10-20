@@ -15,7 +15,8 @@ let make = (~page: option<Page.t>) => {
     let title = ReactEvent.Form.target(evt)["title"]["value"]
     let openLinkInNewTab = ReactEvent.Form.target(evt)["link-in-new-tab"]["checked"]
     let showPageTitle = ReactEvent.Form.target(evt)["page-title-in-document-title"]["checked"]
-    store.updateOptions(~title, ~showPageTitle, ~openLinkInNewTab)
+    let useSearcher = ReactEvent.Form.target(evt)["use-searcher"]["checked"]
+    store.updateOptions(~title, ~showPageTitle, ~useSearcher, ~openLinkInNewTab)
     toggleOpen()
   }
 
@@ -34,6 +35,9 @@ let make = (~page: option<Page.t>) => {
               name="page-title-in-document-title"
               defaultChecked=store.showPageTitle
               label="Show active page title in Document title"
+            />
+            <Checkbox
+              name="use-searcher" defaultChecked=store.useSearcher label="Enable Silver Searcher"
             />
             <Checkbox
               name="link-in-new-tab"

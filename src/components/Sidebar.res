@@ -30,12 +30,14 @@ let make = (~page: option<Page.t>, ~setPageId, ~isEditing, ~isSearching) => {
         </div>
         {isEditing ? <AddPageButton /> : React.null}
         <div className="grow" />
-        <button
-          onClick={_ => setPageId(_ => Some(-1))}
-          ariaLabel="searcher-btn"
-          className={`btn sidebar-btn ${isSearching ? "btn-primary" : "btn-ghost"}`}>
-          <Solid.SearchIcon className="resp-icon" />
-        </button>
+        {store.useSearcher
+          ? <button
+              onClick={_ => setPageId(_ => Some(-1))}
+              ariaLabel="searcher-btn"
+              className={`btn sidebar-btn ${isSearching ? "btn-primary" : "btn-ghost"}`}>
+              <Solid.SearchIcon className="resp-icon" />
+            </button>
+          : React.null}
         <OptionsButton page />
         <button
           ariaLabel="select-theme-btn" id="theme-btn" className="btn btn-ghost sidebar-btn w-full">
