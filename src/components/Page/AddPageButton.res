@@ -26,7 +26,7 @@ let make = () => {
     <button
       ariaLabel="add-page-btn"
       onClick=toggleOpen
-      className={`btn animate-grow sidebar-btn ${isOpen ? "btn-accent" : "btn-ghost"}`}>
+      className={`btn sidebar-btn resp-btn ${isOpen ? "btn-accent" : "btn-ghost"}`}>
       <Solid.PlusIcon className="resp-icon" />
     </button>
     {isOpen

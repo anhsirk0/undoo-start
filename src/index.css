@@ -15,7 +15,7 @@
 }
 
 .resp-text {
-  @apply text-sm md:text-base lg:text-lg xl:text-2xl xxl:text-4xl;
+  @apply text-sm md:text-base lg:text-base xl:text-2xl xxl:text-4xl;
 }
 
 .resp-btn {
@@ -23,11 +23,11 @@
 }
 
 .resp-icon {
-  @apply size-4 lg:size-6 xxl:size-8;
+  @apply size-4 lg:size-6 xxl:size-7;
 }
 
 .sidebar-btn {
-  @apply h-12 xxl:h-20;
+  @apply h-10 xxl:h-16;
 }
 
 .transitional {

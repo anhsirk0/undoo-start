@@ -5,7 +5,7 @@ open Heroicons
 let make = (~page: option<Page.t>, ~setPageId, ~isEditing, ~isSearching) => {
   let store = Store.use()
 
-  let leftPos = "-left-56 has-[#theme-btn:focus]:left-0 has-[#theme-container>*:focus]:left-0"
+  let pos = "-left-56 has-[#theme-btn:focus]:left-0 has-[#theme-container>*:focus]:left-0"
 
   let pagesBtns = Array.map(store.pages, p => {
     let key = Int.toString(p.id)
@@ -14,7 +14,7 @@ let make = (~page: option<Page.t>, ~setPageId, ~isEditing, ~isSearching) => {
   })
 
   <React.Fragment>
-    <div className={`fixed top-0 ${leftPos} z-10 w-fit h-full flex flex-row transitional shadow`}>
+    <div className={`fixed top-0 ${pos} z-10 w-fit h-full flex flex-row transitional shadow`}>
       <ul
         onWheel=ReactEvent.Wheel.stopPropagation
         id="theme-container"
@@ -22,10 +22,10 @@ let make = (~page: option<Page.t>, ~setPageId, ~isEditing, ~isSearching) => {
         className="flex flex-col gap-4 w-56 p-4 min-h-0 overflow-y-auto bg-secondary">
         <ThemesList />
       </ul>
-      <div className="w-16 xxl:w-28 p-2 xxl:p-4 flex flex-col gap-2 xxl:gap-4 h-full bg-base-100">
+      <div className="w-12 xxl:w-20 p-1 xxl:p-2 flex flex-col gap-1 xxl:gap-2 h-full bg-base-100">
         <div
           onWheel=ReactEvent.Wheel.stopPropagation
-          className="min-w-0 flex flex-col gap-2 xxl:gap-4 overflow-y-auto">
+          className="min-w-0 flex flex-col gap-1 xxl:gap-2 overflow-y-auto">
           {React.array(pagesBtns)}
         </div>
         {isEditing ? <AddPageButton /> : React.null}
@@ -34,13 +34,15 @@ let make = (~page: option<Page.t>, ~setPageId, ~isEditing, ~isSearching) => {
           ? <button
               onClick={_ => setPageId(_ => Some(-1))}
               ariaLabel="searcher-btn"
-              className={`btn sidebar-btn ${isSearching ? "btn-primary" : "btn-ghost"}`}>
+              className={`btn resp-btn sidebar-btn ${isSearching ? "btn-primary" : "btn-ghost"}`}>
               <Solid.SearchIcon className="resp-icon" />
             </button>
           : React.null}
         <OptionsButton page />
         <button
-          ariaLabel="select-theme-btn" id="theme-btn" className="btn btn-ghost sidebar-btn w-full">
+          ariaLabel="select-theme-btn"
+          id="theme-btn"
+          className="btn btn-ghost resp-btn sidebar-btn w-full">
           <Solid.ColorSwatchIcon className="resp-icon" />
         </button>
       </div>

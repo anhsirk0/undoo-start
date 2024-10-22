@@ -9,7 +9,7 @@ let make = (~page: Page.t, ~setPageId, ~isActive, ~isEditing) => {
 
   let btnClass = isActive ? "btn-primary" : "btn-ghost"
   let ring = isOpen ? "ring" : ""
-  let className = `btn sidebar-btn w-full center ${btnClass} text-4xl truncate relative resp-text ${ring}`
+  let className = `btn resp-btn sidebar-btn w-full center ${btnClass} truncate relative xxl:text-4xl ${ring}`
 
   let onClick = _ => setPageId(_ => Some(page.id))
 
@@ -34,7 +34,7 @@ let make = (~page: Page.t, ~setPageId, ~isActive, ~isEditing) => {
           <div
             role="button"
             ariaLabel={`edit-page-${page.id->Int.toString}-btn`}
-            className="bg-base-100/70 absolute top-0 right-0 size-3/5 xxl:size-1/2 center resp-text rounded-bl-box"
+            className="bg-base-100/70 absolute top-0 right-0 size-3/5 xxl:size-1/2 center rounded-bl-box"
             onClick={evt => toggleOpen(~evt)}>
             <Solid.PencilIcon className="resp-icon text-base-content" />
           </div>

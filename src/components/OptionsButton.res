@@ -24,7 +24,7 @@ let make = (~page: option<Page.t>) => {
     <button
       ariaLabel="options-btn"
       onClick=toggleOpen
-      className={`btn animate-grow sidebar-btn ${isOpen ? "btn-accent" : "btn-ghost"}`}>
+      className={`btn resp-btn sidebar-btn ${isOpen ? "btn-accent" : "btn-ghost"}`}>
       <Solid.AdjustmentsIcon className="resp-icon" />
     </button>
     {isOpen
