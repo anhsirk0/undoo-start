@@ -2,12 +2,15 @@ module Utils = {
   @val @scope("window")
   external openUrl: (string, string) => unit = "open"
 
-  let blur = %raw(`function blur(el)  { el.blur() }`)
-  let focus = %raw(`function focus(el)  { el.focus() }`)
-  let setValue = %raw(`function setValue(el, value)  { el.value = value }`)
-  let setAttribute = %raw(`function setAttribute(el, attr, val)  { el.setAttribute(attr, val) }`)
-  let addClass = %raw(`function addClass(el, cls)  { el.classList.add(cls) }`)
-  let removeClass = %raw(`function removeClass(el, cls)  { el.classList.remove(cls) }`)
+  let blur = %raw(`function blur(el) { el.blur() }`)
+  let focus = %raw(`function focus(el) { el.focus() }`)
+  let setValue = %raw(`function setValue(el, value) { el.value = value }`)
+  let setAttribute = %raw(`function setAttribute(el, attr, val) { el.setAttribute(attr, val) }`)
+  let addClass = %raw(`function addClass(el, cls) { el.classList.add(cls) }`)
+  let removeClass = %raw(`function removeClass(el, cls) { el.classList.remove(cls) }`)
+  let getColorScheme = %raw(`function cs() { return getComputedStyle(document.body).getPropertyValue("color-scheme") }`)
+
+  let isDarkMode = () => getColorScheme() == "dark"
 
   let setTheme = theme => {
     switch ReactDOM.querySelector("html") {
@@ -52,5 +55,15 @@ module Utils = {
     } else {
       length - 1
     }
+  }
+
+  let hex2value = hex => {
+    let strToHexFloat = s => s->Int.fromString(~radix=16)->Option.getOr(0)->Int.toFloat
+    let r = hex->String.substring(~start=1, ~end=3)->strToHexFloat
+    let g = hex->String.substring(~start=3, ~end=5)->strToHexFloat
+    let b = hex->String.substring(~start=5, ~end=7)->strToHexFloat
+
+    let max = r->Math.max(g)->Math.max(b)
+    max /. 255.
   }
 }

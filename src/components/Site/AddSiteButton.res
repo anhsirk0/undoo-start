@@ -27,14 +27,18 @@ let make = (~addSite: Site.t => unit) => {
 
     let title = target["title"]["value"]
     let url = target["url"]["value"]
+    let bgcolor = target["bgcolor"]["value"]
     let iconVal = target["icon"]["value"]
     let showLabel = target["label"]["checked"]
+
+    Js.log(bgcolor)
 
     let icon = iconVal->String.length > 0 ? Some(iconVal) : chosenIcon
     switch icon {
     | Some(icon) => {
         addSite({
           title,
+          bgcolor,
           url,
           icon,
           showLabel,
@@ -59,8 +63,16 @@ let make = (~addSite: Site.t => unit) => {
             <div className="flex flex-col lg:flex-row gap-4 xxl:gap-8">
               <div className="flex flex-col gap-2 xl:gap-4 min-w-[50%] shrink-0">
                 <Input name="title" label="Title" required=true />
-                <Input name="url" label="Url" required=true />
+                <Input type_="url" name="url" label="Url" required=true />
                 <Input name="icon" label="Icon" />
+                <label className="form-control w-fit flex-col">
+                  <div className="label">
+                    <span className="label-text"> {React.string("Bgcolor")} </span>
+                  </div>
+                  <div className="rounded-btn border border-neutral center overflow-hidden">
+                    <input type_="color" name="bgcolor" className="scale-150" />
+                  </div>
+                </label>
               </div>
               <div className="flex flex-col">
                 <ChooseIcon chosen=chosenIcon onChoose isIconError />

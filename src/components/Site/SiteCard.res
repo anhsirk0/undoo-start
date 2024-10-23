@@ -2,6 +2,26 @@ include Store
 include Utils
 open Heroicons
 
+module LabelIcon = {
+  @react.component
+  let make = (~site: Site.t) => {
+    let textColor =
+      site.bgcolor
+      ->Option.map(Utils.hex2value)
+      ->Option.filter(v => v < 0.5 && Utils.isDarkMode())
+      ->Option.map(_ => "text-base-content")
+      ->Option.getOr("text-base-300")
+
+    <div
+      className="absolute inset-0 size-full bg-primary center"
+      style={backgroundColor: site.bgcolor->Option.getOr("#000")}>
+      <p className={`text-4xl font-bold ${textColor} group-hover:scale-105 transitional`}>
+        {React.string(site.icon)}
+      </p>
+    </div>
+  }
+}
+
 @react.component
 let make = (~site: Site.t, ~isEditing, ~updateSite, ~children, ~index) => {
   let store = Store.use()
@@ -23,12 +43,7 @@ let make = (~site: Site.t, ~isEditing, ~updateSite, ~children, ~index) => {
             ? <figure className="absolute inset-0 -z-10 group-hover:scale-105 transitional">
                 <img className="h-full w-full object-cover" src=site.icon alt=site.title />
               </figure>
-            : <div className="absolute inset-0 size-full bg-primary center">
-                <p
-                  className="text-4xl font-bold text-primary-content group-hover:scale-105 transitional">
-                  {React.string(site.icon)}
-                </p>
-              </div>}
+            : <LabelIcon site />}
           {site.showLabel
             ? <div className="center p-2 bg-base-100/80 absolute bottom-0 h-6 xxl:h-8 w-full">
                 <p className="title font-bold truncate"> {React.string(site.title)} </p>

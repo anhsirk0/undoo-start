@@ -24,6 +24,7 @@ module Site = {
     url: string,
     icon: string,
     showLabel: bool,
+    bgcolor?: string,
   }
 
   let defaultSites: array<t> = [

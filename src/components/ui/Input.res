@@ -1,6 +1,6 @@
 let make = props => {
   <label className="form-control w-full flex-col-reverse">
-    <input {...props} type_="text" className="input input-bordered w-full" />
+    <input {...props} className="input input-bordered w-full" />
     {switch props.label {
     | Some(s) =>
       <div className="label">
