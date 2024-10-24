@@ -95,7 +95,7 @@ let make = () => {
             </button>
           : React.null}
       </label>
-      <button className="btn btn-primary xxl:btn-lg join-item">
+      <button className="btn btn-primary xxl:btn-lg join-item no-animation">
         <Solid.SearchIcon className="resp-icon" />
       </button>
     </form>

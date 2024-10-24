@@ -7,6 +7,14 @@ open Heroicons
 module SearchForm = {
   @react.component
   let make = (~engine: SearchEngine.t) => {
+    let (value, setValue) = React.useState(_ => "")
+
+    let onChange = evt => {
+      let target = JsxEvent.Form.target(evt)
+      let newValue: string = target["value"]
+      setValue(_ => newValue)
+    }
+
     let store = Store.use()
 
     let options = SearchEngine.defaultEngines->Array.map(e => {
@@ -14,7 +22,7 @@ module SearchForm = {
       <option key=value value> {React.string(e.icon)} </option>
     })
 
-    let onChange = evt => {
+    let onSelect = evt => {
       let id = JsxEvent.Form.target(evt)["value"]
       switch id->Int.fromString {
       | Some(id) => store.updateSearchEngineId(id)
@@ -24,9 +32,9 @@ module SearchForm = {
 
     let onSubmit = evt => {
       JsxEvent.Form.preventDefault(evt)
-      let q = ReactEvent.Form.target(evt)["query"]["value"]
+      // let q = ReactEvent.Form.target(evt)["query"]["value"]
       let target = store.openLinkInNewTab ? "_blank" : "_self"
-      Utils.openUrl(engine.url->String.replace("<Q>", q), target)
+      Utils.openUrl(engine.url->String.replace("<Q>", encodeURI(value)), target)
     }
 
     let onKeyDown = evt => {
@@ -35,20 +43,44 @@ module SearchForm = {
         evt->ReactEvent.Keyboard.target->Utils.blur
       }
     }
+    let clearText = _ => {
+      setValue(_ => "")
+      switch ReactDOM.querySelector("input[name='query'") {
+      | Some(el) => el->Utils.focus
+      | None => ()
+      }
+    }
 
     <form onSubmit className="center h-[20vh] w-full p-4 ml-12 join w-full max-w-5xl xxl:max-w-6xl">
       <select
         ariaLabel="select-search-engine"
         className="select select-primary xxl:select-lg join-item"
         value={store.searchEngineId->Int.toString}
-        onChange>
+        onChange=onSelect>
         {React.array(options)}
       </select>
-      <label
-        className="input input-bordered input-primary xxl:input-lg flex items-center join-item grow">
-        <input onKeyDown name="query" className="grow" placeholder={`Search on ${engine.title}`} />
-        <Solid.SearchIcon className="resp-icon" />
+      <label className="input input-primary xxl:input-lg flex items-center join-item grow">
+        <input
+          value
+          onChange
+          onKeyDown
+          name="query"
+          className="grow"
+          placeholder={`Search on ${engine.title}`}
+          required=true
+        />
+        {value->String.length > 0
+          ? <button
+              onClick=clearText
+              type_="button"
+              className="btn btn-sm btn-ghost btn-circle text-base-content/60">
+              <Solid.XIcon />
+            </button>
+          : React.null}
       </label>
+      <button className="btn btn-primary xxl:btn-lg join-item no-animation">
+        <Solid.SearchIcon className="resp-icon" />
+      </button>
     </form>
   }
 }
