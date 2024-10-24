@@ -29,7 +29,7 @@ let make = (~site: Site.t, ~isEditing, ~updateSite, ~children, ~index) => {
   let toggleOpen = _ => setIsOpen(val => !val)
 
   let isIconUrl = Utils.startsWith(site.icon, ["http", "/src", "/assets", "data:image"])
-  let target = store.openLinkInNewTab ? "_blank" : "_self"
+  let target = store.options.openLinkInNewTab ? "_blank" : "_self"
 
   <React.Fragment>
     <div

@@ -72,7 +72,7 @@ let make = () => {
             | None => ()
             }
 
-            let target = store.openLinkInNewTab ? "_blank" : "_self"
+            let target = store.options.openLinkInNewTab ? "_blank" : "_self"
             Utils.openUrl(s.url, target)
           }
         | None => ()
@@ -87,14 +87,16 @@ let make = () => {
   }, [page])
 
   <div onContextMenu onWheel className="main flex-col p-8">
-    <button
-      ariaLabel="toggle-edit-mode-btn"
-      onClick={_ => setIsEditing(val => !val)}
-      className={`fixed top-2 xxl:top-5 right-2 xxl:right-4 btn btn-circle btn-resp ${isEditing
-          ? "btn-accent"
-          : "btn-ghost"}`}>
-      <Solid.PencilIcon className="resp-icon" />
-    </button>
+    {store.options.hideEditButton
+      ? React.null
+      : <button
+          ariaLabel="toggle-edit-mode-btn"
+          onClick={_ => setIsEditing(val => !val)}
+          className={`fixed top-2 xxl:top-5 right-2 xxl:right-4 btn btn-circle btn-resp ${isEditing
+              ? "btn-accent"
+              : "btn-ghost"}`}>
+          <Solid.PencilIcon className="resp-icon" />
+        </button>}
     <Sidebar page setPageId isEditing isSearching />
     {isSearching ? <Searcher /> : <SearchBar />}
     <div

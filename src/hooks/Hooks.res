@@ -1,18 +1,18 @@
-include Store
 include Document
+open Store
 
 module Hooks = {
-  let useDocTitle = (page: option<Page.t>) => {
+  let useDocTitle = (title: option<string>) => {
     let store = Store.use()
 
-    let title = switch page->Option.filter(_ => store.showPageTitle) {
-    | Some(p) => `${p.title} - ${store.title}`
-    | None => store.title
+    let docTitle = switch title->Option.filter(_ => store.options.showPageTitle) {
+    | Some(title) => `${title} - ${store.options.title}`
+    | None => store.options.title
     }
 
     React.useEffectOnEveryRender(() => {
       open! Document
-      document->setTitle(title)
+      document->setTitle(docTitle)
       None
     })
   }

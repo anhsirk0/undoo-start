@@ -30,7 +30,7 @@ let make = (~page: option<Page.t>, ~setPageId, ~isEditing, ~isSearching) => {
         </div>
         {isEditing ? <AddPageButton /> : React.null}
         <div className="grow" />
-        {store.useSearcher
+        {store.options.useSearcher
           ? <button
               onClick={_ => setPageId(_ => Some(-1))}
               ariaLabel="searcher-btn"

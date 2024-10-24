@@ -1,10 +1,11 @@
 include Hooks
+include Store
 
 open Heroicons
 
 @react.component
 let make = (~page: option<Page.t>) => {
-  Hooks.useDocTitle(page)
+  Hooks.useDocTitle(page->Option.map(p => p.title))
   let store = Store.use()
 
   let (isOpen, setIsOpen) = React.useState(_ => false)
@@ -16,7 +17,8 @@ let make = (~page: option<Page.t>) => {
     let openLinkInNewTab = ReactEvent.Form.target(evt)["link-in-new-tab"]["checked"]
     let showPageTitle = ReactEvent.Form.target(evt)["page-title-in-document-title"]["checked"]
     let useSearcher = ReactEvent.Form.target(evt)["use-searcher"]["checked"]
-    store.updateOptions(~title, ~showPageTitle, ~useSearcher, ~openLinkInNewTab)
+    let hideEditButton = ReactEvent.Form.target(evt)["hide-edit-btn"]["checked"]
+    store.updateOptions({title, showPageTitle, useSearcher, hideEditButton, openLinkInNewTab})
     toggleOpen()
   }
 
@@ -29,20 +31,29 @@ let make = (~page: option<Page.t>) => {
     </button>
     {isOpen
       ? <Modal title="Options" onClose=toggleOpen>
-          <form onSubmit className="flex flex-col gap-2 xl:gap-4 [&>div]:min-w-[50%]">
-            <Input name="title" label="Document title" required=true defaultValue=store.title />
+          <form onSubmit className="flex flex-col gap-2 xl:gap-4 [&>div]:min-w-[70%]">
+            <Input
+              name="title" label="Document title" required=true defaultValue=store.options.title
+            />
             <Checkbox
               name="page-title-in-document-title"
-              defaultChecked=store.showPageTitle
+              defaultChecked=store.options.showPageTitle
               label="Show active page title in Document title"
             />
             <Checkbox
-              name="use-searcher" defaultChecked=store.useSearcher label="Enable Silver Searcher"
+              name="link-in-new-tab"
+              defaultChecked=store.options.openLinkInNewTab
+              label="Open links in new tab"
             />
             <Checkbox
-              name="link-in-new-tab"
-              defaultChecked=store.openLinkInNewTab
-              label="Open links in new tab"
+              name="use-searcher"
+              defaultChecked=store.options.useSearcher
+              label="Enable Silver Searcher"
+            />
+            <Checkbox
+              name="hide-edit-btn"
+              defaultChecked=store.options.hideEditButton
+              label="Hide edit button (you can always use Right Click)"
             />
             <div className="flex flex-row gap-4 mt-4">
               <div className="grow" />

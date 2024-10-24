@@ -1,10 +1,13 @@
 include SearcherStore
 include Utils
 
+open Hooks
 open Heroicons
 
 @react.component
 let make = () => {
+  Hooks.useDocTitle(Some("Searcher"))
+
   let (value, setValue) = React.useState(_ => "")
   let onChange = evt => {
     let target = JsxEvent.Form.target(evt)

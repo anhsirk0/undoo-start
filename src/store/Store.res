@@ -1,24 +1,34 @@
 include Page
 include Zustand
 
-module StoreData = {
-  type state = {
+module AppOptions = {
+  type t = {
     title: string,
-    openLinkInNewTab: bool,
     showPageTitle: bool,
     useSearcher: bool,
+    hideEditButton: bool,
+    openLinkInNewTab: bool,
+  }
+
+  let defaultOptions = {
+    title: "Undoo Startpage",
+    showPageTitle: true,
+    useSearcher: true,
+    hideEditButton: false,
+    openLinkInNewTab: true,
+  }
+}
+
+module StoreData = {
+  type state = {
+    options: AppOptions.t,
     searchEngineId: int,
     updateSearchEngineId: int => unit,
     pages: array<Page.t>,
     deletePage: int => unit,
     addPage: Page.t => unit,
     updatePage: Page.t => unit,
-    updateOptions: (
-      ~title: string,
-      ~showPageTitle: bool,
-      ~useSearcher: bool,
-      ~openLinkInNewTab: bool,
-    ) => unit,
+    updateOptions: AppOptions.t => unit,
   }
 }
 
@@ -26,16 +36,8 @@ module AppStore = Zustand.MakeStore(StoreData)
 
 module Store = {
   let store = AppStore.create(AppStore.persist(set => {
-      title: "Undoo Startpage",
-      showPageTitle: true,
-      useSearcher: true,
-      openLinkInNewTab: true,
-      updateOptions: (
-        ~title: string,
-        ~showPageTitle: bool,
-        ~useSearcher: bool,
-        ~openLinkInNewTab: bool,
-      ) => set(.state => {...state, title, showPageTitle, useSearcher, openLinkInNewTab}),
+      options: AppOptions.defaultOptions,
+      updateOptions: options => set(.state => {...state, options}),
       searchEngineId: 0,
       updateSearchEngineId: id => set(.state => {...state, searchEngineId: id}),
       pages: Page.defaultPages,
