@@ -31,9 +31,8 @@ let make = (~addSite: Site.t => unit) => {
     let iconVal = target["icon"]["value"]
     let showLabel = target["label"]["checked"]
 
-    Js.log(bgcolor)
-
     let icon = iconVal->String.length > 0 ? Some(iconVal) : chosenIcon
+
     switch icon {
     | Some(icon) => {
         addSite({
