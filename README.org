@@ -8,6 +8,9 @@
     + GitHub: <https://github.com/anhsirk0/undoo-start>
 
 * About
+#+CAPTION: Logo
+#+NAME: logo.svg
+[[https://codeberg.org/anhsirk0/undoo-start/raw/branch/main/public/undoo.svg]]
 Minimal elegant startpage
 * Screnshots
 #+CAPTION: Screenshot
