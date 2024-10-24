@@ -19,7 +19,7 @@ export default defineConfig({
         scope: "/",
         icons: [
           {
-            src: "/vite.svg",
+            src: "/undoo.svg",
             type: "image/svg+xml",
             sizes: "any",
           },
