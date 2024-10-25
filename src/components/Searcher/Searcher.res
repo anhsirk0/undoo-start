@@ -86,7 +86,7 @@ let make = () => {
   })
 
   <React.Fragment>
-    <form onSubmit className="center h-[20vh] p-4 ml-12 join w-full max-w-5xl xxl:max-w-6xl">
+    <form onSubmit className="center h-[20vh] p-4 ml-12 join main-width">
       <label className="input input-primary xxl:input-lg flex items-center join-item grow">
         <input required=true onKeyDown name="query" className="grow" value onChange />
         {value->String.length > 0
@@ -102,7 +102,7 @@ let make = () => {
         <Solid.SearchIcon className="resp-icon" />
       </button>
     </form>
-    <div className="center p-4 ml-12 join w-full max-w-5xl xxl:max-w-6xl">
+    <div className="center p-4 ml-12 join main-width">
       <div className="overflow-x-auto mb-20 lg:mb-0 bg-base-100 rounded-box w-full">
         <table className="table">
           <thead>

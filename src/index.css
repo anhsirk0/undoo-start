@@ -34,3 +34,7 @@
   @apply transition-all duration-200 ease-in-out;
 }
 
+.main-width {
+  @apply w-full max-w-4xl xxl:max-w-6xl;
+}
+
