@@ -37,8 +37,8 @@ let make = (~page: Page.t, ~isEditing, ~isVisiting) => {
         role="button"
         ariaLabel={`delete-site-${site.title}-btn`}
         onClick=onDelete
-        className="bg-error/60 absolute top-0 right-0 size-8 lg:size-10 xxl:size-12 center resp-text rounded-bl-box">
-        <Solid.TrashIcon className="resp-icon text-base-content" />
+        className="absolute top-0 right-0 size-8 lg:size-10 xxl:size-12 center resp-text rounded-bl-box">
+        <Solid.TrashIcon className="resp-icon text-error" />
       </div>
       {page.sites->Array.length > 1
         ? <MoveSiteButtons onMoveLeft onMoveRight title=site.title />
