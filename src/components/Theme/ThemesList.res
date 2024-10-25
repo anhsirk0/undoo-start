@@ -1,5 +1,5 @@
-include Themes
-include Utils
+open Themes
+open Utils
 
 @react.component
 let make = () => {

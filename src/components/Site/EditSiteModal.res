@@ -1,5 +1,5 @@
-include Site
-include Utils
+open Site
+open Utils
 
 @react.component
 let make = (~site: Site.t, ~onClose, ~updateSite) => {

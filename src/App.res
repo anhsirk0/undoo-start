@@ -1,7 +1,6 @@
-include Store
-include Utils
-include Document
-
+open Store
+open Utils
+open Document
 open Heroicons
 open ReactEvent
 

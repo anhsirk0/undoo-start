@@ -1,5 +1,5 @@
-include Zustand
-include SearchEngine
+open Zustand
+open SearchEngine
 
 module StoreData = {
   type state = {

@@ -12,7 +12,7 @@
 @module("../assets/globe-pink.svg") external globePink: string = "default"
 @module("../assets/globe-purple.svg") external globePurple: string = "default"
 
-include Site
+open Site
 
 module Icon = {
   type t = {

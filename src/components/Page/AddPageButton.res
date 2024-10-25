@@ -1,4 +1,4 @@
-include Store
+open Store
 open Heroicons
 
 @react.component

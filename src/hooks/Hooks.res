@@ -1,4 +1,4 @@
-include Document
+open Document
 open Store
 
 module Hooks = {

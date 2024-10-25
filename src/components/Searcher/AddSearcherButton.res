@@ -1,4 +1,4 @@
-include SearcherStore
+open SearcherStore
 open Store
 open Heroicons
 

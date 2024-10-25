@@ -1,5 +1,5 @@
-include Page
-include Zustand
+open Page
+open Zustand
 
 module AppOptions = {
   type t = {

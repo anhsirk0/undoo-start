@@ -1,4 +1,4 @@
-include Site
+open Site
 
 module Page = {
   type t = {

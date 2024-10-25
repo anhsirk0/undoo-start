@@ -1,6 +1,6 @@
-include Hooks
-include Store
-
+open Hooks
+open Store
+open Page
 open Heroicons
 
 @react.component

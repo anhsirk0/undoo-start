@@ -1,4 +1,5 @@
-include Store
+open Store
+open Page
 open Heroicons
 
 module DeleteButton = {

@@ -1,6 +1,5 @@
-include SearcherStore
-include Utils
-
+open SearcherStore
+open Utils
 open Hooks
 open Heroicons
 

@@ -1,7 +1,6 @@
-include SearchEngine
-include Store
-include Utils
-
+open SearchEngine
+open Store
+open Utils
 open Heroicons
 
 module SearchForm = {

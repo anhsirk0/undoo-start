@@ -1,4 +1,5 @@
-include Store
+open Store
+open Page
 open Heroicons
 
 @react.component
@@ -9,7 +10,7 @@ let make = (~page: Page.t, ~setPageId, ~isActive, ~isEditing) => {
 
   let btnClass = isActive ? "btn-primary" : "btn-ghost"
   let ring = isOpen ? "ring" : ""
-  let className = `btn resp-btn sidebar-btn w-full center ${btnClass} truncate relative xxl:text-4xl ${ring}`
+  let className = `btn resp-btn sidebar-btn w-full center ${btnClass} truncate relative xxl:text-4xl ${ring} no-animation`
 
   let onClick = _ => setPageId(_ => Some(page.id))
 

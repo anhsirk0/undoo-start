@@ -1,4 +1,5 @@
-include Icon
+open Icon
+open Site
 
 @react.component
 let make = (~chosen, ~onChoose, ~isIconError) => {

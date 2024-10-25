@@ -1,5 +1,6 @@
-include Utils
-include Store
+open Utils
+open Store
+open Site
 open Heroicons
 
 @react.component

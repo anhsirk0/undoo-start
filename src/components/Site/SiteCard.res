@@ -1,5 +1,6 @@
-include Store
-include Utils
+open Store
+open Utils
+open Site
 open Heroicons
 
 module LabelIcon = {

@@ -1,5 +1,6 @@
-include SearcherStore
+open SearcherStore
 open Heroicons
+open SearchEngine
 
 @react.component
 let make = (~engine: SearchEngine.t) => {
