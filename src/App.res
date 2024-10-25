@@ -39,8 +39,7 @@ let make = () => {
   }
 
   let onKeyDown = evt => {
-    let isModifier =
-      [Keyboard.shiftKey, Keyboard.ctrlKey, Keyboard.metaKey]->Array.some(fn => evt->fn)
+    let isModifier = [Keyboard.ctrlKey, Keyboard.metaKey]->Array.some(fn => evt->fn)
 
     if !isModifier {
       let digit = Keyboard.key(evt)->Int.fromString
@@ -51,6 +50,18 @@ let make = () => {
         Keyboard.preventDefault(evt)
         switch ReactDOM.querySelector("input[name='query'") {
         | Some(el) => el->Utils.focus
+        | None => ()
+        }
+      } else if Keyboard.key(evt) == "?" {
+        Keyboard.preventDefault(evt)
+        setPageId(_ => Some(-1))
+      } else if Keyboard.key(evt) == "-" {
+        Keyboard.preventDefault(evt)
+        setIsEditing(val => !val)
+      } else if Keyboard.key(evt) == "=" || Keyboard.key(evt) == "+" {
+        Keyboard.preventDefault(evt)
+        switch ReactDOM.querySelector("#add-btn") {
+        | Some(el) => el->Utils.click
         | None => ()
         }
       } else if digit->Option.isSome {

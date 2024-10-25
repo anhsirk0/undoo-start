@@ -7,6 +7,8 @@ module AppOptions = {
     showPageTitle: bool,
     useSearcher: bool,
     hideEditButton: bool,
+    hideAddButton: bool,
+    alwaysShowHints: bool,
     openLinkInNewTab: bool,
   }
 
@@ -15,6 +17,8 @@ module AppOptions = {
     showPageTitle: true,
     useSearcher: true,
     hideEditButton: false,
+    hideAddButton: false,
+    alwaysShowHints: false,
     openLinkInNewTab: true,
   }
 }

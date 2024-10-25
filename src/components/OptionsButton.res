@@ -18,7 +18,18 @@ let make = (~page: option<Page.t>) => {
     let showPageTitle = ReactEvent.Form.target(evt)["page-title-in-document-title"]["checked"]
     let useSearcher = ReactEvent.Form.target(evt)["use-searcher"]["checked"]
     let hideEditButton = ReactEvent.Form.target(evt)["hide-edit-btn"]["checked"]
-    store.updateOptions({title, showPageTitle, useSearcher, hideEditButton, openLinkInNewTab})
+    let hideAddButton = ReactEvent.Form.target(evt)["hide-add-btn"]["checked"]
+    let alwaysShowHints = ReactEvent.Form.target(evt)["always-show-hints"]["checked"]
+
+    store.updateOptions({
+      title,
+      showPageTitle,
+      useSearcher,
+      hideEditButton,
+      hideAddButton,
+      alwaysShowHints,
+      openLinkInNewTab,
+    })
     toggleOpen()
   }
 
@@ -31,7 +42,7 @@ let make = (~page: option<Page.t>) => {
     </button>
     {isOpen
       ? <Modal title="Options" onClose=toggleOpen>
-          <form onSubmit className="flex flex-col gap-2 xl:gap-4 [&>div]:min-w-[70%]">
+          <form onSubmit className="flex flex-col gap-2 xl:gap-4 [&>div]:min-w-[100%]">
             <Input
               name="title" label="Document title" required=true defaultValue=store.options.title
             />
@@ -53,7 +64,17 @@ let make = (~page: option<Page.t>) => {
             <Checkbox
               name="hide-edit-btn"
               defaultChecked=store.options.hideEditButton
-              label="Hide edit button (you can always use Right Click)"
+              label="Hide edit button (you can always use RightClick or MinusKey)"
+            />
+            <Checkbox
+              name="hide-add-btn"
+              defaultChecked=store.options.hideAddButton
+              label="Hide add button (you can always use PlusKey or EqualKey)"
+            />
+            <Checkbox
+              name="always-show-hints"
+              defaultChecked=store.options.alwaysShowHints
+              label="Always show site hints"
             />
             <div className="flex flex-row gap-4 mt-4">
               <div className="grow" />

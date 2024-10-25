@@ -1,9 +1,11 @@
-include Site
 include Utils
+include Store
 open Heroicons
 
 @react.component
 let make = (~addSite: Site.t => unit) => {
+  let store = Store.use()
+
   let (chosenIcon, setChosenIcon) = React.useState(_ => None)
   let (isIconError, setIsIconError) = React.useState(_ => false)
   let (isOpen, setIsOpen) = React.useState(_ => false)
@@ -52,8 +54,11 @@ let make = (~addSite: Site.t => unit) => {
   <React.Fragment>
     <button
       ariaLabel="add-site-btn"
+      id="add-btn"
       onClick=toggleOpen
-      className="fixed bottom-2 xxl:bottom-5 right-2 xxl:right-4 btn btn-ghost resp-btn btn-circle animate-grow">
+      className={store.options.hideAddButton
+        ? "hidden"
+        : "fixed bottom-2 xxl:bottom-5 right-2 xxl:right-4 btn btn-ghost resp-btn btn-circle animate-grow"}>
       <Solid.PlusIcon className="resp-icon" />
     </button>
     {isOpen

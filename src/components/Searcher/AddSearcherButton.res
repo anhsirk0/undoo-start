@@ -1,9 +1,11 @@
 include SearcherStore
+open Store
 open Heroicons
 
 @react.component
 let make = () => {
-  let store = SearcherStore.use()
+  let store = Store.use()
+  let searcherStore = SearcherStore.use()
 
   let (isOpen, setIsOpen) = React.useState(_ => false)
   let toggleOpen = _ => setIsOpen(val => !val)
@@ -13,15 +15,18 @@ let make = () => {
     let title = ReactEvent.Form.target(evt)["title"]["value"]
     let url = ReactEvent.Form.target(evt)["url"]["value"]
 
-    store.addEngine({title, url, icon: url, id: Date.now()->Belt.Float.toInt})
+    searcherStore.addEngine({title, url, icon: url, id: Date.now()->Belt.Float.toInt})
     toggleOpen()
   }
 
   <React.Fragment>
     <button
+      id="add-btn"
       ariaLabel="add-searcher-btn"
       onClick=toggleOpen
-      className="fixed bottom-2 xxl:bottom-5 right-2 xxl:right-4 btn btn-ghost resp-btn btn-circle">
+      className={store.options.hideAddButton
+        ? "hidden"
+        : "fixed bottom-2 xxl:bottom-5 right-2 xxl:right-4 btn btn-ghost resp-btn btn-circle"}>
       <Solid.PlusIcon className="resp-icon" />
     </button>
     {isOpen

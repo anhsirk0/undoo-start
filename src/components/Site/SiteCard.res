@@ -53,8 +53,10 @@ let make = (~site: Site.t, ~isEditing, ~updateSite, ~children, ~index) => {
         {switch index {
         | Some(idx) =>
           <div
-            className="bg-base-100/80 absolute top-0 left-0 size-8 lg:size-10 xxl:size-12 center resp-text rounded-br-box animate-fade">
-            {React.string(idx->String.fromCharCode)}
+            className="bg-base-100/80 absolute top-0 left-0 size-6 lg:size-6 xl:size-8 center rounded-br-box animate-fade">
+            <p className="resp-text xxl:text-2xl -ml-1/2 -mt-1/2 xxl:-ml-1 xxl:-mt-1">
+              {React.string(idx->String.fromCharCode)}
+            </p>
           </div>
         | None => React.null
         }}

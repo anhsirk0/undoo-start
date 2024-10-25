@@ -28,7 +28,7 @@ let make = (~page: Page.t, ~isEditing, ~isVisiting) => {
       store.updatePage({...page, sites: page.sites->Utils.moveRight(index)})
     }
 
-    let index = Some(index + 97)->Option.filter(_ => isVisiting)
+    let index = Some(index + 97)->Option.filter(_ => isVisiting || store.options.alwaysShowHints)
 
     <SiteCard site key={Int.toString(site.id)} isEditing updateSite index>
       <div

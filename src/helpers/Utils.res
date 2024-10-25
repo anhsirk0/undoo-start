@@ -3,6 +3,7 @@ module Utils = {
   external openUrl: (string, string) => unit = "open"
 
   let blur = %raw(`function blur(el) { el.blur() }`)
+  let click = %raw(`function click(el) { el.click() }`)
   let focus = %raw(`function focus(el) { el.focus() }`)
   let setValue = %raw(`function setValue(el, value) { el.value = value }`)
   let setAttribute = %raw(`function setAttribute(el, attr, val) { el.setAttribute(attr, val) }`)
