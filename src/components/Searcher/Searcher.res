@@ -103,7 +103,7 @@ let make = () => {
       </button>
     </form>
     <div className="center px-4 xxl:py-4 ml-12 join main-width">
-      <div className="overflow-x-auto mb-8 bg-base-100 rounded-box w-full">
+      <div className="overflow-x-auto mb-16 lg:mb-0 bg-base-100 rounded-box w-full">
         <table className="table">
           <thead>
             <tr>
