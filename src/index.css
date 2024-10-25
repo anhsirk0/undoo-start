@@ -11,7 +11,7 @@
 }
 
 .title {
-  @apply text-sm xl:text-base xxl:text-lg;
+  @apply text-xs xl:text-sm xxl:text-base;
 }
 
 .resp-text {
