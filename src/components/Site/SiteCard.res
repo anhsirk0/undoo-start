@@ -46,7 +46,8 @@ let make = (~site: Site.t, ~isEditing, ~updateSite, ~children, ~index) => {
               </figure>
             : <LabelIcon site />}
           {site.showLabel
-            ? <div className="center p-2 bg-base-100/80 absolute bottom-0 h-6 xxl:h-8 w-full">
+            ? <div
+                className="center px-2 bg-base-100/80 absolute bottom-0 h-[1.38rem] xxl:h-8 w-full">
                 <p className="title truncate"> {React.string(site.title)} </p>
               </div>
             : React.null}
