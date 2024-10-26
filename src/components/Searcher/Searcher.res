@@ -9,6 +9,7 @@ let make = () => {
 
   let (value, setValue) = React.useState(_ => "")
   let onChange = evt => {
+    Js.log(123)
     let target = JsxEvent.Form.target(evt)
     let newValue: string = target["value"]
     setValue(_ => newValue)
@@ -26,13 +27,6 @@ let make = () => {
     ->Array.filter(e => store.checkedIds->Array.includes(e.id))
     ->Array.map(e => e.url->String.replace("<Q>", encodeURI(value)))
     ->Array.forEach(url => Utils.openUrl(url, "_blank"))
-  }
-
-  let onKeyDown = evt => {
-    ReactEvent.Keyboard.stopPropagation(evt)
-    if ReactEvent.Keyboard.key(evt) == "Escape" {
-      evt->ReactEvent.Keyboard.target->Utils.blur
-    }
   }
 
   let clearText = _ => {
@@ -87,7 +81,7 @@ let make = () => {
   <React.Fragment>
     <form onSubmit className="center h-[20vh] p-4 ml-12 join main-width shrink-0">
       <label className="input input-primary xxl:input-lg flex items-center join-item grow">
-        <input required=true onKeyDown name="query" className="grow" value onChange />
+        <InputBase required=true name="query" className="grow" value onChange />
         {value->String.length > 0
           ? <button
               onClick=clearText

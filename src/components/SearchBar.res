@@ -36,12 +36,6 @@ module SearchForm = {
       Utils.openUrl(engine.url->String.replace("<Q>", encodeURI(value)), target)
     }
 
-    let onKeyDown = evt => {
-      ReactEvent.Keyboard.stopPropagation(evt)
-      if ReactEvent.Keyboard.key(evt) == "Escape" {
-        evt->ReactEvent.Keyboard.target->Utils.blur
-      }
-    }
     let clearText = _ => {
       setValue(_ => "")
       switch ReactDOM.querySelector("input[name='query'") {
@@ -59,10 +53,9 @@ module SearchForm = {
         {React.array(options)}
       </select>
       <label className="input input-primary xxl:input-lg flex items-center join-item grow">
-        <input
+        <InputBase
           value
           onChange
-          onKeyDown
           name="query"
           className="grow"
           placeholder={`Search on ${engine.title}`}

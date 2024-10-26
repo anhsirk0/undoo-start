@@ -41,8 +41,6 @@ let make = () => {
     let isModifier = [Keyboard.ctrlKey, Keyboard.metaKey]->Array.some(fn => evt->fn)
     let key = Keyboard.key(evt)
 
-    // Js.log(key)
-
     if !isModifier && key != "Tab" {
       Keyboard.preventDefault(evt)
       let digit = key->Int.fromString

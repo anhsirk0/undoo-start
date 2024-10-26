@@ -2,9 +2,10 @@ module Utils = {
   @val @scope("window")
   external openUrl: (string, string) => unit = "open"
 
-  let blur = %raw(`function blur(el) { el.blur() }`)
-  let click = %raw(`function click(el) { el.click() }`)
-  let focus = %raw(`function focus(el) { el.focus() }`)
+  @send external focus: Dom.element => unit = "focus"
+  @send external click: Dom.element => unit = "click"
+  @send external blur: Dom.element => unit = "blur"
+
   let setValue = %raw(`function setValue(el, value) { el.value = value }`)
   let setAttribute = %raw(`function setAttribute(el, attr, val) { el.setAttribute(attr, val) }`)
   let addClass = %raw(`function addClass(el, cls) { el.classList.add(cls) }`)
