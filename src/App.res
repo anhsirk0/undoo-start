@@ -44,7 +44,6 @@ let make = () => {
     if !isModifier && key != "Tab" {
       Keyboard.preventDefault(evt)
       let digit = key->Int.fromString
-
       let isModalOpen = ReactDOM.querySelector(".modal-open")->Option.isSome
 
       if isModalOpen {
