@@ -38,3 +38,6 @@
   @apply w-full max-w-4xl xxl:max-w-6xl;
 }
 
+form:focus {
+  outline: none;
+}

@@ -64,7 +64,7 @@ let make = (~addSite: Site.t => unit) => {
     </button>
     {isOpen
       ? <Modal title="New Site" onClose=toggleOpen classes="min-w-[70vw] xl:min-w-[62vw]">
-          <form onSubmit className="flex flex-col gap-2 xl:gap-4">
+          <form onSubmit className="flex flex-col gap-2 xl:gap-4" tabIndex=0>
             <div className="flex flex-col lg:flex-row gap-4 xxl:gap-8">
               <div className="flex flex-col gap-2 xl:gap-4 min-w-[50%] shrink-0">
                 <Input name="title" label="Title" required=true />

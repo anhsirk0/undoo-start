@@ -39,27 +39,38 @@ let make = () => {
 
   let onKeyDown = evt => {
     let isModifier = [Keyboard.ctrlKey, Keyboard.metaKey]->Array.some(fn => evt->fn)
+    let key = Keyboard.key(evt)
 
-    if !isModifier {
-      let digit = Keyboard.key(evt)->Int.fromString
-      if Keyboard.key(evt) == " " {
+    // Js.log(key)
+
+    if !isModifier && key != "Tab" {
+      Keyboard.preventDefault(evt)
+      let digit = key->Int.fromString
+      let isModalOpen = ReactDOM.querySelector(".modal-open")->Option.isSome
+      if isModalOpen {
+        switch ReactDOM.querySelector("#close-btn") {
+        | Some(el) => el->Utils.click
+        | None => ()
+        }
+      } else if key == " " {
         setIsVisiting(_ => true)
         let _ = setTimeout(_ => setIsVisiting(_ => false), 2000)
-      } else if Keyboard.key(evt) == "/" {
-        Keyboard.preventDefault(evt)
+      } else if key == "/" {
         switch ReactDOM.querySelector("input[name='query'") {
         | Some(el) => el->Utils.focus
         | None => ()
         }
-      } else if Keyboard.key(evt) == "?" {
-        Keyboard.preventDefault(evt)
+      } else if key == "?" {
         setPageId(_ => Some(-1))
-      } else if Keyboard.key(evt) == "-" {
-        Keyboard.preventDefault(evt)
+      } else if key == "-" {
         setIsEditing(val => !val)
-      } else if Keyboard.key(evt) == "=" || Keyboard.key(evt) == "+" {
-        Keyboard.preventDefault(evt)
+      } else if key == "=" || key == "+" {
         switch ReactDOM.querySelector("#add-btn") {
+        | Some(el) => el->Utils.click
+        | None => ()
+        }
+      } else if key == "." {
+        switch ReactDOM.querySelector("#options-btn") {
         | Some(el) => el->Utils.click
         | None => ()
         }

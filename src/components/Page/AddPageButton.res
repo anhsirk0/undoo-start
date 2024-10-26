@@ -31,7 +31,7 @@ let make = () => {
     </button>
     {isOpen
       ? <Modal title="New Page" onClose=toggleOpen>
-          <form onSubmit className="flex flex-col gap-2 xl:gap-4">
+          <form onSubmit className="flex flex-col gap-2 xl:gap-4" tabIndex=0>
             <Input name="title" label="Title" required=true />
             <Input name="icon" label="Icon" required=true />
             <div className="flex flex-row gap-4 mt-4">

@@ -36,13 +36,14 @@ let make = (~page: option<Page.t>) => {
   <React.Fragment>
     <button
       ariaLabel="options-btn"
+      id="options-btn"
       onClick=toggleOpen
       className={`btn resp-btn sidebar-btn ${isOpen ? "btn-accent" : "btn-ghost"}`}>
       <Solid.AdjustmentsIcon className="resp-icon" />
     </button>
     {isOpen
       ? <Modal title="Options" onClose=toggleOpen>
-          <form onSubmit className="flex flex-col gap-2 xl:gap-4 [&>div]:min-w-[100%]">
+          <form onSubmit className="flex flex-col gap-2 xl:gap-4 [&>div]:min-w-[100%]" tabIndex=0>
             <Input
               name="title" label="Document title" required=true defaultValue=store.options.title
             />
