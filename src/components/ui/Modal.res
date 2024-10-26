@@ -1,8 +1,16 @@
 open Utils
+open ReactEvent
 
 @react.component
 let make = (~title, ~onClose, ~children, ~classes=?) => {
   let className = "modal-box flex flex-col max-h-[94vh] min-w-[36vw] " ++ classes->Option.getOr("")
+
+  let onKeyDown = evt => {
+    evt->Keyboard.stopPropagation
+    if Keyboard.key(evt) == "Escape" {
+      onClose()
+    }
+  }
 
   React.useEffect0(() => {
     switch ReactDOM.querySelector(".modal-open form") {
@@ -13,9 +21,9 @@ let make = (~title, ~onClose, ~children, ~classes=?) => {
   })
 
   <div
-    onContextMenu=JsxEvent.Mouse.stopPropagation
-    onWheel=ReactEvent.Wheel.stopPropagation
-    onKeyDown=ReactEvent.Keyboard.stopPropagation
+    onContextMenu=Mouse.stopPropagation
+    onWheel=Wheel.stopPropagation
+    onKeyDown
     className="modal modal-open modal-bottom sm:modal-middle">
     <div className>
       <div className="flex flex-row items-center justify-between mb-4 -mt-1">
