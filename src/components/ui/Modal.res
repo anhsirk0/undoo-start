@@ -13,10 +13,7 @@ let make = (~title, ~onClose, ~children, ~classes=?) => {
   }
 
   React.useEffect0(() => {
-    switch ReactDOM.querySelector(".modal-open form") {
-    | Some(el) => el->Utils.focus
-    | None => ()
-    }
+    ".modal-open form"->Utils.querySelectAndThen(Utils.focus)
     None
   })
 

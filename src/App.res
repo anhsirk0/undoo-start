@@ -44,34 +44,20 @@ let make = () => {
     if !isModifier && key != "Tab" {
       Keyboard.preventDefault(evt)
       let digit = key->Int.fromString
-      let isModalOpen = ReactDOM.querySelector(".modal-open")->Option.isSome
-      if isModalOpen {
-        switch ReactDOM.querySelector("#close-btn") {
-        | Some(el) => el->Utils.click
-        | None => ()
-        }
-      } else if key == " " {
+
+      if key == " " {
         setIsVisiting(_ => true)
         let _ = setTimeout(_ => setIsVisiting(_ => false), 2000)
       } else if key == "/" {
-        switch ReactDOM.querySelector("input[name='query'") {
-        | Some(el) => el->Utils.focus
-        | None => ()
-        }
+        "input[name='query']"->Utils.querySelectAndThen(Utils.focus)
       } else if key == "?" {
         setPageId(_ => Some(-1))
       } else if key == "-" {
         setIsEditing(val => !val)
       } else if key == "=" || key == "+" {
-        switch ReactDOM.querySelector("#add-btn") {
-        | Some(el) => el->Utils.click
-        | None => ()
-        }
+        "#add-btn"->Utils.querySelectAndThen(Utils.click)
       } else if key == "." {
-        switch ReactDOM.querySelector("#options-btn") {
-        | Some(el) => el->Utils.click
-        | None => ()
-        }
+        "#options-btn"->Utils.querySelectAndThen(Utils.click)
       } else if digit->Option.isSome {
         switch digit->Option.filter(i => i > 0 && i <= store.pages->Array.length) {
         | Some(i) => setPageId(_ => store.pages[i - 1]->Option.map(p => p.id))
@@ -83,14 +69,11 @@ let make = () => {
 
         switch site {
         | Some(s) => {
-            switch ReactDOM.querySelector("#site-" ++ s.id->Int.toString) {
-            | Some(el) => {
-                let _ = el->Utils.addClass("animate-shake")
-                let _ = setTimeout(_ => el->Utils.removeClass("animate-shake"), 900)
-              }
-            | None => ()
-            }
-
+            let id = "#site-" ++ s.id->Int.toString
+            id->Utils.querySelectAndThen(el => {
+              let _ = el->Utils.addClass("animate-shake")
+              let _ = setTimeout(_ => el->Utils.removeClass("animate-shake"), 800)
+            })
             let target = store.options.openLinkInNewTab ? "_blank" : "_self"
             Utils.openUrl(s.url, target)
           }

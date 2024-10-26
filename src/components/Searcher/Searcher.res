@@ -31,10 +31,7 @@ let make = () => {
 
   let clearText = _ => {
     setValue(_ => "")
-    switch ReactDOM.querySelector("input[name='query'") {
-    | Some(el) => el->Utils.focus
-    | None => ()
-    }
+    "input[name='query']"->Utils.querySelectAndThen(Utils.focus)
   }
 
   let rows = store.engines->Array.map(item => {

@@ -38,10 +38,7 @@ module SearchForm = {
 
     let clearText = _ => {
       setValue(_ => "")
-      switch ReactDOM.querySelector("input[name='query'") {
-      | Some(el) => el->Utils.focus
-      | None => ()
-      }
+      "input[name='query']"->Utils.querySelectAndThen(Utils.focus)
     }
 
     <form onSubmit className="center h-[20vh] w-full p-4 ml-12 join main-width">

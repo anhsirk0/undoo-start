@@ -14,12 +14,14 @@ module Utils = {
 
   let isDarkMode = () => getColorScheme() == "dark"
 
-  let setTheme = theme => {
-    switch ReactDOM.querySelector("html") {
-    | Some(html) => html->setAttribute("data-theme", theme)
+  let querySelectAndThen = (selector, action) => {
+    switch ReactDOM.querySelector(selector) {
+    | Some(el) => el->action
     | None => ()
     }
   }
+
+  let setTheme = theme => "html"->querySelectAndThen(setAttribute(_, "data-theme", theme))
 
   let startsWith = (str, terms) => Array.some(terms, s => String.startsWith(str, s))
 

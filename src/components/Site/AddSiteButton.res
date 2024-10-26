@@ -18,10 +18,7 @@ let make = (~addSite: Site.t => unit) => {
   let onChoose = str => {
     setChosenIcon(_ => Some(str))
     setIsIconError(_ => false)
-    switch ReactDOM.querySelector("input[name='icon'") {
-    | Some(el) => el->Utils.setValue(str)
-    | None => ()
-    }
+    "input[name='icon']"->Utils.querySelectAndThen(Utils.setValue(_, str))
   }
 
   let onSubmit = evt => {
