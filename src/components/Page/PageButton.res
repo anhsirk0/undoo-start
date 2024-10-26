@@ -16,7 +16,7 @@ let make = (~page: Page.t, ~setPageId, ~isActive, ~isEditing) => {
 
   let toggleOpen = (~evt=?) => {
     switch evt {
-    | Some(e) => JsxEvent.Mouse.stopPropagation(e)
+    | Some(e) => ReactEvent.Mouse.stopPropagation(e)
     | None => ()
     }
     setIsOpen(val => !val)
