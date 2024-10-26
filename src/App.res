@@ -45,9 +45,13 @@ let make = () => {
       Keyboard.preventDefault(evt)
       let digit = key->Int.fromString
 
-      // let isModalOpen = ReactDOM.querySelector(".modal-open")->Option.isSome
+      let isModalOpen = ReactDOM.querySelector(".modal-open")->Option.isSome
 
-      if key == " " {
+      if isModalOpen {
+        if key == "Escape" {
+          "#close-btn"->Utils.querySelectAndThen(el => el->Utils.click)
+        }
+      } else if key == " " {
         setIsVisiting(_ => true)
         let _ = setTimeout(_ => setIsVisiting(_ => false), 2000)
       } else if key == "/" {
