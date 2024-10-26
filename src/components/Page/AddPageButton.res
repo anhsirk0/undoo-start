@@ -1,12 +1,12 @@
 open Store
+open Hooks
 open Heroicons
 
 @react.component
 let make = () => {
   let store = Store.use()
 
-  let (isOpen, setIsOpen) = React.useState(_ => false)
-  let toggleOpen = _ => setIsOpen(val => !val)
+  let (isOpen, toggleOpen, _) = Hooks.useToggle()
 
   let onSubmit = evt => {
     JsxEvent.Form.preventDefault(evt)
@@ -25,7 +25,7 @@ let make = () => {
   <React.Fragment>
     <button
       ariaLabel="add-page-btn"
-      onClick=toggleOpen
+      onClick={_ => toggleOpen()}
       className={`btn sidebar-btn resp-btn ${isOpen ? "btn-accent" : "btn-ghost"}`}>
       <Solid.PlusIcon className="resp-icon" />
     </button>

@@ -8,8 +8,7 @@ let make = (~page: option<Page.t>) => {
   Hooks.useDocTitle(page->Option.map(p => p.title))
   let store = Store.use()
 
-  let (isOpen, setIsOpen) = React.useState(_ => false)
-  let toggleOpen = _ => setIsOpen(val => !val)
+  let (isOpen, toggleOpen, _) = Hooks.useToggle()
 
   let onSubmit = evt => {
     JsxEvent.Form.preventDefault(evt)
@@ -37,7 +36,7 @@ let make = (~page: option<Page.t>) => {
     <button
       ariaLabel="options-btn"
       id="options-btn"
-      onClick=toggleOpen
+      onClick={_ => toggleOpen()}
       className={`btn resp-btn sidebar-btn ${isOpen ? "btn-accent" : "btn-ghost"}`}>
       <Solid.AdjustmentsIcon className="resp-icon" />
     </button>

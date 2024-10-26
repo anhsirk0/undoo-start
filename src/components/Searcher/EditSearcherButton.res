@@ -1,13 +1,13 @@
 open SearcherStore
 open Heroicons
 open SearchEngine
+open Hooks
 
 @react.component
 let make = (~engine: SearchEngine.t) => {
   let store = SearcherStore.use()
 
-  let (isOpen, setIsOpen) = React.useState(_ => false)
-  let toggleOpen = _ => setIsOpen(val => !val)
+  let (isOpen, toggleOpen, _) = Hooks.useToggle()
 
   let onSubmit = evt => {
     JsxEvent.Form.preventDefault(evt)
@@ -20,7 +20,9 @@ let make = (~engine: SearchEngine.t) => {
 
   <React.Fragment>
     <button
-      ariaLabel={`edit-${engine.title}`} onClick=toggleOpen className="btn btn-ghost resp-btn">
+      ariaLabel={`edit-${engine.title}`}
+      onClick={_ => toggleOpen()}
+      className="btn btn-ghost resp-btn">
       <Solid.PencilIcon className="resp-icon" />
     </button>
     {isOpen

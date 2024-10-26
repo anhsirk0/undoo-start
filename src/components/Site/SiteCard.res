@@ -1,5 +1,6 @@
 open Store
 open Utils
+open Hooks
 open Site
 open Heroicons
 
@@ -26,8 +27,7 @@ module LabelIcon = {
 @react.component
 let make = (~site: Site.t, ~isEditing, ~updateSite, ~children, ~index) => {
   let store = Store.use()
-  let (isOpen, setIsOpen) = React.useState(_ => false)
-  let toggleOpen = _ => setIsOpen(val => !val)
+  let (isOpen, toggleOpen, _) = Hooks.useToggle()
 
   let isIconUrl = Utils.startsWith(site.icon, ["http", "/src", "/assets", "data:image"])
   let target = store.options.openLinkInNewTab ? "_blank" : "_self"
@@ -66,7 +66,7 @@ let make = (~site: Site.t, ~isEditing, ~updateSite, ~children, ~index) => {
           ? <div
               role="button"
               ariaLabel={`edit-site-${site.title}-btn`}
-              onClick=toggleOpen
+              onClick={_ => toggleOpen()}
               className="bg-base-100/80 absolute inset-0 size-full center animate-fade">
               <Solid.PencilIcon className="w-12 h-12 text-base-content" />
               {children}

@@ -2,6 +2,7 @@ open Utils
 open Store
 open Site
 open Heroicons
+open Hooks
 
 @react.component
 let make = (~addSite: Site.t => unit) => {
@@ -9,9 +10,11 @@ let make = (~addSite: Site.t => unit) => {
 
   let (chosenIcon, setChosenIcon) = React.useState(_ => None)
   let (isIconError, setIsIconError) = React.useState(_ => false)
-  let (isOpen, setIsOpen) = React.useState(_ => false)
+
+  let (isOpen, toggleIsOpen, _) = Hooks.useToggle()
+
   let toggleOpen = _ => {
-    setIsOpen(val => !val)
+    toggleIsOpen()
     setChosenIcon(_ => None)
   }
 

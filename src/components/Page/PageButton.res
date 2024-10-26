@@ -1,4 +1,5 @@
 open Store
+open Hooks
 open Page
 open Heroicons
 
@@ -6,7 +7,7 @@ open Heroicons
 let make = (~page: Page.t, ~setPageId, ~isActive, ~isEditing) => {
   let store = Store.use()
 
-  let (isOpen, setIsOpen) = React.useState(_ => false)
+  let (isOpen, toggleOpen, _) = Hooks.useToggle()
 
   let btnClass = isActive ? "btn-primary" : "btn-ghost"
   let ring = isOpen ? "ring" : ""
@@ -14,12 +15,9 @@ let make = (~page: Page.t, ~setPageId, ~isActive, ~isEditing) => {
 
   let onClick = _ => setPageId(_ => Some(page.id))
 
-  let toggleOpen = (~evt=?) => {
-    switch evt {
-    | Some(e) => ReactEvent.Mouse.stopPropagation(e)
-    | None => ()
-    }
-    setIsOpen(val => !val)
+  let onEdit = evt => {
+    evt->ReactEvent.Mouse.stopPropagation
+    toggleOpen()
   }
 
   let afterDelete = _ => {
@@ -36,7 +34,7 @@ let make = (~page: Page.t, ~setPageId, ~isActive, ~isEditing) => {
             role="button"
             ariaLabel={`edit-page-${page.id->Int.toString}-btn`}
             className="bg-base-100/70 absolute top-0 right-0 size-3/5 xxl:size-1/2 center rounded-bl-box"
-            onClick={evt => toggleOpen(~evt)}>
+            onClick=onEdit>
             <Solid.PencilIcon className="resp-icon text-base-content" />
           </div>
         </div>
