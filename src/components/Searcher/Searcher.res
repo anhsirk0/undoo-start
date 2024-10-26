@@ -9,7 +9,6 @@ let make = () => {
 
   let (value, setValue) = React.useState(_ => "")
   let onChange = evt => {
-    Js.log(123)
     let target = JsxEvent.Form.target(evt)
     let newValue: string = target["value"]
     setValue(_ => newValue)
