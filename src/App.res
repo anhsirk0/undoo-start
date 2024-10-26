@@ -45,6 +45,8 @@ let make = () => {
       Keyboard.preventDefault(evt)
       let digit = key->Int.fromString
 
+      // let isModalOpen = ReactDOM.querySelector(".modal-open")->Option.isSome
+
       if key == " " {
         setIsVisiting(_ => true)
         let _ = setTimeout(_ => setIsVisiting(_ => false), 2000)
