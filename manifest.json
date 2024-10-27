@@ -7,5 +7,10 @@
   "chrome_url_overrides": {
     "newtab": "index.html"
   },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "krishna404@yandex.com"
+    }
+  },
   "icons": { "16": "/undoo.svg" }
 }
