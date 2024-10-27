@@ -114,7 +114,7 @@ let make = () => {
           Wheel.stopPropagation(evt)
         }
       }}
-      className="grow main-width xxl:max-w-screen-xxl ml-12 p-4 lg:py-4 xxl:py-8 min-h-0 overflow-y-auto">
+      className="grow main-width xxl:max-w-7xl ml-12 p-4 lg:py-4 xxl:py-8 min-h-0 overflow-y-auto">
       {switch page {
       | Some(page) => <SiteCards page key=page.title isEditing isVisiting />
       | None => React.null

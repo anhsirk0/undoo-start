@@ -35,7 +35,7 @@
 }
 
 .main-width {
-  @apply w-full max-w-4xl xxl:max-w-6xl;
+  @apply w-full max-w-4xl xxl:max-w-5xl;
 }
 
 form:focus {

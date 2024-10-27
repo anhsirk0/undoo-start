@@ -41,7 +41,7 @@ let make = (~site: Site.t, ~isEditing, ~updateSite, ~children, ~index) => {
       className="col-span-12 xs:col-span-6 sm:col-span-4 md:col-span-3 lg:col-span-2 animate-grow animate-fade">
       <div
         id={"site-" ++ site.id->Int.toString}
-        className="card w-full h-24 md:h-28 lg:h-28 xl:h-32 xxl:h-48 overflow-hidden isolate has-[a:active]:animate-shake">
+        className="card w-full h-24 md:h-28 lg:h-28 xl:h-32 xxl:h-40 overflow-hidden isolate has-[a:active]:animate-shake">
         <a href=site.url target className="relative size-full group cursor-pointer">
           {isIconUrl
             ? <figure
