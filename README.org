@@ -37,6 +37,15 @@ Open options
 Focus theme switcher
 ** Scroll Up/down
 Switches page Up/down
+
+* Adding as a browser extension
+Switch to the =pages= branch and download the code
+[[https://codeberg.org/anhsirk0/undoo-start/src/branch/pages][pages branch on codeberg]] 
+[[https://github.com/anhsirk0/undoo-start/tree/pages][pages branch on github]] 
+
+manually add the extension using the files.
+click =load unpacked= in manage extensions page in chromium
+
 * Development
 ** Run rescript in watch mode
 #+BEGIN_SRC shell
