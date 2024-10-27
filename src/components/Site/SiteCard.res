@@ -7,8 +7,9 @@ open Heroicons
 module LabelIcon = {
   @react.component
   let make = (~site: Site.t) => {
-    let lightColor = Utils.isDarkMode() ? "text-base-content" : "text-base-100"
-    let darkColor = Utils.isDarkMode() ? "text-base-100" : "text-base-content"
+    let isDarkMode = Hooks.useDarkMode()
+    let lightColor = isDarkMode ? "text-base-content" : "text-base-100"
+    let darkColor = isDarkMode ? "text-base-100" : "text-base-content"
 
     let textColor =
       site.bgcolor
@@ -43,7 +44,9 @@ let make = (~site: Site.t, ~isEditing, ~updateSite, ~children, ~index) => {
         className="card w-full h-24 md:h-28 lg:h-28 xl:h-32 xxl:h-48 overflow-hidden isolate has-[a:active]:animate-shake">
         <a href=site.url target className="relative size-full group cursor-pointer">
           {isIconUrl
-            ? <figure className="absolute inset-0 -z-10 group-hover:scale-105 transitional">
+            ? <figure
+                className="absolute inset-0 -z-10 group-hover:scale-105 transitional"
+                style={backgroundColor: site.bgcolor->Option.getOr("#000")}>
                 <img className="h-full w-full object-cover" src=site.icon alt=site.title />
               </figure>
             : <LabelIcon site />}

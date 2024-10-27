@@ -1,5 +1,6 @@
 open Document
 open Store
+open Utils
 
 module Hooks = {
   let useDocTitle = (title: option<string>) => {
@@ -21,5 +22,15 @@ module Hooks = {
     let (isOpen, setIsOpen) = React.useState(_ => init)
     let toggleOpen = () => setIsOpen(val => !val)
     (isOpen, toggleOpen, setIsOpen)
+  }
+
+  let useDarkMode = () => {
+    let (isDarkMode, setIsDarkMode) = React.useState(_ => false)
+    React.useEffectOnEveryRender(() => {
+      setIsDarkMode(_ => Utils.isDarkMode())
+      None
+    })
+
+    isDarkMode
   }
 }
