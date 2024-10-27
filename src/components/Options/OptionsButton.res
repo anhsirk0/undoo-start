@@ -11,7 +11,7 @@ let make = (~page: option<Page.t>) => {
   let bgStore = BgStore.use()
 
   let (isOpen, toggleOpen, _) = Hooks.useToggle()
-  let (isCustomizingBg, toggleCustomizingBg, _) = Hooks.useToggle(~init=true)
+  let (isCustomizingBg, toggleCustomizingBg, _) = Hooks.useToggle()
   let (img, setImg) = React.useState(_ => "")
   let (imgName, setImgName) = React.useState(_ => "")
 

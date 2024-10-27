@@ -30,7 +30,7 @@ let make = (~setImg, ~setImgName) => {
   }
 
   <React.Fragment>
-    <FormControl label="Image">
+    <FormControl label="Image (max size: 3MB)">
       <div className="flex flex-row gap-4">
         <InputBase
           type_="file" className="file-input file-input-bordered grow" accept="image/*" onChange
@@ -58,5 +58,11 @@ let make = (~setImg, ~setImgName) => {
     <FormControl label="Searcher Table opacity">
       <Range name="searcher-opacity" defaultValue={options.searcherOpacity->Int.toString} />
     </FormControl>
+    <div className="my-4 flex flex-row gap-2 w-full items-center">
+      <Solid.InformationCircleIcon className="resp-icon" />
+      {React.string(
+        "For better aesthetics, it is recommended to choose a theme matching your background image",
+      )}
+    </div>
   </React.Fragment>
 }
