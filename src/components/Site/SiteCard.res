@@ -1,6 +1,7 @@
 open Store
 open Utils
 open Site
+open Hooks
 open Heroicons
 
 module LabelIcon = {
