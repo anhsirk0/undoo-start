@@ -93,7 +93,8 @@ let make = () => {
     Some(() => Document.removeKeyListener("keydown", onKeyDown))
   }, [page])
 
-  <div onContextMenu onWheel className="main flex-col p-8">
+  <div onContextMenu onWheel className="main flex-col p-8 relative">
+    <BackgroundImage />
     {store.options.hideEditButton
       ? React.null
       : <button

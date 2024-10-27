@@ -41,15 +41,17 @@ module SearchForm = {
       "input[name='query']"->Utils.querySelectAndThen(Utils.focus)
     }
 
-    <form onSubmit className="center h-[20vh] w-full p-4 ml-12 join main-width">
+    <form onSubmit className="center h-[20vh] w-full p-4 ml-12 join main-width z-[5]">
       <select
         ariaLabel="select-search-engine"
+        id="select-search-engine"
         className="select select-primary xxl:select-lg join-item"
         value={store.searchEngineId->Int.toString}
         onChange=onSelect>
         {React.array(options)}
       </select>
-      <label className="input input-primary xxl:input-lg flex items-center join-item grow">
+      <label
+        id="search" className="input input-primary xxl:input-lg flex items-center join-item grow">
         <InputBase
           value
           onChange

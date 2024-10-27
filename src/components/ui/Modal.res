@@ -27,7 +27,7 @@ let make = (~title, ~onClose, ~children, ~classes=?) => {
     <div className onClick=Mouse.stopPropagation>
       <div className="flex flex-row items-center justify-between mb-4 -mt-1">
         <p className="font-bold text-lg"> {React.string(title)} </p>
-        <button id="close-btn" onClick className="btn btn-sm btn-circle btn-ghost -mt-2">
+        <button id="close-btn" onClick className="btn resp-btn btn-circle btn-ghost -mt-2">
           {React.string(`✕`)}
         </button>
       </div>

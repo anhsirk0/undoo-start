@@ -23,7 +23,9 @@ let make = (~page: option<Page.t>, ~setPageId, ~isEditing, ~isSearching) => {
         className="flex flex-col gap-4 w-56 p-4 min-h-0 overflow-y-auto bg-secondary">
         <ThemesList />
       </ul>
-      <div className="w-12 xxl:w-20 p-1 xxl:p-2 flex flex-col gap-1 xxl:gap-2 h-full bg-base-100">
+      <div
+        id="sidebar"
+        className="w-12 xxl:w-20 p-1 xxl:p-2 flex flex-col gap-1 xxl:gap-2 h-full bg-base-100">
         <div
           onWheel=ReactEvent.Wheel.stopPropagation
           className="min-w-0 flex flex-col gap-1 xxl:gap-2 overflow-y-auto">

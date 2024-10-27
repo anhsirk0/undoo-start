@@ -6,13 +6,14 @@ module Utils = {
   @send external click: Dom.element => unit = "click"
   @send external blur: Dom.element => unit = "blur"
 
+  let setBgcolor = %raw(`function setBg(el, bg) { el.style.backgroundColor = bg }`)
   let setValue = %raw(`function setValue(el, value) { el.value = value }`)
   let setAttribute = %raw(`function setAttribute(el, attr, val) { el.setAttribute(attr, val) }`)
   let addClass = %raw(`function addClass(el, cls) { el.classList.add(cls) }`)
   let removeClass = %raw(`function removeClass(el, cls) { el.classList.remove(cls) }`)
-  let getColorScheme = %raw(`function cs() { return getComputedStyle(document.body).getPropertyValue("color-scheme") }`)
+  let getCssVar = %raw(`function gcv(name) { return getComputedStyle(document.body).getPropertyValue(name) }`)
 
-  let isDarkMode = () => getColorScheme() == "dark"
+  let isDarkMode = () => getCssVar("color-scheme") == "dark"
 
   let querySelectAndThen = (selector, action) => {
     switch ReactDOM.querySelector(selector) {
@@ -20,7 +21,11 @@ module Utils = {
     | None => ()
     }
   }
-
+  let setBg = (el, opacity, ~var="--b1") => {
+    let opac = Float.toString(opacity->Int.toFloat /. 100.0)
+    let bg = `oklch(var(${var})/${opac})`
+    setBgcolor(el, bg)
+  }
   let setTheme = theme => "html"->querySelectAndThen(setAttribute(_, "data-theme", theme))
 
   let startsWith = (str, terms) => Array.some(terms, s => String.startsWith(str, s))

@@ -7,12 +7,14 @@ open Heroicons
 module LabelIcon = {
   @react.component
   let make = (~site: Site.t) => {
+    let lightColor = Utils.isDarkMode() ? "text-base-content" : "text-base-100"
+    let darkColor = Utils.isDarkMode() ? "text-base-100" : "text-base-content"
+
     let textColor =
       site.bgcolor
       ->Option.map(Utils.hex2value)
-      ->Option.filter(v => v < 0.5 && Utils.isDarkMode())
-      ->Option.map(_ => "text-base-content")
-      ->Option.getOr("text-base-300")
+      ->Option.map(v => v < 0.5 ? lightColor : darkColor)
+      ->Option.getOr(darkColor)
 
     <div
       className="absolute inset-0 size-full bg-primary center"
@@ -38,7 +40,7 @@ let make = (~site: Site.t, ~isEditing, ~updateSite, ~children, ~index) => {
       className="col-span-12 xs:col-span-6 sm:col-span-4 md:col-span-3 lg:col-span-2 animate-grow animate-fade">
       <div
         id={"site-" ++ site.id->Int.toString}
-        className="card w-full h-24 md:h-28 lg:h-28 xl:h-32 xxl:h-48 overflow-hidden isolate border border-base-200 has-[a:active]:animate-shake">
+        className="card w-full h-24 md:h-28 lg:h-28 xl:h-32 xxl:h-48 overflow-hidden isolate has-[a:active]:animate-shake">
         <a href=site.url target className="relative size-full group cursor-pointer">
           {isIconUrl
             ? <figure className="absolute inset-0 -z-10 group-hover:scale-105 transitional">
