@@ -40,7 +40,7 @@ let make = (~setImg, ~setImgName) => {
               type_="button" className="btn btn-outline btn-error max-w-[40%]" onClick=onRemove>
               <div className="flex flex-row gap-2 w-full items-center">
                 <Solid.TrashIcon className="resp-icon" />
-                <p className="truncate grow"> {React.string(options.imageName)} </p>
+                <p className="truncate grow title"> {React.string(options.imageName)} </p>
               </div>
             </button>
           : React.null}
@@ -58,7 +58,7 @@ let make = (~setImg, ~setImgName) => {
     <FormControl label="Searcher Table opacity">
       <Range name="searcher-opacity" defaultValue={options.searcherOpacity->Int.toString} />
     </FormControl>
-    <div className="my-4 flex flex-row gap-2 w-full items-center">
+    <div className="mt-4 flex flex-row gap-2 w-full items-center">
       <Solid.InformationCircleIcon className="resp-icon" />
       {React.string(
         "For better aesthetics, it is recommended to choose a theme matching your background image",

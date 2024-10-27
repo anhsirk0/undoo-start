@@ -69,7 +69,7 @@ let make = (~page: option<Page.t>) => {
       ? <Modal title="Options" onClose=toggleOpen classes="min-w-[50vw]">
           <form
             onSubmit
-            className="flex flex-col gap-2 xl:gap-4 [&>div]:min-w-[100%] min-h-[52vh]"
+            className="flex flex-col gap-2 xl:gap-4 [&>div]:min-w-[100%] min-h-[55vh]"
             tabIndex=0>
             {isCustomizingBg ? <CustomizeBackground setImg setImgName /> : <OptionsInputs />}
             <div className="grow" />

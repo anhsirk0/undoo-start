@@ -1,15 +1,13 @@
 open Store
 open Utils
-open Hooks
 open Site
 open Heroicons
 
 module LabelIcon = {
   @react.component
   let make = (~site: Site.t) => {
-    let isDarkMode = Hooks.useDarkMode()
-    let lightColor = isDarkMode ? "text-base-content" : "text-base-100"
-    let darkColor = isDarkMode ? "text-base-100" : "text-base-content"
+    let lightColor = Utils.isDarkMode() ? "text-base-content" : "text-base-100"
+    let darkColor = Utils.isDarkMode() ? "text-base-100" : "text-base-content"
 
     let textColor =
       site.bgcolor

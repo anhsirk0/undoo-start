@@ -23,14 +23,4 @@ module Hooks = {
     let toggleOpen = () => setIsOpen(val => !val)
     (isOpen, toggleOpen, setIsOpen)
   }
-
-  let useDarkMode = () => {
-    let (isDarkMode, setIsDarkMode) = React.useState(_ => false)
-    React.useEffectOnEveryRender(() => {
-      setIsDarkMode(_ => Utils.isDarkMode())
-      None
-    })
-
-    isDarkMode
-  }
 }
