@@ -6,7 +6,7 @@ let make = (~site: Site.t, ~onClose, ~updateSite) => {
   let (chosenIcon, setChosenIcon) = React.useState(_ => Some(site.icon))
   let (isIconError, setIsIconError) = React.useState(_ => false)
 
-  let defaultBgcolor = site.bgcolor->Option.getOr("#000000")
+  let defaultBgcolor = site.bgcolor->Option.getOr("#fff")
 
   let onChoose = str => {
     setChosenIcon(_ => Some(str))

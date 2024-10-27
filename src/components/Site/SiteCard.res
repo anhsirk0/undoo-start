@@ -19,7 +19,7 @@ module LabelIcon = {
 
     <div
       className="absolute inset-0 size-full bg-primary center"
-      style={backgroundColor: site.bgcolor->Option.getOr("#000")}>
+      style={backgroundColor: site.bgcolor->Option.getOr("#fff")}>
       <p className={`text-4xl font-bold ${textColor} group-hover:scale-105 transitional`}>
         {React.string(site.icon)}
       </p>
@@ -46,7 +46,7 @@ let make = (~site: Site.t, ~isEditing, ~updateSite, ~children, ~index) => {
           {isIconUrl
             ? <figure
                 className="absolute inset-0 -z-10 group-hover:scale-105 transitional"
-                style={backgroundColor: site.bgcolor->Option.getOr("#000")}>
+                style={backgroundColor: site.bgcolor->Option.getOr("#fff")}>
                 <img className="h-full w-full object-cover" src=site.icon alt=site.title />
               </figure>
             : <LabelIcon site />}
