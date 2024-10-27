@@ -1,6 +1,5 @@
 open Document
 open Store
-open Utils
 
 module Hooks = {
   let useDocTitle = (title: option<string>) => {

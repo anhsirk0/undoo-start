@@ -48,7 +48,7 @@ let make = () => {
 
       if isModalOpen {
         if key == "Escape" {
-          "#close-btn"->Utils.querySelectAndThen(el => el->Utils.click)
+          "#close-btn"->Utils.querySelectAndThen(Utils.click)
         }
       } else if key == " " {
         setIsVisiting(_ => true)
@@ -63,6 +63,8 @@ let make = () => {
         "#add-btn"->Utils.querySelectAndThen(Utils.click)
       } else if key == "." {
         "#options-btn"->Utils.querySelectAndThen(Utils.click)
+      } else if key == "," {
+        "#theme-btn"->Utils.querySelectAndThen(Utils.focus)
       } else if digit->Option.isSome {
         switch digit->Option.filter(i => i > 0 && i <= store.pages->Array.length) {
         | Some(i) => setPageId(_ => store.pages[i - 1]->Option.map(p => p.id))

@@ -28,8 +28,16 @@ Switch to the page by index
 Open link by index
 ** /
 Focuses the seachbar
-** Right-click
+** ?
+Switch to Searcher
+** Right-click, - (MinusKey)
 Toggle Edit mode
+** + (PlusKey), = (EqualKey)
+Add new site
+** . (PeriodKey)
+Open options
+** , (CommaKey)
+Focus theme switcher
 ** Scroll Up/down
 Switches page Up/down
 * Development
