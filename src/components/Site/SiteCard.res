@@ -33,7 +33,7 @@ module SiteLabel = {
     show
       ? <div className="center absolute bottom-1 xxl:bottom-1.5 w-full h-[1.38rem] xxl:h-8">
           <div className={`center px-2 w-[90%] h-full bg-base-100/70 ${radius}`}>
-            <p className="title truncate -mt-1"> {React.string(title)} </p>
+            <p className="title truncate -mt-0.5 xxl:-mt-1"> {React.string(title)} </p>
           </div>
         </div>
       : React.null
