@@ -30,8 +30,8 @@ module SiteLabel = {
   @react.component
   let make = (~title: string, ~show: bool) =>
     show
-      ? <div className="center absolute bottom-1 xxl:bottom-2 w-full h-[1.38rem] xxl:h-8">
-          <div className="center px-2 w-[90%] h-full bg-base-100/70 rounded-full">
+      ? <div className="center absolute bottom-1 xxl:bottom-1.5 w-full h-[1.38rem] xxl:h-8">
+          <div className="center px-2 w-[90%] h-full bg-base-100/70 rounded-box">
             <p className="title truncate -mt-1"> {React.string(title)} </p>
           </div>
         </div>
