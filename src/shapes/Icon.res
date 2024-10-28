@@ -11,6 +11,9 @@
 @module("../assets/globe-yellow.svg") external globeYellow: string = "default"
 @module("../assets/globe-pink.svg") external globePink: string = "default"
 @module("../assets/globe-purple.svg") external globePurple: string = "default"
+@module("../assets/linkedin.svg") external linkedinLogo: string = "default"
+@module("../assets/twitter.svg") external twitterLogo: string = "default"
+@module("../assets/discord.svg") external discordLogo: string = "default"
 
 open Site
 
@@ -28,13 +31,16 @@ module Icon = {
     {id: 22, title: "Gmail", src: gmailLogo},
     {id: 23, title: "Drive", src: driveLogo},
     {id: 24, title: "Image", src: imageLogo},
-    {id: 25, title: "Search", src: searchLogo},
-    {id: 26, title: "Link", src: linkLogo},
-    {id: 30, title: "GlobeGreen", src: globeGreen},
-    {id: 31, title: "GlobeRed", src: globeRed},
-    {id: 32, title: "GlobeBlue", src: globeBlue},
-    {id: 33, title: "GlobeYellow", src: globeYellow},
-    {id: 34, title: "GlobePink", src: globePink},
-    {id: 35, title: "GlobePurple", src: globePurple},
+    {id: 25, title: "Linkedin", src: linkedinLogo},
+    {id: 26, title: "Twitter", src: twitterLogo},
+    {id: 27, title: "Discord", src: discordLogo},
+    {id: 28, title: "Search", src: searchLogo},
+    {id: 29, title: "Link", src: linkLogo},
+    {id: 40, title: "GlobeGreen", src: globeGreen},
+    {id: 41, title: "GlobeRed", src: globeRed},
+    {id: 42, title: "GlobeBlue", src: globeBlue},
+    {id: 43, title: "GlobeYellow", src: globeYellow},
+    {id: 44, title: "GlobePink", src: globePink},
+    {id: 45, title: "GlobePurple", src: globePurple},
   ]
 }

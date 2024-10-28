@@ -12,7 +12,10 @@ module Range = {
 let make = (~setImg, ~setImgName) => {
   let {options, removeImage} = BgStore.use()
 
-  let onRemove = _ => removeImage()
+  let onRemove = evt => {
+    ReactEvent.Mouse.preventDefault(evt)
+    removeImage()
+  }
 
   let onChange = evt => {
     let files = ReactEvent.Form.target(evt)["files"]
