@@ -39,9 +39,15 @@ Focus theme switcher
 Switches page Up/down
 
 * Adding as a browser extension
-Switch to the =pages= branch and download the code
-[[https://codeberg.org/anhsirk0/undoo-start/src/branch/pages][pages branch on codeberg]] 
-[[https://github.com/anhsirk0/undoo-start/tree/pages][pages branch on github]] 
+** Chromium    
+Switch to the =chromium-extension= branch and download the code
+  - [[https://codeberg.org/anhsirk0/undoo-start/src/branch/chromium-extension][chromium-extension branch on codeberg]] 
+  - [[https://github.com/anhsirk0/undoo-start/tree/chromium-extension][chromium-extension branch on github]] 
+** Firefox    
+Switch to the =firefox-extension= branch and download the code
+  - [[https://codeberg.org/anhsirk0/undoo-start/src/branch/firefox-extension][firefox-extension branch on codeberg]] 
+  - [[https://github.com/anhsirk0/undoo-start/tree/firefox-extension][firefox-extension branch on github]] 
+
 
 manually add the extension using the files.
 click =load unpacked= in manage extensions page in chromium
