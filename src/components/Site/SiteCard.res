@@ -29,7 +29,7 @@ module LabelIcon = {
 module SiteLabel = {
   @react.component
   let make = (~title: string, ~show: bool, ~circleIcons: bool) => {
-    let radius = circleIcons ? "" : " rounded-box"
+    let radius = circleIcons ? "" : "rounded-box"
     show
       ? <div className="center absolute bottom-1 xxl:bottom-1.5 w-full h-[1.38rem] xxl:h-8">
           <div className={`center px-2 w-[90%] h-full bg-base-100/70 ${radius}`}>
@@ -37,6 +37,22 @@ module SiteLabel = {
           </div>
         </div>
       : React.null
+  }
+}
+
+module SiteHint = {
+  @react.component
+  let make = (~idx: int, ~circleIcons: bool) => {
+    let pos = circleIcons ? "top-3 xxl:top-4 left-3 xxl:left-4" : "top-0 left-0"
+    let radius = circleIcons ? "rounded-full" : "rounded-br-box"
+    let margin = circleIcons ? "" : "-ml-1/2 -mt-1/2 xxl:-ml-1 xxl:-mt-1"
+
+    <div
+      className={`bg-base-100/80 absolute ${pos} size-6 lg:size-6 xl:size-8 center animate-fade ${radius}`}>
+      <p className={`resp-text xxl:text-2xl ${margin}`}>
+        {React.string(idx->String.fromCharCode)}
+      </p>
+    </div>
   }
 }
 
@@ -69,13 +85,7 @@ let make = (~site: Site.t, ~isEditing, ~updateSite, ~children, ~index) => {
           <SiteLabel title=site.title show=site.showLabel circleIcons=options.circleIcons />
         </a>
         {switch index {
-        | Some(idx) =>
-          <div
-            className="bg-base-100/80 absolute top-0 left-0 size-6 lg:size-6 xl:size-8 center rounded-br-box animate-fade">
-            <p className="resp-text xxl:text-2xl -ml-1/2 -mt-1/2 xxl:-ml-1 xxl:-mt-1">
-              {React.string(idx->String.fromCharCode)}
-            </p>
-          </div>
+        | Some(idx) => <SiteHint idx circleIcons=options.circleIcons />
         | None => React.null
         }}
         {isEditing
