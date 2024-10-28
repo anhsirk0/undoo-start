@@ -2,15 +2,10 @@
   "name": "Undoo Startpage",
   "short_name": "Undoo",
   "manifest_version": 3,
-  "version": "1.0.0",
+  "version": "2.0.1",
   "permissions": ["storage"],
   "chrome_url_overrides": {
     "newtab": "index.html"
-  },
-  "browser_specific_settings": {
-    "gecko": {
-      "id": "krishna404@yandex.com"
-    }
   },
   "icons": { "16": "/undoo.svg" }
 }
