@@ -44,7 +44,7 @@ let make = (~site: Site.t, ~isEditing, ~updateSite, ~children, ~index) => {
         <a href=site.url target className="relative size-full group cursor-pointer">
           {isIconUrl
             ? <figure
-                className="absolute inset-0 -z-10 group-hover:scale-105 transitional"
+                className="absolute inset-0 -z-10 scale-[1.02] group-hover:scale-105 transitional"
                 style={backgroundColor: site.bgcolor->Option.getOr("#fff")}>
                 <img className="h-full w-full object-cover" src=site.icon alt=site.title />
               </figure>
