@@ -14,6 +14,9 @@
 @module("../assets/linkedin.svg") external linkedinLogo: string = "default"
 @module("../assets/twitter.svg") external twitterLogo: string = "default"
 @module("../assets/discord.svg") external discordLogo: string = "default"
+@module("../assets/openai.svg") external openaiLogo: string = "default"
+@module("../assets/undoo-blue.svg") external undooBlue: string = "default"
+@module("../assets/undoo-light.svg") external undooLight: string = "default"
 
 open Site
 
@@ -34,8 +37,11 @@ module Icon = {
     {id: 25, title: "Linkedin", src: linkedinLogo},
     {id: 26, title: "Twitter", src: twitterLogo},
     {id: 27, title: "Discord", src: discordLogo},
-    {id: 28, title: "Search", src: searchLogo},
-    {id: 29, title: "Link", src: linkLogo},
+    {id: 29, title: "Openai", src: openaiLogo},
+    {id: 30, title: "Search", src: searchLogo},
+    {id: 31, title: "Link", src: linkLogo},
+    {id: 32, title: "UndooLight", src: undooLight},
+    {id: 33, title: "UndooBlue", src: undooBlue},
     {id: 40, title: "GlobeGreen", src: globeGreen},
     {id: 41, title: "GlobeRed", src: globeRed},
     {id: 42, title: "GlobeBlue", src: globeBlue},
