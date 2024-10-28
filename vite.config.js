@@ -6,17 +6,17 @@ import { VitePWA } from "vite-plugin-pwa";
 export default defineConfig({
   plugins: [
     react({ include: ["**/*.res.mjs"] }),
-    VitePWA({
-      manifest: {
-        name: "Undoo Startpage",
-        short_name: "Undoo",
-        start_url: "/",
-        display: "standalone",
-        background_color: "#ffffff",
-        theme_color: "#ffffff",
-        scope: "/",
-        icons: [{ src: "/undoo.svg", type: "image/svg+xml", sizes: "any" }],
-      },
-    }),
+    // VitePWA({
+    //   manifest: {
+    //     name: "Undoo Startpage",
+    //     short_name: "Undoo",
+    //     start_url: "/",
+    //     display: "standalone",
+    //     background_color: "#ffffff",
+    //     theme_color: "#ffffff",
+    //     scope: "/",
+    //     icons: [{ src: "/undoo.svg", type: "image/svg+xml", sizes: "any" }],
+    //   },
+    // }),
   ],
 });
