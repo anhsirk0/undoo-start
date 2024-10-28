@@ -4,8 +4,8 @@ open Store
 @react.component
 let make = (~onMoveLeft, ~onMoveRight, ~title) => {
   let {options} = Store.use()
-  let leftPos = options.circleIcons ? "left-4" : "left-0"
-  let rightPos = options.circleIcons ? "right-4" : "right-0"
+  let leftPos = options.circleIcons ? "left-6 xxl:left-8" : "left-0"
+  let rightPos = options.circleIcons ? "right-6 xxl:right-8" : "right-0"
 
   <React.Fragment>
     <div
