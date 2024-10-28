@@ -43,6 +43,7 @@ let make = (~page: option<Page.t>) => {
       let hideEditButton = ReactEvent.Form.target(evt)["hide-edit-btn"]["checked"]
       let hideAddButton = ReactEvent.Form.target(evt)["hide-add-btn"]["checked"]
       let alwaysShowHints = ReactEvent.Form.target(evt)["always-show-hints"]["checked"]
+      let circleIcons = ReactEvent.Form.target(evt)["circle-icons"]["checked"]
 
       store.updateOptions({
         title,
@@ -51,6 +52,7 @@ let make = (~page: option<Page.t>) => {
         hideEditButton,
         hideAddButton,
         alwaysShowHints,
+        circleIcons,
         openLinkInNewTab,
       })
       toggleOpen()
@@ -69,7 +71,7 @@ let make = (~page: option<Page.t>) => {
       ? <Modal title="Options" onClose=toggleOpen classes="min-w-[50vw]">
           <form
             onSubmit
-            className="flex flex-col gap-2 xl:gap-4 [&>div]:min-w-[100%] min-h-[55vh]"
+            className="flex flex-col gap-2 xl:gap-4 [&>div]:min-w-[100%] min-h-[60vh]"
             tabIndex=0>
             {isCustomizingBg ? <CustomizeBackground setImg setImgName /> : <OptionsInputs />}
             <div className="grow" />

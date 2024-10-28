@@ -10,6 +10,7 @@ module AppOptions = {
     hideAddButton: bool,
     alwaysShowHints: bool,
     openLinkInNewTab: bool,
+    circleIcons: bool,
   }
 
   let defaultOptions = {
@@ -20,6 +21,7 @@ module AppOptions = {
     hideAddButton: false,
     alwaysShowHints: false,
     openLinkInNewTab: true,
+    circleIcons: false,
   }
 }
 

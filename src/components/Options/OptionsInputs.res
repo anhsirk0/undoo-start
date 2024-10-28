@@ -34,5 +34,8 @@ let make = () => {
       defaultChecked=store.options.alwaysShowHints
       label="Always show site hints"
     />
+    <Checkbox
+      name="circle-icons" defaultChecked=store.options.circleIcons label="Use circle icons"
+    />
   </React.Fragment>
 }

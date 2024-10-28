@@ -28,31 +28,36 @@ module LabelIcon = {
 
 module SiteLabel = {
   @react.component
-  let make = (~title: string, ~show: bool) =>
+  let make = (~title: string, ~show: bool, ~circleIcons: bool) => {
+    let radius = circleIcons ? "" : " rounded-box"
     show
       ? <div className="center absolute bottom-1 xxl:bottom-1.5 w-full h-[1.38rem] xxl:h-8">
-          <div className="center px-2 w-[90%] h-full bg-base-100/70 rounded-box">
+          <div className={`center px-2 w-[90%] h-full bg-base-100/70 ${radius}`}>
             <p className="title truncate -mt-1"> {React.string(title)} </p>
           </div>
         </div>
       : React.null
+  }
 }
 
 @react.component
 let make = (~site: Site.t, ~isEditing, ~updateSite, ~children, ~index) => {
-  let store = Store.use()
+  let {options} = Store.use()
   let (isOpen, toggleOpen, _) = Hooks.useToggle()
 
   let isIconUrl = Utils.startsWith(site.icon, ["http", "/src", "/assets", "data:image"])
-  let target = store.options.openLinkInNewTab ? "_blank" : "_self"
+  let target = options.openLinkInNewTab ? "_blank" : "_self"
+
+  let cardSize = "w-24 size-24 md:size-28 lg:size-28 xl:size-32 xxl:size-40"
+  let radius = options.circleIcons ? "rounded-full" : ""
 
   <React.Fragment>
     <div
       onContextMenu=JsxEvent.Mouse.stopPropagation
-      className="col-span-12 xs:col-span-6 sm:col-span-4 md:col-span-3 lg:col-span-2 animate-grow animate-fade relative">
+      className="col-span-6 xs:col-span-4 md:col-span-3 lg:col-span-2 animate-grow animate-fade relative">
       <div
         id={"site-" ++ site.id->Int.toString}
-        className="card w-full h-24 md:h-28 lg:h-28 xl:h-32 xxl:h-40 isolate has-[a:active]:animate-shake overflow-hidden">
+        className={`card w-full isolate has-[a:active]:animate-shake overflow-hidden mx-auto ${cardSize} ${radius}`}>
         <a href=site.url target className="relative size-full group cursor-pointer">
           {isIconUrl
             ? <img
@@ -62,7 +67,7 @@ let make = (~site: Site.t, ~isEditing, ~updateSite, ~children, ~index) => {
                 style={backgroundColor: site.bgcolor->Option.getOr("#fff")}
               />
             : <LabelIcon site />}
-          <SiteLabel title=site.title show=site.showLabel />
+          <SiteLabel title=site.title show=site.showLabel circleIcons=options.circleIcons />
         </a>
         {switch index {
         | Some(idx) =>
@@ -80,7 +85,7 @@ let make = (~site: Site.t, ~isEditing, ~updateSite, ~children, ~index) => {
               ariaLabel={`edit-site-${site.title}-btn`}
               onClick={_ => toggleOpen()}
               className="bg-base-100/70 absolute inset-0 size-full center animate-fade">
-              <Solid.PencilIcon className="w-12 h-12 text-base-content" />
+              <Solid.PencilIcon className="size-8 xxl:size-10 text-base-content" />
               {children}
             </div>
           : React.null}
