@@ -37,24 +37,19 @@ let make = (~site: Site.t, ~isEditing, ~updateSite, ~children, ~index) => {
   <React.Fragment>
     <div
       onContextMenu=JsxEvent.Mouse.stopPropagation
-      className="col-span-12 xs:col-span-6 sm:col-span-4 md:col-span-3 lg:col-span-2 animate-grow animate-fade">
+      className="col-span-12 xs:col-span-6 sm:col-span-4 md:col-span-3 lg:col-span-2 animate-grow animate-fade relative rounded-box overflow-hidden">
       <div
         id={"site-" ++ site.id->Int.toString}
-        className="card w-full h-24 md:h-28 lg:h-28 xl:h-32 xxl:h-40 overflow-hidden isolate has-[a:active]:animate-shake">
-        <a href=site.url target className="relative size-full group cursor-pointer scale-[1.02]">
+        className="card w-full h-24 md:h-28 lg:h-28 xl:h-32 xxl:h-40 isolate has-[a:active]:animate-shake overflow-hidden">
+        <a href=site.url target className="relative size-full group cursor-pointer">
           {isIconUrl
-            ? <figure
-                className="absolute inset-0 -z-10 group-hover:scale-105 transitional"
-                style={backgroundColor: site.bgcolor->Option.getOr("#fff")}>
-                <img className="h-full w-full object-cover" src=site.icon alt=site.title />
-              </figure>
+            ? <img
+                className="size-full object-cover absolute inset-0 -z-10 group-hover:scale-105 transitional scale-[1.02]"
+                src=site.icon
+                alt=site.title
+                style={backgroundColor: site.bgcolor->Option.getOr("#fff")}
+              />
             : <LabelIcon site />}
-          {site.showLabel
-            ? <div
-                className="center px-2 bg-base-100/80 absolute bottom-0 h-[1.38rem] xxl:h-8 w-full">
-                <p className="title truncate"> {React.string(site.title)} </p>
-              </div>
-            : React.null}
         </a>
         {switch index {
         | Some(idx) =>
@@ -66,17 +61,22 @@ let make = (~site: Site.t, ~isEditing, ~updateSite, ~children, ~index) => {
           </div>
         | None => React.null
         }}
-        {isEditing
-          ? <div
-              role="button"
-              ariaLabel={`edit-site-${site.title}-btn`}
-              onClick={_ => toggleOpen()}
-              className="bg-base-100/80 absolute inset-0 size-full center animate-fade">
-              <Solid.PencilIcon className="w-12 h-12 text-base-content" />
-              {children}
-            </div>
-          : React.null}
       </div>
+      {site.showLabel
+        ? <div className="center px-2 bg-base-100/80 absolute bottom-0 h-[1.38rem] xxl:h-8 w-full">
+            <p className="title truncate"> {React.string(site.title)} </p>
+          </div>
+        : React.null}
+      {isEditing
+        ? <div
+            role="button"
+            ariaLabel={`edit-site-${site.title}-btn`}
+            onClick={_ => toggleOpen()}
+            className="bg-base-100/70 absolute inset-0 size-full center animate-fade">
+            <Solid.PencilIcon className="w-12 h-12 text-base-content" />
+            {children}
+          </div>
+        : React.null}
     </div>
     {isOpen ? <EditSiteModal site updateSite onClose=toggleOpen /> : React.null}
   </React.Fragment>
