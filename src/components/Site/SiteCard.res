@@ -41,10 +41,10 @@ let make = (~site: Site.t, ~isEditing, ~updateSite, ~children, ~index) => {
       <div
         id={"site-" ++ site.id->Int.toString}
         className="card w-full h-24 md:h-28 lg:h-28 xl:h-32 xxl:h-40 overflow-hidden isolate has-[a:active]:animate-shake">
-        <a href=site.url target className="relative size-full group cursor-pointer">
+        <a href=site.url target className="relative size-full group cursor-pointer scale-[1.02]">
           {isIconUrl
             ? <figure
-                className="absolute inset-0 -z-10 scale-[1.02] group-hover:scale-105 transitional"
+                className="absolute inset-0 -z-10 group-hover:scale-105 transitional"
                 style={backgroundColor: site.bgcolor->Option.getOr("#fff")}>
                 <img className="h-full w-full object-cover" src=site.icon alt=site.title />
               </figure>
