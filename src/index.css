@@ -41,3 +41,21 @@
 form:focus {
   outline: none;
 }
+
+@layer utilities {
+  .square-24 {
+    @apply size-[6rem] max-w-[6rem];
+  }
+
+  .square-28 {
+    @apply size-[7rem] max-w-[7rem];
+  }
+
+  .square-32 {
+    @apply size-[8rem] max-w-[8rem];
+  }
+
+  .square-40 {
+    @apply size-[10rem] max-w-[10rem];
+  }
+}

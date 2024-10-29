@@ -64,13 +64,13 @@ let make = (~site: Site.t, ~isEditing, ~updateSite, ~children, ~index) => {
   let isIconUrl = Utils.startsWith(site.icon, ["http", "/src", "/assets", "data:image"])
   let target = options.openLinkInNewTab ? "_blank" : "_self"
 
-  let cardSize = "w-24 size-24 md:size-28 lg:size-28 xl:size-32 xxl:size-40"
+  let cardSize = "square-24 md:square-28 xl:square-32 xxl:square-40"
   let radius = options.circleIcons ? "rounded-full" : ""
 
   <React.Fragment>
     <div
       onContextMenu=JsxEvent.Mouse.stopPropagation
-      className="col-span-6 xs:col-span-4 md:col-span-3 lg:col-span-2 animate-grow animate-fade relative">
+      className="col-span-6 xs:col-span-4 sm:col-span-3 md:col-span-2 animate-grow animate-fade relative">
       <div
         id={"site-" ++ site.id->Int.toString}
         className={`card w-full isolate has-[a:active]:animate-shake overflow-hidden mx-auto ${cardSize} ${radius}`}>
