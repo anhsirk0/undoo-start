@@ -5,13 +5,13 @@ module Utils = {
   @send external focus: Dom.element => unit = "focus"
   @send external click: Dom.element => unit = "click"
   @send external blur: Dom.element => unit = "blur"
+  @send external setAttribute: (Dom.element, string, string) => unit = "setAttribute"
+  @set external setValue: (Dom.element, string) => unit = "value"
 
-  let setBgcolor = %raw(`function setBg(el, bg) { el.style.backgroundColor = bg }`)
-  let setValue = %raw(`function setValue(el, value) { el.value = value }`)
-  let setAttribute = %raw(`function setAttribute(el, attr, val) { el.setAttribute(attr, val) }`)
-  let addClass = %raw(`function addClass(el, cls) { el.classList.add(cls) }`)
-  let removeClass = %raw(`function removeClass(el, cls) { el.classList.remove(cls) }`)
-  let getCssVar = %raw(`function gcv(name) { return getComputedStyle(document.body).getPropertyValue(name) }`)
+  let setBgcolor = %raw(`function (el, bg) { el.style.backgroundColor = bg }`)
+  let addClass = %raw(`function (el, cls) { el.classList.add(cls) }`)
+  let removeClass = %raw(`function (el, cls) { el.classList.remove(cls) }`)
+  let getCssVar = %raw(`function (name) { return getComputedStyle(document.body).getPropertyValue(name) }`)
 
   let isDarkMode = () => getCssVar("color-scheme") == "dark"
 
