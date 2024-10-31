@@ -15,7 +15,7 @@ let make = (~page: option<Page.t>, ~setPageId, ~isEditing, ~isSearching) => {
   })
 
   <React.Fragment>
-    <div className={`fixed top-0 ${pos} z-10 w-fit h-full flex flex-row transitional shadow`}>
+    <div className={`fixed top-0 ${pos} z-10 w-fit h-full flex flex-row transitional`}>
       <ul
         onWheel=ReactEvent.Wheel.stopPropagation
         id="theme-container"
