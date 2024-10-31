@@ -22,7 +22,7 @@ let make = (~engine: SearchEngine.t) => {
     <button
       ariaLabel={`edit-${engine.title}`}
       onClick={_ => toggleOpen()}
-      className="btn btn-ghost resp-btn">
+      className="btn btn-ghost btn-sm">
       <Solid.PencilIcon className="resp-icon" />
     </button>
     {isOpen

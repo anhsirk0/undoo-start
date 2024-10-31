@@ -33,7 +33,7 @@ module SearchForm = {
       JsxEvent.Form.preventDefault(evt)
       // let q = ReactEvent.Form.target(evt)["query"]["value"]
       let target = store.options.openLinkInNewTab ? "_blank" : "_self"
-      Utils.openUrl(engine.url->String.replace("<Q>", encodeURI(value)), target)
+      Utils.searchLink(engine.url, value, ~target)
     }
 
     let clearText = _ => {

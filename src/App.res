@@ -108,7 +108,7 @@ let make = () => {
           <Solid.PencilIcon className="resp-icon" />
         </button>}
     <Sidebar page setPageId isEditing isSearching />
-    {isSearching ? <Searcher /> : <SearchBar />}
+    {isSearching ? <Searcher isEditing /> : <SearchBar />}
     <div
       onWheel={evt => {
         let target = Wheel.target(evt)

@@ -28,6 +28,12 @@ module Utils = {
   }
   let setTheme = theme => "html"->querySelectAndThen(setAttribute(_, "data-theme", theme))
 
+  let searchLink = (url, text, ~target="_blank") => {
+    url
+    ->String.replace("<Q>", encodeURI(text))
+    ->openUrl(target)
+  }
+
   let startsWith = (str, terms) => Array.some(terms, s => String.startsWith(str, s))
 
   let moveLeft = (arr: array<'a>, index: int) => {
