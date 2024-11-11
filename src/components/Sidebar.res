@@ -3,7 +3,7 @@ open Page
 open Heroicons
 
 @react.component
-let make = (~page: option<Page.t>, ~setPageId, ~isEditing, ~isSearching) => {
+let make = (~page: option<Page.t>, ~setPageId, ~isEditing, ~isSearching, ~isSavedLinks) => {
   let store = Store.use()
 
   let pos = "-left-56 has-[#theme-btn:focus]:left-0 has-[#theme-container>*:focus]:left-0"
@@ -32,6 +32,12 @@ let make = (~page: option<Page.t>, ~setPageId, ~isEditing, ~isSearching) => {
       </div>
       {isEditing ? <AddPageButton /> : React.null}
       <div className="grow" />
+      <button
+        onClick={_ => setPageId(_ => Some(-2))}
+        ariaLabel="saved-links-btn"
+        className={`btn resp-btn sidebar-btn ${isSavedLinks ? "btn-primary" : "btn-ghost"}`}>
+        <Solid.LinkIcon className="resp-icon" />
+      </button>
       {store.options.useSearcher
         ? <button
             onClick={_ => setPageId(_ => Some(-1))}

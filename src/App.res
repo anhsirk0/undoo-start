@@ -13,6 +13,7 @@ let make = () => {
   let (isDebounced, setIsDebounced) = React.useState(_ => true)
   let page = pageId->Option.flatMap(id => store.pages->Array.find(p => p.id == id))
   let isSearching = pageId->Option.filter(id => id == -1)->Option.isSome
+  let isSavedLinks = pageId->Option.filter(id => id == -2)->Option.isSome
 
   let onContextMenu = evt => {
     setIsEditing(v => !v)
@@ -107,8 +108,8 @@ let make = () => {
               : "btn-ghost"}`}>
           <Solid.PencilIcon className="resp-icon" />
         </button>}
-    <Sidebar page setPageId isEditing isSearching />
-    {isSearching ? <Searcher isEditing /> : <SearchBar />}
+    <Sidebar page setPageId isEditing isSearching isSavedLinks />
+    {isSearching ? <Searcher isEditing /> : isSavedLinks ? <SavedLinks /> : <SearchBar />}
     <div
       onWheel={evt => {
         let target = Wheel.target(evt)
