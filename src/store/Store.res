@@ -18,7 +18,7 @@ module AppOptions = {
     title: "Undoo Startpage",
     showPageTitle: true,
     useSearcher: true,
-    useLinks: true,
+    useLinks: false,
     hideEditButton: false,
     hideAddButton: false,
     alwaysShowHints: false,
