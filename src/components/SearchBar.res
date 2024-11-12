@@ -9,7 +9,7 @@ module SearchForm = {
     let (value, setValue) = React.useState(_ => "")
 
     let onChange = evt => {
-      let target = JsxEvent.Form.target(evt)
+      let target = ReactEvent.Form.target(evt)
       let newValue: string = target["value"]
       setValue(_ => newValue)
     }
@@ -22,7 +22,7 @@ module SearchForm = {
     })
 
     let onSelect = evt => {
-      let id = JsxEvent.Form.target(evt)["value"]
+      let id = ReactEvent.Form.target(evt)["value"]
       switch id->Int.fromString {
       | Some(id) => store.updateSearchEngineId(id)
       | None => ()
@@ -30,7 +30,7 @@ module SearchForm = {
     }
 
     let onSubmit = evt => {
-      JsxEvent.Form.preventDefault(evt)
+      ReactEvent.Form.preventDefault(evt)
       // let q = ReactEvent.Form.target(evt)["query"]["value"]
       let target = store.options.openLinkInNewTab ? "_blank" : "_self"
       Utils.searchLink(engine.url, value, ~target)

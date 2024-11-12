@@ -23,7 +23,7 @@ let make = (~page: Page.t, ~onClose, ~afterDelete) => {
   let store = Store.use()
 
   let onSubmit = evt => {
-    JsxEvent.Form.preventDefault(evt)
+    ReactEvent.Form.preventDefault(evt)
     let title = ReactEvent.Form.target(evt)["title"]["value"]
     let icon = ReactEvent.Form.target(evt)["icon"]["value"]
 

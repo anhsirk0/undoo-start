@@ -16,7 +16,7 @@ let make = (~page: option<Page.t>) => {
   let (imgName, setImgName) = React.useState(_ => "")
 
   let onSubmit = evt => {
-    JsxEvent.Form.preventDefault(evt)
+    ReactEvent.Form.preventDefault(evt)
     if isCustomizingBg {
       let bgOpacity = ReactEvent.Form.target(evt)["bg-opacity"]["value"]
       let searcherOpacity = ReactEvent.Form.target(evt)["searcher-opacity"]["value"]

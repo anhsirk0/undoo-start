@@ -69,7 +69,7 @@ let make = (~site: Site.t, ~isEditing, ~updateSite, ~children, ~index) => {
 
   <React.Fragment>
     <div
-      onContextMenu=JsxEvent.Mouse.stopPropagation
+      onContextMenu=ReactEvent.Mouse.stopPropagation
       className="col-span-6 xs:col-span-4 sm:col-span-3 md:col-span-2 animate-grow animate-fade relative">
       <div
         id={"site-" ++ site.id->Int.toString}

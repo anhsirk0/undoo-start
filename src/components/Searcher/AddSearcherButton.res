@@ -11,11 +11,11 @@ let make = () => {
   let (isOpen, toggleOpen, _) = Hooks.useToggle()
 
   let onSubmit = evt => {
-    JsxEvent.Form.preventDefault(evt)
+    ReactEvent.Form.preventDefault(evt)
     let title = ReactEvent.Form.target(evt)["title"]["value"]
     let url = ReactEvent.Form.target(evt)["url"]["value"]
 
-    searcherStore.addEngine({title, url, icon: url, id: Date.now()->Belt.Float.toInt})
+    searcherStore.addEngine({title, url, icon: url, id: Date.now()->Float.toInt})
     toggleOpen()
   }
 

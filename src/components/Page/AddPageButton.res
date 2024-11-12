@@ -9,14 +9,14 @@ let make = () => {
   let (isOpen, toggleOpen, _) = Hooks.useToggle()
 
   let onSubmit = evt => {
-    JsxEvent.Form.preventDefault(evt)
+    ReactEvent.Form.preventDefault(evt)
     let title = ReactEvent.Form.target(evt)["title"]["value"]
     let icon = ReactEvent.Form.target(evt)["icon"]["value"]
 
     store.addPage({
       title,
       icon,
-      id: Date.now()->Belt.Float.toInt,
+      id: Date.now()->Float.toInt,
       sites: [],
     })
     toggleOpen()

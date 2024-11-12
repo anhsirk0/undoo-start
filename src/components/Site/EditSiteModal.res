@@ -15,7 +15,7 @@ let make = (~site: Site.t, ~onClose, ~updateSite) => {
   }
 
   let onSubmit = evt => {
-    JsxEvent.Form.preventDefault(evt)
+    ReactEvent.Form.preventDefault(evt)
     let target = ReactEvent.Form.target(evt)
     let title = target["title"]["value"]
     let url = target["url"]["value"]

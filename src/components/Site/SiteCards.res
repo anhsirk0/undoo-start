@@ -15,17 +15,17 @@ let make = (~page: Page.t, ~isEditing, ~isVisiting) => {
 
   let cards = page.sites->Array.mapWithIndex((site, index) => {
     let onDelete = evt => {
-      JsxEvent.Mouse.stopPropagation(evt)
+      ReactEvent.Mouse.stopPropagation(evt)
       updatePage({...page, sites: page.sites->Array.filter(s => s.id != site.id)})
     }
 
     let onMoveLeft = evt => {
-      JsxEvent.Mouse.stopPropagation(evt)
+      ReactEvent.Mouse.stopPropagation(evt)
       updatePage({...page, sites: page.sites->Utils.moveLeft(index)})
     }
 
     let onMoveRight = evt => {
-      JsxEvent.Mouse.stopPropagation(evt)
+      ReactEvent.Mouse.stopPropagation(evt)
       updatePage({...page, sites: page.sites->Utils.moveRight(index)})
     }
 

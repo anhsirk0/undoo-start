@@ -25,7 +25,7 @@ let make = (~addSite: Site.t => unit) => {
   }
 
   let onSubmit = evt => {
-    JsxEvent.Form.preventDefault(evt)
+    ReactEvent.Form.preventDefault(evt)
     let target = ReactEvent.Form.target(evt)
 
     let title = target["title"]["value"]
@@ -44,7 +44,7 @@ let make = (~addSite: Site.t => unit) => {
           url,
           icon,
           showLabel,
-          id: Date.now()->Belt.Float.toInt,
+          id: Date.now()->Float.toInt,
         })
         toggleOpen()
       }

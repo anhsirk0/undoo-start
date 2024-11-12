@@ -11,9 +11,7 @@ module Fetch = {
     try {
       let params = {
         "mode": "no-cors",
-        "headers": {
-          "Access-Control-Allow-Origin": "*",
-        },
+        "headers": {"Access-Control-Allow-Origin": "*"},
       }
       let response = await fetch(url, params)
       let data = await response->Response.text

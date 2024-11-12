@@ -9,7 +9,7 @@ let make = (~isEditing) => {
 
   let (value, setValue) = React.useState(_ => "")
   let onChange = evt => {
-    let target = JsxEvent.Form.target(evt)
+    let target = ReactEvent.Form.target(evt)
     let newValue: string = target["value"]
     setValue(_ => newValue)
   }
@@ -19,7 +19,7 @@ let make = (~isEditing) => {
   let toggleAll = _ => store.toggleAll(isAllChecked)
 
   let onSubmit = evt => {
-    JsxEvent.Form.preventDefault(evt)
+    ReactEvent.Form.preventDefault(evt)
     // let q = ReactEvent.Form.target(evt)["query"]["value"]
 
     store.engines
