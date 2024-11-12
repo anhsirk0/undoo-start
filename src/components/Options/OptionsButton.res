@@ -3,6 +3,7 @@ open Store
 open BgStore
 open Page
 open Heroicons
+open ReactEvent
 
 @react.component
 let make = (~page: option<Page.t>) => {
@@ -16,12 +17,12 @@ let make = (~page: option<Page.t>) => {
   let (imgName, setImgName) = React.useState(_ => "")
 
   let onSubmit = evt => {
-    ReactEvent.Form.preventDefault(evt)
+    evt->Form.preventDefault
     if isCustomizingBg {
-      let bgOpacity = ReactEvent.Form.target(evt)["bg-opacity"]["value"]
-      let searcherOpacity = ReactEvent.Form.target(evt)["searcher-opacity"]["value"]
-      let searchOpacity = ReactEvent.Form.target(evt)["search-opacity"]["value"]
-      let sidebarOpacity = ReactEvent.Form.target(evt)["sidebar-opacity"]["value"]
+      let bgOpacity = Form.target(evt)["bg-opacity"]["value"]
+      let searcherOpacity = Form.target(evt)["searcher-opacity"]["value"]
+      let searchOpacity = Form.target(evt)["search-opacity"]["value"]
+      let sidebarOpacity = Form.target(evt)["sidebar-opacity"]["value"]
 
       let imgExists = img->String.length > 20
       let image = imgExists ? img : bgStore.options.image
@@ -36,19 +37,21 @@ let make = (~page: option<Page.t>) => {
       })
       toggleCustomizingBg()
     } else {
-      let title = ReactEvent.Form.target(evt)["title"]["value"]
-      let openLinkInNewTab = ReactEvent.Form.target(evt)["link-in-new-tab"]["checked"]
-      let showPageTitle = ReactEvent.Form.target(evt)["page-title-in-document-title"]["checked"]
-      let useSearcher = ReactEvent.Form.target(evt)["use-searcher"]["checked"]
-      let hideEditButton = ReactEvent.Form.target(evt)["hide-edit-btn"]["checked"]
-      let hideAddButton = ReactEvent.Form.target(evt)["hide-add-btn"]["checked"]
-      let alwaysShowHints = ReactEvent.Form.target(evt)["always-show-hints"]["checked"]
-      let circleIcons = ReactEvent.Form.target(evt)["circle-icons"]["checked"]
+      let title = Form.target(evt)["title"]["value"]
+      let openLinkInNewTab = Form.target(evt)["link-in-new-tab"]["checked"]
+      let showPageTitle = Form.target(evt)["page-title-in-document-title"]["checked"]
+      let useSearcher = Form.target(evt)["use-searcher"]["checked"]
+      let useLinks = Form.target(evt)["use-links"]["checked"]
+      let hideEditButton = Form.target(evt)["hide-edit-btn"]["checked"]
+      let hideAddButton = Form.target(evt)["hide-add-btn"]["checked"]
+      let alwaysShowHints = Form.target(evt)["always-show-hints"]["checked"]
+      let circleIcons = Form.target(evt)["circle-icons"]["checked"]
 
       store.updateOptions({
         title,
         showPageTitle,
         useSearcher,
+        useLinks,
         hideEditButton,
         hideAddButton,
         alwaysShowHints,

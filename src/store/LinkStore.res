@@ -6,6 +6,7 @@ module StoreData = {
     links: array<Link.t>,
     addLink: Link.t => unit,
     updateLink: Link.t => unit,
+    deleteLink: int => unit,
   }
 }
 
@@ -19,6 +20,11 @@ module LinkStore = {
         set(.state => {
           ...state,
           links: state.links->Array.map(l => l.id == link.id ? link : l),
+        }),
+      deleteLink: id =>
+        set(.state => {
+          ...state,
+          links: state.links->Array.filter(l => l.id != id),
         }),
     }, {name: "undoo-links"}))
 

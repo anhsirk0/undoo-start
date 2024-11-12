@@ -32,12 +32,14 @@ let make = (~page: option<Page.t>, ~setPageId, ~isEditing, ~isSearching, ~isSave
       </div>
       {isEditing ? <AddPageButton /> : React.null}
       <div className="grow" />
-      <button
-        onClick={_ => setPageId(_ => Some(-2))}
-        ariaLabel="saved-links-btn"
-        className={`btn resp-btn sidebar-btn ${isSavedLinks ? "btn-primary" : "btn-ghost"}`}>
-        <Solid.LinkIcon className="resp-icon" />
-      </button>
+      {store.options.useLinks
+        ? <button
+            onClick={_ => setPageId(_ => Some(-2))}
+            ariaLabel="saved-links-btn"
+            className={`btn resp-btn sidebar-btn ${isSavedLinks ? "btn-primary" : "btn-ghost"}`}>
+            <Solid.LinkIcon className="resp-icon" />
+          </button>
+        : React.null}
       {store.options.useSearcher
         ? <button
             onClick={_ => setPageId(_ => Some(-1))}

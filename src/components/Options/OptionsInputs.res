@@ -19,6 +19,7 @@ let make = () => {
     <Checkbox
       name="use-searcher" defaultChecked=store.options.useSearcher label="Enable Silver Searcher"
     />
+    <Checkbox name="use-links" defaultChecked=store.options.useLinks label="Enable Saved Links" />
     <Checkbox
       name="hide-edit-btn"
       defaultChecked=store.options.hideEditButton

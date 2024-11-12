@@ -25,7 +25,7 @@ let make = (~link: option<Link.t>=?) => {
     setLoading(_ => true)
     let title = await Fetch.getTitle(value)
     let id = link->Option.map(l => l.id)->Option.getOr(Date.now()->Float.toInt)
-    let fn = link->Option.isSome ? addLink : updateLink
+    let fn = link->Option.isSome ? updateLink : addLink
     fn({
       id,
       title,
@@ -36,7 +36,7 @@ let make = (~link: option<Link.t>=?) => {
   }
 
   let onSubmit = evt => {
-    ReactEvent.Form.preventDefault(evt)
+    evt->ReactEvent.Form.preventDefault
     let _ = onSave()
   }
 
