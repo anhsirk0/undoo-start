@@ -1,4 +1,5 @@
 import { themes } from "./src/Themes.res.mjs";
+import daisyui from "daisyui";
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -34,7 +35,7 @@ export default {
       fade: "fade 200ms ease-in-out",
     },
   },
-  plugins: [require("daisyui")],
+  plugins: [daisyui],
   daisyui: {
     themes,
     darkTheme: "dark", // name of one of the included themes for dark mode
