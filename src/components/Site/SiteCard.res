@@ -1,12 +1,8 @@
-open Store
-open Utils
-open Site
-open Hooks
 open Heroicons
 
 module LabelIcon = {
   @react.component
-  let make = (~site: Site.t) => {
+  let make = (~site: Shape.Site.t) => {
     let lightColor = Utils.isDarkMode() ? "text-base-content" : "text-base-100"
     let darkColor = Utils.isDarkMode() ? "text-base-100" : "text-base-content"
 
@@ -57,9 +53,9 @@ module SiteHint = {
 }
 
 @react.component
-let make = (~site: Site.t, ~isEditing, ~updateSite, ~children, ~index) => {
-  let {options} = Store.use()
-  let (isOpen, toggleOpen, _) = Hooks.useToggle()
+let make = (~site: Shape.Site.t, ~isEditing, ~updateSite, ~children, ~index) => {
+  let {options} = Store.Options.use()
+  let (isOpen, toggleOpen, _) = Hook.useToggle()
 
   let isIconUrl = Utils.startsWith(site.icon, ["http", "/src", "/assets", "data:image"])
   let target = options.openLinkInNewTab ? "_blank" : "_self"

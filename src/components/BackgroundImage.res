@@ -1,9 +1,6 @@
-open BgStore
-open Utils
-
 @react.component
 let make = () => {
-  let {options} = BgStore.use()
+  let {options} = Store.Bg.use()
   let useBg = options.image->String.length > 20
 
   React.useEffectOnEveryRender(() => {

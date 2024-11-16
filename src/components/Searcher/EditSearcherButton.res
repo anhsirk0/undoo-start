@@ -1,13 +1,10 @@
-open SearcherStore
 open Heroicons
-open SearchEngine
-open Hooks
 
 @react.component
-let make = (~engine: SearchEngine.t) => {
-  let store = SearcherStore.use()
+let make = (~engine: Shape.SearchEngine.t) => {
+  let store = Store.Searcher.use()
 
-  let (isOpen, toggleOpen, _) = Hooks.useToggle()
+  let (isOpen, toggleOpen, _) = Hook.useToggle()
 
   let onSubmit = evt => {
     ReactEvent.Form.preventDefault(evt)

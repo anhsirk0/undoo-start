@@ -1,11 +1,8 @@
-open SearchEngine
-open Store
-open Utils
 open Heroicons
 
 module SearchForm = {
   @react.component
-  let make = (~engine: SearchEngine.t) => {
+  let make = (~engine: Shape.SearchEngine.t) => {
     let (value, setValue) = React.useState(_ => "")
 
     let onChange = evt => {
@@ -14,9 +11,9 @@ module SearchForm = {
       setValue(_ => newValue)
     }
 
-    let store = Store.use()
+    let store = Store.Options.use()
 
-    let options = SearchEngine.defaultEngines->Array.map(e => {
+    let options = Shape.SearchEngine.defaultEngines->Array.map(e => {
       let value = e.id->Int.toString
       <option key=value value> {React.string(e.icon)} </option>
     })
@@ -78,8 +75,8 @@ module SearchForm = {
 
 @react.component
 let make = () => {
-  let store = Store.use()
-  let engine = SearchEngine.defaultEngines->Array.find(e => e.id == store.searchEngineId)
+  let store = Store.Options.use()
+  let engine = Shape.SearchEngine.defaultEngines->Array.find(e => e.id == store.searchEngineId)
 
   switch engine {
   | Some(engine) => <SearchForm engine />

@@ -1,8 +1,6 @@
-open Store
-
 @react.component
 let make = () => {
-  let store = Store.use()
+  let store = Store.Options.use()
 
   <React.Fragment>
     <Input name="title" label="Document title" required=true defaultValue=store.options.title />

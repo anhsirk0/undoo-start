@@ -1,5 +1,3 @@
-open FileReader
-open BgStore
 open Heroicons
 
 module Range = {
@@ -10,7 +8,7 @@ module Range = {
 
 @react.component
 let make = (~setImg, ~setImgName) => {
-  let {options, removeImage} = BgStore.use()
+  let {options, removeImage} = Store.Bg.use()
 
   let onRemove = evt => {
     ReactEvent.Mouse.preventDefault(evt)

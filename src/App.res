@@ -1,12 +1,9 @@
-open Store
-open Utils
-open Document
 open Heroicons
 open ReactEvent
 
 @react.component
 let make = () => {
-  let store = Store.use()
+  let store = Store.Options.use()
   let (pageId, setPageId) = React.useState(_ => store.pages[0]->Option.map(p => p.id))
   let (isEditing, setIsEditing) = React.useState(_ => false)
   let (isVisiting, setIsVisiting) = React.useState(_ => false)

@@ -1,11 +1,8 @@
-open SearcherStore
-open Utils
-open Hooks
 open Heroicons
 
 @react.component
 let make = (~isEditing) => {
-  Hooks.useDocTitle(Some("Searcher"))
+  Hook.useDocTitle(Some("Searcher"))
 
   let (value, setValue) = React.useState(_ => "")
   let onChange = evt => {
@@ -14,7 +11,7 @@ let make = (~isEditing) => {
     setValue(_ => newValue)
   }
 
-  let store = SearcherStore.use()
+  let store = Store.Searcher.use()
   let isAllChecked = store.engines->Array.every(e => store.checkedIds->Array.includes(e.id))
   let toggleAll = _ => store.toggleAll(isAllChecked)
 

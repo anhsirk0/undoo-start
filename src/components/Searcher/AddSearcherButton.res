@@ -1,14 +1,11 @@
-open SearcherStore
-open Store
 open Heroicons
-open Hooks
 
 @react.component
 let make = () => {
-  let store = Store.use()
-  let searcherStore = SearcherStore.use()
+  let store = Store.Options.use()
+  let searcherStore = Store.Searcher.use()
 
-  let (isOpen, toggleOpen, _) = Hooks.useToggle()
+  let (isOpen, toggleOpen, _) = Hook.useToggle()
 
   let onSubmit = evt => {
     ReactEvent.Form.preventDefault(evt)

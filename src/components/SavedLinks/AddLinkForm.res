@@ -1,12 +1,8 @@
-open LinkStore
-open Link
-open Fetch
-open Utils
 open Heroicons
 
 @react.component
-let make = (~link: option<Link.t>=?) => {
-  let {addLink, updateLink} = LinkStore.use()
+let make = (~link: option<Shape.Link.t>=?) => {
+  let {addLink, updateLink} = Store.Link.use()
   let (loading, setLoading) = React.useState(_ => false)
   let (value, setValue) = React.useState(_ => link->Option.map(l => l.url)->Option.getOr(""))
   let onChange = evt => {

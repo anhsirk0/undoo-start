@@ -1,11 +1,9 @@
-open Store
-open Page
 open Heroicons
 
 module DeleteButton = {
   @react.component
   let make = (~id, ~afterDelete) => {
-    let store = Store.use()
+    let store = Store.Options.use()
 
     let onClick = _ => {
       store.deletePage(id)
@@ -19,8 +17,8 @@ module DeleteButton = {
 }
 
 @react.component
-let make = (~page: Page.t, ~onClose, ~afterDelete) => {
-  let store = Store.use()
+let make = (~page: Shape.Page.t, ~onClose, ~afterDelete) => {
+  let store = Store.Options.use()
 
   let onSubmit = evt => {
     ReactEvent.Form.preventDefault(evt)

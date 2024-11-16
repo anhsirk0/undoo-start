@@ -1,17 +1,13 @@
-open Utils
-open Store
-open Site
 open Heroicons
-open Hooks
 
 @react.component
-let make = (~addSite: Site.t => unit) => {
-  let store = Store.use()
+let make = (~addSite: Shape.Site.t => unit) => {
+  let store = Store.Options.use()
 
   let (chosenIcon, setChosenIcon) = React.useState(_ => None)
   let (isIconError, setIsIconError) = React.useState(_ => false)
 
-  let (isOpen, toggleIsOpen, _) = Hooks.useToggle()
+  let (isOpen, toggleIsOpen, _) = Hook.useToggle()
 
   let toggleOpen = _ => {
     toggleIsOpen()

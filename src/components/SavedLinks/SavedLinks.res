@@ -1,8 +1,6 @@
-open LinkStore
-
 @react.component
 let make = () => {
-  let {links} = LinkStore.use()
+  let {links} = Store.Link.use()
   let linkItems = links->Array.map(link => <LinkItem link key={link.id->Int.toString} />)
 
   <React.Fragment>

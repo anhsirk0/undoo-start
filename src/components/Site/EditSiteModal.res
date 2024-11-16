@@ -1,8 +1,5 @@
-open Site
-open Utils
-
 @react.component
-let make = (~site: Site.t, ~onClose, ~updateSite) => {
+let make = (~site: Shape.Site.t, ~onClose, ~updateSite) => {
   let (chosenIcon, setChosenIcon) = React.useState(_ => Some(site.icon))
   let (isIconError, setIsIconError) = React.useState(_ => false)
 

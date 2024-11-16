@@ -1,4 +1,3 @@
-open Utils
 open ReactEvent
 
 @react.element

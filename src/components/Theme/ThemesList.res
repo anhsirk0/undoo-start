@@ -1,5 +1,4 @@
 open Themes
-open Utils
 
 @react.component
 let make = () => {

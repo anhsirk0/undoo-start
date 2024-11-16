@@ -1,13 +1,10 @@
-open Store
-open Hooks
-open Page
 open Heroicons
 
 @react.component
-let make = (~page: Page.t, ~setPageId, ~isActive, ~isEditing) => {
-  let store = Store.use()
+let make = (~page: Shape.Page.t, ~setPageId, ~isActive, ~isEditing) => {
+  let store = Store.Options.use()
 
-  let (isOpen, toggleOpen, _) = Hooks.useToggle()
+  let (isOpen, toggleOpen, _) = Hook.useToggle()
 
   let btnClass = isActive ? "btn-primary" : "btn-ghost"
   let ring = isOpen ? "ring" : ""

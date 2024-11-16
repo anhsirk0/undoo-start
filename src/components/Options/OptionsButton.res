@@ -1,18 +1,14 @@
-open Hooks
-open Store
-open BgStore
-open Page
 open Heroicons
 open ReactEvent
 
 @react.component
-let make = (~page: option<Page.t>) => {
-  Hooks.useDocTitle(page->Option.map(p => p.title))
-  let store = Store.use()
-  let bgStore = BgStore.use()
+let make = (~page: option<Shape.Page.t>) => {
+  Hook.useDocTitle(page->Option.map(p => p.title))
+  let store = Store.Options.use()
+  let bgStore = Store.Bg.use()
 
-  let (isOpen, toggleOpen, _) = Hooks.useToggle()
-  let (isCustomizingBg, toggleCustomizingBg, _) = Hooks.useToggle()
+  let (isOpen, toggleOpen, _) = Hook.useToggle()
+  let (isCustomizingBg, toggleCustomizingBg, _) = Hook.useToggle()
   let (img, setImg) = React.useState(_ => "")
   let (imgName, setImgName) = React.useState(_ => "")
 

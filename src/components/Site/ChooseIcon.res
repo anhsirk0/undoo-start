@@ -1,13 +1,9 @@
-open Icon
-open Site
-
 @react.component
 let make = (~chosen, ~onChoose, ~isIconError) => {
   let icons =
-    Site.defaultSites
-    ->Array.concat(Site.localServers)
-    ->Array.map(Icon.fromSite)
-    ->Array.concat(Icon.icons)
+    Shape.Site.defaultSites
+    ->Array.map(Shape.Icon.fromSite)
+    ->Array.concat(Shape.Icon.icons)
     ->Array.map(icon => {
       let activeClass =
         chosen->Option.filter(src => src == icon.src)->Option.isSome ? "ring ring-accent" : ""

@@ -1,5 +1,3 @@
-open Utils
-
 module MyOverrides = {
   module Elements = {
     type props = {

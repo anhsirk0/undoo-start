@@ -1,10 +1,8 @@
-open Store
-open Page
 open Heroicons
 
 @react.component
-let make = (~page: option<Page.t>, ~setPageId, ~isEditing, ~isSearching, ~isSavedLinks) => {
-  let store = Store.use()
+let make = (~page: option<Shape.Page.t>, ~setPageId, ~isEditing, ~isSearching, ~isSavedLinks) => {
+  let store = Store.Options.use()
 
   let pos = "-left-56 has-[#theme-btn:focus]:left-0 has-[#theme-container>*:focus]:left-0"
 

@@ -1,12 +1,10 @@
-open Store
-open Hooks
 open Heroicons
 
 @react.component
 let make = () => {
-  let store = Store.use()
+  let store = Store.Options.use()
 
-  let (isOpen, toggleOpen, _) = Hooks.useToggle()
+  let (isOpen, toggleOpen, _) = Hook.useToggle()
 
   let onSubmit = evt => {
     ReactEvent.Form.preventDefault(evt)

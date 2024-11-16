@@ -1,17 +1,14 @@
-open Store
-open Page
-open Site
-open Utils
 open Heroicons
 
 @react.component
-let make = (~page: Page.t, ~isEditing, ~isVisiting) => {
-  let {options, updatePage} = Store.use()
+let make = (~page: Shape.Page.t, ~isEditing, ~isVisiting) => {
+  let {options, updatePage} = Store.Options.use()
 
-  let updateSite = (site: Site.t) =>
+  let updateSite = (site: Shape.Site.t) =>
     updatePage({...page, sites: page.sites->Array.map(s => s.id == site.id ? site : s)})
 
-  let addSite = (site: Site.t) => updatePage({...page, sites: page.sites->Array.concat([site])})
+  let addSite = (site: Shape.Site.t) =>
+    updatePage({...page, sites: page.sites->Array.concat([site])})
 
   let cards = page.sites->Array.mapWithIndex((site, index) => {
     let onDelete = evt => {
@@ -30,7 +27,6 @@ let make = (~page: Page.t, ~isEditing, ~isVisiting) => {
     }
 
     let index = Some(index + 97)->Option.filter(_ => isVisiting || options.alwaysShowHints)
-
     let pos = options.circleIcons ? "top-2 right-2" : "top-0 right-0"
 
     <SiteCard site key={Int.toString(site.id)} isEditing updateSite index>

@@ -1,12 +1,9 @@
-open Link
-open Store
-open LinkStore
 open Heroicons
 
 @react.component
-let make = (~link: Link.t) => {
-  let store = Store.use()
-  let {deleteLink} = LinkStore.use()
+let make = (~link: Shape.Link.t) => {
+  let store = Store.Options.use()
+  let {deleteLink} = Store.Link.use()
   let (isEditing, setIsEditing) = React.useState(_ => false)
 
   let stopEvent = evt => {
