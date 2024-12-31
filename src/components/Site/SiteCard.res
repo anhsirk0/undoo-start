@@ -66,7 +66,7 @@ let make = (~site: Shape.Site.t, ~isEditing, ~updateSite, ~children, ~index) => 
   <React.Fragment>
     <div
       onContextMenu=ReactEvent.Mouse.stopPropagation
-      className="col-span-6 xs:col-span-4 sm:col-span-3 md:col-span-2 animate-grow animate-fade relative">
+      className="col-span-6 xs:col-span-4 sm:col-span-3 md:col-span-2 relative">
       <div
         id={"site-" ++ site.id->Int.toString}
         className={`card w-full isolate has-[a:active]:animate-shake overflow-hidden mx-auto ${cardSize} ${radius}`}>

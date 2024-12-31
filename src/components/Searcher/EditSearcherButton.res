@@ -19,7 +19,7 @@ let make = (~engine: Shape.SearchEngine.t) => {
     <button
       ariaLabel={`edit-${engine.title}`}
       onClick={_ => toggleOpen()}
-      className="btn btn-ghost btn-sm">
+      className="center p-2 bg-primary text-primary-content absolute top-0 left-0 rounded-br-box">
       <Solid.PencilIcon className="resp-icon" />
     </button>
     {isOpen
