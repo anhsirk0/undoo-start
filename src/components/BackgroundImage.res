@@ -7,6 +7,7 @@ let make = () => {
     if useBg {
       "#bg-overlay"->Utils.querySelectAndThen(Utils.setBg(_, options.bgOpacity))
       "#search"->Utils.querySelectAndThen(Utils.setBg(_, options.searchOpacity))
+      "#searcher"->Utils.querySelectAndThen(Utils.setBg(_, options.searchOpacity))
       "#select-search-engine"->Utils.querySelectAndThen(Utils.setBg(_, options.searchOpacity))
       "#sidebar"->Utils.querySelectAndThen(Utils.setBg(_, options.sidebarOpacity, ~var="--b2"))
 

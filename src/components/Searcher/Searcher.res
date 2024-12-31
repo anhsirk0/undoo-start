@@ -89,7 +89,8 @@ let make = (~isEditing) => {
 
   <React.Fragment>
     <form onSubmit className="center h-[20vh] p-4 ml-12 join main-width shrink-0 z-[5]">
-      <div className="center join-item border-primary border size-12 xxl:size-16 w-16">
+      <div
+        id="searcher" className="center join-item border-primary border size-12 xxl:size-16 w-16">
         <Checkbox checked=isAllChecked onChange=toggleAll />
         {count > 0
           ? <p className="text-lg text-primary"> {count->Int.toString->React.string} </p>
