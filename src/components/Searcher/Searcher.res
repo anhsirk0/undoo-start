@@ -42,13 +42,14 @@ let make = (~isEditing) => {
       }
     }
 
-    let opacity = checked ? "bg-primary/20 bg-base-100" : "opacity-80 bg-base-100/80"
+    let opacity = checked ? "bg-primary/20" : "opacity-80"
 
     <div
-      onClick=toggleOne
       key={item.id->Int.toString}
-      className="col-span-6 md:col-span-4 animate-fade rounded-box relative overflow-hidden">
-      <div className={`flex flex-col gap-4 p-4 xxl:p-6 ${opacity} cursor-pointer`}>
+      className="col-span-6 md:col-span-4 animate-fade rounded-box relative overflow-hidden bg-base-100"
+      name="searcher-item">
+      <div
+        onClick=toggleOne className={`flex flex-col gap-4 p-4 xxl:p-6 ${opacity} cursor-pointer`}>
         <p className="card-title"> {item.title->React.string} </p>
         <p className="text-base-content/60 title">
           {item.url->String.replace("https://", "")->React.string}
@@ -64,7 +65,7 @@ let make = (~isEditing) => {
       {isEditing
         ? <div
             className="center absolute left-0 bottom-0 bg-error text-error-content rounded-tr-box p-1">
-            <div className="dropdown dropdown-right">
+            <div className="dropdown dropdown-end dropdown-right">
               <label ariaLabel={`delete-${item.title}`} tabIndex=0>
                 <Solid.TrashIcon className="resp-icon" />
               </label>
@@ -88,7 +89,7 @@ let make = (~isEditing) => {
 
   <React.Fragment>
     <form onSubmit className="center h-[20vh] p-4 ml-12 join main-width shrink-0 z-[5]">
-      <div className="center join-item border-primary border size-16">
+      <div className="center join-item border-primary border size-12 xxl:size-16 w-16">
         <Checkbox checked=isAllChecked onChange=toggleAll />
         {count > 0
           ? <p className="text-lg text-primary"> {count->Int.toString->React.string} </p>

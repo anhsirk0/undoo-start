@@ -56,7 +56,7 @@ let make = (~setImg, ~setImgName) => {
     <FormControl label="Searchbar opacity">
       <Range name="search-opacity" defaultValue={options.searchOpacity->Int.toString} />
     </FormControl>
-    <FormControl label="Searcher Table opacity">
+    <FormControl label="Searcher items opacity">
       <Range name="searcher-opacity" defaultValue={options.searcherOpacity->Int.toString} />
     </FormControl>
     <div className="mt-4 flex flex-row gap-2 w-full items-center">

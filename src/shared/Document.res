@@ -3,6 +3,9 @@ type t
 @set external setTitle: (t, string) => unit = "title"
 
 @val @scope("document")
+external querySelectorAll: string => array<Dom.element> = "querySelectorAll"
+
+@val @scope("document")
 external addKeyListener: (string, ReactEvent.Keyboard.t => unit) => unit = "addEventListener"
 
 @val @scope("document")

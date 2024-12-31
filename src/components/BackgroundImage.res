@@ -8,8 +8,11 @@ let make = () => {
       "#bg-overlay"->Utils.querySelectAndThen(Utils.setBg(_, options.bgOpacity))
       "#search"->Utils.querySelectAndThen(Utils.setBg(_, options.searchOpacity))
       "#select-search-engine"->Utils.querySelectAndThen(Utils.setBg(_, options.searchOpacity))
-      "#searchers"->Utils.querySelectAndThen(Utils.setBg(_, options.searcherOpacity))
       "#sidebar"->Utils.querySelectAndThen(Utils.setBg(_, options.sidebarOpacity, ~var="--b2"))
+
+      Document.querySelectorAll("[name=searcher-item]")->Array.forEach(
+        Utils.setBg(_, options.searcherOpacity),
+      )
     }
     None
   })
