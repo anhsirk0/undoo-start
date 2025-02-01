@@ -88,7 +88,9 @@ let make = (~isEditing) => {
   })
 
   <React.Fragment>
-    <form onSubmit className="center h-[20vh] p-4 ml-12 main-width shrink-0 z-[5]">
+    <form
+      onSubmit
+      className="center h-[20vh] p-4 ml-12 w-full max-w-xl xl:wax-w-4xl xxl:max-w-5xl shrink-0 z-[5]">
       <div id="searcher" className="center size-12 xxl:size-16 w-16 rounded-l-btn bg-base-300">
         <Checkbox checked=isAllChecked onChange=toggleAll />
         {count > 0
@@ -98,7 +100,9 @@ let make = (~isEditing) => {
       <label
         id="search-input"
         className="input has-[:focus]:border-none has-[:focus]:outline-none bg-base-300 xxl:input-lg flex items-center join-item grow rounded-none">
-        <InputBase required=true name="query" className="grow" value onChange />
+        <InputBase
+          required=true name="query" className="grow" value onChange placeholder="Search"
+        />
         {value->String.length > 0
           ? <button
               onClick=clearText

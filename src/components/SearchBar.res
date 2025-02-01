@@ -38,7 +38,9 @@ module SearchForm = {
       "input[name='query']"->Utils.querySelectAndThen(Utils.focus)
     }
 
-    <form onSubmit className="center h-[20vh] w-full p-4 ml-12 main-width z-[5]">
+    <form
+      onSubmit
+      className="center h-[20vh] w-full p-4 ml-12 w-full max-w-xl xl:wax-w-4xl xxl:max-w-5xl z-[5]">
       <select
         ariaLabel="select-search-engine"
         id="select-search-engine"
