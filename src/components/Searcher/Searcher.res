@@ -46,7 +46,7 @@ let make = (~isEditing) => {
 
     <div
       key={item.id->Int.toString}
-      className="col-span-6 md:col-span-4 animate-fade rounded-box relative overflow-hidden bg-base-100"
+      className="col-span-6 md:col-span-4 animate-fade rounded-box relative overflow-hidden bg-base-300"
       name="searcher-item">
       <div
         onClick=toggleOne className={`flex flex-col gap-4 p-4 xxl:p-6 ${opacity} cursor-pointer`}>
@@ -88,16 +88,15 @@ let make = (~isEditing) => {
   })
 
   <React.Fragment>
-    <form onSubmit className="center h-[20vh] p-4 ml-12 join main-width shrink-0 z-[5]">
-      <div
-        id="searcher" className="center join-item border-primary border size-12 xxl:size-16 w-16">
+    <form onSubmit className="center h-[20vh] p-4 ml-12 main-width shrink-0 z-[5]">
+      <div id="searcher" className="center size-12 xxl:size-16 w-16 rounded-l-btn bg-base-300">
         <Checkbox checked=isAllChecked onChange=toggleAll />
         {count > 0
           ? <p className="text-lg text-primary"> {count->Int.toString->React.string} </p>
           : React.null}
       </div>
       <label
-        id="search" className="input input-primary xxl:input-lg flex items-center join-item grow">
+        className="input has-[:focus]:border-none has-[:focus]:outline-none bg-base-300 xxl:input-lg flex items-center join-item grow rounded-none">
         <InputBase required=true name="query" className="grow" value onChange />
         {value->String.length > 0
           ? <button
@@ -108,7 +107,9 @@ let make = (~isEditing) => {
             </button>
           : React.null}
       </label>
-      <button className="btn btn-primary xxl:btn-lg join-item no-animation">
+      <button
+        id="search-btn"
+        className="btn btn-ghost bg-base-300 xxl:btn-lg join-item no-animation rounded-l-none">
         <Solid.SearchIcon className="resp-icon" />
       </button>
     </form>

@@ -20,7 +20,7 @@ let querySelectAndThen = (selector, action) => {
   | None => ()
   }
 }
-let setBg = (el, opacity, ~var="--b1") => {
+let setBg = (el, opacity, ~var="--b3") => {
   let opac = Float.toString(opacity->Int.toFloat /. 100.0)
   let bg = `oklch(var(${var})/${opac})`
   setBgcolor(el, bg)

@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .main {
-  @apply center h-screen w-screen transitional bg-base-200;
+  @apply center h-screen w-screen transitional bg-base-100;
 }
 
 .center {
