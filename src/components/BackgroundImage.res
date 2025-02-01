@@ -6,7 +6,7 @@ let make = () => {
   React.useEffectOnEveryRender(() => {
     if useBg {
       "#bg-overlay"->Utils.querySelectAndThen(Utils.setBg(_, options.bgOpacity))
-      "#search"->Utils.querySelectAndThen(Utils.setBg(_, options.searchOpacity))
+      "#search-input"->Utils.querySelectAndThen(Utils.setBg(_, options.searchOpacity))
       "#search-btn"->Utils.querySelectAndThen(Utils.setBg(_, options.searchOpacity))
       "#searcher"->Utils.querySelectAndThen(Utils.setBg(_, options.searchOpacity))
       "#select-search-engine"->Utils.querySelectAndThen(Utils.setBg(_, options.searchOpacity))

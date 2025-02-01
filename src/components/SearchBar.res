@@ -48,7 +48,7 @@ module SearchForm = {
         {React.array(options)}
       </select>
       <label
-        id="search"
+        id="search-input"
         className="input has-[:focus]:border-none has-[:focus]:outline-none bg-base-300 xxl:input-lg flex items-center grow rounded-none">
         <InputBase
           value

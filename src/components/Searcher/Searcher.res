@@ -96,6 +96,7 @@ let make = (~isEditing) => {
           : React.null}
       </div>
       <label
+        id="search-input"
         className="input has-[:focus]:border-none has-[:focus]:outline-none bg-base-300 xxl:input-lg flex items-center join-item grow rounded-none">
         <InputBase required=true name="query" className="grow" value onChange />
         {value->String.length > 0
