@@ -83,7 +83,7 @@ module Bg = {
       bgOpacity: int,
       searcherOpacity: int,
       searchOpacity: int,
-      sidebarOpacity: int,
+      // sidebarOpacity: int,
     }
     type state = {
       options: options,
@@ -97,7 +97,7 @@ module Bg = {
       bgOpacity: 50,
       searcherOpacity: 80,
       searchOpacity: 80,
-      sidebarOpacity: 50,
+      // sidebarOpacity: 50,
     }
   }
 

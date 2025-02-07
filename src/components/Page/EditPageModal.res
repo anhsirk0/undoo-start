@@ -23,16 +23,16 @@ let make = (~page: Shape.Page.t, ~onClose, ~afterDelete) => {
   let onSubmit = evt => {
     ReactEvent.Form.preventDefault(evt)
     let title = ReactEvent.Form.target(evt)["title"]["value"]
-    let icon = ReactEvent.Form.target(evt)["icon"]["value"]
+    // let icon = ReactEvent.Form.target(evt)["icon"]["value"]
 
-    store.updatePage({...page, title, icon})
+    store.updatePage({...page, title})
     onClose()
   }
 
   <Modal title=page.title onClose>
     <form onSubmit className="flex flex-col gap-2 xl:gap-4" tabIndex=0>
       <Input name="title" defaultValue=page.title label="Title" />
-      <Input name="icon" defaultValue=page.icon label="Icon" />
+      // <Input name="icon" defaultValue=page.icon label="Icon" />
       <div className="flex flex-row gap-4 mt-4">
         {Array.length(store.pages) != 1 ? <DeleteButton id=page.id afterDelete /> : React.null}
         <div className="grow" />

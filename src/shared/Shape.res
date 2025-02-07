@@ -137,7 +137,7 @@ module Page = {
   type t = {
     id: int,
     title: string,
-    icon: string,
+    // icon: string,
     sites: array<Site.t>,
   }
 
@@ -145,7 +145,7 @@ module Page = {
     {
       id: 0,
       title: "Home",
-      icon: `🏠`,
+      // icon: `🏠`,
       sites: Site.defaultSites,
     },
   ]

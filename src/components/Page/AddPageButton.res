@@ -9,11 +9,11 @@ let make = () => {
   let onSubmit = evt => {
     ReactEvent.Form.preventDefault(evt)
     let title = ReactEvent.Form.target(evt)["title"]["value"]
-    let icon = ReactEvent.Form.target(evt)["icon"]["value"]
+    // let icon = ReactEvent.Form.target(evt)["icon"]["value"]
 
     store.addPage({
       title,
-      icon,
+      // icon,
       id: Date.now()->Float.toInt,
       sites: [],
     })
@@ -24,8 +24,8 @@ let make = () => {
     <button
       ariaLabel="add-page-btn"
       onClick={_ => toggleOpen()}
-      className={`btn sidebar-btn resp-btn ${isOpen ? "btn-accent" : "btn-ghost"}`}>
-      <Solid.PlusIcon className="resp-icon" />
+      className={`btn btn-xs btn-square ${isOpen ? "btn-accent" : "btn-ghost"} mt-1`}>
+      <Solid.PlusIcon className="size-6" />
     </button>
     {isOpen
       ? <Modal title="New Page" onClose=toggleOpen>

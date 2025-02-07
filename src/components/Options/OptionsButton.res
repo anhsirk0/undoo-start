@@ -18,7 +18,7 @@ let make = (~page: option<Shape.Page.t>) => {
       let bgOpacity = Form.target(evt)["bg-opacity"]["value"]
       let searcherOpacity = Form.target(evt)["searcher-opacity"]["value"]
       let searchOpacity = Form.target(evt)["search-opacity"]["value"]
-      let sidebarOpacity = Form.target(evt)["sidebar-opacity"]["value"]
+      // let sidebarOpacity = Form.target(evt)["sidebar-opacity"]["value"]
 
       let imgExists = img->String.length > 20
       let image = imgExists ? img : bgStore.options.image
@@ -29,7 +29,7 @@ let make = (~page: option<Shape.Page.t>) => {
         bgOpacity,
         searchOpacity,
         searcherOpacity,
-        sidebarOpacity,
+        // sidebarOpacity,
       })
       toggleCustomizingBg()
     } else {
@@ -63,8 +63,8 @@ let make = (~page: option<Shape.Page.t>) => {
       ariaLabel="options-btn"
       id="options-btn"
       onClick={_ => toggleOpen()}
-      className={`btn resp-btn sidebar-btn ${isOpen ? "btn-accent" : "btn-ghost"}`}>
-      <Solid.AdjustmentsIcon className="resp-icon" />
+      className={`btn btn-xs btn-square ${isOpen ? "btn-accent" : "btn-ghost"}`}>
+      <Solid.AdjustmentsIcon className="size-4" />
     </button>
     {isOpen
       ? <Modal title="Options" onClose=toggleOpen classes="min-w-[50vw]">

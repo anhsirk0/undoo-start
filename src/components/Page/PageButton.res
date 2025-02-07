@@ -6,9 +6,9 @@ let make = (~page: Shape.Page.t, ~setPageId, ~isActive, ~isEditing) => {
 
   let (isOpen, toggleOpen, _) = Hook.useToggle()
 
-  let btnClass = isActive ? "btn-primary" : "btn-ghost"
+  let btnClass = isActive ? "btn-primary" : "btn-outline btn-primary"
   let ring = isOpen ? "ring" : ""
-  let className = `btn resp-btn sidebar-btn w-full center ${btnClass} truncate relative xxl:text-4xl ${ring} no-animation`
+  let className = `btn btn-xs btn-square center ${btnClass} ${ring} no-animation`
 
   let onClick = _ => setPageId(_ => Some(page.id))
 
@@ -24,18 +24,17 @@ let make = (~page: Shape.Page.t, ~setPageId, ~isActive, ~isEditing) => {
   }
 
   <React.Fragment>
+    <button className onClick />
     {isEditing
-      ? <div role="button" className onClick>
-          {React.string(page.icon)}
-          <div
-            role="button"
-            ariaLabel={`edit-page-${page.id->Int.toString}-btn`}
-            className="bg-base-100/70 absolute top-0 right-0 size-3/5 xxl:size-1/2 center rounded-bl-box"
-            onClick=onEdit>
-            <Solid.PencilIcon className="resp-icon text-base-content" />
-          </div>
+      ? <div
+          role="button"
+          className="btn resp-btn absolute top-4 -right-36 z-20"
+          ariaLabel={`edit-page-${page.id->Int.toString}-btn`}
+          onClick=onEdit>
+          <Solid.PencilIcon className="resp-icon text-base-content" />
+          {"Edit page"->React.string}
         </div>
-      : <button className onClick> {React.string(page.icon)} </button>}
+      : React.null}
     {isOpen ? <EditPageModal page onClose={_ => toggleOpen()} afterDelete /> : React.null}
   </React.Fragment>
 }

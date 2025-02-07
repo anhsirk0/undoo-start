@@ -20,7 +20,7 @@ let make = (~page: option<Shape.Page.t>, ~setPageId, ~isEditing, ~isSearching, ~
       className="flex flex-col gap-4 w-56 p-4 min-h-0 overflow-y-auto bg-secondary">
       <ThemesList />
     </ul>
-    <div id="sidebar" className="w-12 xxl:w-20 p-1 xxl:p-2 flex flex-col gap-1 xxl:gap-2 h-full">
+    <div className="p-1 flex flex-col gap-1 h-full">
       <div
         onWheel=ReactEvent.Wheel.stopPropagation
         className="min-w-0 flex flex-col gap-1 xxl:gap-2 overflow-y-auto">
@@ -32,7 +32,7 @@ let make = (~page: option<Shape.Page.t>, ~setPageId, ~isEditing, ~isSearching, ~
         ? <button
             onClick={_ => setPageId(_ => Some(-2))}
             ariaLabel="saved-links-btn"
-            className={`btn resp-btn sidebar-btn ${isSavedLinks ? "btn-primary" : "btn-ghost"}`}>
+            className={`btn btn-xs btn-square ${isSavedLinks ? "btn-primary" : "btn-ghost"}`}>
             <Solid.LinkIcon className="resp-icon" />
           </button>
         : React.null}
@@ -40,16 +40,14 @@ let make = (~page: option<Shape.Page.t>, ~setPageId, ~isEditing, ~isSearching, ~
         ? <button
             onClick={_ => setPageId(_ => Some(-1))}
             ariaLabel="searcher-btn"
-            className={`btn resp-btn sidebar-btn ${isSearching ? "btn-primary" : "btn-ghost"}`}>
-            <Solid.SearchIcon className="resp-icon" />
+            className={`btn btn-xs btn-square ${isSearching ? "btn-primary" : "btn-ghost"}`}>
+            <Solid.SearchIcon className="size-4" />
           </button>
         : React.null}
       <OptionsButton page />
       <button
-        ariaLabel="select-theme-btn"
-        id="theme-btn"
-        className="btn btn-ghost resp-btn sidebar-btn w-full">
-        <Solid.ColorSwatchIcon className="resp-icon" />
+        ariaLabel="select-theme-btn" id="theme-btn" className="btn btn-ghost btn-xs btn-square">
+        <Solid.ColorSwatchIcon className="size-4" />
       </button>
     </div>
   </div>
