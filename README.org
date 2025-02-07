@@ -16,6 +16,18 @@ Minimal elegant startpage
 #+CAPTION: Screenshot
 #+NAME: main.png
 [[https://codeberg.org/anhsirk0/undoo-start/raw/branch/main/screenshots/main.png]]
+#+CAPTION: Screenshot Square Icons
+#+NAME: square.png
+[[https://codeberg.org/anhsirk0/undoo-start/raw/branch/main/screenshots/square.png]]
+#+CAPTION: Screenshot Searcher
+#+NAME: searcher.png
+[[https://codeberg.org/anhsirk0/undoo-start/raw/branch/main/screenshots/searcher.png]]
+#+CAPTION: Screenshot Options
+#+NAME: options.png
+[[https://codeberg.org/anhsirk0/undoo-start/raw/branch/main/screenshots/options.png]]
+#+CAPTION: Screenshot Themes
+#+NAME: themes.png
+[[https://codeberg.org/anhsirk0/undoo-start/raw/branch/main/screenshots/themes.png]]
 * Keyboard/Mouse shortcuts
 ** SPACE
 Show hints
