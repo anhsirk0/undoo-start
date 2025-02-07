@@ -59,6 +59,7 @@ module SearchForm = {
           className="grow"
           placeholder={`Search on ${engine.title}`}
           required=true
+          autoComplete="off"
         />
         {value->String.length > 0
           ? <button
