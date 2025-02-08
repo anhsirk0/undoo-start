@@ -4,6 +4,7 @@ let decodeObj = json => json->Json.decodeObject
 let decodeStr = (obj, key) => obj->Dict.get(key)->Option.flatMap(s => Json.decodeString(s))
 let decodeNum = (obj, key) => obj->Dict.get(key)->Option.flatMap(n => Json.decodeNumber(n))
 let decodeInt = (obj, key) => obj->decodeStr(key)->Option.flatMap(s => Int.fromString(s))
+let decodeInt2 = (obj, key) => obj->decodeNum(key)->Option.map(Float.toInt)
 let decodeBool = (obj, key) => obj->Dict.get(key)->Option.flatMap(n => Json.decodeBoolean(n))
 let decodeArr = (obj, key) => obj->Dict.get(key)->Option.flatMap(a => Json.decodeArray(a))
 
@@ -11,7 +12,7 @@ let decodeArr = (obj, key) => obj->Dict.get(key)->Option.flatMap(a => Json.decod
 let appSite: Json.t => result<Shape.Site.t, string> = json => {
   try {
     let obj = json->decodeObj->Option.getExn
-    let id = obj->decodeInt("id")->Option.getExn
+    let id = obj->decodeInt2("id")->Option.getExn
     let title = obj->decodeStr("title")->Option.getExn
     let url = obj->decodeStr("url")->Option.getExn
     let icon = obj->decodeStr("icon")->Option.getExn
@@ -34,7 +35,7 @@ let appSite: Json.t => result<Shape.Site.t, string> = json => {
 let appPage: Json.t => result<Shape.Page.t, string> = json => {
   try {
     let obj = json->decodeObj->Option.getExn
-    let id = obj->decodeInt("id")->Option.getExn
+    let id = obj->decodeInt2("id")->Option.getExn
     let title = obj->decodeStr("title")->Option.getExn
     let sites =
       obj

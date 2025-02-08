@@ -19,6 +19,7 @@ module Helper = {
       | Some(file) => {
           let reader = FileReader.new()
           reader->FileReader.onload(data => {
+            Js.log(data)
             switch data->Utils.JSON.parse->decoder {
             | Ok(data) => onOk(data)
             | Error(s) => {
@@ -85,6 +86,7 @@ let make = () => {
   })
   let onImportPages = Helper.makeOnImport(Decode.appPages, data => {
     store.setPages(data)
+    Js.log(data)
     Toast.success("Pages data imported successfully")
   })
 
