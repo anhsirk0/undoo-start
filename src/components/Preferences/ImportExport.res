@@ -39,13 +39,14 @@ module Helper = {
 module Item = {
   @react.component
   let make = (~title, ~info, ~onExport, ~onImport) => {
-    <div className="col-span-1 flex flex-col gap-2 h-full border rounded-box p-4">
+    <div
+      className="col-span-1 flex flex-col gap-2 h-full border border-base-content/20 rounded-box p-4">
       <div className="flex gap-2">
         <div className="flex flex-col gap-2 grow">
           <p className="resp-title -mt-2"> {title->React.string} </p>
           <p className="title text-base-content/80"> {info->React.string} </p>
         </div>
-        <button type_="button" className="btn btn-neutral btn-outline resp-btn" onClick=onExport>
+        <button type_="button" className="btn btn-primary resp-btn" onClick=onExport>
           <Outline.DocumentDownloadIcon className="resp-icon" />
           {"Export"->React.string}
         </button>
@@ -54,7 +55,7 @@ module Item = {
       <FormControl label="Import from file">
         <InputBase
           type_="file"
-          className="file-input file-input-bordered file-input-sm xxl:file-input-md  grow"
+          className="file-input file-input-bordered file-input-primary file-input-sm xxl:file-input-md  grow"
           accept="application/json"
           onChange=onImport
         />
