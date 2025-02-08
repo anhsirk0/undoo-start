@@ -25,7 +25,7 @@ let make = (~page: Shape.Page.t, ~setPageId, ~isActive, ~isEditing) => {
 
   <React.Fragment>
     <button className onClick />
-    {isEditing
+    {isEditing && isActive
       ? <div
           role="button"
           className="btn resp-btn absolute top-4 -right-36 z-20"

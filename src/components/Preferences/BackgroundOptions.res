@@ -1,11 +1,5 @@
 open Heroicons
 
-module Range = {
-  @Jsx.element
-  let make = props =>
-    <input {...props} type_="range" min="0" max="100" className="range range-primary" />
-}
-
 @react.component
 let make = (~setImg, ~setImgName) => {
   let {options, removeImage} = Store.Bg.use()
@@ -64,6 +58,10 @@ let make = (~setImg, ~setImgName) => {
       {React.string(
         "For better aesthetics, it is recommended to choose a theme matching your background image",
       )}
+    </div>
+    <div className="grow" />
+    <div className="flex flex-row mt-4 justify-end">
+      <button className="btn resp-btn btn-primary"> {React.string("Save")} </button>
     </div>
   </React.Fragment>
 }

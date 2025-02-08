@@ -18,6 +18,7 @@
     "daisyui": "^4.12.10",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-toastify": "^11.0.3",
     "rescript": "^11.1.4",
     "rescript-heroicons": "^0.0.3",
     "vite-plugin-pwa": "^0.20.5",

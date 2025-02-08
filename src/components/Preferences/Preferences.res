@@ -1,20 +1,18 @@
-open Heroicons
 open ReactEvent
 
 @react.component
-let make = (~page: option<Shape.Page.t>) => {
-  Hook.useDocTitle(page->Option.map(p => p.title))
+let make = (~onClose) => {
+  let (activeTab, setActiveTab) = React.useState(_ => Shape.OptionTabs.General)
+
   let store = Store.Options.use()
   let bgStore = Store.Bg.use()
 
-  let (isOpen, toggleOpen, _) = Hook.useToggle()
-  let (isCustomizingBg, toggleCustomizingBg, _) = Hook.useToggle()
   let (img, setImg) = React.useState(_ => "")
   let (imgName, setImgName) = React.useState(_ => "")
 
   let onSubmit = evt => {
     evt->Form.preventDefault
-    if isCustomizingBg {
+    if activeTab == Background {
       let bgOpacity = Form.target(evt)["bg-opacity"]["value"]
       let searcherOpacity = Form.target(evt)["searcher-opacity"]["value"]
       let searchOpacity = Form.target(evt)["search-opacity"]["value"]
@@ -31,7 +29,6 @@ let make = (~page: option<Shape.Page.t>) => {
         searcherOpacity,
         // sidebarOpacity,
       })
-      toggleCustomizingBg()
     } else {
       let title = Form.target(evt)["title"]["value"]
       let openLinkInNewTab = Form.target(evt)["link-in-new-tab"]["checked"]
@@ -54,42 +51,30 @@ let make = (~page: option<Shape.Page.t>) => {
         circleIcons,
         openLinkInNewTab,
       })
-      toggleOpen()
     }
+    onClose()
   }
 
-  <React.Fragment>
-    <button
-      ariaLabel="options-btn"
-      id="options-btn"
-      onClick={_ => toggleOpen()}
-      className={`btn btn-xs btn-square ${isOpen ? "btn-accent" : "btn-ghost"}`}>
-      <Solid.AdjustmentsIcon className="size-4" />
-    </button>
-    {isOpen
-      ? <Modal title="Options" onClose=toggleOpen classes="min-w-[50vw]">
-          <form
-            onSubmit
-            className="flex flex-col gap-2 xl:gap-4 [&>div]:min-w-[100%] min-h-[60vh]"
-            tabIndex=0>
-            {isCustomizingBg ? <CustomizeBackground setImg setImgName /> : <OptionsInputs />}
-            <div className="grow" />
-            <div className="flex flex-row gap-4 mt-4">
-              <button
-                onClick={_ => toggleCustomizingBg()}
-                type_="button"
-                className={`btn resp-btn ${isCustomizingBg ? "btn-neutral" : "btn-ghost"}`}>
-                {React.string("Customize background")}
-              </button>
-              <div className="grow" />
-              {isCustomizingBg
-                ? <button className="btn resp-btn btn-primary">
-                    {React.string("Save background")}
-                  </button>
-                : <button className="btn resp-btn btn-primary"> {React.string("Save")} </button>}
-            </div>
-          </form>
-        </Modal>
-      : React.null}
-  </React.Fragment>
+  let makeTab = (tab, title) => {
+    let className = `tab ${activeTab == tab ? "tab-active" : ""}`
+    <a role="tab" className onClick={_ => setActiveTab(_ => tab)}> {title->React.string} </a>
+  }
+
+  <Modal title="Options" onClose classes="min-w-[55vw]">
+    <div role="tablist" className="tabs tabs-bordered">
+      {makeTab(General, "General")}
+      {makeTab(Background, "Background")}
+      {makeTab(ImportExport, "Import/Export")}
+    </div>
+    <form
+      onSubmit
+      className="flex flex-col xxl:gap-2 [&>div]:min-w-[100%] min-h-[60vh] pt-2 xxl:pt-4"
+      tabIndex=0>
+      {switch activeTab {
+      | General => <GeneralOptions />
+      | Background => <BackgroundOptions setImg setImgName />
+      | ImportExport => <ImportExport />
+      }}
+    </form>
+  </Modal>
 }

@@ -36,5 +36,9 @@ let make = () => {
     <Checkbox
       name="circle-icons" defaultChecked=store.options.circleIcons label="Use circle icons"
     />
+    <div className="grow" />
+    <div className="flex flex-row mt-4 justify-end">
+      <button className="btn resp-btn btn-primary"> {React.string("Save")} </button>
+    </div>
   </React.Fragment>
 }

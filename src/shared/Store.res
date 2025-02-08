@@ -51,6 +51,7 @@ module Options = {
       deletePage: int => unit,
       addPage: Shape.Page.t => unit,
       updatePage: Shape.Page.t => unit,
+      setPages: array<Shape.Page.t> => unit,
       updateOptions: t => unit,
     }
   }
@@ -70,6 +71,7 @@ module Options = {
           ...state,
           pages: state.pages->Array.map(p => p.id == page.id ? page : p),
         }),
+      setPages: pages => set(.state => {...state, pages}),
     }, {name: "undoo-startpage"}))
 
   let use = _ => store->AppStore.use(state => state)
@@ -118,6 +120,7 @@ module Searcher = {
     type state = {
       checkedIds: array<int>,
       engines: array<Shape.SearchEngine.t>,
+      setEngines: array<Shape.SearchEngine.t> => unit,
       addEngine: Shape.SearchEngine.t => unit,
       updateEngine: Shape.SearchEngine.t => unit,
       deleteEngine: int => unit,
@@ -131,6 +134,7 @@ module Searcher = {
   let store = AppStore.create(AppStore.persist(set => {
       checkedIds: [0, 1],
       engines: Shape.SearchEngine.defaultEngines,
+      setEngines: engines => set(.state => {...state, engines}),
       addEngine: engine =>
         set(.state => {...state, engines: state.engines->Array.concat([engine])}),
       updateEngine: engine =>

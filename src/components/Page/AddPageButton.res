@@ -31,7 +31,7 @@ let make = () => {
       ? <Modal title="New Page" onClose=toggleOpen>
           <form onSubmit className="flex flex-col gap-2 xl:gap-4" tabIndex=0>
             <Input name="title" label="Title" required=true />
-            <Input name="icon" label="Icon" required=true />
+            // <Input name="icon" label="Icon" required=true />
             <div className="flex flex-row gap-4 mt-4">
               <div className="grow" />
               <button className="btn resp-btn btn-primary"> {React.string("Add new Page")} </button>

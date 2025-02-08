@@ -217,6 +217,10 @@ module Link = {
   type t = {id: int, title: string, url: string}
 }
 
+module OptionTabs = {
+  type t = General | Background | ImportExport
+}
+
 // module Shadow = {
 //   type size = Xxl | Xl | Md | Sm | Off
 //   type color = Primary | Secondary | Accent | Neutral | Default

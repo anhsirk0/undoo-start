@@ -1,3 +1,5 @@
+%%raw("import 'react-toastify/dist/ReactToastify.css'")
+
 open Heroicons
 open ReactEvent
 
@@ -94,6 +96,7 @@ let make = () => {
   }, [page])
 
   <div onContextMenu onWheel className="main flex-col p-8 relative">
+    <Toast.container pauseOnFocusLoss=false position="bottom-right" />
     <BackgroundImage />
     {store.options.hideEditButton
       ? React.null

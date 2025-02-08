@@ -80,3 +80,29 @@ let hex2value = hex => {
   let max = r->Math.max(g)->Math.max(b)
   max /. 255.
 }
+
+let newFileUrl: string => string = %raw(`function (text) {
+ return URL.createObjectURL(new Blob([text], {type: "text/plain"}))
+ }`)
+
+let revokeObjectURL = %raw(`function (url) {
+ window.URL.revokeObjectURL(url)
+ }`)
+
+let downloadJson = (data, title) => {
+  let url = data->newFileUrl
+  let a = "a"->Document.createElement
+  a->setAttribute("href", url)
+  a->setAttribute("download", `${title}.json`)
+  let _ = Document.body->Document.appendChild(a)
+  a->click
+  let _ = setTimeout(() => {
+    Document.body->Document.removeChild(a)
+    url->revokeObjectURL
+  }, 1)
+}
+
+module JSON = {
+  @scope("JSON") @val
+  external parse: string => Js.Json.t = "parse"
+}

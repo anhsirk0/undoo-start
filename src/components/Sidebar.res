@@ -2,6 +2,8 @@ open Heroicons
 
 @react.component
 let make = (~page: option<Shape.Page.t>, ~setPageId, ~isEditing, ~isSearching, ~isSavedLinks) => {
+  Hook.useDocTitle(page->Option.map(p => p.title))
+  let (isOpen, toggleOpen, _) = Hook.useToggle()
   let store = Store.Options.use()
 
   let pos = "-left-56 has-[#theme-btn:focus]:left-0 has-[#theme-container>*:focus]:left-0"
@@ -44,11 +46,18 @@ let make = (~page: option<Shape.Page.t>, ~setPageId, ~isEditing, ~isSearching, ~
             <Solid.SearchIcon className="size-4" />
           </button>
         : React.null}
-      <OptionsButton page />
+      <button
+        ariaLabel="options-btn"
+        id="options-btn"
+        onClick={_ => toggleOpen()}
+        className={`btn btn-xs btn-square ${isOpen ? "btn-accent" : "btn-ghost"}`}>
+        <Solid.AdjustmentsIcon className="size-4" />
+      </button>
       <button
         ariaLabel="select-theme-btn" id="theme-btn" className="btn btn-ghost btn-xs btn-square">
         <Solid.ColorSwatchIcon className="size-4" />
       </button>
     </div>
+    {isOpen ? <Preferences onClose=toggleOpen /> : React.null}
   </div>
 }

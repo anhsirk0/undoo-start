@@ -14,6 +14,10 @@
   @apply text-xs xl:text-sm xxl:text-base;
 }
 
+.resp-title {
+  @apply text-lg xl:text-xl xxl:text-2xl;
+}
+
 .resp-text {
   @apply text-sm md:text-base lg:text-base xl:text-2xl xxl:text-4xl;
 }
@@ -58,4 +62,38 @@ form:focus {
   .square-40 {
     @apply size-[10rem] max-w-[10rem];
   }
+}
+
+.Toastify__toast-theme--light,
+.Toastify__toast-theme--dark {
+  @apply bg-neutral text-neutral-content;
+  /* border-radius: var(--rounded-box); */
+}
+
+.Toastify__progress-bar--error {
+  @apply bg-error text-error-content;
+}
+
+.Toastify__progress-bar--success {
+  @apply bg-success text-success-content;
+}
+
+.Toastify__toast--success {
+  @apply bg-success/80 text-success-content;
+  svg,
+  .Toastify__close-button > svg {
+    @apply fill-success-content;
+  }
+}
+
+.Toastify__toast--error {
+  @apply bg-error/80 text-error-content;
+  svg,
+  .Toastify__close-button > svg {
+    @apply fill-error-content;
+  }
+}
+
+.Toastify__close-button > svg {
+  @apply fill-neutral-content;
 }

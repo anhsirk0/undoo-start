@@ -10,3 +10,12 @@ external addKeyListener: (string, ReactEvent.Keyboard.t => unit) => unit = "addE
 
 @val @scope("document")
 external removeKeyListener: (string, ReactEvent.Keyboard.t => unit) => unit = "removeEventListener"
+
+@val @scope("document")
+external body: Dom.element = "body"
+
+@val @scope("document")
+external createElement: string => Dom.element = "createElement"
+
+@send external appendChild: (Dom.element, Dom.element) => Dom.element = "appendChild"
+@send external removeChild: (Dom.element, Dom.element) => unit = "removeChild"
