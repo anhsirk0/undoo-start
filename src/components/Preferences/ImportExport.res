@@ -86,7 +86,6 @@ let make = () => {
   })
   let onImportPages = Helper.makeOnImport(Decode.appPages, data => {
     store.setPages(data)
-    Js.log(data)
     Toast.success("Pages data imported successfully")
   })
 
