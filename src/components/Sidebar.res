@@ -19,7 +19,7 @@ let make = (~page: option<Shape.Page.t>, ~setPageId, ~isEditing, ~isSearching, ~
       {!options.hidePageSwitcher ? <PageSwitcher page setPageId /> : React.null}
       {isEditing ? <AddPageButton /> : React.null}
       <div className="grow" />
-      {options.useLinks
+      {!options.hideLinksButton
         ? <button
             onClick={_ => setPageId(_ => Some(-2.))}
             ariaLabel="saved-links-btn"
@@ -27,7 +27,7 @@ let make = (~page: option<Shape.Page.t>, ~setPageId, ~isEditing, ~isSearching, ~
             <Solid.LinkIcon className="resp-icon" />
           </button>
         : React.null}
-      {options.useSearcher
+      {!options.hideSearcherButton
         ? <button
             onClick={_ => setPageId(_ => Some(-1.))}
             ariaLabel="searcher-btn"

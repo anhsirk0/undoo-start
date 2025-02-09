@@ -57,12 +57,14 @@ let make = () => {
           keyMsg=" to show hints temporarily"
         />
         <Item
-          name="use-searcher"
-          value=store.options.useSearcher
+          name="hide-searcher-btn"
+          value=store.options.hideSearcherButton
           label="Hide Searcher button"
           shortKey="?"
         />
-        <Item name="use-links" value=store.options.useLinks label="Hide Saved Links button" />
+        <Item
+          name="hide-links-btn" value=store.options.hideLinksButton label="Hide Saved Links button"
+        />
       </div>
       <div
         className="col-span-1 flex flex-col gap-2 xxl:gap-4 h-full border border-base-content/20 rounded-box p-4">

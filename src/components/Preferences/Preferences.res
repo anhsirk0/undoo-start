@@ -33,8 +33,8 @@ let make = (~onClose) => {
       let title = Form.target(evt)["title"]["value"]
       let openLinkInNewTab = Form.target(evt)["link-in-new-tab"]["checked"]
       let showPageTitle = Form.target(evt)["page-title-in-document-title"]["checked"]
-      let useSearcher = Form.target(evt)["use-searcher"]["checked"]
-      let useLinks = Form.target(evt)["use-links"]["checked"]
+      let hideSearcherButton = Form.target(evt)["hide-searcher-btn"]["checked"]
+      let hideLinksButton = Form.target(evt)["hide-links-btn"]["checked"]
       let hideEditButton = Form.target(evt)["hide-edit-btn"]["checked"]
       let hideAddButton = Form.target(evt)["hide-add-btn"]["checked"]
       let hideOptionsButton = Form.target(evt)["hide-options-btn"]["checked"]
@@ -46,8 +46,8 @@ let make = (~onClose) => {
       store.updateOptions({
         title,
         showPageTitle,
-        useSearcher,
-        useLinks,
+        hideSearcherButton,
+        hideLinksButton,
         hideEditButton,
         hideAddButton,
         hideOptionsButton,

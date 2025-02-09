@@ -22,8 +22,8 @@ module Options = {
   type t = {
     title: string,
     showPageTitle: bool,
-    useSearcher: bool,
-    useLinks: bool,
+    hideSearcherButton: bool,
+    hideLinksButton: bool,
     hideEditButton: bool,
     hideAddButton: bool,
     hidePageSwitcher: bool,
@@ -37,8 +37,8 @@ module Options = {
   let defaultOptions = {
     title: "Undoo Startpage",
     showPageTitle: true,
-    useSearcher: true,
-    useLinks: false,
+    hideSearcherButton: false,
+    hideLinksButton: true,
     hideEditButton: false,
     hideAddButton: false,
     hidePageSwitcher: false,

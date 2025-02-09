@@ -123,8 +123,8 @@ let appOptions: Json.t => result<Store.Options.t, string> = json => {
     let obj = json->decodeObj->Option.getExn
     let title = obj->decodeStr("title")->Option.getOr("Undoo Startpage")
     let showPageTitle = obj->decodeBool("showPageTitle")->Option.getOr(true)
-    let useSearcher = obj->decodeBool("useSearcher")->Option.getOr(true)
-    let useLinks = obj->decodeBool("useLinks")->Option.getOr(false)
+    let hideSearcherButton = obj->decodeBool("hideSearcherButton")->Option.getOr(true)
+    let hideLinksButton = obj->decodeBool("hideLinksButton")->Option.getOr(false)
     let hideEditButton = obj->decodeBool("hideEditButton")->Option.getOr(false)
     let hideAddButton = obj->decodeBool("hideAddButton")->Option.getOr(false)
     let hideOptionsButton = obj->decodeBool("hideOptionsButton")->Option.getOr(false)
@@ -137,8 +137,8 @@ let appOptions: Json.t => result<Store.Options.t, string> = json => {
     Ok({
       title,
       showPageTitle,
-      useSearcher,
-      useLinks,
+      hideSearcherButton,
+      hideLinksButton,
       hideEditButton,
       hideAddButton,
       hideOptionsButton,
