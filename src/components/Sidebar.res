@@ -2,16 +2,20 @@ open Heroicons
 
 @react.component
 let make = (~page: option<Shape.Page.t>, ~setPageId, ~isEditing, ~isSearching, ~isSavedLinks) => {
-  Hook.useDocTitle(page->Option.map(p => p.title))
   let (isOpen, toggleOpen, _) = Hook.useToggle()
   let store = Store.Options.use()
 
   let pos = "-left-56 has-[#theme-btn:focus]:left-0 has-[#theme-container>*:focus]:left-0"
 
   let pagesBtns = Array.map(store.pages, p => {
-    let key = Float.toString(p.id)
     let isActive = page->Option.map(activeP => activeP.id == p.id)->Option.getOr(false)
-    <PageButton page=p key isActive setPageId isEditing />
+    let btnClass = isActive ? "btn-primary" : "btn-outline btn-primary"
+
+    <button
+      key={p.id->Float.toString}
+      className={`btn btn-xs btn-square center ${btnClass} no-animation`}
+      onClick={_ => setPageId(_ => Some(p.id))}
+    />
   })
 
   <div className={`fixed top-0 ${pos} z-10 w-fit h-full flex flex-row transitional`}>

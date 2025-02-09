@@ -119,7 +119,7 @@ let make = () => {
       }}
       className="grow main-width xxl:max-w-7xl ml-12 p-4 lg:py-4 xxl:py-8 xxl:mt-12 min-h-0 overflow-y-auto">
       {switch page {
-      | Some(page) => <SiteCards page key=page.title isEditing isVisiting />
+      | Some(page) => <PageView page key=page.title isEditing isVisiting setPageId />
       | None => React.null
       }}
     </div>
