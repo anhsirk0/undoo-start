@@ -25,7 +25,19 @@ let setBg = (el, opacity, ~var="--b3") => {
   let bg = `oklch(var(${var})/${opac})`
   setBgcolor(el, bg)
 }
-let setTheme = theme => "html"->querySelectAndThen(setAttribute(_, "data-theme", theme))
+
+let getTheme = () => {
+  open Dom.Storage
+  switch "undooStartpageTheme"->getItem(localStorage) {
+  | Some(theme) => theme
+  | None => "cupcake"
+  }
+}
+let setTheme = theme => {
+  "html"->querySelectAndThen(setAttribute(_, "data-theme", theme))
+  open Dom.Storage
+  "undooStartpageTheme"->setItem(theme, localStorage)
+}
 
 let searchLink = (url, text, ~target="_blank") => {
   url

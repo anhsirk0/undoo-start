@@ -45,9 +45,7 @@ module SiteHint = {
 
     <div
       className={`bg-base-100/80 absolute ${pos} size-6 lg:size-6 xl:size-8 center animate-fade ${radius}`}>
-      <p className={`resp-text xxl:text-2xl ${margin}`}>
-        {React.string(idx->String.fromCharCode)}
-      </p>
+      <p className={`xl:text-2xl ${margin}`}> {React.string(idx->String.fromCharCode)} </p>
     </div>
   }
 }

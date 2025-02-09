@@ -54,7 +54,7 @@ module Item = {
       </div>
       <div className="grow" />
       <FormControl label="Import from file">
-        <InputBase
+        <input
           type_="file"
           className="file-input file-input-bordered file-input-primary file-input-sm xxl:file-input-md  grow"
           accept="application/json"
@@ -107,7 +107,7 @@ let make = () => {
     Toast.success("Searcher data imported successfully")
   })
 
-  <div className="grid grid-cols-2 grow gap-4 xxl:gap-8 xxl:pt-2">
+  <div className="grid grid-cols-2 grow gap-4 xxl:gap-8 pt-2">
     <Item
       title="Pages data"
       info="This data contains all your pages (sites) collection."

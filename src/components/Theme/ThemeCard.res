@@ -20,14 +20,9 @@ module MyOverrides = {
 @@jsxConfig({module_: "MyOverrides", mode: "automatic"})
 
 @react.component
-let make = (~theme, ~children) => {
-  let onClick = _ => {
-    Dom.Storage2.setItem(Dom.Storage2.localStorage, "undooStartpageTheme", theme)
-    theme->Utils.setTheme
-  }
-
-  <li className="btn h-10 justify-between w-full theme-card" onClick tabIndex=0 dataTheme=theme>
-    {React.string(theme)}
+let make = (~theme, ~onChange, ~children) => {
+  let onClick = _ => theme->onChange
+  <li className="btn h-10 justify-between w-full relative" onClick tabIndex=0 dataTheme=theme>
     {children}
   </li>
 }

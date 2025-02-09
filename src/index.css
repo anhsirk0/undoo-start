@@ -18,10 +18,6 @@
   @apply text-lg xl:text-xl xxl:text-2xl;
 }
 
-.resp-text {
-  @apply text-sm md:text-base lg:text-base xl:text-2xl xxl:text-4xl;
-}
-
 .resp-btn {
   @apply btn-xs md:btn-sm xxl:btn-md;
 }

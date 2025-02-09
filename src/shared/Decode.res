@@ -121,15 +121,18 @@ let appSearcher: Json.t => result<array<Shape.SearchEngine.t>, string> = json =>
 let appOptions: Json.t => result<Store.Options.t, string> = json => {
   try {
     let obj = json->decodeObj->Option.getExn
-    let title = obj->decodeStr("title")->Option.getExn
-    let showPageTitle = obj->decodeBool("showPageTitle")->Option.getExn
-    let useSearcher = obj->decodeBool("useSearcher")->Option.getExn
-    let useLinks = obj->decodeBool("useLinks")->Option.getExn
-    let hideEditButton = obj->decodeBool("hideEditButton")->Option.getExn
-    let hideAddButton = obj->decodeBool("hideAddButton")->Option.getExn
-    let alwaysShowHints = obj->decodeBool("alwaysShowHints")->Option.getExn
-    let openLinkInNewTab = obj->decodeBool("openLinkInNewTab")->Option.getExn
-    let circleIcons = obj->decodeBool("circleIcons")->Option.getExn
+    let title = obj->decodeStr("title")->Option.getOr("Undoo Startpage")
+    let showPageTitle = obj->decodeBool("showPageTitle")->Option.getOr(true)
+    let useSearcher = obj->decodeBool("useSearcher")->Option.getOr(true)
+    let useLinks = obj->decodeBool("useLinks")->Option.getOr(false)
+    let hideEditButton = obj->decodeBool("hideEditButton")->Option.getOr(false)
+    let hideAddButton = obj->decodeBool("hideAddButton")->Option.getOr(false)
+    let hideOptionsButton = obj->decodeBool("hideOptionsButton")->Option.getOr(false)
+    let hideThemeButton = obj->decodeBool("hideThemeButton")->Option.getOr(false)
+    let alwaysShowHints = obj->decodeBool("alwaysShowHints")->Option.getOr(false)
+    let openLinkInNewTab = obj->decodeBool("openLinkInNewTab")->Option.getOr(false)
+    let circleIcons = obj->decodeBool("circleIcons")->Option.getOr(false)
+    let hidePageSwitcher = obj->decodeBool("hidePageSwitcher")->Option.getOr(false)
 
     Ok({
       title,
@@ -138,6 +141,9 @@ let appOptions: Json.t => result<Store.Options.t, string> = json => {
       useLinks,
       hideEditButton,
       hideAddButton,
+      hideOptionsButton,
+      hideThemeButton,
+      hidePageSwitcher,
       alwaysShowHints,
       openLinkInNewTab,
       circleIcons,

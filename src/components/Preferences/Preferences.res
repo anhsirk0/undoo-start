@@ -37,6 +37,9 @@ let make = (~onClose) => {
       let useLinks = Form.target(evt)["use-links"]["checked"]
       let hideEditButton = Form.target(evt)["hide-edit-btn"]["checked"]
       let hideAddButton = Form.target(evt)["hide-add-btn"]["checked"]
+      let hideOptionsButton = Form.target(evt)["hide-options-btn"]["checked"]
+      let hideThemeButton = Form.target(evt)["hide-theme-btn"]["checked"]
+      let hidePageSwitcher = Form.target(evt)["hide-page-switcher"]["checked"]
       let alwaysShowHints = Form.target(evt)["always-show-hints"]["checked"]
       let circleIcons = Form.target(evt)["circle-icons"]["checked"]
 
@@ -47,6 +50,9 @@ let make = (~onClose) => {
         useLinks,
         hideEditButton,
         hideAddButton,
+        hideOptionsButton,
+        hideThemeButton,
+        hidePageSwitcher,
         alwaysShowHints,
         circleIcons,
         openLinkInNewTab,
@@ -60,7 +66,7 @@ let make = (~onClose) => {
     <a role="tab" className onClick={_ => setActiveTab(_ => tab)}> {title->React.string} </a>
   }
 
-  <Modal title="Options" onClose classes="min-w-[55vw]">
+  <Modal title="Options" onClose classes="min-w-[66vw]">
     <div role="tablist" className="tabs tabs-bordered">
       {makeTab(General, "General")}
       {makeTab(Background, "Background")}
