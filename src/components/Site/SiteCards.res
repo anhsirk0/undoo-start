@@ -29,7 +29,7 @@ let make = (~page: Shape.Page.t, ~isEditing, ~isVisiting) => {
     let index = Some(index + 97)->Option.filter(_ => isVisiting || options.alwaysShowHints)
     let pos = options.circleIcons ? "top-2 right-2" : "top-0 right-0"
 
-    <SiteCard site key={Int.toString(site.id)} isEditing updateSite index>
+    <SiteCard site key={site.id->Float.toString} isEditing updateSite index>
       <div
         role="button"
         ariaLabel={`delete-site-${site.title}-btn`}

@@ -12,7 +12,7 @@ let make = () => {
     let title = ReactEvent.Form.target(evt)["title"]["value"]
     let url = ReactEvent.Form.target(evt)["url"]["value"]
 
-    searcherStore.addEngine({title, url, icon: url, id: Date.now()->Float.toInt})
+    searcherStore.addEngine({title, url, icon: url, id: Date.now()})
     toggleOpen()
   }
 

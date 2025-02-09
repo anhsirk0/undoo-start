@@ -45,7 +45,7 @@ let make = (~setImg, ~setImgName) => {
       <Range name="bg-opacity" defaultValue={options.bgOpacity->Int.toString} />
     </FormControl>
     // <FormControl label="Sidebar opacity">
-    //   <Range name="sidebar-opacity" defaultValue={options.sidebarOpacity->Int.toString} />
+    //   <Range name="sidebar-opacity" defaultValue={options.sidebarOpacity->Float.toString} />
     // </FormControl>
     <FormControl label="Searchbar opacity">
       <Range name="search-opacity" defaultValue={options.searchOpacity->Int.toString} />

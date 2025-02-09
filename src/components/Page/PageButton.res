@@ -29,7 +29,7 @@ let make = (~page: Shape.Page.t, ~setPageId, ~isActive, ~isEditing) => {
       ? <div
           role="button"
           className="btn resp-btn absolute top-4 -right-36 z-20"
-          ariaLabel={`edit-page-${page.id->Int.toString}-btn`}
+          ariaLabel={`edit-page-${page.id->Float.toString}-btn`}
           onClick=onEdit>
           <Solid.PencilIcon className="resp-icon text-base-content" />
           {"Edit page"->React.string}

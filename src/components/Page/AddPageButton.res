@@ -3,18 +3,15 @@ open Heroicons
 @react.component
 let make = () => {
   let store = Store.Options.use()
-
   let (isOpen, toggleOpen, _) = Hook.useToggle()
 
   let onSubmit = evt => {
     ReactEvent.Form.preventDefault(evt)
     let title = ReactEvent.Form.target(evt)["title"]["value"]
-    // let icon = ReactEvent.Form.target(evt)["icon"]["value"]
 
     store.addPage({
       title,
-      // icon,
-      id: Date.now()->Float.toInt,
+      id: Date.now(),
       sites: [],
     })
     toggleOpen()
@@ -31,7 +28,6 @@ let make = () => {
       ? <Modal title="New Page" onClose=toggleOpen>
           <form onSubmit className="flex flex-col gap-2 xl:gap-4" tabIndex=0>
             <Input name="title" label="Title" required=true />
-            // <Input name="icon" label="Icon" required=true />
             <div className="flex flex-row gap-4 mt-4">
               <div className="grow" />
               <button className="btn resp-btn btn-primary"> {React.string("Add new Page")} </button>

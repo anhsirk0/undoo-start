@@ -45,7 +45,7 @@ let make = (~isEditing) => {
     let opacity = checked ? "bg-primary/20" : "opacity-80"
 
     <div
-      key={item.id->Int.toString}
+      key={item.id->Float.toString}
       className="col-span-6 md:col-span-4 animate-fade rounded-box relative overflow-hidden bg-base-300"
       name="searcher-item">
       <div

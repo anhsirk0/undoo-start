@@ -11,7 +11,7 @@ let make = (~link: option<Shape.Link.t>=?) => {
     setValue(_ => newValue)
   }
 
-  let name = link->Option.map(l => l.id->Int.toString ++ "-url")->Option.getOr("url")
+  let name = link->Option.map(l => l.id->Float.toString ++ "-url")->Option.getOr("url")
   let clearText = _ => {
     setValue(_ => "")
     `input[name='${name}']`->Utils.querySelectAndThen(Utils.focus)
@@ -20,7 +20,7 @@ let make = (~link: option<Shape.Link.t>=?) => {
   let onSave = async () => {
     setLoading(_ => true)
     let title = await Fetch.getTitle(value)
-    let id = link->Option.map(l => l.id)->Option.getOr(Date.now()->Float.toInt)
+    let id = link->Option.map(l => l.id)->Option.getOr(Date.now())
     let fn = link->Option.isSome ? updateLink : addLink
     fn({
       id,

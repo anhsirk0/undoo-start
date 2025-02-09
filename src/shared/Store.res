@@ -45,10 +45,10 @@ module Options = {
   module StoreData = {
     type state = {
       options: t,
-      searchEngineId: int,
-      updateSearchEngineId: int => unit,
+      searchEngineId: float,
+      updateSearchEngineId: float => unit,
       pages: array<Shape.Page.t>,
-      deletePage: int => unit,
+      deletePage: float => unit,
       addPage: Shape.Page.t => unit,
       updatePage: Shape.Page.t => unit,
       setPages: array<Shape.Page.t> => unit,
@@ -60,7 +60,7 @@ module Options = {
   let store = AppStore.create(AppStore.persist(set => {
       options: defaultOptions,
       updateOptions: options => set(.state => {...state, options}),
-      searchEngineId: 0,
+      searchEngineId: 0.,
       updateSearchEngineId: id => set(.state => {...state, searchEngineId: id}),
       pages: Shape.Page.defaultPages,
       deletePage: id =>
@@ -118,21 +118,21 @@ module Bg = {
 module Searcher = {
   module StoreData = {
     type state = {
-      checkedIds: array<int>,
+      checkedIds: array<float>,
       engines: array<Shape.SearchEngine.t>,
       setEngines: array<Shape.SearchEngine.t> => unit,
       addEngine: Shape.SearchEngine.t => unit,
       updateEngine: Shape.SearchEngine.t => unit,
-      deleteEngine: int => unit,
+      deleteEngine: float => unit,
       toggleAll: bool => unit,
-      toggleOne: (int, bool) => unit,
+      toggleOne: (float, bool) => unit,
     }
   }
 
   module AppStore = Zustand.MakeStore(StoreData)
 
   let store = AppStore.create(AppStore.persist(set => {
-      checkedIds: [0, 1],
+      checkedIds: [0., 1.],
       engines: Shape.SearchEngine.defaultEngines,
       setEngines: engines => set(.state => {...state, engines}),
       addEngine: engine =>
@@ -164,7 +164,7 @@ module Link = {
       links: array<Shape.Link.t>,
       addLink: Shape.Link.t => unit,
       updateLink: Shape.Link.t => unit,
-      deleteLink: int => unit,
+      deleteLink: float => unit,
     }
   }
 

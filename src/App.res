@@ -11,8 +11,8 @@ let make = () => {
   let (isVisiting, setIsVisiting) = React.useState(_ => false)
   let (isDebounced, setIsDebounced) = React.useState(_ => true)
   let page = pageId->Option.flatMap(id => store.pages->Array.find(p => p.id == id))
-  let isSearching = pageId->Option.filter(id => id == -1)->Option.isSome
-  let isSavedLinks = pageId->Option.filter(id => id == -2)->Option.isSome
+  let isSearching = pageId->Option.filter(id => id == -1.)->Option.isSome
+  let isSavedLinks = pageId->Option.filter(id => id == -2.)->Option.isSome
 
   let onContextMenu = evt => {
     setIsEditing(v => !v)
@@ -56,7 +56,7 @@ let make = () => {
       } else if key == "/" {
         "input[name='query']"->Utils.querySelectAndThen(Utils.focus)
       } else if key == "?" {
-        setPageId(_ => Some(-1))
+        setPageId(_ => Some(-1.))
       } else if key == "-" {
         setIsEditing(val => !val)
       } else if key == "=" || key == "+" {
@@ -76,7 +76,7 @@ let make = () => {
 
         switch site {
         | Some(s) => {
-            let id = "#site-" ++ s.id->Int.toString
+            let id = "#site-" ++ s.id->Float.toString
             id->Utils.querySelectAndThen(el => {
               let _ = el->Utils.addClass("animate-shake")
               let _ = setTimeout(_ => el->Utils.removeClass("animate-shake"), 800)

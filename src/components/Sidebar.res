@@ -9,7 +9,7 @@ let make = (~page: option<Shape.Page.t>, ~setPageId, ~isEditing, ~isSearching, ~
   let pos = "-left-56 has-[#theme-btn:focus]:left-0 has-[#theme-container>*:focus]:left-0"
 
   let pagesBtns = Array.map(store.pages, p => {
-    let key = Int.toString(p.id)
+    let key = Float.toString(p.id)
     let isActive = page->Option.map(activeP => activeP.id == p.id)->Option.getOr(false)
     <PageButton page=p key isActive setPageId isEditing />
   })
@@ -32,7 +32,7 @@ let make = (~page: option<Shape.Page.t>, ~setPageId, ~isEditing, ~isSearching, ~
       <div className="grow" />
       {store.options.useLinks
         ? <button
-            onClick={_ => setPageId(_ => Some(-2))}
+            onClick={_ => setPageId(_ => Some(-2.))}
             ariaLabel="saved-links-btn"
             className={`btn btn-xs btn-square ${isSavedLinks ? "btn-primary" : "btn-ghost"}`}>
             <Solid.LinkIcon className="resp-icon" />
@@ -40,7 +40,7 @@ let make = (~page: option<Shape.Page.t>, ~setPageId, ~isEditing, ~isSearching, ~
         : React.null}
       {store.options.useSearcher
         ? <button
-            onClick={_ => setPageId(_ => Some(-1))}
+            onClick={_ => setPageId(_ => Some(-1.))}
             ariaLabel="searcher-btn"
             className={`btn btn-xs btn-square ${isSearching ? "btn-primary" : "btn-ghost"}`}>
             <Solid.SearchIcon className="size-4" />

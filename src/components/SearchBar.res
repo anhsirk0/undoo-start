@@ -14,13 +14,13 @@ module SearchForm = {
     let store = Store.Options.use()
 
     let options = Shape.SearchEngine.defaultEngines->Array.map(e => {
-      let value = e.id->Int.toString
+      let value = e.id->Float.toString
       <option key=value value> {React.string(e.icon)} </option>
     })
 
     let onSelect = evt => {
       let id = ReactEvent.Form.target(evt)["value"]
-      switch id->Int.fromString {
+      switch id->Float.fromString {
       | Some(id) => store.updateSearchEngineId(id)
       | None => ()
       }
@@ -45,7 +45,7 @@ module SearchForm = {
         ariaLabel="select-search-engine"
         id="select-search-engine"
         className="select xxl:select-lg bg-base-300 rounded-r-none"
-        value={store.searchEngineId->Int.toString}
+        value={store.searchEngineId->Float.toString}
         onChange=onSelect>
         {React.array(options)}
       </select>

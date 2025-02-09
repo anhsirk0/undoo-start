@@ -9,7 +9,7 @@ let make = (~chosen, ~onChoose, ~isIconError) => {
         chosen->Option.filter(src => src == icon.src)->Option.isSome ? "ring ring-accent" : ""
 
       <div
-        key={icon.id->Int.toString}
+        key={icon.id->Float.toString}
         className={`col-span-2 cursor-pointer rounded-box ${activeClass}`}
         onClick={_ => onChoose(icon.src)}>
         <img

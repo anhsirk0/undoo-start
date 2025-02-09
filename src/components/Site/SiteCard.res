@@ -68,7 +68,7 @@ let make = (~site: Shape.Site.t, ~isEditing, ~updateSite, ~children, ~index) => 
       onContextMenu=ReactEvent.Mouse.stopPropagation
       className="col-span-6 xs:col-span-4 sm:col-span-3 md:col-span-2 relative">
       <div
-        id={"site-" ++ site.id->Int.toString}
+        id={"site-" ++ site.id->Float.toString}
         className={`card w-full isolate has-[a:active]:animate-shake overflow-hidden mx-auto ${cardSize} ${radius}`}>
         <a href=site.url target className="relative size-full group cursor-pointer">
           {isIconUrl

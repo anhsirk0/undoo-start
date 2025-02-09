@@ -40,7 +40,7 @@ let make = (~addSite: Shape.Site.t => unit) => {
           url,
           icon,
           showLabel,
-          id: Date.now()->Float.toInt,
+          id: Date.now(),
         })
         toggleOpen()
       }

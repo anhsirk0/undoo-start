@@ -7,6 +7,7 @@ export default defineConfig({
   plugins: [
     react({ include: ["**/*.res.mjs"] }),
     VitePWA({
+      registerType: "autoUpdate",
       manifest: {
         name: "Undoo Startpage",
         short_name: "Undoo",
