@@ -1,7 +1,7 @@
 open Heroicons
 
 @react.component
-let make = (~page: option<Shape.Page.t>, ~setPageId, ~isEditing, ~isSearching, ~isSavedLinks) => {
+let make = (~view: Shape.View.t, ~setView, ~isEditing) => {
   let (isOpen, toggleOpen, _) = Hook.useToggle()
   let {options} = Store.Options.use()
 
@@ -16,22 +16,22 @@ let make = (~page: option<Shape.Page.t>, ~setPageId, ~isEditing, ~isSearching, ~
       <ThemesList />
     </ul>
     <div className="p-1 flex flex-col gap-1 h-full">
-      {!options.hidePageSwitcher ? <PageSwitcher page setPageId /> : React.null}
+      {!options.hidePageSwitcher ? <PageSwitcher view setView /> : React.null}
       {isEditing ? <AddPageButton /> : React.null}
       <div className="grow" />
       {!options.hideLinksButton
         ? <button
-            onClick={_ => setPageId(_ => Some(-2.))}
+            onClick={_ => setView(_ => Shape.View.SavedLinks)}
             ariaLabel="saved-links-btn"
-            className={`btn btn-xs btn-square ${isSavedLinks ? "btn-primary" : "btn-ghost"}`}>
+            className={`btn btn-xs btn-square ${view == SavedLinks ? "btn-primary" : "btn-ghost"}`}>
             <Solid.LinkIcon className="resp-icon" />
           </button>
         : React.null}
       {!options.hideSearcherButton
         ? <button
-            onClick={_ => setPageId(_ => Some(-1.))}
+            onClick={_ => setView(_ => Shape.View.Searcher)}
             ariaLabel="searcher-btn"
-            className={`btn btn-xs btn-square ${isSearching ? "btn-primary" : "btn-ghost"}`}>
+            className={`btn btn-xs btn-square ${view == Searcher ? "btn-primary" : "btn-ghost"}`}>
             <Solid.SearchIcon className="size-4" />
           </button>
         : React.null}

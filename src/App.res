@@ -6,13 +6,14 @@ open ReactEvent
 @react.component
 let make = () => {
   let store = Store.Options.use()
-  let (pageId, setPageId) = React.useState(_ => store.pages[0]->Option.map(p => p.id))
+  let firstView = store.pages->Shape.View.first
+
+  let (view, setView) = React.useState(_ => firstView)
   let (isEditing, setIsEditing) = React.useState(_ => false)
   let (isVisiting, setIsVisiting) = React.useState(_ => false)
   let (isDebounced, setIsDebounced) = React.useState(_ => true)
-  let page = pageId->Option.flatMap(id => store.pages->Array.find(p => p.id == id))
-  let isSearching = pageId->Option.filter(id => id == -1.)->Option.isSome
-  let isSavedLinks = pageId->Option.filter(id => id == -2.)->Option.isSome
+
+  let afterDelete = _ => setView(_ => firstView)
 
   let onContextMenu = evt => {
     setIsEditing(v => !v)
@@ -24,14 +25,22 @@ let make = () => {
       setIsDebounced(_ => false)
 
       let deltaY = Wheel.deltaY(evt)->Float.toInt
-      let nextPageId =
-        pageId
-        ->Option.map(id => store.pages->Array.findIndex(p => p.id == id))
-        ->Option.map(index => index->Utils.getNextIndex(store.pages->Array.length, deltaY))
-        ->Option.flatMap(index => store.pages[index])
-        ->Option.map(p => p.id)
+      let nextView = switch view {
+      | Page(page) => {
+          let nextIdx =
+            store.pages
+            ->Array.findIndex(p => p.id == page.id)
+            ->Utils.getNextIndex(store.pages->Array.length, deltaY)
 
-      setPageId(_ => nextPageId)
+          store.pages[nextIdx]
+          ->Option.map(p => Shape.View.Page(p))
+          ->Option.getOr(firstView)
+        }
+      // Todo: Enable scrolling through other views
+      | Searcher => firstView
+      | SavedLinks => firstView
+      }
+      setView(_ => nextView)
 
       let _ = setTimeout(_ => setIsDebounced(_ => true), 200)
     }
@@ -56,7 +65,7 @@ let make = () => {
       } else if key == "/" {
         "input[name='query']"->Utils.querySelectAndThen(Utils.focus)
       } else if key == "?" {
-        setPageId(_ => Some(-1.))
+        setView(_ => Searcher)
       } else if key == "-" {
         setIsEditing(val => !val)
       } else if key == "=" || key == "+" {
@@ -67,12 +76,19 @@ let make = () => {
         "#theme-btn"->Utils.querySelectAndThen(Utils.focus)
       } else if digit->Option.isSome {
         switch digit->Option.filter(i => i > 0 && i <= store.pages->Array.length) {
-        | Some(i) => setPageId(_ => store.pages[i - 1]->Option.map(p => p.id))
+        | Some(i) =>
+          switch store.pages[i - 1] {
+          | Some(p) => setView(_ => Page(p))
+          | None => ()
+          }
         | None => ()
         }
       } else {
         let keyCode = Keyboard.keyCode(evt) - 65
-        let site = page->Option.flatMap(p => p.sites[keyCode])
+        let site = switch view {
+        | Page(p) => p.sites[keyCode]
+        | _ => None
+        }
 
         switch site {
         | Some(s) => {
@@ -93,7 +109,7 @@ let make = () => {
   React.useEffect(() => {
     Document.addKeyListener("keydown", onKeyDown)
     Some(() => Document.removeKeyListener("keydown", onKeyDown))
-  }, [page])
+  }, [view])
 
   <div onContextMenu onWheel className="main flex-col p-8 relative">
     <Toast.container pauseOnFocusLoss=false position="bottom-right" />
@@ -108,20 +124,11 @@ let make = () => {
               : "btn-ghost"}`}>
           <Solid.PencilIcon className="resp-icon" />
         </button>}
-    <Sidebar page setPageId isEditing isSearching isSavedLinks />
-    {isSearching ? <Searcher isEditing /> : isSavedLinks ? <SavedLinks /> : <SearchBar />}
-    <div
-      onWheel={evt => {
-        let target = Wheel.target(evt)
-        if target["scrollHeight"] > target["clientHeight"] {
-          Wheel.stopPropagation(evt)
-        }
-      }}
-      className="grow main-width xxl:max-w-7xl ml-12 p-4 lg:py-4 xxl:py-8 xxl:mt-12 min-h-0 overflow-y-auto">
-      {switch page {
-      | Some(page) => <PageView page key=page.title isEditing isVisiting setPageId />
-      | None => React.null
-      }}
-    </div>
+    <Sidebar view setView isEditing />
+    {switch view {
+    | Page(page) => <PageView page key=page.title isEditing isVisiting afterDelete />
+    | Searcher => <Searcher isEditing />
+    | SavedLinks => <SavedLinks />
+    }}
   </div>
 }

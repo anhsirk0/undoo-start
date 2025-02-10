@@ -221,6 +221,11 @@ module OptionTabs = {
   type t = General | Background | ImportExport
 }
 
+module View = {
+  type t = Page(Page.t) | Searcher | SavedLinks
+  let first = pages => pages[0]->Option.map(p => Page(p))->Option.getOr(Searcher)
+}
+
 // module Shadow = {
 //   type size = Xxl | Xl | Md | Sm | Off
 //   type color = Primary | Secondary | Accent | Neutral | Default

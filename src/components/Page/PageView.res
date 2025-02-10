@@ -1,9 +1,9 @@
 open Heroicons
+open ReactEvent
 
 @react.component
-let make = (~page: Shape.Page.t, ~setPageId, ~isEditing, ~isVisiting) => {
+let make = (~page: Shape.Page.t, ~afterDelete, ~isEditing, ~isVisiting) => {
   Hook.useDocTitle(Some(page.title))
-  let store = Store.Options.use()
 
   let (isOpen, toggleOpen, _) = Hook.useToggle()
 
@@ -12,22 +12,30 @@ let make = (~page: Shape.Page.t, ~setPageId, ~isEditing, ~isVisiting) => {
     toggleOpen()
   }
 
-  let afterDelete = _ => {
-    setPageId(_ => store.pages[0]->Option.map(p => p.id))
+  let onWheel = evt => {
+    let target = evt->Wheel.target
+    if target["scrollHeight"] > target["clientHeight"] {
+      evt->Wheel.stopPropagation
+    }
   }
 
   <React.Fragment>
-    {isEditing
-      ? <div
-          role="button"
-          className="btn resp-btn fixed top-4 left-12 z-20"
-          ariaLabel={`edit-page-${page.id->Float.toString}-btn`}
-          onClick=onEdit>
-          <Solid.PencilIcon className="resp-icon text-base-content" />
-          {"Edit page"->React.string}
-        </div>
-      : React.null}
-    <SiteCards page isEditing isVisiting />
-    {isOpen ? <EditPageModal page onClose={_ => toggleOpen()} afterDelete /> : React.null}
+    <SearchBar />
+    <div
+      className="grow main-width xxl:max-w-7xl ml-12 p-4 lg:py-4 xxl:py-8 xxl:mt-12 min-h-0 overflow-y-auto"
+      onWheel>
+      {isEditing
+        ? <div
+            role="button"
+            className="btn resp-btn fixed top-4 left-12 z-20"
+            ariaLabel={`edit-page-${page.id->Float.toString}-btn`}
+            onClick=onEdit>
+            <Solid.PencilIcon className="resp-icon text-base-content" />
+            {"Edit page"->React.string}
+          </div>
+        : React.null}
+      <SiteCards page isEditing isVisiting />
+      {isOpen ? <EditPageModal page onClose={_ => toggleOpen()} afterDelete /> : React.null}
+    </div>
   </React.Fragment>
 }

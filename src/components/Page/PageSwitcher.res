@@ -1,15 +1,14 @@
 @react.component
-let make = (~page: option<Shape.Page.t>, ~setPageId) => {
+let make = (~view: Shape.View.t, ~setView) => {
   let store = Store.Options.use()
 
   let pagesBtns = Array.map(store.pages, p => {
-    let isActive = page->Option.map(activeP => activeP.id == p.id)->Option.getOr(false)
-    let btnClass = isActive ? "btn-primary" : "btn-outline btn-primary"
+    let btnClass = view == Page(p) ? "btn-primary" : "btn-outline btn-primary"
 
     <button
       key={p.id->Float.toString}
       className={`btn btn-xs btn-square center ${btnClass} no-animation`}
-      onClick={_ => setPageId(_ => Some(p.id))}
+      onClick={_ => setView(_ => Shape.View.Page(p))}
     />
   })
 
