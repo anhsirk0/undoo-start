@@ -20,6 +20,29 @@ let make = (~addSite: Shape.Site.t => unit) => {
     "input[name='icon']"->Utils.querySelectAndThen(Utils.setValue(_, str))
   }
 
+  let onExtractFromUrl = _ => {
+    "input[name='url']"->Utils.querySelectAndThen(el => {
+      let url =
+        el
+        ->Utils.getValue
+        ->String.replace("https://", "")
+        ->String.replace("www.", "")
+
+      let name =
+        Js.String.replaceByRe(
+          %re("/\.(com|net|org|co|us|netlify.app)$/"),
+          "",
+          url
+          ->String.split("/")
+          ->Array.get(0)
+          ->Option.getOr(url),
+        )
+        ->String.replaceAll(".", " ")
+        ->Utils.toTitleCase
+      "input[name='title']"->Utils.querySelectAndThen(Utils.setValue(_, name))
+    })
+  }
+
   let onSubmit = evt => {
     ReactEvent.Form.preventDefault(evt)
     let target = ReactEvent.Form.target(evt)
@@ -63,8 +86,17 @@ let make = (~addSite: Shape.Site.t => unit) => {
           <form onSubmit className="flex flex-col gap-2 xl:gap-4" tabIndex=0>
             <div className="flex flex-col lg:flex-row gap-4 xxl:gap-8">
               <div className="flex flex-col gap-2 xl:gap-4 min-w-[50%] shrink-0">
-                <Input name="title" label="Title" required=true />
                 <Input type_="url" name="url" label="Url" required=true />
+                <FormControl label="Title">
+                  <label
+                    className="input input-bordered input-sm xxl:input-md w-full flex items-center gap-2">
+                    <InputBase name="title" className="grow" required=true />
+                    <button type_="button" className="btn-sm" onClick=onExtractFromUrl>
+                      {"Extract from Url"->React.string}
+                    </button>
+                  </label>
+                </FormControl>
+                // <Input name="title" label="Title" required=true />
                 <Input name="icon" label="Icon" />
                 <label className="form-control w-fit flex-col">
                   <div className="label">

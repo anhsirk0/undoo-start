@@ -6,6 +6,7 @@ external openUrl: (string, string) => unit = "open"
 @send external blur: Dom.element => unit = "blur"
 @send external setAttribute: (Dom.element, string, string) => unit = "setAttribute"
 @set external setValue: (Dom.element, string) => unit = "value"
+@get external getValue: Dom.element => string = "value"
 
 let setBgcolor = %raw(`function (el, bg) { el.style.backgroundColor = bg }`)
 let addClass = %raw(`function (el, cls) { el.classList.add(cls) }`)
@@ -113,6 +114,11 @@ let downloadJson = (data, title) => {
     url->revokeObjectURL
   }, 1)
 }
+
+let capitalize = str =>
+  str->String.charAt(0)->String.toUpperCase ++ str->String.sliceToEnd(~start=1)
+
+let toTitleCase = str => str->String.split(" ")->Array.map(capitalize)->Array.join(" ")
 
 module JSON = {
   @scope("JSON") @val
