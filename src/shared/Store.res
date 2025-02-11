@@ -54,7 +54,6 @@ module Options = {
       searchEngineId: float,
       updateSearchEngineId: float => unit,
       pages: array<Shape.Page.t>,
-      deletePage: float => unit,
       addPage: Shape.Page.t => unit,
       updatePage: Shape.Page.t => unit,
       setPages: array<Shape.Page.t> => unit,
@@ -69,8 +68,6 @@ module Options = {
       searchEngineId: 0.,
       updateSearchEngineId: id => set(.state => {...state, searchEngineId: id}),
       pages: Shape.Page.defaultPages,
-      deletePage: id =>
-        set(.state => {...state, pages: state.pages->Array.filter(p => p.id != id)}),
       addPage: page => set(.state => {...state, pages: state.pages->Array.concat([page])}),
       updatePage: page =>
         set(.state => {

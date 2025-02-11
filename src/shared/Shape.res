@@ -30,8 +30,12 @@
 @module("../assets/globe-purple.svg") external globePurple: string = "default"
 @module("../assets/linkedin.svg") external linkedinLogo: string = "default"
 @module("../assets/twitter.svg") external twitterLogo: string = "default"
+@module("../assets/x.svg") external xLogo: string = "default"
 @module("../assets/discord.svg") external discordLogo: string = "default"
 @module("../assets/openai.svg") external openaiLogo: string = "default"
+@module("../assets/9gag.svg") external nineGagLogo: string = "default"
+@module("../assets/amazon.svg") external amazonLogo: string = "default"
+@module("../assets/mangadex.svg") external mangadexLogo: string = "default"
 @module("../assets/undoo-blue.svg") external undooBlue: string = "default"
 @module("../assets/undoo-light.svg") external undooLight: string = "default"
 
@@ -43,6 +47,14 @@ module Site = {
     icon: string,
     showLabel: bool,
     bgcolor?: string,
+  }
+
+  let empty = {
+    id: 0.,
+    title: "",
+    url: "",
+    icon: "",
+    showLabel: true,
   }
 
   let defaultSites: array<t> = [
@@ -163,18 +175,22 @@ module Icon = {
     {id: 24., title: "Image", src: imageLogo},
     {id: 25., title: "Linkedin", src: linkedinLogo},
     {id: 26., title: "Twitter", src: twitterLogo},
-    {id: 27., title: "Discord", src: discordLogo},
+    {id: 27., title: "X", src: xLogo},
+    {id: 28., title: "Discord", src: discordLogo},
     {id: 29., title: "Openai", src: openaiLogo},
-    {id: 30., title: "Search", src: searchLogo},
-    {id: 31., title: "Link", src: linkLogo},
-    {id: 32., title: "UndooLight", src: undooLight},
-    {id: 33., title: "UndooBlue", src: undooBlue},
-    {id: 40., title: "GlobeGreen", src: globeGreen},
-    {id: 41., title: "GlobeRed", src: globeRed},
-    {id: 42., title: "GlobeBlue", src: globeBlue},
-    {id: 43., title: "GlobeYellow", src: globeYellow},
-    {id: 44., title: "GlobePink", src: globePink},
-    {id: 45., title: "GlobePurple", src: globePurple},
+    {id: 30., title: "9gag", src: nineGagLogo},
+    {id: 31., title: "Amazon", src: amazonLogo},
+    {id: 32., title: "Mangadex", src: mangadexLogo},
+    {id: 40., title: "Search", src: searchLogo},
+    {id: 41., title: "Link", src: linkLogo},
+    {id: 42., title: "UndooLight", src: undooLight},
+    {id: 43., title: "UndooBlue", src: undooBlue},
+    {id: 50., title: "GlobeGreen", src: globeGreen},
+    {id: 51., title: "GlobeRed", src: globeRed},
+    {id: 52., title: "GlobeBlue", src: globeBlue},
+    {id: 53., title: "GlobeYellow", src: globeYellow},
+    {id: 54., title: "GlobePink", src: globePink},
+    {id: 55., title: "GlobePurple", src: globePurple},
     {id: 100., title: "Svelte", src: svelteLogo},
     {id: 101., title: "React", src: reactLogo},
     {id: 102., title: "Vue", src: vueLogo},
@@ -222,8 +238,8 @@ module OptionTabs = {
 }
 
 module View = {
-  type t = Page(Page.t) | Searcher | SavedLinks
-  let first = pages => pages[0]->Option.map(p => Page(p))->Option.getOr(Searcher)
+  type t = Page(float) | Searcher | SavedLinks
+  let first = pages => pages[0]->Option.map((p: Page.t) => Page(p.id))->Option.getOr(Searcher)
 }
 
 // module Shadow = {

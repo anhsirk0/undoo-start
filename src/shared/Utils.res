@@ -120,6 +120,28 @@ let capitalize = str =>
 
 let toTitleCase = str => str->String.split(" ")->Array.map(capitalize)->Array.join(" ")
 
+let makeTitleFromUrl = url => {
+  let base =
+    url
+    ->String.replace("https://", "")
+    ->String.replace("www.", "")
+
+  Js.String.replaceByRe(
+    %re("/\.(com|net|org|co|in|us|netlify.app)$/"),
+    "",
+    base
+    ->String.split("/")
+    ->Array.get(0)
+    ->Option.getOr(base),
+  )
+  ->String.replaceAll(".", " ")
+  ->toTitleCase
+}
+
+let readClipboard: unit => promise<string> = %raw(`function () {
+return navigator.clipboard.readText()
+ }`)
+
 module JSON = {
   @scope("JSON") @val
   external parse: string => Js.Json.t = "parse"

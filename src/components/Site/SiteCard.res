@@ -94,6 +94,8 @@ let make = (~site: Shape.Site.t, ~isEditing, ~updateSite, ~children, ~index) => 
           : React.null}
       </div>
     </div>
-    {isOpen ? <EditSiteModal site updateSite onClose=toggleOpen /> : React.null}
+    {isOpen
+      ? <AddSiteModal site={Some(site)} onSubmit=updateSite onClose=toggleOpen />
+      : React.null}
   </React.Fragment>
 }

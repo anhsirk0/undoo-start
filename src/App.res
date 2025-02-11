@@ -6,14 +6,15 @@ open ReactEvent
 @react.component
 let make = () => {
   let store = Store.Options.use()
-  let firstView = store.pages->Shape.View.first
+  let firstView = () => store.pages->Shape.View.first
 
-  let (view, setView) = React.useState(_ => firstView)
+  let findPage = id => store.pages->Array.find(p => p.id == id)
+  let (view, setView) = React.useState(_ => firstView())
   let (isEditing, setIsEditing) = React.useState(_ => false)
   let (isVisiting, setIsVisiting) = React.useState(_ => false)
   let (isDebounced, setIsDebounced) = React.useState(_ => true)
 
-  let afterDelete = _ => setView(_ => firstView)
+  let afterDelete = pages => setView(_ => pages->Shape.View.first)
 
   let onContextMenu = evt => {
     setIsEditing(v => !v)
@@ -26,19 +27,19 @@ let make = () => {
 
       let deltaY = Wheel.deltaY(evt)->Float.toInt
       let nextView = switch view {
-      | Page(page) => {
+      | Page(pageId) => {
           let nextIdx =
             store.pages
-            ->Array.findIndex(p => p.id == page.id)
+            ->Array.findIndex(p => p.id == pageId)
             ->Utils.getNextIndex(store.pages->Array.length, deltaY)
 
           store.pages[nextIdx]
-          ->Option.map(p => Shape.View.Page(p))
-          ->Option.getOr(firstView)
+          ->Option.map(p => Shape.View.Page(p.id))
+          ->Option.getOr(firstView())
         }
       // Todo: Enable scrolling through other views
-      | Searcher => firstView
-      | SavedLinks => firstView
+      | Searcher => firstView()
+      | SavedLinks => firstView()
       }
       setView(_ => nextView)
 
@@ -78,7 +79,7 @@ let make = () => {
         switch digit->Option.filter(i => i > 0 && i <= store.pages->Array.length) {
         | Some(i) =>
           switch store.pages[i - 1] {
-          | Some(p) => setView(_ => Page(p))
+          | Some(p) => setView(_ => Page(p.id))
           | None => ()
           }
         | None => ()
@@ -86,7 +87,7 @@ let make = () => {
       } else {
         let keyCode = Keyboard.keyCode(evt) - 65
         let site = switch view {
-        | Page(p) => p.sites[keyCode]
+        | Page(id) => id->findPage->Option.flatMap(p => p.sites[keyCode])
         | _ => None
         }
 
@@ -126,7 +127,11 @@ let make = () => {
         </button>}
     <Sidebar view setView isEditing />
     {switch view {
-    | Page(page) => <PageView page key=page.title isEditing isVisiting afterDelete />
+    | Page(id) =>
+      switch id->findPage {
+      | Some(page) => <PageView page key=page.title isEditing isVisiting afterDelete />
+      | None => React.null
+      }
     | Searcher => <Searcher isEditing />
     | SavedLinks => <SavedLinks />
     }}

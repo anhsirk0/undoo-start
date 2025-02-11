@@ -10,7 +10,7 @@ let make = (~chosen, ~onChoose, ~isIconError) => {
 
       <div
         key={icon.id->Float.toString}
-        className={`col-span-2 cursor-pointer rounded-box ${activeClass}`}
+        className={`col-span-1 cursor-pointer rounded-box ${activeClass}`}
         onClick={_ => onChoose(icon.src)}>
         <img
           src=icon.src
@@ -26,6 +26,6 @@ let make = (~chosen, ~onChoose, ~isIconError) => {
           {React.string("Enter an icon label or url or choose from the following icons.")}
         </p>
       : React.null}
-    <div className="grid grid-cols-12 flex-wrap gap-4 mt-4"> {React.array(icons)} </div>
+    <div className="grid grid-cols-8 flex-wrap gap-2 xl:gap-4 mt-4"> {React.array(icons)} </div>
   </React.Fragment>
 }
