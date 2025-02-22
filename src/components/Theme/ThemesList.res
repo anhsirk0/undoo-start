@@ -19,7 +19,7 @@ let make = () => {
     None
   })
 
-  let themeCards = Array.map(Themes.themes, theme =>
+  let themeCards = Array.map(Config.themes, theme =>
     <ThemeCard theme onChange key=theme>
       {React.string(theme)}
       <div className="flex flex-row gap-1 rounded-btn [&>div]:h-6 [&>div]:w-2">

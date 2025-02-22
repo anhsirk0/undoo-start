@@ -1,4 +1,4 @@
-import { themes } from "./src/Themes.res.mjs";
+import { screens, themes } from "./src/Config.res.mjs";
 import daisyui from "daisyui";
 
 /** @type {import('tailwindcss').Config} */
@@ -6,14 +6,7 @@ export default {
   content: ["./index.html", "./src/**/*.res.mjs"],
   theme: {
     extend: {},
-    screens: {
-      xs: "480px",
-      sm: "640px",
-      md: "768px",
-      lg: "1024px",
-      xl: "1380px",
-      xxl: "1536px",
-    },
+    screens,
     keyframes: {
       shake: {
         "25%": { transform: "rotate(-4deg)" },
