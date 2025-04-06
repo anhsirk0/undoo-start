@@ -40,18 +40,18 @@ module SearchForm = {
 
     <form
       onSubmit
-      className="center h-[20vh] w-full p-4 ml-12 w-full max-w-xl xl:wax-w-4xl xxl:max-w-5xl z-[5]">
+      className="center h-[20vh] w-full p-4 ml-12 w-full max-w-xl xl:wax-w-4xl 2xl:max-w-5xl z-[5]">
       <select
         ariaLabel="select-search-engine"
         id="select-search-engine"
-        className="select xxl:select-lg bg-base-300 rounded-r-none"
+        className="select border-none focus:outline-none 2xl:select-lg bg-base-300 rounded-r-none w-20"
         value={store.searchEngineId->Float.toString}
         onChange=onSelect>
         {React.array(options)}
       </select>
       <label
         id="search-input"
-        className="input has-[:focus]:border-none has-[:focus]:outline-none bg-base-300 xxl:input-lg flex items-center grow rounded-none">
+        className="input bg-base-300 border-none has-[:focus]:outline-none 2xl:input-lg flex items-center grow w-full rounded-none">
         <InputBase
           value
           onChange
@@ -72,7 +72,7 @@ module SearchForm = {
       </label>
       <button
         id="search-btn"
-        className="btn btn-ghost bg-base-300 xxl:btn-lg no-animation rounded-l-none">
+        className="btn btn-ghost bg-base-300 2xl:btn-lg no-animation rounded-l-none">
         <Solid.SearchIcon className="resp-icon" />
       </button>
     </form>

@@ -49,7 +49,8 @@ let make = (~isEditing) => {
       className="col-span-6 md:col-span-4 animate-fade rounded-box relative overflow-hidden bg-base-300"
       name="searcher-item">
       <div
-        onClick=toggleOne className={`flex flex-col gap-4 p-4 xxl:p-6 ${opacity} cursor-pointer`}>
+        onClick=toggleOne
+        className={`flex flex-col h-full gap-4 p-4 2xl:p-6 ${opacity} cursor-pointer`}>
         <p className="card-title"> {item.title->React.string} </p>
         <p className="text-base-content/60 title">
           {item.url->String.replace("https://", "")->React.string}
@@ -90,8 +91,8 @@ let make = (~isEditing) => {
   <React.Fragment>
     <form
       onSubmit
-      className="center h-[20vh] p-4 ml-12 w-full max-w-xl xl:wax-w-4xl xxl:max-w-5xl shrink-0 z-[5]">
-      <div id="searcher" className="center size-12 xxl:size-16 w-16 rounded-l-btn bg-base-300">
+      className="center h-[20vh] p-4 ml-12 w-full max-w-xl xl:wax-w-4xl 2xl:max-w-5xl shrink-0 z-[5]">
+      <div id="searcher" className="center h-10 2xl:h-12 w-16 gap-2 rounded-l-field bg-base-300">
         <Checkbox checked=isAllChecked onChange=toggleAll />
         {count > 0
           ? <p className="text-lg text-primary"> {count->Int.toString->React.string} </p>
@@ -99,7 +100,7 @@ let make = (~isEditing) => {
       </div>
       <label
         id="search-input"
-        className="input has-[:focus]:border-none has-[:focus]:outline-none bg-base-300 xxl:input-lg flex items-center join-item grow rounded-none">
+        className="input border-none has-[:focus]:outline-none bg-base-300 2xl:input-lg flex items-center join-item grow rounded-none">
         <InputBase
           required=true name="query" className="grow" value onChange placeholder="Search"
         />
@@ -114,11 +115,11 @@ let make = (~isEditing) => {
       </label>
       <button
         id="search-btn"
-        className="btn btn-ghost bg-base-300 xxl:btn-lg join-item no-animation rounded-l-none">
+        className="btn btn-ghost bg-base-300 2xl:btn-lg join-item no-animation rounded-l-none">
         <Solid.SearchIcon className="resp-icon" />
       </button>
     </form>
-    <div className="center px-4 xxl:py-4 ml-12 join main-width xxl:max-w-7xl z-[5]">
+    <div className="center px-4 2xl:py-4 ml-12 join main-width 2xl:max-w-7xl z-[5]">
       <div className="grid grid-cols-12 gap-4 xl:gap-8 w-full"> {React.array(items)} </div>
       <AddSearcherButton />
     </div>

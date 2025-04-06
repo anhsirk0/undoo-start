@@ -13,7 +13,7 @@ let make = (~addSite: Shape.Site.t => unit) => {
       onClick={_ => toggleOpen()}
       className={store.options.hideAddButton
         ? "hidden"
-        : "fixed bottom-2 xxl:bottom-5 right-2 xxl:right-4 btn btn-ghost resp-btn btn-circle animate-grow"}>
+        : "fixed bottom-2 right-2 btn btn-ghost resp-btn btn-circle animate-grow"}>
       <Solid.PlusIcon className="resp-icon" />
     </button>
     {isOpen ? <AddSiteModal site={None} onSubmit=addSite onClose=toggleOpen /> : React.null}

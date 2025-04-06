@@ -1,6 +1,7 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import { VitePWA } from "vite-plugin-pwa";
+import tailwindcss from "@tailwindcss/vite";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -19,6 +20,7 @@ export default defineConfig({
         icons: [{ src: "/undoo.svg", type: "image/svg+xml", sizes: "any" }],
       },
     }),
+    tailwindcss(),
   ],
   build: {
     rollupOptions: {

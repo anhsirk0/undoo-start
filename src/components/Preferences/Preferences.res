@@ -62,19 +62,19 @@ let make = (~onClose) => {
   }
 
   let makeTab = (tab, title) => {
-    let className = `tab ${activeTab == tab ? "tab-active" : ""}`
+    let className = `tab flex-1 ${activeTab == tab ? "tab-active" : ""}`
     <a role="tab" className onClick={_ => setActiveTab(_ => tab)}> {title->React.string} </a>
   }
 
   <Modal title="Options" onClose classes="min-w-[66vw]">
-    <div role="tablist" className="tabs tabs-bordered">
+    <div role="tablist" className="tabs tabs-border w-full">
       {makeTab(General, "General")}
       {makeTab(Background, "Background")}
       {makeTab(ImportExport, "Import/Export")}
     </div>
     <form
       onSubmit
-      className="flex flex-col xxl:gap-2 [&>div]:min-w-[100%] min-h-[60vh] pt-2 xxl:pt-4"
+      className="flex flex-col 2xl:gap-2 [&>div]:min-w-[100%] min-h-[60vh] pt-2 2xl:pt-4"
       tabIndex=0>
       {switch activeTab {
       | General => <GeneralOptions />

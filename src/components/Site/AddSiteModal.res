@@ -66,11 +66,11 @@ let make = (~site: option<Shape.Site.t>, ~onClose, ~onSubmit) => {
     onClose
     classes="min-w-[80vw] xl:min-w-[62vw]">
     <form onSubmit=handleSubmit className="flex flex-col gap-2 xl:gap-4" tabIndex=0>
-      <div className="flex flex-col lg:flex-row gap-4 xxl:gap-8">
+      <div className="flex flex-col lg:flex-row gap-4 2xl:gap-8">
         <div className="flex flex-col gap-2 xl:gap-4 min-w-[45%] shrink-0">
           <FormControl label="Url">
             <label
-              className="input input-bordered input-sm xxl:input-md w-full flex items-center gap-2">
+              className="input input-bordered input-sm 2xl:input-md w-full flex items-center gap-2">
               <InputBase name="url" className="grow" required=true defaultValue=data.url />
               <button
                 type_="button"
@@ -82,7 +82,7 @@ let make = (~site: option<Shape.Site.t>, ~onClose, ~onSubmit) => {
           </FormControl>
           <FormControl label="Title">
             <label
-              className="input input-bordered input-sm xxl:input-md w-full flex items-center gap-2">
+              className="input input-bordered input-sm 2xl:input-md w-full flex items-center gap-2">
               <InputBase name="title" className="grow" required=true defaultValue=data.title />
               <button type_="button" className="btn btn-xs xl:btn-sm -mr-2" onClick=makeFromUrl>
                 {"Make from Url"->React.string}
