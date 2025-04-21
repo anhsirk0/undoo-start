@@ -34,7 +34,7 @@ let make = (~page: Shape.Page.t, ~isEditing, ~isVisiting) => {
         role="button"
         ariaLabel={`delete-site-${site.title}-btn`}
         onClick=onDelete
-        className={`absolute ${pos} size-8 lg:size-10 xxl:size-12 center rounded-bl-box`}>
+        className={`absolute ${pos} size-8 lg:size-10 2xl:size-12 center rounded-bl-box`}>
         <Solid.TrashIcon className="text-error resp-icon" />
       </div>
       {page.sites->Array.length > 1
@@ -44,7 +44,7 @@ let make = (~page: Shape.Page.t, ~isEditing, ~isVisiting) => {
   })
 
   <React.Fragment>
-    <div className="grid grid-cols-12 gap-4 lg:gap-6 xl:gap-8 xxl:gap-12 w-full animate-fade">
+    <div className="grid grid-cols-12 gap-4 lg:gap-6 xl:gap-8 2xl:gap-12 w-full animate-fade">
       {React.array(cards)}
     </div>
     <AddSiteButton addSite />

@@ -120,7 +120,7 @@ let make = () => {
       : <button
           ariaLabel="toggle-edit-mode-btn"
           onClick={_ => setIsEditing(val => !val)}
-          className={`fixed top-2 xxl:top-5 right-2 xxl:right-4 btn btn-circle btn-resp ${isEditing
+          className={`fixed top-2 right-2 btn btn-circle btn-resp ${isEditing
               ? "btn-accent"
               : "btn-ghost"}`}>
           <Solid.PencilIcon className="resp-icon" />

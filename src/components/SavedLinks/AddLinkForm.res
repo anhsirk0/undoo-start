@@ -39,7 +39,7 @@ let make = (~link: option<Shape.Link.t>=?) => {
   <form onSubmit className="col-span-12 md:col-span-6 lg:col-span-4 join">
     <label
       id="search"
-      className="input input-primary input-sm xxl:input-md flex items-center join-item grow">
+      className="input input-primary input-sm 2xl:input-md flex items-center join-item grow">
       <InputBase
         required=true name className="grow" value onChange placeholder="Add url" disabled=loading
       />
@@ -48,12 +48,12 @@ let make = (~link: option<Shape.Link.t>=?) => {
             disabled=loading
             onClick=clearText
             type_="button"
-            className="btn btn-xs xxl:btn-sm btn-ghost btn-circle text-base-content/60">
+            className="btn btn-xs 2xl:btn-sm btn-ghost btn-circle text-base-content/60">
             <Solid.XIcon />
           </button>
         : React.null}
     </label>
-    <button disabled=loading className="btn btn-primary btn-sm xxl:btn-md no-animation join-item">
+    <button disabled=loading className="btn btn-primary btn-sm 2xl:btn-md no-animation join-item">
       {loading
         ? <span className="loading loading-spinner" />
         : link->Option.isSome

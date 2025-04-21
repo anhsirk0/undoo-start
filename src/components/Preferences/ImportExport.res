@@ -56,7 +56,7 @@ module Item = {
       <FormControl label="Import from file">
         <input
           type_="file"
-          className="file-input file-input-bordered file-input-primary file-input-sm xxl:file-input-md  grow"
+          className="file-input file-input-primary 2xl:file-input-lg w-full"
           accept="application/json"
           onChange=onImport
         />
@@ -107,7 +107,7 @@ let make = () => {
     Toast.success("Searcher data imported successfully")
   })
 
-  <div className="grid grid-cols-2 grow gap-4 xxl:gap-8 pt-2">
+  <div className="grid grid-cols-2 grow gap-4 2xl:gap-8 pt-2">
     <Item
       title="Pages data"
       info="This data contains all your pages (sites) collection."

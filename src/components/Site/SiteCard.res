@@ -27,9 +27,9 @@ module SiteLabel = {
   let make = (~title: string, ~show: bool, ~circleIcons: bool) => {
     let radius = circleIcons ? "" : "rounded-box"
     show
-      ? <div className="center absolute bottom-1 xxl:bottom-1.5 w-full h-[1.38rem] xxl:h-8">
+      ? <div className="center absolute bottom-1 2xl:bottom-1.5 w-full h-[1.38rem] 2xl:h-8">
           <div className={`center px-2 w-[90%] h-full bg-base-100/70 ${radius}`}>
-            <p className="title truncate -mt-0.5 xxl:-mt-1"> {React.string(title)} </p>
+            <p className="title truncate -mt-0.5 2xl:-mt-1"> {React.string(title)} </p>
           </div>
         </div>
       : React.null
@@ -39,9 +39,9 @@ module SiteLabel = {
 module SiteHint = {
   @react.component
   let make = (~idx: int, ~circleIcons: bool) => {
-    let pos = circleIcons ? "top-3 xxl:top-4 left-3 xxl:left-4" : "top-0 left-0"
+    let pos = circleIcons ? "top-3 2xl:top-4 left-3 2xl:left-4" : "top-0 left-0"
     let radius = circleIcons ? "rounded-full" : "rounded-br-box"
-    let margin = circleIcons ? "" : "-ml-1/2 -mt-1/2 xxl:-ml-1 xxl:-mt-1"
+    let margin = circleIcons ? "" : "-ml-1/2 -mt-1/2 2xl:-ml-1 2xl:-mt-1"
 
     <div
       className={`bg-base-100/80 absolute ${pos} size-6 lg:size-6 xl:size-8 center animate-fade ${radius}`}>
@@ -58,7 +58,7 @@ let make = (~site: Shape.Site.t, ~isEditing, ~updateSite, ~children, ~index) => 
   let isIconUrl = Utils.startsWith(site.icon, ["http", "/src", "/assets", "data:image"])
   let target = options.openLinkInNewTab ? "_blank" : "_self"
 
-  let cardSize = "square-24 md:square-28 xl:square-32 xxl:square-40"
+  let cardSize = "square-24 md:square-28 xl:square-32 2xl:square-40"
   let radius = options.circleIcons ? "rounded-full" : ""
 
   <React.Fragment>
@@ -88,7 +88,7 @@ let make = (~site: Shape.Site.t, ~isEditing, ~updateSite, ~children, ~index) => 
               ariaLabel={`edit-site-${site.title}-btn`}
               onClick={_ => toggleOpen()}
               className="bg-base-100/70 absolute inset-0 size-full center animate-fade">
-              <Solid.PencilIcon className="size-8 xxl:size-10 text-base-content" />
+              <Solid.PencilIcon className="size-8 2xl:size-10 text-base-content" />
               {children}
             </div>
           : React.null}

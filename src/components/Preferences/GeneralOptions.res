@@ -8,7 +8,7 @@ module Item = {
     <div className="flex gap-4 w-full">
       <div className="flex flex-col grow">
         <p className="text-sm xl:text-lg"> {label->React.string} </p>
-        <p className="text-xs xl:text-sm xxl:text-base text-base-content/60">
+        <p className="text-xs xl:text-sm 2xl:text-base text-base-content/60">
           {switch shortKey {
           | Some(k) =>
             <React.Fragment>
@@ -23,7 +23,7 @@ module Item = {
       </div>
       <input
         type_="checkbox"
-        className="toggle toggle-sm xxl:toggle-md toggle-primary"
+        className="toggle toggle-sm 2xl:toggle-md toggle-primary"
         name
         defaultChecked=value
       />
@@ -37,9 +37,9 @@ let make = () => {
 
   <React.Fragment>
     <Input name="title" label="Document title" required=true defaultValue=store.options.title />
-    <div className="grid grid-cols-2 grow gap-4 xxl:gap-6 pt-4">
+    <div className="grid grid-cols-2 grow gap-4 2xl:gap-6 pt-4">
       <div
-        className="col-span-1 flex flex-col gap-2 xxl:gap-4 h-full border border-base-content/20 rounded-box p-4">
+        className="col-span-1 flex flex-col gap-2 2xl:gap-4 h-full border border-base-content/20 rounded-box p-4">
         <Item
           name="page-title-in-document-title"
           value=store.options.showPageTitle
@@ -67,7 +67,7 @@ let make = () => {
         />
       </div>
       <div
-        className="col-span-1 flex flex-col gap-2 xxl:gap-4 h-full border border-base-content/20 rounded-box p-4">
+        className="col-span-1 flex flex-col gap-2 2xl:gap-4 h-full border border-base-content/20 rounded-box p-4">
         <Item
           name="hide-edit-btn"
           value=store.options.hideEditButton

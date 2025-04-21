@@ -1,8 +1,8 @@
 @react.component
 let make = (~label, ~children) => {
-  <label className="form-control w-full flex-col">
+  <label className="fieldset w-full flex-col">
     <div className="label">
-      <span className="label-text"> {React.string(label)} </span>
+      <span> {React.string(label)} </span>
     </div>
     {children}
   </label>

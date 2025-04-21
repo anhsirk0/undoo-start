@@ -28,7 +28,7 @@ let make = (~setImg, ~setImgName) => {
     <FormControl label="Image (max size: 3MB)">
       <div className="flex flex-row gap-4">
         <input
-          type_="file" className="file-input file-input-bordered grow" accept="image/*" onChange
+          type_="file" className="file-input 2xl:file-input-lg grow" accept="image/*" onChange
         />
         {options.image->String.length > 20
           ? <button

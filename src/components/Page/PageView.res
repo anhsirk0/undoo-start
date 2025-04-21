@@ -22,7 +22,7 @@ let make = (~page: Shape.Page.t, ~afterDelete, ~isEditing, ~isVisiting) => {
   <React.Fragment>
     <SearchBar />
     <div
-      className="grow main-width xxl:max-w-7xl ml-12 p-4 lg:py-4 xxl:py-8 xxl:mt-12 min-h-0 overflow-y-auto"
+      className="grow main-width ml-12 p-4 lg:py-4 2xl:py-8 2xl:mt-12 min-h-0 overflow-y-auto"
       onWheel>
       {isEditing
         ? <div

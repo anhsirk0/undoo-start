@@ -1,63 +1,104 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@plugin "daisyui" {
+  themes: all;
+}
+
+@theme {
+  --breakpoint-xs: 30rem;
+  --breakpoint-sm: 40rem;
+  --breakpoint-md: 48rem;
+  --breakpoint-lg: 64rem;
+  --breakpoint-xl: 86rem;
+  --breakpoint-2xl: 96rem;
+
+  --animate-grow: grow 200ms ease-in-out;
+  @keyframes grow {
+    0% {
+      transform: scale(0);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  --animate-shake: shake 200ms ease-in-out;
+  @keyframes shake {
+    25% {
+      transform: rotate(-4deg);
+    }
+    75% {
+      transform: rotate(4deg);
+    }
+    100% {
+      transform: rotate(0);
+    }
+  }
+
+  --animate-fade: fade 200ms ease-in-out;
+  @keyframes fade {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+}
 
 .main {
   @apply center h-screen w-screen transitional bg-base-100;
 }
 
-.center {
+@utility center {
   @apply flex items-center justify-center;
 }
 
+@utility transitional {
+  @apply transition-all duration-300 ease-out;
+}
+
 .title {
-  @apply text-xs xl:text-sm xxl:text-base;
+  @apply text-xs xl:text-sm 2xl:text-base;
 }
 
 .resp-title {
-  @apply text-lg xl:text-xl xxl:text-2xl;
+  @apply text-lg xl:text-xl 2xl:text-2xl;
 }
 
 .resp-btn {
-  @apply btn-xs md:btn-sm xxl:btn-md;
+  @apply btn-xs sm:btn-sm md:btn-md 2xl:btn-lg;
 }
 
 .resp-icon {
-  @apply size-4 lg:size-6 xxl:size-7;
+  @apply size-4 lg:size-6 2xl:size-7;
 }
 
 .sidebar-btn {
-  @apply h-10 xxl:h-16;
-}
-
-.transitional {
-  @apply transition-all duration-200 ease-in-out;
+  @apply h-10 2xl:h-16;
 }
 
 .main-width {
-  @apply w-full max-w-4xl xxl:max-w-5xl;
+  @apply w-full max-w-4xl 2xl:max-w-7xl;
 }
 
 form:focus {
   outline: none;
 }
 
-@layer utilities {
-  .square-24 {
-    @apply size-[6rem] max-w-[6rem];
-  }
+@utility square-24 {
+  @apply size-[6rem] max-w-[6rem];
+}
 
-  .square-28 {
-    @apply size-[7rem] max-w-[7rem];
-  }
+@utility square-28 {
+  @apply size-[7rem] max-w-[7rem];
+}
 
-  .square-32 {
-    @apply size-[8rem] max-w-[8rem];
-  }
+@utility square-32 {
+  @apply size-[8rem] max-w-[8rem];
+}
 
-  .square-40 {
-    @apply size-[10rem] max-w-[10rem];
-  }
+@utility square-40 {
+  @apply size-[10rem] max-w-[10rem];
 }
 
 .Toastify__toast-theme--light,
