@@ -43,7 +43,7 @@ module Item = {
 }
 
 @react.component
-let make = () => {
+let make = (~onClose) => {
   let (newEngines, setNewEngines) = React.useState(_ => [])
 
   let {engines, setEngines} = Store.SearchEngine.use()
@@ -67,6 +67,7 @@ let make = () => {
       setNewEngines(_ => [])
       setEngines(newEngines)
       Toast.success("Search engines updated")
+      onClose()
     }
   }
 

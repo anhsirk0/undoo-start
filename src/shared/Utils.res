@@ -21,9 +21,9 @@ let querySelectAndThen = (selector, action) => {
   | None => ()
   }
 }
-let setBg = (el, opacity, ~var="--b3") => {
-  let opac = Float.toString(opacity->Int.toFloat /. 100.0)
-  let bg = `oklch(var(${var})/${opac})`
+let setBg = (el, opacity) => {
+  let opac = `${opacity->Int.toString}%`
+  let bg = `color-mix(in oklab, var(--color-base-100) ${opac}, transparent)`
   setBgcolor(el, bg)
 }
 

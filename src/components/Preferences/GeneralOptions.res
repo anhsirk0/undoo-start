@@ -32,10 +32,11 @@ module Item = {
 }
 
 @react.component
-let make = () => {
+let make = (~onClose) => {
   let store = Store.Options.use()
 
   let onSubmit = evt => {
+    evt->ReactEvent.Form.preventDefault
     let target = evt->ReactEvent.Form.target
     let title = target["title"]["value"]
     let openLinkInNewTab = target["link-in-new-tab"]["checked"]
@@ -64,6 +65,7 @@ let make = () => {
       circleIcons,
       openLinkInNewTab,
     })
+    onClose()
   }
 
   <form

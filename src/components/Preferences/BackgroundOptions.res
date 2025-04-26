@@ -1,7 +1,7 @@
 open Heroicons
 
 @react.component
-let make = () => {
+let make = (~onClose) => {
   let {options, removeImage, update} = Store.Bg.use()
   let (img, setImg) = React.useState(_ => "")
   let (imgName, setImgName) = React.useState(_ => "")
@@ -27,6 +27,7 @@ let make = () => {
   }
 
   let onSubmit = evt => {
+    evt->ReactEvent.Form.preventDefault
     let target = evt->ReactEvent.Form.target
 
     let bgOpacity = target["bg-opacity"]["value"]
@@ -45,6 +46,7 @@ let make = () => {
       searcherOpacity,
       // sidebarOpacity,
     })
+    onClose()
   }
   <form
     onSubmit

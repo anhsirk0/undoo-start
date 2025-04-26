@@ -1,6 +1,6 @@
 @react.component
 let make = (~onClose) => {
-  let (activeTab, setActiveTab) = React.useState(_ => Shape.OptionTabs.SearchEngine)
+  let (activeTab, setActiveTab) = React.useState(_ => Shape.OptionTabs.General)
 
   let makeTab = (tab, title) => {
     let className = `tab flex-1 ${activeTab == tab ? "tab-active" : ""} whitespace-nowrap`
@@ -15,10 +15,10 @@ let make = (~onClose) => {
       {makeTab(SearchEngine, "Search engines")}
     </div>
     {switch activeTab {
-    | General => <GeneralOptions />
-    | Background => <BackgroundOptions />
+    | General => <GeneralOptions onClose />
+    | Background => <BackgroundOptions onClose />
     | ImportExport => <ImportExport />
-    | SearchEngine => <SearchEngineOptions />
+    | SearchEngine => <SearchEngineOptions onClose />
     }}
   </Modal>
 }
