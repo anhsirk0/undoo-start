@@ -85,6 +85,11 @@ form:focus {
   outline: none;
 }
 
+#search-input,
+select {
+  --depth: 0;
+}
+
 @utility square-24 {
   @apply size-[6rem] max-w-[6rem];
 }

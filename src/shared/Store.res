@@ -51,8 +51,8 @@ module Options = {
   module StoreData = {
     type state = {
       options: t,
-      searchEngineId: float,
-      updateSearchEngineId: float => unit,
+      searchEngineIdx: int,
+      updateSearchEngineIdx: int => unit,
       pages: array<Shape.Page.t>,
       addPage: Shape.Page.t => unit,
       updatePage: Shape.Page.t => unit,
@@ -65,8 +65,8 @@ module Options = {
   let store = AppStore.create(AppStore.persist(set => {
       options: defaultOptions,
       updateOptions: options => set(.state => {...state, options}),
-      searchEngineId: 0.,
-      updateSearchEngineId: id => set(.state => {...state, searchEngineId: id}),
+      searchEngineIdx: 0,
+      updateSearchEngineIdx: idx => set(.state => {...state, searchEngineIdx: idx}),
       pages: Shape.Page.defaultPages,
       addPage: page => set(.state => {...state, pages: state.pages->Array.concat([page])}),
       updatePage: page =>
@@ -157,6 +157,36 @@ module Searcher = {
       toggleAll: all =>
         set(.state => {...state, checkedIds: all ? [] : state.engines->Array.map(e => e.id)}),
     }, {name: "undoo-searcher"}))
+
+  let use = _ => store->AppStore.use(state => state)
+}
+
+module SearchEngine = {
+  module StoreData = {
+    type state = {
+      engines: array<Shape.SearchEngine.t>,
+      setEngines: array<Shape.SearchEngine.t> => unit,
+      addEngine: Shape.SearchEngine.t => unit,
+      updateEngine: Shape.SearchEngine.t => unit,
+      deleteEngine: float => unit,
+    }
+  }
+
+  module AppStore = Zustand.MakeStore(StoreData)
+
+  let store = AppStore.create(AppStore.persist(set => {
+      engines: Shape.SearchEngine.defaultEngines,
+      setEngines: engines => set(.state => {...state, engines}),
+      addEngine: engine =>
+        set(.state => {...state, engines: state.engines->Array.concat([engine])}),
+      updateEngine: engine =>
+        set(.state => {
+          ...state,
+          engines: state.engines->Array.map(e => e.id == engine.id ? engine : e),
+        }),
+      deleteEngine: id =>
+        set(.state => {...state, engines: state.engines->Array.filter(e => e.id != id)}),
+    }, {name: "undoo-search-engines"}))
 
   let use = _ => store->AppStore.use(state => state)
 }

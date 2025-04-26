@@ -12,16 +12,17 @@ module SearchForm = {
     }
 
     let store = Store.Options.use()
+    let {engines} = Store.SearchEngine.use()
 
-    let options = Shape.SearchEngine.defaultEngines->Array.map(e => {
-      let value = e.id->Float.toString
+    let options = engines->Array.mapWithIndex((e, idx) => {
+      let value = idx->Int.toString
       <option key=value value> {React.string(e.icon)} </option>
     })
 
     let onSelect = evt => {
       let id = ReactEvent.Form.target(evt)["value"]
-      switch id->Float.fromString {
-      | Some(id) => store.updateSearchEngineId(id)
+      switch id->Int.fromString {
+      | Some(id) => store.updateSearchEngineIdx(id)
       | None => ()
       }
     }
@@ -45,7 +46,7 @@ module SearchForm = {
         ariaLabel="select-search-engine"
         id="select-search-engine"
         className="select border-none focus:outline-none 2xl:select-lg bg-base-300 rounded-r-none w-20"
-        value={store.searchEngineId->Float.toString}
+        value={store.searchEngineIdx->Int.toString}
         onChange=onSelect>
         {React.array(options)}
       </select>
@@ -72,7 +73,7 @@ module SearchForm = {
       </label>
       <button
         id="search-btn"
-        className="btn btn-ghost bg-base-300 2xl:btn-lg no-animation rounded-l-none">
+        className="btn btn-ghost bg-base-300 2xl:btn-lg no-animation rounded-l-none shadow-none">
         <Solid.SearchIcon className="resp-icon" />
       </button>
     </form>
@@ -81,8 +82,9 @@ module SearchForm = {
 
 @react.component
 let make = () => {
+  let {engines} = Store.SearchEngine.use()
   let store = Store.Options.use()
-  let engine = Shape.SearchEngine.defaultEngines->Array.find(e => e.id == store.searchEngineId)
+  let engine = engines->Array.findWithIndex((_, idx) => idx == store.searchEngineIdx)
 
   switch engine {
   | Some(engine) => <SearchForm engine />

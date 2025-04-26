@@ -64,10 +64,10 @@ let make = (~site: option<Shape.Site.t>, ~onClose, ~onSubmit) => {
   <Modal
     title={site->Option.map(s => s.title)->Option.getOr("New Site")}
     onClose
-    classes="min-w-[80vw] xl:min-w-[62vw]">
+    classes="min-w-[80vw] xl:min-w-[64vw] max-h-[99vh]">
     <form onSubmit=handleSubmit className="flex flex-col gap-2 xl:gap-4" tabIndex=0>
       <div className="flex flex-col lg:flex-row gap-4 2xl:gap-8">
-        <div className="flex flex-col gap-2 xl:gap-4 min-w-[45%] shrink-0">
+        <div className="flex flex-col gap-2 xl:gap-4 min-w-[40%] shrink-0">
           <FormControl label="Url">
             <label
               className="input input-bordered input-sm 2xl:input-md w-full flex items-center gap-2">

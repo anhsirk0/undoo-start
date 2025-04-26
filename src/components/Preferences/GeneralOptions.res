@@ -35,7 +35,41 @@ module Item = {
 let make = () => {
   let store = Store.Options.use()
 
-  <React.Fragment>
+  let onSubmit = evt => {
+    let target = evt->ReactEvent.Form.target
+    let title = target["title"]["value"]
+    let openLinkInNewTab = target["link-in-new-tab"]["checked"]
+    let showPageTitle = target["page-title-in-document-title"]["checked"]
+    let hideSearcherButton = target["hide-searcher-btn"]["checked"]
+    let hideLinksButton = target["hide-links-btn"]["checked"]
+    let hideEditButton = target["hide-edit-btn"]["checked"]
+    let hideAddButton = target["hide-add-btn"]["checked"]
+    let hideOptionsButton = target["hide-options-btn"]["checked"]
+    let hideThemeButton = target["hide-theme-btn"]["checked"]
+    let hidePageSwitcher = target["hide-page-switcher"]["checked"]
+    let alwaysShowHints = target["always-show-hints"]["checked"]
+    let circleIcons = target["circle-icons"]["checked"]
+
+    store.updateOptions({
+      title,
+      showPageTitle,
+      hideSearcherButton,
+      hideLinksButton,
+      hideEditButton,
+      hideAddButton,
+      hideOptionsButton,
+      hideThemeButton,
+      hidePageSwitcher,
+      alwaysShowHints,
+      circleIcons,
+      openLinkInNewTab,
+    })
+  }
+
+  <form
+    onSubmit
+    className="flex flex-col 2xl:gap-2 [&>div]:min-w-[100%] min-h-[60vh] pt-2 2xl:pt-4"
+    tabIndex=0>
     <Input name="title" label="Document title" required=true defaultValue=store.options.title />
     <div className="grid grid-cols-2 grow gap-4 2xl:gap-6 pt-4">
       <div
@@ -101,5 +135,5 @@ let make = () => {
     <div className="flex flex-row mt-4 justify-end">
       <button className="btn resp-btn btn-primary"> {React.string("Save")} </button>
     </div>
-  </React.Fragment>
+  </form>
 }

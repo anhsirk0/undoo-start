@@ -1,8 +1,10 @@
 open Heroicons
 
 @react.component
-let make = (~setImg, ~setImgName) => {
-  let {options, removeImage} = Store.Bg.use()
+let make = () => {
+  let {options, removeImage, update} = Store.Bg.use()
+  let (img, setImg) = React.useState(_ => "")
+  let (imgName, setImgName) = React.useState(_ => "")
 
   let onRemove = evt => {
     ReactEvent.Mouse.preventDefault(evt)
@@ -24,7 +26,30 @@ let make = (~setImg, ~setImgName) => {
     }
   }
 
-  <React.Fragment>
+  let onSubmit = evt => {
+    let target = evt->ReactEvent.Form.target
+
+    let bgOpacity = target["bg-opacity"]["value"]
+    let searcherOpacity = target["searcher-opacity"]["value"]
+    let searchOpacity = target["search-opacity"]["value"]
+    // let sidebarOpacity = target["sidebar-opacity"]["value"]
+
+    let imgExists = img->String.length > 20
+    let image = imgExists ? img : options.image
+    let imageName = imgExists ? imgName : options.imageName
+    update({
+      image,
+      imageName,
+      bgOpacity,
+      searchOpacity,
+      searcherOpacity,
+      // sidebarOpacity,
+    })
+  }
+  <form
+    onSubmit
+    className="flex flex-col 2xl:gap-2 [&>div]:min-w-[100%] min-h-[60vh] pt-2 2xl:pt-4"
+    tabIndex=0>
     <FormControl label="Image (max size: 3MB)">
       <div className="flex flex-row gap-4">
         <input
@@ -35,7 +60,7 @@ let make = (~setImg, ~setImgName) => {
               type_="button" className="btn btn-outline btn-error max-w-[40%]" onClick=onRemove>
               <div className="flex flex-row gap-2 w-full items-center">
                 <Solid.TrashIcon className="resp-icon" />
-                <p className="truncate grow title"> {React.string(options.imageName)} </p>
+                <p className="truncate grow title"> {options.imageName->React.string} </p>
               </div>
             </button>
           : React.null}
@@ -61,7 +86,7 @@ let make = (~setImg, ~setImgName) => {
     </div>
     <div className="grow" />
     <div className="flex flex-row mt-4 justify-end">
-      <button className="btn resp-btn btn-primary"> {React.string("Save")} </button>
+      <button className="btn resp-btn btn-primary"> {"Save"->React.string} </button>
     </div>
-  </React.Fragment>
+  </form>
 }

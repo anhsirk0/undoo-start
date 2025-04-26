@@ -1,8 +1,8 @@
 open ReactEvent
 
 @react.component
-let make = (~title, ~onClose, ~children, ~classes=?) => {
-  let className = "modal-box flex flex-col max-h-[94vh] min-w-[36vw] " ++ classes->Option.getOr("")
+let make = (~title, ~onClose, ~children, ~classes="") => {
+  let className = `modal-box flex flex-col max-h-[96vh] min-w-[36vw] ${classes}`
 
   let onClick = _ => onClose()
   let onKeyDown = evt => {
@@ -24,7 +24,7 @@ let make = (~title, ~onClose, ~children, ~classes=?) => {
     onKeyDown
     className="modal modal-open modal-bottom sm:modal-middle">
     <div className onClick=Mouse.stopPropagation>
-      <div className="flex flex-row items-center justify-between mb-4 -mt-1">
+      <div className="flex flex-row items-center justify-between mb-2 xl:mb-4 -mt-1">
         <p className="font-bold text-lg"> {React.string(title)} </p>
         <button id="close-btn" onClick className="btn resp-btn btn-circle btn-ghost -mt-2">
           {React.string(`✕`)}

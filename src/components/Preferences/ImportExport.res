@@ -107,7 +107,7 @@ let make = () => {
     Toast.success("Searcher data imported successfully")
   })
 
-  <div className="grid grid-cols-2 grow gap-4 2xl:gap-8 pt-2">
+  <div className="grid grid-cols-2 grow gap-4 2xl:gap-8 min-w-[100%] min-h-[60vh] pt-2 2xl:pt-4">
     <Item
       title="Pages data"
       info="This data contains all your pages (sites) collection."
