@@ -1,14 +1,13 @@
 open Heroicons
 
 @react.component
-let make = (~isEditing) => {
+let make = (~isEditing, ~query, ~setQuery) => {
   Hook.useDocTitle(Some("Searcher"))
 
-  let (value, setValue) = React.useState(_ => "")
   let onChange = evt => {
     let target = ReactEvent.Form.target(evt)
-    let newValue: string = target["value"]
-    setValue(_ => newValue)
+    let newQuery: string = target["value"]
+    setQuery(_ => newQuery)
   }
 
   let store = Store.Searcher.use()
@@ -22,11 +21,11 @@ let make = (~isEditing) => {
 
     store.engines
     ->Array.filter(e => store.checkedIds->Array.includes(e.id))
-    ->Array.forEach(e => Utils.searchLink(e.url, value))
+    ->Array.forEach(e => Utils.searchLink(e.url, query))
   }
 
   let clearText = _ => {
-    setValue(_ => "")
+    setQuery(_ => "")
     "input[name='query']"->Utils.querySelectAndThen(Utils.focus)
   }
 
@@ -37,8 +36,8 @@ let make = (~isEditing) => {
 
     let onClick = evt => {
       evt->ReactEvent.Mouse.stopPropagation
-      if value->String.length > 0 {
-        Utils.searchLink(item.url, value)
+      if query->String.length > 0 {
+        Utils.searchLink(item.url, query)
       }
     }
 
@@ -49,18 +48,17 @@ let make = (~isEditing) => {
       className="col-span-6 md:col-span-4 animate-fade rounded-box relative overflow-hidden bg-base-300"
       name="searcher-item">
       <div
-        onClick=toggleOne
+        role="button"
+        ariaLabel={`search-${item.title}`}
+        onClick
         className={`flex flex-col h-full gap-4 p-4 2xl:p-6 ${opacity} cursor-pointer`}>
-        <p className="card-title"> {item.title->React.string} </p>
+        <div className="flex flex-row space-between w-full">
+          <p className="card-title w-full"> {item.title->React.string} </p>
+          <Checkbox checked onChange=toggleOne />
+        </div>
         <p className="text-base-content/60 title">
           {item.url->String.replace("https://", "")->React.string}
         </p>
-        <button
-          ariaLabel={`search-${item.title}`}
-          onClick
-          className="center p-2 bg-primary text-primary-content absolute right-0 bottom-0 rounded-tl-box">
-          <Solid.ExternalLinkIcon className="resp-icon" />
-        </button>
       </div>
       {isEditing ? <EditSearcherButton engine=item /> : React.null}
       {isEditing
@@ -90,6 +88,7 @@ let make = (~isEditing) => {
 
   <React.Fragment>
     <form
+      onWheel=ReactEvent.Wheel.stopPropagation
       onSubmit
       className="center h-[20vh] p-4 ml-12 w-full max-w-xl xl:wax-w-4xl 2xl:max-w-5xl shrink-0 z-[5]">
       <div id="searcher" className="center h-10 2xl:h-12 w-16 gap-2 rounded-l-field bg-base-300">
@@ -102,9 +101,9 @@ let make = (~isEditing) => {
         id="search-input"
         className="input border-none has-[:focus]:outline-none bg-base-300 2xl:input-lg flex items-center join-item grow rounded-none">
         <InputBase
-          required=true name="query" className="grow" value onChange placeholder="Search"
+          required=true name="query" className="grow" value=query onChange placeholder="Search"
         />
-        {value->String.length > 0
+        {query->String.length > 0
           ? <button
               onClick=clearText
               type_="button"

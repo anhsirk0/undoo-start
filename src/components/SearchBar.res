@@ -2,13 +2,11 @@ open Heroicons
 
 module SearchForm = {
   @react.component
-  let make = (~engine: Shape.SearchEngine.t) => {
-    let (value, setValue) = React.useState(_ => "")
-
+  let make = (~engine: Shape.SearchEngine.t, ~query, ~setQuery) => {
     let onChange = evt => {
       let target = ReactEvent.Form.target(evt)
-      let newValue: string = target["value"]
-      setValue(_ => newValue)
+      let newQuery: string = target["value"]
+      setQuery(_ => newQuery)
     }
 
     let store = Store.Options.use()
@@ -31,16 +29,17 @@ module SearchForm = {
       ReactEvent.Form.preventDefault(evt)
       // let q = ReactEvent.Form.target(evt)["query"]["value"]
       let target = store.options.openLinkInNewTab ? "_blank" : "_self"
-      Utils.searchLink(engine.url, value, ~target)
+      Utils.searchLink(engine.url, query, ~target)
     }
 
     let clearText = _ => {
-      setValue(_ => "")
+      setQuery(_ => "")
       "input[name='query']"->Utils.querySelectAndThen(Utils.focus)
     }
 
     <form
       onSubmit
+      onWheel=ReactEvent.Wheel.stopPropagation
       className="center h-[20vh] w-full p-4 ml-12 w-full max-w-xl xl:wax-w-4xl 2xl:max-w-5xl z-[5]">
       <select
         ariaLabel="select-search-engine"
@@ -54,7 +53,7 @@ module SearchForm = {
         id="search-input"
         className="input bg-base-300 border-none has-[:focus]:outline-none 2xl:input-lg flex items-center grow w-full rounded-none">
         <InputBase
-          value
+          value=query
           onChange
           name="query"
           className="grow"
@@ -62,7 +61,7 @@ module SearchForm = {
           required=true
           autoComplete="off"
         />
-        {value->String.length > 0
+        {query->String.length > 0
           ? <button
               onClick=clearText
               type_="button"
@@ -81,13 +80,13 @@ module SearchForm = {
 }
 
 @react.component
-let make = () => {
+let make = (~query, ~setQuery) => {
   let {engines} = Store.SearchEngine.use()
   let store = Store.Options.use()
   let engine = engines->Array.findWithIndex((_, idx) => idx == store.searchEngineIdx)
 
   switch engine {
-  | Some(engine) => <SearchForm engine />
+  | Some(engine) => <SearchForm engine query setQuery />
   | None => React.null
   }
 }

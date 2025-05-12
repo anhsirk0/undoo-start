@@ -10,6 +10,8 @@ let make = () => {
 
   let findPage = id => store.pages->Array.find(p => p.id == id)
   let (view, setView) = React.useState(_ => firstView())
+  let (query, setQuery) = React.useState(_ => "")
+
   let (isEditing, setIsEditing) = React.useState(_ => false)
   let (isVisiting, setIsVisiting) = React.useState(_ => false)
   let (isDebounced, setIsDebounced) = React.useState(_ => true)
@@ -129,10 +131,11 @@ let make = () => {
     {switch view {
     | Page(id) =>
       switch id->findPage {
-      | Some(page) => <PageView page key=page.title isEditing isVisiting afterDelete />
+      | Some(page) =>
+        <PageView page key=page.title isEditing isVisiting afterDelete query setQuery />
       | None => React.null
       }
-    | Searcher => <Searcher isEditing />
+    | Searcher => <Searcher isEditing query setQuery />
     | SavedLinks => <SavedLinks />
     }}
   </div>

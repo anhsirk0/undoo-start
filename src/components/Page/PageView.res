@@ -2,7 +2,7 @@ open Heroicons
 open ReactEvent
 
 @react.component
-let make = (~page: Shape.Page.t, ~afterDelete, ~isEditing, ~isVisiting) => {
+let make = (~page: Shape.Page.t, ~afterDelete, ~isEditing, ~isVisiting, ~query, ~setQuery) => {
   Hook.useDocTitle(Some(page.title))
 
   let (isOpen, toggleOpen, _) = Hook.useToggle()
@@ -20,7 +20,7 @@ let make = (~page: Shape.Page.t, ~afterDelete, ~isEditing, ~isVisiting) => {
   }
 
   <React.Fragment>
-    <SearchBar />
+    <SearchBar query setQuery />
     <div
       className="grow main-width ml-12 p-4 lg:py-4 2xl:py-8 2xl:mt-12 min-h-0 overflow-y-auto"
       onWheel>
