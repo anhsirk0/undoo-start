@@ -34,7 +34,7 @@ module Site = {
     {
       id: 11.,
       title: "Codeberg",
-      url: "https://codeberg.com",
+      url: "https://codeberg.org",
       icon: SvgIcon.codebergLogo,
       showLabel: false,
     },
