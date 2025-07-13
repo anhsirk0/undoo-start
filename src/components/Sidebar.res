@@ -6,8 +6,10 @@ let make = (~view: Shape.View.t, ~setView, ~isEditing) => {
   let {options} = Store.Options.use()
 
   let pos = "-left-56 has-[#theme-btn:focus]:left-0 has-[#theme-container>*:focus]:left-0"
+  let opacity =
+    isEditing || options.alwaysShowSidebar ? "opacity-100" : "opacity-0 hover:opacity-100"
 
-  <div className={`fixed top-0 ${pos} z-10 w-fit h-full flex flex-row transitional`}>
+  <div className={`fixed top-0 ${pos} z-10 w-fit h-full flex flex-row transitional ${opacity}`}>
     <ul
       onWheel=ReactEvent.Wheel.stopPropagation
       id="theme-container"

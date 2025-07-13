@@ -130,6 +130,7 @@ let appOptions: Json.t => result<Store.Options.t, string> = json => {
     let hideOptionsButton = obj->decodeBool("hideOptionsButton")->Option.getOr(false)
     let hideThemeButton = obj->decodeBool("hideThemeButton")->Option.getOr(false)
     let alwaysShowHints = obj->decodeBool("alwaysShowHints")->Option.getOr(false)
+    let alwaysShowSidebar = obj->decodeBool("alwaysShowSidebar")->Option.getOr(false)
     let openLinkInNewTab = obj->decodeBool("openLinkInNewTab")->Option.getOr(false)
     let circleIcons = obj->decodeBool("circleIcons")->Option.getOr(false)
     let hidePageSwitcher = obj->decodeBool("hidePageSwitcher")->Option.getOr(false)
@@ -145,6 +146,7 @@ let appOptions: Json.t => result<Store.Options.t, string> = json => {
       hideThemeButton,
       hidePageSwitcher,
       alwaysShowHints,
+      alwaysShowSidebar,
       openLinkInNewTab,
       circleIcons,
     })

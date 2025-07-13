@@ -27,9 +27,11 @@ module SiteLabel = {
   let make = (~title: string, ~show: bool, ~circleIcons: bool) => {
     let radius = circleIcons ? "" : "rounded-box"
     show
-      ? <div className="center absolute bottom-1 2xl:bottom-1.5 w-full h-[1.38rem] 2xl:h-8">
-          <div className={`center px-2 w-[90%] h-full bg-base-100/70 ${radius}`}>
-            <p className="title truncate -mt-0.5 2xl:-mt-1"> {React.string(title)} </p>
+      ? <div className="center absolute bottom-1 2xl:bottom-1.5 w-full h-[1.2rem] 2xl:h-7">
+          <div className={`center px-2 w-[90%] h-full bg-base-100/80 ${radius}`}>
+            <p className="text-xs 2xl:text-sm truncate -mt-0.5 2xl:-mt-1">
+              {React.string(title)}
+            </p>
           </div>
         </div>
       : React.null

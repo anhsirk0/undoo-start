@@ -30,6 +30,7 @@ module Options = {
     hideOptionsButton: bool,
     hideThemeButton: bool,
     alwaysShowHints: bool,
+    alwaysShowSidebar: bool,
     openLinkInNewTab: bool,
     circleIcons: bool,
   }
@@ -45,6 +46,7 @@ module Options = {
     hideOptionsButton: false,
     hideThemeButton: false,
     alwaysShowHints: false,
+    alwaysShowSidebar: false,
     openLinkInNewTab: true,
     circleIcons: false,
   }

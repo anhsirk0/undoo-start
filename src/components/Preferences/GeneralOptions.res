@@ -33,7 +33,7 @@ module Item = {
 
 @react.component
 let make = (~onClose) => {
-  let store = Store.Options.use()
+  let {options, updateOptions} = Store.Options.use()
 
   let onSubmit = evt => {
     evt->ReactEvent.Form.preventDefault
@@ -49,9 +49,10 @@ let make = (~onClose) => {
     let hideThemeButton = target["hide-theme-btn"]["checked"]
     let hidePageSwitcher = target["hide-page-switcher"]["checked"]
     let alwaysShowHints = target["always-show-hints"]["checked"]
+    let alwaysShowSidebar = target["always-show-sidebar"]["checked"]
     let circleIcons = target["circle-icons"]["checked"]
 
-    store.updateOptions({
+    updateOptions({
       title,
       showPageTitle,
       hideSearcherButton,
@@ -62,6 +63,7 @@ let make = (~onClose) => {
       hideThemeButton,
       hidePageSwitcher,
       alwaysShowHints,
+      alwaysShowSidebar,
       circleIcons,
       openLinkInNewTab,
     })
@@ -72,65 +74,61 @@ let make = (~onClose) => {
     onSubmit
     className="flex flex-col 2xl:gap-2 [&>div]:min-w-[100%] min-h-[60vh] pt-2 2xl:pt-4"
     tabIndex=0>
-    <Input name="title" label="Document title" required=true defaultValue=store.options.title />
+    <Input name="title" label="Document title" required=true defaultValue=options.title />
     <div className="grid grid-cols-2 grow gap-4 2xl:gap-6 pt-4">
       <div
         className="col-span-1 flex flex-col gap-2 2xl:gap-4 h-full border border-base-content/20 rounded-box p-4">
         <Item
           name="page-title-in-document-title"
-          value=store.options.showPageTitle
+          value=options.showPageTitle
           label="Show active page title in Document title"
         />
+        <Item name="link-in-new-tab" value=options.openLinkInNewTab label="Open links in new tab" />
+        <Item name="circle-icons" value=options.circleIcons label="Use circle icons" />
         <Item
-          name="link-in-new-tab" value=store.options.openLinkInNewTab label="Open links in new tab"
+          name="always-show-sidebar" value=options.alwaysShowSidebar label="Always show sidebar"
         />
-        <Item name="circle-icons" value=store.options.circleIcons label="Use circle icons" />
         <Item
           name="always-show-hints"
-          value=store.options.alwaysShowHints
+          value=options.alwaysShowHints
           label="Always show site hints"
           shortKey="SPACE"
           keyMsg=" to show hints temporarily"
         />
         <Item
           name="hide-searcher-btn"
-          value=store.options.hideSearcherButton
+          value=options.hideSearcherButton
           label="Hide Searcher button"
           shortKey="?"
         />
-        <Item
-          name="hide-links-btn" value=store.options.hideLinksButton label="Hide Saved Links button"
-        />
+        <Item name="hide-links-btn" value=options.hideLinksButton label="Hide Saved Links button" />
       </div>
       <div
         className="col-span-1 flex flex-col gap-2 2xl:gap-4 h-full border border-base-content/20 rounded-box p-4">
         <Item
           name="hide-edit-btn"
-          value=store.options.hideEditButton
+          value=options.hideEditButton
           label="Hide edit button"
           shortKey="-"
           keyMsg=" or right click anywhere"
         />
         <Item
-          name="hide-add-btn" value=store.options.hideAddButton label="Hide add button" shortKey="+"
+          name="hide-add-btn" value=options.hideAddButton label="Hide add button" shortKey="+"
         />
         <Item
           name="hide-page-switcher"
-          value=store.options.hidePageSwitcher
+          value=options.hidePageSwitcher
           label="Hide page switcher"
           keyMsg="you can always use ScrollUp/ScrollDown"
         />
         <Item
           name="hide-options-btn"
-          value=store.options.hideOptionsButton
+          value=options.hideOptionsButton
           label="Hide options button"
           shortKey="."
         />
         <Item
-          name="hide-theme-btn"
-          value=store.options.hideThemeButton
-          label="Hide theme button"
-          shortKey=","
+          name="hide-theme-btn" value=options.hideThemeButton label="Hide theme button" shortKey=","
         />
       </div>
     </div>
