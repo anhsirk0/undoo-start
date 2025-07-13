@@ -22,7 +22,5 @@ module MyOverrides = {
 @react.component
 let make = (~theme, ~onChange, ~children) => {
   let onClick = _ => theme->onChange
-  <li className="btn h-10 justify-between w-full relative" onClick tabIndex=0 dataTheme=theme>
-    {children}
-  </li>
+  <li className="col-span-2 bg-transparent" onClick tabIndex=0 dataTheme=theme> {children} </li>
 }

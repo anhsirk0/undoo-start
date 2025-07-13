@@ -76,7 +76,7 @@ let make = () => {
       } else if key == "." {
         "#options-btn"->Utils.querySelectAndThen(Utils.click)
       } else if key == "," {
-        "#theme-btn"->Utils.querySelectAndThen(Utils.focus)
+        "#theme-btn"->Utils.querySelectAndThen(Utils.click)
       } else if digit->Option.isSome {
         switch digit->Option.filter(i => i > 0 && i <= store.pages->Array.length) {
         | Some(i) =>
