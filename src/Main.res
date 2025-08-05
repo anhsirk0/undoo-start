@@ -1,6 +1,6 @@
 %%raw("import './index.css'")
 
-switch ReactDOM.querySelector("#root") {
+switch ReactDOM.querySelector("#undoo") {
 | Some(domElement) =>
   ReactDOM.Client.createRoot(domElement)->ReactDOM.Client.Root.render(
     <React.StrictMode>
