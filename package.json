@@ -12,23 +12,22 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@heroicons/react": "^1.0.6",
+    "@phosphor-icons/react": "^2.1.10",
     "@rescript/core": "^1.6.0",
     "@rescript/react": "^0.12.1",
+    "@tailwindcss/vite": "^4.0.12",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-toastify": "^11.0.3",
     "rescript": "^11.1.4",
-    "rescript-heroicons": "^0.0.3",
     "vite-plugin-pwa": "^0.20.5",
     "workbox-window": "^7.1.0",
-    "@tailwindcss/vite": "^4.0.12",
     "zustand": "5.0.0-rc.2"
   },
   "devDependencies": {
-    "tailwindcss": "^4.0.12",
     "@vitejs/plugin-react": "^4.2.1",
     "daisyui": "^5.0.0",
+    "tailwindcss": "^4.0.12",
     "vite": "^5.0.6"
   }
 }

@@ -1,5 +1,3 @@
-open Heroicons
-
 @react.component
 let make = (~onClose) => {
   let {options, removeImage, update} = Store.Bg.use()
@@ -61,7 +59,7 @@ let make = (~onClose) => {
           ? <button
               type_="button" className="btn btn-outline btn-error max-w-[40%]" onClick=onRemove>
               <div className="flex flex-row gap-2 w-full items-center">
-                <Solid.TrashIcon className="resp-icon" />
+                <Icon.trash className="resp-icon" />
                 <p className="truncate grow title"> {options.imageName->React.string} </p>
               </div>
             </button>
@@ -81,7 +79,7 @@ let make = (~onClose) => {
       <Range name="searcher-opacity" defaultValue={options.searcherOpacity->Int.toString} />
     </FormControl>
     <div className="mt-4 flex flex-row gap-2 w-full items-center">
-      <Solid.InformationCircleIcon className="resp-icon" />
+      <Icon.info className="resp-icon" />
       {React.string(
         "For better aesthetics, it is recommended to choose a theme matching your background image",
       )}

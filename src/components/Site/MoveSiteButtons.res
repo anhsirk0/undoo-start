@@ -1,5 +1,3 @@
-open Heroicons
-
 @react.component
 let make = (~onMoveLeft, ~onMoveRight, ~title) => {
   let {options} = Store.Options.use()
@@ -13,14 +11,14 @@ let make = (~onMoveLeft, ~onMoveRight, ~title) => {
       ariaLabel={`move-left-site-${title}-btn`}
       onClick=onMoveLeft
       className={`${class} ${leftPos}`}>
-      <Solid.ArrowLeftIcon className="resp-icon text-base-content" />
+      <Icon.arrowLeft className="resp-icon text-base-content" />
     </div>
     <div
       role="button"
       ariaLabel={`move-right-site-${title}-btn`}
       onClick=onMoveRight
       className={`${class} ${rightPos}`}>
-      <Solid.ArrowRightIcon className="resp-icon text-base-content" />
+      <Icon.arrowRight className="resp-icon text-base-content" />
     </div>
   </React.Fragment>
 }

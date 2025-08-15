@@ -15,8 +15,7 @@
   "suffix": ".res.mjs",
   "bs-dependencies": [
     "@rescript/core",
-    "@rescript/react",
-    "rescript-heroicons"
+    "@rescript/react"
   ],
   "bsc-flags": ["-open RescriptCore"],
   "jsx": {

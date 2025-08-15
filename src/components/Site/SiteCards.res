@@ -1,5 +1,3 @@
-open Heroicons
-
 @react.component
 let make = (~page: Shape.Page.t, ~isEditing, ~isVisiting) => {
   let {options, updatePage} = Store.Options.use()
@@ -35,7 +33,7 @@ let make = (~page: Shape.Page.t, ~isEditing, ~isVisiting) => {
         ariaLabel={`delete-site-${site.title}-btn`}
         onClick=onDelete
         className={`absolute ${pos} size-8 lg:size-10 2xl:size-12 center rounded-bl-box`}>
-        <Solid.TrashIcon className="text-error resp-icon" />
+        <Icon.trash className="text-error resp-icon" />
       </div>
       {page.sites->Array.length > 1
         ? <MoveSiteButtons onMoveLeft onMoveRight title=site.title />
@@ -44,8 +42,7 @@ let make = (~page: Shape.Page.t, ~isEditing, ~isVisiting) => {
   })
 
   <React.Fragment>
-    <div
-      className="grid grid-cols-12 gap-4 lg:gap-6 xl:gap-8 2xl:gap-12 w-full animate-fade my-auto">
+    <div className="grid grid-cols-12 gap-4 lg:gap-6 xl:gap-8 2xl:gap-12 w-full animate-fade">
       {React.array(cards)}
     </div>
     <AddSiteButton addSite />

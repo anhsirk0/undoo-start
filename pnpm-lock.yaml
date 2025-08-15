@@ -8,9 +8,9 @@ importers:
 
   .:
     dependencies:
-      '@heroicons/react':
-        specifier: ^1.0.6
-        version: 1.0.6(react@18.3.1)
+      '@phosphor-icons/react':
+        specifier: ^2.1.10
+        version: 2.1.10(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@rescript/core':
         specifier: ^1.6.0
         version: 1.6.0(rescript@11.1.4)
@@ -32,9 +32,6 @@ importers:
       rescript:
         specifier: ^11.1.4
         version: 11.1.4
-      rescript-heroicons:
-        specifier: ^0.0.3
-        version: 0.0.3
       vite-plugin-pwa:
         specifier: ^0.20.5
         version: 0.20.5(vite@5.4.8(lightningcss@1.29.2)(terser@5.34.1))(workbox-build@7.1.1(@types/babel__core@7.20.5))(workbox-window@7.1.0)
@@ -856,11 +853,6 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@heroicons/react@1.0.6':
-    resolution: {integrity: sha512-JJCXydOFWMDpCP4q13iEplA503MQO3xLoZiKum+955ZCtHINWnx26CUxVxxFQu/uLb4LW3ge15ZpzIkXKkJ8oQ==}
-    peerDependencies:
-      react: '>= 16'
-
   '@jridgewell/gen-mapping@0.3.5':
     resolution: {integrity: sha512-IzL8ZoEDIBRWEzlCcRhOaCupYyN5gdIK+Q6fbFdPDg6HqX6jpkItn7DFIpW9LQzXG6Df9sA7+OKnq0qlz/GaQg==}
     engines: {node: '>=6.0.0'}
@@ -881,6 +873,13 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.25':
     resolution: {integrity: sha512-vNk6aEwybGtawWmy/PzwnGDOjCkLWSD2wqvjGGAgOAwCGWySYXfYoxt00IJkTF+8Lb57DwOb3Aa0o9CApepiYQ==}
+
+  '@phosphor-icons/react@2.1.10':
+    resolution: {integrity: sha512-vt8Tvq8GLjheAZZYa+YG/pW7HDbov8El/MANW8pOAz4eGxrwhnbfrQZq0Cp4q8zBEu8NIhHdnr+r8thnfRSNYA==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      react: '>= 16.8'
+      react-dom: '>= 16.8'
 
   '@rescript/core@1.6.0':
     resolution: {integrity: sha512-Qx8G9NVSJlf6Z8yWwmy1k1kw3qf6okZdOJ7BLtWS0eFx5WYur4H5OXsnBzEc+W5WQ0uXgOrH965HQQHm0bpLSA==}
@@ -1801,9 +1800,6 @@ packages:
     resolution: {integrity: sha512-Xf0nWe6RseziFMu+Ap9biiUbmplq6S9/p+7w7YXP/JBHhrUDDUhwa+vANyubuqfZWTveU//DYVGsDG7RKL/vEw==}
     engines: {node: '>=0.10.0'}
 
-  rescript-heroicons@0.0.3:
-    resolution: {integrity: sha512-sPiNPtVTqJqAZpgmuxCgzonb1GPgmPZzecaaziNwIAIone4wYE69I4uRrktcsbE6MSmFyxTCSnoIYPHGVLTrsw==}
-
   rescript@11.1.4:
     resolution: {integrity: sha512-0bGU0bocihjSC6MsE3TMjHjY0EUpchyrREquLS8VsZ3ohSMD+VHUEwimEfB3kpBI1vYkw3UFZ3WD8R28guz/Vw==}
     engines: {node: '>=10'}
@@ -1873,6 +1869,7 @@ packages:
   source-map@0.8.0-beta.0:
     resolution: {integrity: sha512-2ymg6oRBpebeZi9UUNsgQ89bhx01TcTkmNTGnNO88imTmbSgy4nfujrgVEFKWpMTEGA11EDkTt7mqObTPdigIA==}
     engines: {node: '>= 8'}
+    deprecated: The work that was done in this beta branch won't be included in future versions
 
   sourcemap-codec@1.4.8:
     resolution: {integrity: sha512-9NykojV5Uih4lgo5So5dtw+f0JgJX30KCNI8gwhz2J9A15wD0Ml6tjHKwf6fTSa6fAdVBdZeNOs9eJ71qCk8vA==}
@@ -3071,10 +3068,6 @@ snapshots:
   '@esbuild/win32-x64@0.21.5':
     optional: true
 
-  '@heroicons/react@1.0.6(react@18.3.1)':
-    dependencies:
-      react: 18.3.1
-
   '@jridgewell/gen-mapping@0.3.5':
     dependencies:
       '@jridgewell/set-array': 1.2.1
@@ -3096,6 +3089,11 @@ snapshots:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
+
+  '@phosphor-icons/react@2.1.10(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+    dependencies:
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
 
   '@rescript/core@1.6.0(rescript@11.1.4)':
     dependencies:
@@ -3995,8 +3993,6 @@ snapshots:
       jsesc: 3.0.2
 
   require-from-string@2.0.2: {}
-
-  rescript-heroicons@0.0.3: {}
 
   rescript@11.1.4: {}
 

@@ -1,5 +1,3 @@
-open Heroicons
-
 module SearchForm = {
   @react.component
   let make = (~engine: Shape.SearchEngine.t, ~query, ~setQuery) => {
@@ -66,14 +64,14 @@ module SearchForm = {
               onClick=clearText
               type_="button"
               className="btn btn-sm btn-ghost btn-circle text-base-content/60">
-              <Solid.XIcon />
+              <Icon.x />
             </button>
           : React.null}
       </label>
       <button
         id="search-btn"
         className="btn btn-ghost bg-base-300 2xl:btn-lg no-animation rounded-l-none shadow-none">
-        <Solid.SearchIcon className="resp-icon" />
+        <Icon.magnifyingGlass className="resp-icon" />
       </button>
     </form>
   }

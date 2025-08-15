@@ -1,5 +1,3 @@
-open Heroicons
-
 @react.component
 let make = (~engine: Shape.SearchEngine.t) => {
   let store = Store.Searcher.use()
@@ -20,7 +18,7 @@ let make = (~engine: Shape.SearchEngine.t) => {
       ariaLabel={`edit-${engine.title}`}
       onClick={_ => toggleOpen()}
       className="center p-2 bg-primary text-primary-content absolute top-0 left-0 rounded-br-box">
-      <Solid.PencilIcon className="resp-icon" />
+      <Icon.pencil className="resp-icon" />
     </button>
     {isOpen
       ? <Modal title=engine.title onClose=toggleOpen>

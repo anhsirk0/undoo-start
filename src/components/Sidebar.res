@@ -1,5 +1,3 @@
-open Heroicons
-
 @react.component
 let make = (~view: Shape.View.t, ~setView, ~isEditing) => {
   let (isPrefsOpen, togglePrefsOpen, _) = Hook.useToggle()
@@ -19,7 +17,7 @@ let make = (~view: Shape.View.t, ~setView, ~isEditing) => {
             onClick={_ => setView(_ => Shape.View.SavedLinks)}
             ariaLabel="saved-links-btn"
             className={`btn btn-xs btn-square ${view == SavedLinks ? "btn-primary" : "btn-ghost"}`}>
-            <Solid.LinkIcon className="resp-icon" />
+            <Icon.link className="resp-icon" />
           </button>
         : React.null}
       {!options.hideSearcherButton
@@ -27,7 +25,7 @@ let make = (~view: Shape.View.t, ~setView, ~isEditing) => {
             onClick={_ => setView(_ => Shape.View.Searcher)}
             ariaLabel="searcher-btn"
             className={`btn btn-xs btn-square ${view == Searcher ? "btn-primary" : "btn-ghost"}`}>
-            <Solid.SearchIcon className="size-4" />
+            <Icon.magnifyingGlass className="size-4" />
           </button>
         : React.null}
       <button
@@ -37,14 +35,14 @@ let make = (~view: Shape.View.t, ~setView, ~isEditing) => {
         className={`btn btn-xs btn-square ${isPrefsOpen
             ? "btn-accent"
             : "btn-ghost"} ${options.hideOptionsButton ? "opacity-0" : ""}`}>
-        <Solid.AdjustmentsIcon className="size-4" />
+        <Icon.gear className="size-4" />
       </button>
       <button
         ariaLabel="select-theme-btn"
         id="theme-btn"
         onClick={_ => toggleThemeOpen()}
         className={`btn btn-ghost btn-xs btn-square ${options.hideThemeButton ? "opacity-0" : ""}`}>
-        <Solid.ColorSwatchIcon className="size-4" />
+        <Icon.palette className="size-4" />
       </button>
     </div>
     {isPrefsOpen ? <Preferences onClose=togglePrefsOpen /> : React.null}

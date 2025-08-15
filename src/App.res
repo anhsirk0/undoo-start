@@ -1,6 +1,5 @@
 %%raw("import 'react-toastify/dist/ReactToastify.css'")
 
-open Heroicons
 open ReactEvent
 
 @react.component
@@ -125,7 +124,7 @@ let make = () => {
           className={`fixed top-2 right-2 btn btn-circle btn-resp ${isEditing
               ? "btn-accent"
               : "btn-ghost"}`}>
-          <Solid.PencilIcon className="resp-icon" />
+          <Icon.pencil className="resp-icon" />
         </button>}
     <Sidebar view setView isEditing />
     {switch view {
