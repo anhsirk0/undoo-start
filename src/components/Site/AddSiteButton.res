@@ -1,5 +1,3 @@
-open Heroicons
-
 @react.component
 let make = (~addSite: Shape.Site.t => unit) => {
   let store = Store.Options.use()
@@ -14,7 +12,7 @@ let make = (~addSite: Shape.Site.t => unit) => {
       className={store.options.hideAddButton
         ? "hidden"
         : "fixed bottom-2 right-2 btn btn-ghost resp-btn btn-circle animate-grow"}>
-      <Solid.PlusIcon className="resp-icon" />
+      <Icon.plus className="resp-icon" />
     </button>
     {isOpen ? <AddSiteModal site={None} onSubmit=addSite onClose=toggleOpen /> : React.null}
   </React.Fragment>

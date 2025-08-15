@@ -1,5 +1,3 @@
-open Heroicons
-
 @react.component
 let make = () => {
   let store = Store.Options.use()
@@ -24,7 +22,7 @@ let make = () => {
       className={store.options.hideAddButton
         ? "hidden"
         : "fixed bottom-2 right-2 btn btn-ghost resp-btn btn-circle"}>
-      <Solid.PlusIcon className="resp-icon" />
+      <Icon.plus className="resp-icon" />
     </button>
     {isOpen
       ? <Modal title="New Searcher" onClose=toggleOpen>

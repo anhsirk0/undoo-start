@@ -1,4 +1,3 @@
-open Heroicons
 open ReactEvent
 
 @react.component
@@ -28,7 +27,7 @@ let make = (~page: Shape.Page.t, ~afterDelete, ~isEditing, ~isVisiting, ~query, 
             className="btn resp-btn fixed top-4 left-12 z-20"
             ariaLabel={`edit-page-${page.id->Float.toString}-btn`}
             onClick=onEdit>
-            <Solid.PencilIcon className="resp-icon text-base-content" />
+            <Icon.pencil className="resp-icon text-base-content" />
             {"Edit page"->React.string}
           </div>
         : React.null}

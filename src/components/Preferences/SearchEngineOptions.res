@@ -1,5 +1,3 @@
-open Heroicons
-
 module Item = {
   @react.component
   let make = (~item: Shape.SearchEngine.t, ~setNewEngines) => {
@@ -24,7 +22,7 @@ module Item = {
         <div className="dropdown dropdown-end dropdown-left">
           <label
             ariaLabel={`delete-${item.title}`} tabIndex=0 className="btn btn-square btn-error mb-2">
-            <Solid.TrashIcon className="resp-icon" />
+            <Icon.trash className="resp-icon" />
           </label>
           <div
             tabIndex=0
@@ -79,7 +77,7 @@ let make = (~onClose) => {
     </div>
     <div className="flex flex-row mt-4 gap-4 justify-between">
       <button onClick=onAdd className="btn resp-btn btn-neutral">
-        <Solid.PlusIcon className="resp-icon" />
+        <Icon.plus className="resp-icon" />
         {React.string("Add")}
       </button>
       <button onClick=onSave className="btn resp-btn btn-primary"> {React.string("Save")} </button>

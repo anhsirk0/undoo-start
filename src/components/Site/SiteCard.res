@@ -1,5 +1,3 @@
-open Heroicons
-
 module LabelIcon = {
   @react.component
   let make = (~site: Shape.Site.t) => {
@@ -90,7 +88,7 @@ let make = (~site: Shape.Site.t, ~isEditing, ~updateSite, ~children, ~index) => 
               ariaLabel={`edit-site-${site.title}-btn`}
               onClick={_ => toggleOpen()}
               className="bg-base-100/70 absolute inset-0 size-full center animate-fade">
-              <Solid.PencilIcon className="size-8 2xl:size-10 text-base-content" />
+              <Icon.pencil className="size-8 2xl:size-10 text-base-content" />
               {children}
             </div>
           : React.null}

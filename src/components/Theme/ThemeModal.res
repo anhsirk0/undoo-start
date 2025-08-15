@@ -1,5 +1,3 @@
-open Heroicons
-
 @react.component
 let make = (~isOpen, ~onClose) => {
   let (currentTheme, setCurrrentTheme) = React.useState(_ => Utils.getTheme())
@@ -38,7 +36,7 @@ let make = (~isOpen, ~onClose) => {
                     <div className="bg-neutral" />
                   </div>
                   {currentTheme == theme
-                    ? <Solid.SparklesIcon
+                    ? <Icon.sparkle
                         className="size-4 text-neutral-content absolute top-1 left-1 animate-grow"
                       />
                     : React.null}

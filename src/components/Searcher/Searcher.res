@@ -1,5 +1,3 @@
-open Heroicons
-
 @react.component
 let make = (~isEditing, ~query, ~setQuery) => {
   Hook.useDocTitle(Some("Searcher"))
@@ -66,7 +64,7 @@ let make = (~isEditing, ~query, ~setQuery) => {
             className="center absolute left-0 bottom-0 bg-error text-error-content rounded-tr-box p-1">
             <div className="dropdown dropdown-end dropdown-right">
               <label ariaLabel={`delete-${item.title}`} tabIndex=0>
-                <Solid.TrashIcon className="resp-icon" />
+                <Icon.trash className="resp-icon" />
               </label>
               <div
                 tabIndex=0
@@ -108,14 +106,14 @@ let make = (~isEditing, ~query, ~setQuery) => {
               onClick=clearText
               type_="button"
               className="btn btn-sm btn-ghost btn-circle text-base-content/60">
-              <Solid.XIcon />
+              <Icon.x />
             </button>
           : React.null}
       </label>
       <button
         id="search-btn"
         className="btn btn-ghost bg-base-300 2xl:btn-lg join-item no-animation rounded-l-none">
-        <Solid.SearchIcon className="resp-icon" />
+        <Icon.magnifyingGlass className="resp-icon" />
       </button>
     </form>
     <div className="center px-4 2xl:py-4 ml-12 join main-width 2xl:max-w-7xl z-[5]">

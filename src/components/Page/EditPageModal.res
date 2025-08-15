@@ -1,5 +1,3 @@
-open Heroicons
-
 @react.component
 let make = (~page: Shape.Page.t, ~onClose, ~afterDelete) => {
   let store = Store.Options.use()
@@ -27,7 +25,7 @@ let make = (~page: Shape.Page.t, ~onClose, ~afterDelete) => {
         {Array.length(store.pages) != 1
           ? <button
               ariaLabel="delete-page-btn" onClick type_="button" className="btn resp-btn btn-ghost">
-              <Solid.TrashIcon className="resp-icon text-error" />
+              <Icon.trash className="resp-icon text-error" />
             </button>
           : React.null}
         <div className="grow" />

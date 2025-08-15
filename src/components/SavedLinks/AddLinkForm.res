@@ -1,5 +1,3 @@
-open Heroicons
-
 @react.component
 let make = (~link: option<Shape.Link.t>=?) => {
   let {addLink, updateLink} = Store.Link.use()
@@ -49,7 +47,7 @@ let make = (~link: option<Shape.Link.t>=?) => {
             onClick=clearText
             type_="button"
             className="btn btn-xs 2xl:btn-sm btn-ghost btn-circle text-base-content/60">
-            <Solid.XIcon />
+            <Icon.x />
           </button>
         : React.null}
     </label>
@@ -57,8 +55,8 @@ let make = (~link: option<Shape.Link.t>=?) => {
       {loading
         ? <span className="loading loading-spinner" />
         : link->Option.isSome
-        ? <Solid.CheckIcon className="resp-icon" />
-        : <Solid.PlusIcon className="resp-icon" />}
+        ? <Icon.check className="resp-icon" />
+        : <Icon.plus className="resp-icon" />}
     </button>
   </form>
 }

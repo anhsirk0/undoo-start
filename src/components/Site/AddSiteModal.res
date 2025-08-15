@@ -1,5 +1,3 @@
-open Heroicons
-
 @react.component
 let make = (~site: option<Shape.Site.t>, ~onClose, ~onSubmit) => {
   let (chosenIcon, setChosenIcon) = React.useState(_ => site->Option.map(s => s.icon))
@@ -76,7 +74,7 @@ let make = (~site: option<Shape.Site.t>, ~onClose, ~onSubmit) => {
                 type_="button"
                 className="btn btn-xs xl:btn-sm -mr-2"
                 onClick={_ => pasteFromClipboard()->ignore}>
-                <Outline.ClipboardListIcon className="size-4" />
+                <Icon.clipboardText className="size-4" />
               </button>
             </label>
           </FormControl>

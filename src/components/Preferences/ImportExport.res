@@ -1,5 +1,3 @@
-open Heroicons
-
 module Helper = {
   let makeName = name => `${name}-${Date.make()->Date.toDateString->String.replaceAll(" ", "-")}`
 
@@ -48,7 +46,7 @@ module Item = {
           <p className="title text-base-content/80"> {info->React.string} </p>
         </div>
         <button type_="button" className="btn btn-primary resp-btn" onClick=onExport>
-          <Outline.DocumentDownloadIcon className="resp-icon" />
+          <Icon.fileArrowDown className="resp-icon" />
           {"Export"->React.string}
         </button>
       </div>

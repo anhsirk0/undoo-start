@@ -1,5 +1,3 @@
-open Heroicons
-
 @react.component
 let make = () => {
   let store = Store.Options.use()
@@ -9,11 +7,7 @@ let make = () => {
     ReactEvent.Form.preventDefault(evt)
     let title = ReactEvent.Form.target(evt)["title"]["value"]
 
-    store.addPage({
-      title,
-      id: Date.now(),
-      sites: [],
-    })
+    store.addPage({title, id: Date.now(), sites: []})
     toggleOpen()
   }
 
@@ -22,7 +16,7 @@ let make = () => {
       ariaLabel="add-page-btn"
       onClick={_ => toggleOpen()}
       className={`btn btn-xs btn-square ${isOpen ? "btn-accent" : "btn-ghost"} mt-1`}>
-      <Solid.PlusIcon className="size-6" />
+      <Icon.plus className="size-6" />
     </button>
     {isOpen
       ? <Modal title="New Page" onClose=toggleOpen>

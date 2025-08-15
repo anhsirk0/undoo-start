@@ -1,5 +1,3 @@
-open Heroicons
-
 @react.component
 let make = (~link: Shape.Link.t) => {
   let store = Store.Options.use()
@@ -42,10 +40,10 @@ let make = (~link: Shape.Link.t) => {
             onClick={stopEvent}
             className="absolute top-0 right-0 hidden group-hover:flex 2xl:p-2 h-full bg-neutral rounded-btn">
             <button onClick=toggleEditing className="btn btn-sm btn-circle btn-ghost">
-              <Solid.PencilIcon className="resp-icon" />
+              <Icon.pencil className="resp-icon" />
             </button>
             <button onClick=onDelete className="btn btn-sm btn-circle btn-ghost">
-              <Solid.TrashIcon className="resp-icon text-error" />
+              <Icon.trash className="resp-icon text-error" />
             </button>
           </div>
         </div>
