@@ -1,5 +1,3 @@
-%%raw("import 'react-toastify/dist/ReactToastify.css'")
-
 open ReactEvent
 
 @react.component
@@ -114,7 +112,7 @@ let make = () => {
   }, [view])
 
   <div onContextMenu onWheel className="main flex-col p-8 relative">
-    <Toast.container pauseOnFocusLoss=false position="bottom-right" />
+    <Toast.Toaster />
     <BackgroundImage />
     {store.options.hideEditButton
       ? React.null

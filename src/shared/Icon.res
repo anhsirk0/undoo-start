@@ -1,4 +1,4 @@
-type props = {className?: string, weight?: string}
+type props = {className?: string, weight?: string, width?: string}
 type t = React.component<props>
 
 @module("@phosphor-icons/react") external sparkle: t = "SparkleIcon"
@@ -10,9 +10,12 @@ type t = React.component<props>
 @module("@phosphor-icons/react") external x: t = "XIcon"
 @module("@phosphor-icons/react") external magnifyingGlass: t = "MagnifyingGlassIcon"
 @module("@phosphor-icons/react") external check: t = "CheckIcon"
+@module("@phosphor-icons/react") external checkCircle: t = "CheckCircleIcon"
 @module("@phosphor-icons/react") external link: t = "LinkIcon"
 @module("@phosphor-icons/react") external gear: t = "GearIcon"
 @module("@phosphor-icons/react") external arrowLeft: t = "ArrowLeftIcon"
 @module("@phosphor-icons/react") external arrowRight: t = "ArrowRightIcon"
 @module("@phosphor-icons/react") external fileArrowDown: t = "FileArrowDownIcon"
 @module("@phosphor-icons/react") external clipboardText: t = "ClipboardTextIcon"
+@module("@phosphor-icons/react") external warning: t = "WarningIcon"
+@module("@phosphor-icons/react") external warningCircle: t = "WarningCircleIcon"
