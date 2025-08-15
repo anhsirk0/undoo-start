@@ -21,9 +21,7 @@ let make = (~page: Shape.Page.t, ~afterDelete, ~isEditing, ~isVisiting, ~query, 
 
   <React.Fragment>
     <SearchBar query setQuery />
-    <div
-      className="grow main-width ml-12 p-4 lg:py-4 2xl:py-8 2xl:mt-12 min-h-0 overflow-y-auto"
-      onWheel>
+    <div className="grow main-width ml-12 p-4 lg:py-4 2xl:py-8 min-h-0 overflow-y-auto" onWheel>
       {isEditing
         ? <div
             role="button"

@@ -44,7 +44,8 @@ let make = (~page: Shape.Page.t, ~isEditing, ~isVisiting) => {
   })
 
   <React.Fragment>
-    <div className="grid grid-cols-12 gap-4 lg:gap-6 xl:gap-8 2xl:gap-12 w-full animate-fade">
+    <div
+      className="grid grid-cols-12 gap-4 lg:gap-6 xl:gap-8 2xl:gap-12 w-full animate-fade my-auto">
       {React.array(cards)}
     </div>
     <AddSiteButton addSite />

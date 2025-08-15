@@ -22,7 +22,7 @@ let make = (~chosen, ~onChoose, ~isIconError) => {
 
   <React.Fragment>
     {isIconError
-      ? <p className="label text-error -mt-2">
+      ? <p className="label text-error">
           {React.string("Enter an icon label or url or choose from the following icons.")}
         </p>
       : React.null}
