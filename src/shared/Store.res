@@ -46,7 +46,7 @@ module Options = {
     hideOptionsButton: false,
     hideThemeButton: false,
     alwaysShowHints: false,
-    alwaysShowSidebar: false,
+    alwaysShowSidebar: true,
     openLinkInNewTab: true,
     circleIcons: false,
   }

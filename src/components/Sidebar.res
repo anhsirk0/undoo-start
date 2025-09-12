@@ -25,7 +25,7 @@ let make = (~view: Shape.View.t, ~setView, ~isEditing) => {
             onClick={_ => setView(_ => Shape.View.Searcher)}
             ariaLabel="searcher-btn"
             className={`btn btn-xs btn-square ${view == Searcher ? "btn-primary" : "btn-ghost"}`}>
-            <Icon.magnifyingGlass className="size-4" />
+            <Icon.magnifyingGlass className="size-5" />
           </button>
         : React.null}
       <button
@@ -35,14 +35,14 @@ let make = (~view: Shape.View.t, ~setView, ~isEditing) => {
         className={`btn btn-xs btn-square ${isPrefsOpen
             ? "btn-accent"
             : "btn-ghost"} ${options.hideOptionsButton ? "opacity-0" : ""}`}>
-        <Icon.gear className="size-4" />
+        <Icon.gear className="size-5" />
       </button>
       <button
         ariaLabel="select-theme-btn"
         id="theme-btn"
         onClick={_ => toggleThemeOpen()}
         className={`btn btn-ghost btn-xs btn-square ${options.hideThemeButton ? "opacity-0" : ""}`}>
-        <Icon.palette className="size-4" />
+        <Icon.palette className="size-5" />
       </button>
     </div>
     {isPrefsOpen ? <Preferences onClose=togglePrefsOpen /> : React.null}

@@ -3,11 +3,11 @@ let make = (~view: Shape.View.t, ~setView) => {
   let store = Store.Options.use()
 
   let pagesBtns = Array.map(store.pages, p => {
-    let btnClass = view == Page(p.id) ? "btn-primary" : "btn-outline btn-primary"
+    let btnClass = view == Page(p.id) ? "bg-base-content" : "bg-base-content/20"
 
     <button
       key={p.id->Float.toString}
-      className={`btn btn-xs btn-square center ${btnClass} no-animation`}
+      className={`btn btn-xs btn-circle center ${btnClass} no-animation`}
       onClick={_ => setView(_ => Shape.View.Page(p.id))}
     />
   })
