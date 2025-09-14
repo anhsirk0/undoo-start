@@ -119,6 +119,7 @@ let capitalize = str =>
   str->String.charAt(0)->String.toUpperCase ++ str->String.sliceToEnd(~start=1)
 
 let toTitleCase = str => str->String.split(" ")->Array.map(capitalize)->Array.join(" ")
+let searchContains = (q, text) => text->String.toLowerCase->String.includes(q->String.toLowerCase)
 
 let makeTitleFromUrl = url => {
   let base =

@@ -1,7 +1,10 @@
 @react.component
-let make = (~label, ~children) => {
+let make = (~label=?, ~children) => {
   <div className="fieldset w-full flex-col">
-    <legend className="fieldset-legend"> {label->React.string} </legend>
+    {switch label {
+    | Some(label) => <legend className="fieldset-legend"> {label->React.string} </legend>
+    | None => React.null
+    }}
     {children}
   </div>
 }
