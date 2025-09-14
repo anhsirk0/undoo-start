@@ -12,14 +12,6 @@ let make = (~view: Shape.View.t, ~setView, ~isEditing) => {
       {!options.hidePageSwitcher ? <PageSwitcher view setView /> : React.null}
       {isEditing ? <AddPageButton /> : React.null}
       <div className="grow" />
-      {!options.hideLinksButton
-        ? <button
-            onClick={_ => setView(_ => Shape.View.SavedLinks)}
-            ariaLabel="saved-links-btn"
-            className={`btn btn-xs btn-square ${view == SavedLinks ? "btn-primary" : "btn-ghost"}`}>
-            <Icon.link className="resp-icon" />
-          </button>
-        : React.null}
       {!options.hideSearcherButton
         ? <button
             onClick={_ => setView(_ => Shape.View.Searcher)}

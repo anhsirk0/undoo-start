@@ -42,7 +42,6 @@ let make = (~onClose) => {
     let openLinkInNewTab = target["link-in-new-tab"]["checked"]
     let showPageTitle = target["page-title-in-document-title"]["checked"]
     let hideSearcherButton = target["hide-searcher-btn"]["checked"]
-    let hideLinksButton = target["hide-links-btn"]["checked"]
     let hideEditButton = target["hide-edit-btn"]["checked"]
     let hideAddButton = target["hide-add-btn"]["checked"]
     let hideOptionsButton = target["hide-options-btn"]["checked"]
@@ -56,7 +55,6 @@ let make = (~onClose) => {
       title,
       showPageTitle,
       hideSearcherButton,
-      hideLinksButton,
       hideEditButton,
       hideAddButton,
       hideOptionsButton,
@@ -101,7 +99,6 @@ let make = (~onClose) => {
           label="Hide Searcher button"
           shortKey="?"
         />
-        <Item name="hide-links-btn" value=options.hideLinksButton label="Hide Saved Links button" />
       </div>
       <div
         className="col-span-1 flex flex-col gap-2 2xl:gap-4 h-full border border-base-content/20 rounded-box p-4">

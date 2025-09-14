@@ -16,6 +16,66 @@ module Site = {
     showLabel: true,
   }
 
+  let guessIconFromUrl = url => {
+    if url->String.includes("duckduckgo.com") || url->String.includes("duck.ai") {
+      SvgIcon.duckduckgoLogo
+    } else if url->String.includes("lichess.org") {
+      SvgIcon.lichessLogo
+    } else if url->String.includes("whatsapp.com") {
+      SvgIcon.whatsappLogo
+    } else if url->String.includes("github.com") {
+      SvgIcon.githubLogo
+    } else if url->String.includes("codeberg.org") {
+      SvgIcon.codebergLogo
+    } else if url->String.includes("netflix.com") {
+      SvgIcon.netflixLogo
+    } else if url->String.includes("reddit.com") {
+      SvgIcon.redditLogo
+    } else if url->String.includes("instagram.com") {
+      SvgIcon.instagramLogo
+    } else if url->String.includes("facebook.com") {
+      SvgIcon.facebookLogo
+    } else if url->String.includes("mail.google") {
+      SvgIcon.gmailLogo
+    } else if url->String.includes("spotify.com") {
+      SvgIcon.spotifyLogo
+    } else if url->String.includes("x.com") {
+      SvgIcon.xLogo
+    } else if url->String.includes("discord.com") {
+      SvgIcon.discordLogo
+    } else if url->String.includes("chatgpt.com") {
+      SvgIcon.openaiLogo
+    } else if url->String.includes("drive.google") {
+      SvgIcon.driveLogo
+    } else if url->String.includes("duolingo.com") {
+      SvgIcon.duolingoLogo
+    } else if url->String.includes("9gag.com") {
+      SvgIcon.nineGagLogo
+    } else if url->String.includes("amazon.") {
+      SvgIcon.amazonLogo
+    } else if url->String.includes("mangadex.org") {
+      SvgIcon.mangadexLogo
+    } else if url->String.includes("yandex.com") && url->String.includes("mail") {
+      SvgIcon.yandexLogo
+    } else if url->String.includes("yandex.com") {
+      SvgIcon.yandexLogo
+    } else {
+      SvgIcon.navigation
+    }
+  }
+
+  let fromBookmark = (item: Bookmarks.item, idx) => {
+    let id = Date.now() +. idx->Int.toFloat
+    let icon = item.url->guessIconFromUrl
+    {
+      id,
+      title: item.title,
+      url: item.url,
+      icon,
+      showLabel: icon == SvgIcon.navigation,
+    }
+  }
+
   let defaultSites: array<t> = [
     {
       id: 0.,
@@ -120,6 +180,10 @@ module Page = {
       sites: Site.defaultSites,
     },
   ]
+
+  let fromTopSites: array<Bookmarks.item> => array<t> = sites => [
+    {id: 0., title: "Home", sites: sites->Array.mapWithIndex(Site.fromBookmark)},
+  ]
 }
 
 module Icon = {
@@ -205,16 +269,12 @@ module SearchEngine = {
   ]
 }
 
-module Link = {
-  type t = {id: float, title: string, url: string}
-}
-
 module OptionTabs = {
   type t = General | Background | ImportExport | SearchEngine
 }
 
 module View = {
-  type t = Page(float) | Searcher | SavedLinks
+  type t = Page(float) | Searcher | Loading
   let first = pages => pages[0]->Option.map((p: Page.t) => Page(p.id))->Option.getOr(Searcher)
 }
 

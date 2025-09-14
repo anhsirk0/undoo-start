@@ -64,7 +64,7 @@ let make = (~site: option<Shape.Site.t>, ~onClose, ~onSubmit) => {
   let data = site->Option.getOr(Shape.Site.empty)
 
   React.useEffect0(() => {
-    Bookmarks.getAll()->Promise.then(async arr => setBookmarks(_ => arr))->ignore
+    Browser.getAllBookmarks()->Promise.then(async arr => setBookmarks(_ => arr))->ignore
     None
   })
 

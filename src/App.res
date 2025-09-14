@@ -6,7 +6,7 @@ let make = () => {
   let firstView = () => store.pages->Shape.View.first
 
   let findPage = id => store.pages->Array.find(p => p.id == id)
-  let (view, setView) = React.useState(_ => firstView())
+  let (view, setView) = React.useState(_ => store.pages->Array.length > 0 ? firstView() : Loading)
   let (query, setQuery) = React.useState(_ => "")
 
   let (isEditing, setIsEditing) = React.useState(_ => false)
@@ -38,7 +38,7 @@ let make = () => {
         }
       // Todo: Enable scrolling through other views
       | Searcher => firstView()
-      | SavedLinks => firstView()
+      | Loading => Loading
       }
       setView(_ => nextView)
 
@@ -89,7 +89,6 @@ let make = () => {
         | Page(id) => id->findPage->Option.flatMap(p => p.sites[keyCode])
         | _ => None
         }
-
         switch site {
         | Some(s) => {
             let id = "#site-" ++ s.id->Float.toString
@@ -111,6 +110,20 @@ let make = () => {
     Some(() => Document.removeKeyListener("keydown", onKeyDown))
   }, [view])
 
+  React.useEffect0(() => {
+    if store.pages->Array.length == 0 {
+      Browser.getTopSites()
+      ->Promise.then(async sites => {
+        let pages =
+          sites->Array.length > 0 ? sites->Shape.Page.fromTopSites : Shape.Page.defaultPages
+        pages->store.setPages
+        setTimeout(() => setView(_ => pages->Shape.View.first), 100)
+      })
+      ->ignore
+    }
+    None
+  })
+
   <div onContextMenu onWheel className="main flex-col p-8 relative">
     <Toast.Toaster />
     <BackgroundImage />
@@ -126,6 +139,7 @@ let make = () => {
         </button>}
     <Sidebar view setView isEditing />
     {switch view {
+    | Loading => React.null
     | Page(id) =>
       switch id->findPage {
       | Some(page) =>
@@ -133,7 +147,6 @@ let make = () => {
       | None => React.null
       }
     | Searcher => <Searcher isEditing query setQuery />
-    | SavedLinks => <SavedLinks />
     }}
   </div>
 }

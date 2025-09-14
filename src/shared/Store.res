@@ -23,7 +23,6 @@ module Options = {
     title: string,
     showPageTitle: bool,
     hideSearcherButton: bool,
-    hideLinksButton: bool,
     hideEditButton: bool,
     hideAddButton: bool,
     hidePageSwitcher: bool,
@@ -39,7 +38,6 @@ module Options = {
     title: "Undoo Startpage",
     showPageTitle: true,
     hideSearcherButton: false,
-    hideLinksButton: true,
     hideEditButton: false,
     hideAddButton: false,
     hidePageSwitcher: false,
@@ -69,7 +67,8 @@ module Options = {
       updateOptions: options => set(.state => {...state, options}),
       searchEngineIdx: 0,
       updateSearchEngineIdx: idx => set(.state => {...state, searchEngineIdx: idx}),
-      pages: Shape.Page.defaultPages,
+      // pages: Shape.Page.defaultPages,
+      pages: [],
       addPage: page => set(.state => {...state, pages: state.pages->Array.concat([page])}),
       updatePage: page =>
         set(.state => {
@@ -189,35 +188,6 @@ module SearchEngine = {
       deleteEngine: id =>
         set(.state => {...state, engines: state.engines->Array.filter(e => e.id != id)}),
     }, {name: "undoo-search-engines"}))
-
-  let use = _ => store->AppStore.use(state => state)
-}
-
-module Link = {
-  module StoreData = {
-    type state = {
-      links: array<Shape.Link.t>,
-      addLink: Shape.Link.t => unit,
-      updateLink: Shape.Link.t => unit,
-      deleteLink: float => unit,
-    }
-  }
-
-  module AppStore = Zustand.MakeStore(StoreData)
-  let store = AppStore.create(AppStore.persist(set => {
-      links: [],
-      addLink: link => set(.state => {...state, links: state.links->Array.concat([link])}),
-      updateLink: link =>
-        set(.state => {
-          ...state,
-          links: state.links->Array.map(l => l.id == link.id ? link : l),
-        }),
-      deleteLink: id =>
-        set(.state => {
-          ...state,
-          links: state.links->Array.filter(l => l.id != id),
-        }),
-    }, {name: "undoo-links"}))
 
   let use = _ => store->AppStore.use(state => state)
 }
