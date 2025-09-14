@@ -2,8 +2,8 @@
   "name": "Undoo Startpage",
   "short_name": "Undoo",
   "manifest_version": 3,
-  "version": "11.0.0",
-  "permissions": ["storage"],
+  "version": "12.0.0",
+  "permissions": ["storage", "bookmarks"],
   "chrome_url_overrides": {
     "newtab": "index.html"
   },
