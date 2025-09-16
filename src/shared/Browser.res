@@ -30,14 +30,15 @@ let getAllBookmarks = async () => {
   }
 }
 
-@get external topSites: t => topSites = "topSites"
+@get external topSites: t => option<topSites> = "topSites"
 @send external topSitesGet: topSites => promise<array<Bookmarks.item>> = "get"
 
 let getTopSites = async () => {
   switch make() {
-  | Some(browser) => {
-      let sites = await browser->topSites->topSitesGet
-      sites
+  | Some(browser) =>
+    switch browser->topSites {
+    | Some(sites) => await sites->topSitesGet
+    | None => []
     }
   | None => []
   }
