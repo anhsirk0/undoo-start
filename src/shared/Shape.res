@@ -211,6 +211,8 @@ module Icon = {
     {id: 44., title: "Navigation", src: SvgIcon.navigation},
     {id: 45., title: "ColorSquare", src: SvgIcon.colorSquare},
     {id: 46., title: "Menu", src: SvgIcon.menu},
+    {id: 47., title: "Star", src: SvgIcon.star},
+    {id: 48., title: "Clock", src: SvgIcon.clock},
     {id: 100., title: "Svelte", src: SvgIcon.svelteLogo},
     {id: 101., title: "React", src: SvgIcon.reactLogo},
     {id: 102., title: "Vue", src: SvgIcon.vueLogo},

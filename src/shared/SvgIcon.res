@@ -48,3 +48,5 @@
 @module("../assets/navigation.svg") external navigation: string = "default"
 @module("../assets/color-square.svg") external colorSquare: string = "default"
 @module("../assets/menu.svg") external menu: string = "default"
+@module("../assets/star.svg") external star: string = "default"
+@module("../assets/clock.svg") external clock: string = "default"

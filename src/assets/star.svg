@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="800"
+   height="800"
+   version="1.1"
+   viewBox="0 0 800 800"
+   id="svg4"
+   sodipodi:docname="staruml.svg"
+   inkscape:version="1.4.2 (ebf0e940d0, 2025-05-08)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview4"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="0.7724891"
+     inkscape:cx="358.58111"
+     inkscape:cy="433.66308"
+     inkscape:window-width="1920"
+     inkscape:window-height="1058"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg4" />
+  <defs
+     id="defs2">
+    <filter
+       id="filter1057-3"
+       x="-0.026999999"
+       y="-0.026999999"
+       width="1.054"
+       height="1.054"
+       color-interpolation-filters="sRGB">
+      <feGaussianBlur
+         stdDeviation="0.61875"
+         id="feGaussianBlur1" />
+    </filter>
+    <linearGradient
+       id="linearGradient1068"
+       x1="1.3315001"
+       x2="13.449"
+       y1="15.576"
+       y2="3.4588001"
+       gradientTransform="matrix(67.61962,0,0,67.61962,-171.04988,-161.49443)"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         stop-color="#3caaff"
+         offset="0"
+         id="stop1" />
+      <stop
+         stop-color="#b496ff"
+         offset="1"
+         id="stop2" />
+    </linearGradient>
+  </defs>
+  <g
+     transform="translate(1,1)"
+     id="g3">
+    <g
+       opacity="0.1"
+       id="g2">
+      <!-- color: #3a569c -->
+    </g>
+  </g>
+  <path
+     id="path3"
+     style="fill:url(#linearGradient1068)"
+     d="M 0 0 L 0 800 L 800 800 L 800 0 L 0 0 z " />
+  <image
+     x="119.66879"
+     y="156.76152"
+     width="563.69122"
+     height="536.20856"
+     image-rendering="optimizeQuality"
+     preserveAspectRatio="none"
+     xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACkAAAAnCAYAAACSamGGAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAA GXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm+48GgAAAqFJREFUWIXVmOlywyAMhNdHkvd/ 3CY++sNsWRSBD2im1YwGx7Hlz0JIwsA/kK6xLbW3Bm1iuIUNah/GFcCCCFoFO1YCUvpgawjHC4AZ wBTGKhkq76f3bgDuAB5hHBA9Wj3ltZ7sAtCIDY6Ac/hvQTrtH4dkHA7YPEntg64BlkrPfhxyQPSk xmRnzg2o8ObVmNRYZBzeEGORWYNgnPZLcgWSEBqH9/CbXuR1CsjY/BXIzlGmHAJ6XlTxILvC9Yl4 Mdk5x2qsD0CE8wA5Ml5viNM94z3J58Y3SM9jXjVRSM2J1iO6+u/yghP8ipQ79wOpIIOohVPV1Zub MkLyeMTmScLoSJ3kGgBYO2OMccYpJFDOo/pfTqyXFuccjycALwBPgV2tJxk/D6Sr1YtNO+ZE43OV UV+AkPR6UgC8mNQpz3nqbPdkX8imIlanFekMAYgxaZOupotDaeIitD7be/4KpEGtBmzM2WtaiY3H Z9AXomfdZF5KuC1BCTgjLhaqZoAspAUFNq+2ArWAX0G5qpPqlCuLHmirqT8FCLyXxdKexObJGll2 AJPnlxoMzWVM9kcTeMkm9z+EfAmg28713kkR3VDRUAvR8udOsUqpM/eqQouNVamhcGXPkxTbEdXI aVtHIFsCXrK5txHzup+9jsfen7Npu6tLMalGvW7IguWKgB4Txiu7WSlB5jpz+9a2ceV/7KZ4r2f3 kDfPehKIntCcp999NK+ykVZY/t80Jq3ohopwTMgWkk20fiTgi+495zCkxhsTcCfHCqhJWZvnycD2 SHOkB30KEkh7PX7G0yqkJU0XT4/o7VFgB2Njt4od2Z/otx77IUo7acBf3brD1F2ozsaMgjePQHop SFe0hcs9Q3eZvMeWxkuQek0uNx6VVnb+pnwDaVknuVVPiVgAAAAASUVORK5CYII= "
+     id="image3" />
+  <path
+     d="m 401.75504,181.53582 c -10.60827,-0.12236 -20.34326,5.85881 -25.02728,15.3774 l -56.06254,113.68413 -125.47461,18.24253 c -22.61035,3.28582 -31.61681,31.08887 -15.22754,47.00795 l 90.81532,88.43 -21.395,124.98656 c -3.815,22.46461 19.74521,39.57841 39.92899,29.00602 L 401.52545,559.23 513.74952,618.21816 c 20.23189,10.6498 43.88023,-6.56712 39.96061,-29.09263 L 532.22714,464.22697 622.97509,375.7241 c 16.34665,-15.93695 7.31901,-43.70013 -15.27428,-46.97496 L 482.2152,310.51761 426.11141,196.8596 c -4.59218,-9.28157 -14.00257,-15.2028 -24.35774,-15.32516 z"
+     color="#000000"
+     color-rendering="auto"
+     dominant-baseline="auto"
+     fill="#ffffff"
+     image-rendering="auto"
+     shape-rendering="auto"
+     solid-color="#000000"
+     stroke-width="51.9628"
+     style="font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;text-transform:none;text-orientation:mixed;white-space:normal;shape-padding:0;isolation:auto;mix-blend-mode:normal"
+     id="path4" />
+</svg>
