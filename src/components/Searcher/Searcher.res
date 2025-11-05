@@ -1,6 +1,7 @@
 @react.component
-let make = (~isEditing, ~query, ~setQuery) => {
+let make = (~query, ~setQuery) => {
   Hook.useDocTitle(Some("Searcher"))
+  let {isEditing} = Store.View.use()
 
   let onChange = evt => {
     let target = ReactEvent.Form.target(evt)

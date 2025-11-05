@@ -273,12 +273,19 @@ module OptionTabs = {
   type t = General | Background | ImportExport | SearchEngine
 }
 
-module View = {
-  type t = Page(float) | Searcher | Loading
-  let first = pages => pages[0]->Option.map((p: Page.t) => Page(p.id))->Option.getOr(Searcher)
+module Action = {
+  type t = Searcher | History | Bookmarks
+  let fromUrlString = str =>
+    switch str {
+    | "action:searcher" => Some(Searcher)
+    | "action:history" => Some(History)
+    | "action:bookmarks" => Some(Bookmarks)
+    | _ => None
+    }
 }
 
-// module Shadow = {
-//   type size = Xxl | Xl | Md | Sm | Off
-//   type color = Primary | Secondary | Accent | Neutral | Default
-// }
+module View = {
+  type t = Page(float) | Action(Action.t) | Loading
+  let first = pages =>
+    pages[0]->Option.map((p: Page.t) => Page(p.id))->Option.getOr(Action(Searcher))
+}

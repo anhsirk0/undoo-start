@@ -1,8 +1,9 @@
 open ReactEvent
 
 @react.component
-let make = (~page: Shape.Page.t, ~afterDelete, ~isEditing, ~isVisiting, ~query, ~setQuery) => {
+let make = (~page: Shape.Page.t, ~afterDelete, ~query, ~setQuery) => {
   Hook.useDocTitle(Some(page.title))
+  let {isEditing, isVisiting} = Store.View.use()
 
   let (isOpen, toggleOpen, _) = Hook.useToggle()
 

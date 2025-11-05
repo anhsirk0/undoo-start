@@ -18,6 +18,32 @@ module Zustand = {
   }
 }
 
+module View = {
+  module StoreData = {
+    type state = {
+      isEditing: bool,
+      isVisiting: bool,
+      view: Shape.View.t,
+      setView: Shape.View.t => unit,
+      setIsEditing: bool => unit,
+      setIsVisiting: bool => unit,
+    }
+  }
+
+  module AppStore = Zustand.MakeStore(StoreData)
+
+  let store = AppStore.create(set => {
+    view: Loading,
+    setView: view => set(.state => {...state, view}),
+    isEditing: false,
+    isVisiting: false,
+    setIsEditing: isEditing => set(.state => {...state, isEditing}),
+    setIsVisiting: isVisiting => set(.state => {...state, isVisiting}),
+  })
+
+  let use = _ => store->AppStore.use(state => state)
+}
+
 module Options = {
   type t = {
     title: string,

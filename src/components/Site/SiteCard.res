@@ -1,3 +1,13 @@
+module IconImage = {
+  @react.component
+  let make = (~site: Shape.Site.t) => {
+    <img
+      className="size-full object-cover absolute inset-0 -z-1 group-hover:scale-105 transitional scale-[1.03]"
+      src=site.icon
+      alt=site.title
+    />
+  }
+}
 module LabelIcon = {
   @react.component
   let make = (~site: Shape.Site.t) => {
@@ -53,6 +63,8 @@ module SiteHint = {
 @react.component
 let make = (~site: Shape.Site.t, ~isEditing, ~updateSite, ~children, ~index) => {
   let {options} = Store.Options.use()
+  let {setView} = Store.View.use()
+
   let (isOpen, toggleOpen, _) = Hook.useToggle()
 
   let isIconUrl = Utils.startsWith(site.icon, ["http", "/src", "/assets", "data:image"])
@@ -68,16 +80,21 @@ let make = (~site: Shape.Site.t, ~isEditing, ~updateSite, ~children, ~index) => 
       <div
         id={"site-" ++ site.id->Float.toString}
         className={`card w-full isolate has-[a:active]:animate-shake overflow-hidden mx-auto ${cardSize} ${radius}`}>
-        <a href=site.url target className="relative size-full group cursor-pointer">
-          {isIconUrl
-            ? <img
-                className="size-full object-cover absolute inset-0 -z-1 group-hover:scale-105 transitional scale-[1.03]"
-                src=site.icon
-                alt=site.title
-              />
-            : <LabelIcon site />}
-          <SiteLabel title=site.title show=site.showLabel circleIcons=options.circleIcons />
-        </a>
+        {switch site.url->Shape.Action.fromUrlString {
+        | Some(Searcher) =>
+          <div
+            tabIndex=0
+            onClick={_ => setView(Action(Searcher))}
+            className="relative size-full group cursor-pointer">
+            <IconImage site />
+            <SiteLabel title=site.title show=site.showLabel circleIcons=options.circleIcons />
+          </div>
+        | _ =>
+          <a href=site.url target className="relative size-full group cursor-pointer">
+            {isIconUrl ? <IconImage site /> : <LabelIcon site />}
+            <SiteLabel title=site.title show=site.showLabel circleIcons=options.circleIcons />
+          </a>
+        }}
         {switch index {
         | Some(idx) => <SiteHint idx circleIcons=options.circleIcons />
         | None => React.null

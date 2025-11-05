@@ -3,20 +3,19 @@ open ReactEvent
 @react.component
 let make = () => {
   let store = Store.Options.use()
+  let {view, setView, isEditing, setIsEditing, setIsVisiting} = Store.View.use()
   let firstView = () => store.pages->Shape.View.first
 
   let findPage = id => store.pages->Array.find(p => p.id == id)
-  let (view, setView) = React.useState(_ => store.pages->Array.length > 0 ? firstView() : Loading)
+  // let (view, setView) = React.useState(_ => store.pages->Array.length > 0 ? firstView() : Loading)
   let (query, setQuery) = React.useState(_ => "")
 
-  let (isEditing, setIsEditing) = React.useState(_ => false)
-  let (isVisiting, setIsVisiting) = React.useState(_ => false)
   let (isDebounced, setIsDebounced) = React.useState(_ => true)
 
-  let afterDelete = pages => setView(_ => pages->Shape.View.first)
+  let afterDelete = pages => setView(pages->Shape.View.first)
 
   let onContextMenu = evt => {
-    setIsEditing(v => !v)
+    setIsEditing(!isEditing)
     Mouse.preventDefault(evt)
   }
 
@@ -37,10 +36,10 @@ let make = () => {
           ->Option.getOr(firstView())
         }
       // Todo: Enable scrolling through other views
-      | Searcher => firstView()
+      | Action(_) => firstView()
       | Loading => Loading
       }
-      setView(_ => nextView)
+      setView(nextView)
 
       let _ = setTimeout(_ => setIsDebounced(_ => true), 200)
     }
@@ -60,14 +59,14 @@ let make = () => {
           "#close-btn"->Utils.querySelectAndThen(Utils.click)
         }
       } else if key == " " {
-        setIsVisiting(_ => true)
-        let _ = setTimeout(_ => setIsVisiting(_ => false), 2000)
+        setIsVisiting(true)
+        let _ = setTimeout(_ => setIsVisiting(false), 2000)
       } else if key == "/" {
         "input[name='query']"->Utils.querySelectAndThen(Utils.focus)
       } else if key == "?" {
-        setView(_ => Searcher)
+        setView(Action(Searcher))
       } else if key == "-" {
-        setIsEditing(val => !val)
+        setIsEditing(!isEditing)
       } else if key == "=" || key == "+" {
         "#add-btn"->Utils.querySelectAndThen(Utils.click)
       } else if key == "." {
@@ -78,7 +77,7 @@ let make = () => {
         switch digit->Option.filter(i => i > 0 && i <= store.pages->Array.length) {
         | Some(i) =>
           switch store.pages[i - 1] {
-          | Some(p) => setView(_ => Page(p.id))
+          | Some(p) => setView(Page(p.id))
           | None => ()
           }
         | None => ()
@@ -97,7 +96,12 @@ let make = () => {
               let _ = setTimeout(_ => el->Utils.removeClass("animate-shake"), 800)
             })
             let target = store.options.openLinkInNewTab ? "_blank" : "_self"
-            Utils.openUrl(s.url, target)
+            switch s.url->Shape.Action.fromUrlString {
+            | Some(Searcher) => setView(Action(Searcher))
+            | Some(History) => setView(Action(Searcher))
+            | Some(Bookmarks) => setView(Action(Searcher))
+            | None => Utils.openUrl(s.url, target)
+            }
           }
         | None => ()
         }
@@ -117,9 +121,11 @@ let make = () => {
         let pages =
           sites->Array.length > 0 ? sites->Shape.Page.fromTopSites : Shape.Page.defaultPages
         pages->store.setPages
-        setTimeout(() => setView(_ => pages->Shape.View.first), 100)
+        setTimeout(() => setView(pages->Shape.View.first), 100)
       })
       ->ignore
+    } else {
+      setView(firstView())
     }
     None
   })
@@ -131,22 +137,23 @@ let make = () => {
       ? React.null
       : <button
           ariaLabel="toggle-edit-mode-btn"
-          onClick={_ => setIsEditing(val => !val)}
+          onClick={_ => setIsEditing(!isEditing)}
           className={`fixed top-2 right-2 btn btn-circle btn-resp ${isEditing
               ? "btn-accent"
               : "btn-ghost"}`}>
           <Icon.pencil className="resp-icon" />
         </button>}
-    <Sidebar view setView isEditing />
+    <Sidebar />
     {switch view {
     | Loading => React.null
     | Page(id) =>
       switch id->findPage {
-      | Some(page) =>
-        <PageView page key=page.title isEditing isVisiting afterDelete query setQuery />
+      | Some(page) => <PageView page key=page.title afterDelete query setQuery />
       | None => React.null
       }
-    | Searcher => <Searcher isEditing query setQuery />
+    | Action(Searcher) => <Searcher query setQuery />
+    // Todo: Implement Bookmark/History actions
+    | Action(_) => React.null
     }}
   </div>
 }

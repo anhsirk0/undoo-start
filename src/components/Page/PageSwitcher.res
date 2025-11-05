@@ -1,6 +1,7 @@
 @react.component
-let make = (~view: Shape.View.t, ~setView) => {
+let make = () => {
   let store = Store.Options.use()
+  let {view, setView} = Store.View.use()
 
   let pagesBtns = Array.map(store.pages, p => {
     let btnClass = view == Page(p.id) ? "bg-base-content" : "bg-base-content/20"
@@ -8,7 +9,7 @@ let make = (~view: Shape.View.t, ~setView) => {
     <button
       key={p.id->Float.toString}
       className={`btn btn-xs btn-circle center ${btnClass} no-animation`}
-      onClick={_ => setView(_ => Shape.View.Page(p.id))}
+      onClick={_ => setView(Shape.View.Page(p.id))}
     />
   })
 
