@@ -81,10 +81,10 @@ let make = (~site: Shape.Site.t, ~isEditing, ~updateSite, ~children, ~index) => 
         id={"site-" ++ site.id->Float.toString}
         className={`card w-full isolate has-[a:active]:animate-shake overflow-hidden mx-auto ${cardSize} ${radius}`}>
         {switch site.url->Shape.Action.fromUrlString {
-        | Some(Searcher) =>
+        | Some(action) =>
           <div
             tabIndex=0
-            onClick={_ => setView(Action(Searcher))}
+            onClick={_ => setView(Action(action))}
             className="relative size-full group cursor-pointer">
             <IconImage site />
             <SiteLabel title=site.title show=site.showLabel circleIcons=options.circleIcons />

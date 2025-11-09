@@ -19,3 +19,5 @@ type t = React.component<props>
 @module("@phosphor-icons/react") external clipboardText: t = "ClipboardTextIcon"
 @module("@phosphor-icons/react") external warning: t = "WarningIcon"
 @module("@phosphor-icons/react") external warningCircle: t = "WarningCircleIcon"
+@module("@phosphor-icons/react") external folder: t = "FolderIcon"
+@module("@phosphor-icons/react") external folderOpen: t = "FolderOpenIcon"

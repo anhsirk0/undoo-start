@@ -133,7 +133,7 @@ let make = () => {
   <div onContextMenu onWheel className="main flex-col p-8 relative">
     <Toast.Toaster />
     <BackgroundImage />
-    {store.options.hideEditButton
+    {store.options.hideEditButton || view == Action(Bookmarks)
       ? React.null
       : <button
           ariaLabel="toggle-edit-mode-btn"
@@ -152,8 +152,9 @@ let make = () => {
       | None => React.null
       }
     | Action(Searcher) => <Searcher query setQuery />
-    // Todo: Implement Bookmark/History actions
-    | Action(_) => React.null
+    | Action(Bookmarks) => <BookmarksView />
+    // Todo: Implement History actions
+    | Action(History) => React.null
     }}
   </div>
 }

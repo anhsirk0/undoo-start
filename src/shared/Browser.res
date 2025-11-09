@@ -17,15 +17,27 @@ let make = () => {
   }
 }
 
-@get external bookmarks: t => promise<Bookmarks.t> = "bookmarks"
+@get external bookmarks: t => option<promise<Bookmarks.t>> = "bookmarks"
+
+let getBookmarkTree = async () => {
+  switch make() {
+  | Some(browser) =>
+    switch browser->bookmarks {
+    | Some(fn) => {
+        let bookmarks = await fn
+        let tree = await bookmarks->Bookmarks.getTree
+        tree[0]
+      }
+    | None => None
+    }
+  | None => None
+  }
+}
 
 let getAllBookmarks = async () => {
-  switch make() {
-  | Some(browser) => {
-      let bookmarks = await browser->bookmarks
-      let tree = await bookmarks->Bookmarks.getTree
-      tree[0]->Option.map(Bookmarks.collect)->Option.getOr([])
-    }
+  let tree = await getBookmarkTree()
+  switch tree {
+  | Some(node) => node->Bookmarks.collect
   | None => []
   }
 }
