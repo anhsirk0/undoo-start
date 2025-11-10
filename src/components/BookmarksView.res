@@ -83,22 +83,22 @@ module RootView = {
 
 @react.component
 let make = () => {
-  let (bookmarks, _setBookmarks) = React.useState(_ => Root(Bookmarks.demoTree))
+  let (bookmarks, _setBookmarks) = React.useState(_ => Loading)
 
-  // React.useEffect0(() => {
-  //   Browser.getBookmarkTree()
-  //   ->Promise.then(async tree =>
-  //     setBookmarks(
-  //       _ =>
-  //         switch tree {
-  //         | Some(node) => Root(node)
-  //         | None => Failed
-  //         },
-  //     )
-  //   )
-  //   ->ignore
-  //   None
-  // })
+  React.useEffect0(() => {
+    Browser.getBookmarkTree()
+    ->Promise.then(async tree =>
+      setBookmarks(
+        _ =>
+          switch tree {
+          | Some(node) => Root(node)
+          | None => Failed
+          },
+      )
+    )
+    ->ignore
+    None
+  })
 
   <div className="center size-full z-1">
     {switch bookmarks {
