@@ -83,7 +83,7 @@ module RootView = {
 
 @react.component
 let make = () => {
-  let (bookmarks, _setBookmarks) = React.useState(_ => Loading)
+  let (bookmarks, setBookmarks) = React.useState(_ => Loading)
 
   React.useEffect0(() => {
     Browser.getBookmarkTree()
