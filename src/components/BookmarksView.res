@@ -52,9 +52,7 @@ module rec Folder: {
 module RootView = {
   @react.component
   let make = (~items: array<Bookmarks.treeNode>) => {
-    let bookmarks = React.useMemo(() => {
-      items->Bookmarks.toRootBookmarks
-    }, items)
+    let bookmarks = React.useMemo(() => items->Bookmarks.toRootBookmarks, items)
 
     <div
       className="size-full flex flex-row gap-4 overflow-x-auto"
@@ -85,16 +83,20 @@ module RootView = {
 
 @react.component
 let make = () => {
-  let (bookmarks, _setBookmarks) = React.useState(_ => Loading)
+  let (bookmarks, setBookmarks) = React.useState(_ => Loading)
 
   React.useEffect0(() => {
-    Browser.getBookmarkTree()->Promise.then(async tree => Js.log(tree))
-    setBookmarks(_ =>
-      switch tree {
-      | Some(node) => Root(node)
-      | None => Failed
-      }
-    )->ignore
+    Browser.getBookmarkTree()
+    ->Promise.then(async tree =>
+      setBookmarks(
+        _ =>
+          switch tree {
+          | Some(node) => Root(node)
+          | None => Failed
+          },
+      )
+    )
+    ->ignore
     None
   })
 

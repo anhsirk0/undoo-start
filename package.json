@@ -8,7 +8,7 @@
     "res:clean": "rescript clean",
     "res:dev": "rescript -w",
     "dev": "vite",
-    "build": "vite build",
+    "build": "rescript && vite build",
     "preview": "vite preview"
   },
   "dependencies": {
