@@ -16,7 +16,7 @@ module Item = {
         | Some(src) => <img alt=item.title src className="inline size-5" />
         | None => React.null
         }}
-        <p className="title"> {item.title->React.string} </p>
+        <p className="title line-clamp-2 break-all"> {item.title->React.string} </p>
       </div>
     </a>
   }

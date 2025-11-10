@@ -46,7 +46,12 @@ let toRootBookmarks = (children: array<treeNode>) => {
           | None => otherChildren->Array.push(it)
           }
         })
-        bookmarks->Array.push({...item, children: Some(otherChildren)})
+        if otherChildren->Array.length > 0 {
+          bookmarks->Array.push({...item, children: Some(otherChildren)})
+        }
+      }
+    | "Bookmarks bar" => if item.children->Option.getOr([])->Array.length > 0 {
+        bookmarks->Array.push(item)
       }
     | _ => bookmarks->Array.push(item)
     }
