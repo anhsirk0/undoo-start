@@ -29,7 +29,7 @@ let make = (~onClose) => {
     let target = evt->ReactEvent.Form.target
 
     let bgOpacity = target["bg-opacity"]["value"]
-    let searcherOpacity = target["searcher-opacity"]["value"]
+    let itemOpacity = target["item-opacity"]["value"]
     let searchOpacity = target["search-opacity"]["value"]
     // let sidebarOpacity = target["sidebar-opacity"]["value"]
 
@@ -41,7 +41,7 @@ let make = (~onClose) => {
       imageName,
       bgOpacity,
       searchOpacity,
-      searcherOpacity,
+      itemOpacity,
       // sidebarOpacity,
     })
     onClose()
@@ -75,8 +75,8 @@ let make = (~onClose) => {
     <FormControl label="Searchbar opacity">
       <Range name="search-opacity" defaultValue={options.searchOpacity->Int.toString} />
     </FormControl>
-    <FormControl label="Searcher items opacity">
-      <Range name="searcher-opacity" defaultValue={options.searcherOpacity->Int.toString} />
+    <FormControl label="Item (cards) opacity">
+      <Range name="item-opacity" defaultValue={options.itemOpacity->Int.toString} />
     </FormControl>
     <div className="mt-4 flex flex-row gap-2 w-full items-center">
       <Icon.info className="resp-icon" />

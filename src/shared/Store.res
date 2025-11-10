@@ -113,7 +113,7 @@ module Bg = {
       image: string,
       imageName: string,
       bgOpacity: int,
-      searcherOpacity: int,
+      itemOpacity: int,
       searchOpacity: int,
       // sidebarOpacity: int,
     }
@@ -127,7 +127,7 @@ module Bg = {
       image: "",
       imageName: "",
       bgOpacity: 50,
-      searcherOpacity: 80,
+      itemOpacity: 80,
       searchOpacity: 80,
       // sidebarOpacity: 50,
     }

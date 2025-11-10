@@ -10,9 +10,8 @@ let make = () => {
       "#search-btn"->Utils.querySelectAndThen(Utils.setBg(_, options.searchOpacity))
       "#searcher"->Utils.querySelectAndThen(Utils.setBg(_, options.searchOpacity))
       "#select-search-engine"->Utils.querySelectAndThen(Utils.setBg(_, options.searchOpacity))
-
-      Document.querySelectorAll("[name=searcher-item]")->Array.forEach(el =>
-        el->Utils.setBg(options.searcherOpacity)
+      Document.querySelectorAll("[name=item]")->Array.forEach(el =>
+        el->Utils.setBg(options.itemOpacity)
       )
     }
     None

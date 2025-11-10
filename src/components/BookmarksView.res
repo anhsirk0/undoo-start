@@ -10,7 +10,7 @@ module Item = {
         `https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${url}&size=32`
       )
     let bg = depth > 0 ? "bg-base-300" : "bg-base-200"
-    <a href=?item.url target className={`flex flex-col p-4 ${bg} rounded-box w-full`}>
+    <a name="item" href=?item.url target className={`flex flex-col p-4 ${bg} rounded-box w-full`}>
       <div className="flex flex-row items-center gap-4">
         {switch favicon {
         | Some(src) => <img alt=item.title src className="inline size-5" />
@@ -32,7 +32,7 @@ module rec Folder: {
 
     switch item.children {
     | Some(items) =>
-      <div className={`collapse ${bg} border border-base-200`}>
+      <div name="item" className={`collapse ${bg} border border-base-200`}>
         <input type_="checkbox" />
         <div className="collapse-title title font-semibold flex flex-row gap-4 items-end">
           <Icon.folder className="resp-icon" />
@@ -83,24 +83,24 @@ module RootView = {
 
 @react.component
 let make = () => {
-  let (bookmarks, setBookmarks) = React.useState(_ => Loading)
+  let (bookmarks, _setBookmarks) = React.useState(_ => Root(Bookmarks.demoTree))
 
-  React.useEffect0(() => {
-    Browser.getBookmarkTree()
-    ->Promise.then(async tree =>
-      setBookmarks(
-        _ =>
-          switch tree {
-          | Some(node) => Root(node)
-          | None => Failed
-          },
-      )
-    )
-    ->ignore
-    None
-  })
+  // React.useEffect0(() => {
+  //   Browser.getBookmarkTree()
+  //   ->Promise.then(async tree =>
+  //     setBookmarks(
+  //       _ =>
+  //         switch tree {
+  //         | Some(node) => Root(node)
+  //         | None => Failed
+  //         },
+  //     )
+  //   )
+  //   ->ignore
+  //   None
+  // })
 
-  <div className="center size-full">
+  <div className="center size-full z-1">
     {switch bookmarks {
     | Loading => <p className="text-xl"> {"Loading..."->React.string} </p>
     | Failed => <p className="text-xl text-error"> {"Failed to load Bookmarks"->React.string} </p>

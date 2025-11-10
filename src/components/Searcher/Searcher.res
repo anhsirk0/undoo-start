@@ -40,17 +40,17 @@ let make = (~query, ~setQuery) => {
       }
     }
 
-    let opacity = checked ? "bg-primary/20" : "opacity-80"
+    // let opacity = checked ? "bg-primary/20" : "opacity-80"
 
     <div
       key={item.id->Float.toString}
       className="col-span-6 md:col-span-4 animate-fade rounded-box relative overflow-hidden bg-base-300"
-      name="searcher-item">
+      name="item">
       <div
         role="button"
         ariaLabel={`search-${item.title}`}
         onClick
-        className={`flex flex-col h-full gap-4 p-4 2xl:p-6 ${opacity} cursor-pointer`}>
+        className="flex flex-col h-full gap-4 p-4 2xl:p-6 cursor-pointer">
         <div className="flex flex-row space-between w-full">
           <p className="card-title w-full"> {item.title->React.string} </p>
           <Checkbox checked onChange=toggleOne />

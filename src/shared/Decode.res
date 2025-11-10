@@ -156,18 +156,18 @@ let appOptions: Json.t => result<Store.Options.t, string> = json => {
 let appBgOptions: Json.t => result<Store.Bg.StoreData.options, string> = json => {
   try {
     let obj = json->decodeObj->Option.getExn
-    let image = obj->decodeStr("image")->Option.getExn
-    let imageName = obj->decodeStr("imageName")->Option.getExn
-    let bgOpacity = obj->decodeInt("bgOpacity")->Option.getExn
-    let searcherOpacity = obj->decodeInt("searcherOpacity")->Option.getExn
-    let searchOpacity = obj->decodeInt("searchOpacity")->Option.getExn
+    let image = obj->decodeStr("image")->Option.getOr("")
+    let imageName = obj->decodeStr("imageName")->Option.getOr("noBg")
+    let bgOpacity = obj->decodeInt("bgOpacity")->Option.getOr(50)
+    let itemOpacity = obj->decodeInt("itemOpacity")->Option.getOr(80)
+    let searchOpacity = obj->decodeInt("searchOpacity")->Option.getOr(80)
 
     Ok({
       image,
       imageName,
       bgOpacity,
       searchOpacity,
-      searcherOpacity,
+      itemOpacity,
     })
   } catch {
   | _ => Error("Decode.appBgOptions: failed to decode json")
