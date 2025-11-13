@@ -2,6 +2,8 @@
 let make = (~query, ~setQuery) => {
   Hook.useDocTitle(Some("Searcher"))
   let {isEditing} = Store.View.use()
+  let {options} = Store.Bg.use()
+  let useBg = options.image->String.length > 20
 
   let onChange = evt => {
     let target = ReactEvent.Form.target(evt)
@@ -39,13 +41,21 @@ let make = (~query, ~setQuery) => {
         Utils.searchLink(item.url, query)
       }
     }
+    React.useEffect2(() => {
+      if useBg {
+        Document.querySelectorAll("[name=searcher-item]")->Array.forEach(
+          el => el->Utils.setBg(options.searcherOpacity),
+        )
+      }
+      None
+    }, (options.searcherOpacity, useBg))
 
     // let opacity = checked ? "bg-primary/20" : "opacity-80"
 
     <div
       key={item.id->Float.toString}
       className="col-span-6 md:col-span-4 animate-fade rounded-box relative overflow-hidden bg-base-300"
-      name="item">
+      name="searcher-item">
       <div
         role="button"
         ariaLabel={`search-${item.title}`}

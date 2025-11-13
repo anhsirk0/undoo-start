@@ -159,7 +159,8 @@ let appBgOptions: Json.t => result<Store.Bg.StoreData.options, string> = json =>
     let image = obj->decodeStr("image")->Option.getOr("")
     let imageName = obj->decodeStr("imageName")->Option.getOr("noBg")
     let bgOpacity = obj->decodeInt("bgOpacity")->Option.getOr(50)
-    let itemOpacity = obj->decodeInt("itemOpacity")->Option.getOr(80)
+    let bookmarkOpacity = obj->decodeInt("bookmarkOpacity")->Option.getOr(80)
+    let searcherOpacity = obj->decodeInt("searcherOpacity")->Option.getOr(80)
     let searchOpacity = obj->decodeInt("searchOpacity")->Option.getOr(80)
 
     Ok({
@@ -167,7 +168,8 @@ let appBgOptions: Json.t => result<Store.Bg.StoreData.options, string> = json =>
       imageName,
       bgOpacity,
       searchOpacity,
-      itemOpacity,
+      bookmarkOpacity,
+      searcherOpacity,
     })
   } catch {
   | _ => Error("Decode.appBgOptions: failed to decode json")

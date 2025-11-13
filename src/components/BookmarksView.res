@@ -9,8 +9,11 @@ module Item = {
       item.url->Option.map(url =>
         `https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${url}&size=32`
       )
-    let bg = depth > 0 ? "bg-base-300" : "bg-base-200"
-    <a name="item" href=?item.url target className={`flex flex-col p-4 ${bg} rounded-box w-full`}>
+    let className = `flex flex-col p-4 rounded-box w-full ${depth > 0
+        ? "bg-base-300"
+        : "bg-base-200"}`
+
+    <a name="bookmark-item" href=?item.url target className>
       <div className="flex flex-row items-center gap-4">
         {switch favicon {
         | Some(src) => <img alt=item.title src className="inline size-5" />
@@ -32,7 +35,7 @@ module rec Folder: {
 
     switch item.children {
     | Some(items) =>
-      <div name="item" className={`collapse ${bg} border border-base-200`}>
+      <div name="bookmark-item" className={`collapse ${bg} border border-base-200`}>
         <input type_="checkbox" />
         <div className="collapse-title title font-semibold flex flex-row gap-4 items-end">
           <Icon.folder className="resp-icon" />
@@ -55,7 +58,7 @@ module RootView = {
     let bookmarks = React.useMemo(() => items->Bookmarks.toRootBookmarks, items)
 
     <div
-      className="size-full flex flex-row gap-4 overflow-x-auto"
+      className="size-full flex flex-row gap-4 overflow-x-auto animate-fade"
       onWheel=ReactEvent.Wheel.stopPropagation>
       {bookmarks
       ->Array.map(folder => {
@@ -69,7 +72,9 @@ module RootView = {
             {switch folder.children {
             | Some(kids) =>
               <div className="flex flex-col gap-4 grow min-h-0 overflow-y-auto">
-                {kids->Array.map(item => <Folder item key=item.id depth=0 />)->React.array}
+                {kids
+                ->Array.map(item => <Folder item key=item.id depth=0 />)
+                ->React.array}
               </div>
             | None => React.null
             }}
@@ -84,10 +89,12 @@ module RootView = {
 @react.component
 let make = () => {
   let (bookmarks, setBookmarks) = React.useState(_ => Loading)
+  let {options} = Store.Bg.use()
+  let useBg = options.image->String.length > 20
 
   React.useEffect0(() => {
     Browser.getBookmarkTree()
-    ->Promise.then(async tree =>
+    ->Promise.then(async tree => {
       setBookmarks(
         _ =>
           switch tree {
@@ -95,10 +102,21 @@ let make = () => {
           | None => Failed
           },
       )
-    )
+    })
     ->ignore
     None
   })
+
+  React.useEffect2(() => {
+    if useBg {
+      setTimeout(() => {
+        Document.querySelectorAll("[name=bookmark-item]")->Array.forEach(
+          el => el->Utils.setBg(options.bookmarkOpacity),
+        )
+      }, 20)->ignore
+    }
+    None
+  }, (options.bookmarkOpacity, useBg))
 
   <div className="center size-full z-1">
     {switch bookmarks {

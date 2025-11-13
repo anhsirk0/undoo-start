@@ -99,7 +99,7 @@ let make = () => {
             switch s.url->Shape.Action.fromUrlString {
             | Some(Searcher) => setView(Action(Searcher))
             | Some(History) => setView(Action(Searcher))
-            | Some(Bookmarks) => setView(Action(Searcher))
+            | Some(Bookmarks) => setView(Action(Bookmarks))
             | None => Utils.openUrl(s.url, target)
             }
           }

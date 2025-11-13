@@ -113,8 +113,9 @@ module Bg = {
       image: string,
       imageName: string,
       bgOpacity: int,
-      itemOpacity: int,
+      bookmarkOpacity: int,
       searchOpacity: int,
+      searcherOpacity: int,
       // sidebarOpacity: int,
     }
     type state = {
@@ -127,8 +128,9 @@ module Bg = {
       image: "",
       imageName: "",
       bgOpacity: 50,
-      itemOpacity: 80,
+      bookmarkOpacity: 80,
       searchOpacity: 80,
+      searcherOpacity: 80,
       // sidebarOpacity: 50,
     }
   }
