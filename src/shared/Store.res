@@ -58,6 +58,7 @@ module Options = {
     alwaysShowSidebar: bool,
     openLinkInNewTab: bool,
     circleIcons: bool,
+    reverseBookmarksOrder: bool,
   }
 
   let defaultOptions = {
@@ -73,6 +74,7 @@ module Options = {
     alwaysShowSidebar: true,
     openLinkInNewTab: true,
     circleIcons: false,
+    reverseBookmarksOrder: false,
   }
   module StoreData = {
     type state = {

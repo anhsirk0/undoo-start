@@ -19,16 +19,26 @@ let make = () => {
 
 @get external bookmarks: t => option<promise<Bookmarks.t>> = "bookmarks"
 
-let getBookmarkTree = async () => {
+let getBookmarks = async () => {
   switch make() {
   | Some(browser) =>
     switch browser->bookmarks {
     | Some(fn) => {
         let bookmarks = await fn
-        let tree = await bookmarks->Bookmarks.getTree
-        tree[0]
+        Some(bookmarks)
       }
     | None => None
+    }
+  | None => None
+  }
+}
+
+let getBookmarkTree = async () => {
+  let bookmarks = await getBookmarks()
+  switch bookmarks {
+  | Some(bookmarks) => {
+      let tree = await bookmarks->Bookmarks.getTree
+      tree[0]
     }
   | None => None
   }
@@ -39,6 +49,14 @@ let getAllBookmarks = async () => {
   switch tree {
   | Some(node) => node->Bookmarks.collect
   | None => []
+  }
+}
+
+let removeBookmark = async id => {
+  let bookmarks = await getBookmarks()
+  switch bookmarks {
+  | Some(bookmarks) => await bookmarks->Bookmarks.remove(id)
+  | None => ignore()
   }
 }
 

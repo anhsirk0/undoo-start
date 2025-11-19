@@ -133,6 +133,7 @@ let appOptions: Json.t => result<Store.Options.t, string> = json => {
     let openLinkInNewTab = obj->decodeBool("openLinkInNewTab")->Option.getOr(false)
     let circleIcons = obj->decodeBool("circleIcons")->Option.getOr(false)
     let hidePageSwitcher = obj->decodeBool("hidePageSwitcher")->Option.getOr(false)
+    let reverseBookmarksOrder = obj->decodeBool("reverseBookmarksOrder")->Option.getOr(false)
 
     Ok({
       title,
@@ -147,6 +148,7 @@ let appOptions: Json.t => result<Store.Options.t, string> = json => {
       alwaysShowSidebar,
       openLinkInNewTab,
       circleIcons,
+      reverseBookmarksOrder,
     })
   } catch {
   | _ => Error("Decode.appOptions: failed to decode json")

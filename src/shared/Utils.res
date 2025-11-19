@@ -12,6 +12,7 @@ let setBgcolor = %raw(`function (el, bg) { el.style.backgroundColor = bg }`)
 let addClass = %raw(`function (el, cls) { el.classList.add(cls) }`)
 let removeClass = %raw(`function (el, cls) { el.classList.remove(cls) }`)
 let getCssVar = %raw(`function (name) { return getComputedStyle(document.body).getPropertyValue(name) }`)
+let hasClass = %raw(`function (el, cls) { return el.classList.contains(cls) }`)
 
 let isDarkMode = () => getCssVar("color-scheme") == "dark"
 

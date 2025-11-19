@@ -21,3 +21,4 @@ type t = React.component<props>
 @module("@phosphor-icons/react") external warningCircle: t = "WarningCircleIcon"
 @module("@phosphor-icons/react") external folder: t = "FolderIcon"
 @module("@phosphor-icons/react") external folderOpen: t = "FolderOpenIcon"
+@module("@phosphor-icons/react") external dotsThreeVertical: t = "DotsThreeVerticalIcon"

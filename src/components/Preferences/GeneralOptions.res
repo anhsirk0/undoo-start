@@ -50,6 +50,7 @@ let make = (~onClose) => {
     let alwaysShowHints = target["always-show-hints"]["checked"]
     let alwaysShowSidebar = target["always-show-sidebar"]["checked"]
     let circleIcons = target["circle-icons"]["checked"]
+    let reverseBookmarksOrder = target["reverse-bookmarks-order"]["checked"]
 
     updateOptions({
       title,
@@ -64,6 +65,7 @@ let make = (~onClose) => {
       alwaysShowSidebar,
       circleIcons,
       openLinkInNewTab,
+      reverseBookmarksOrder,
     })
     onClose()
   }
@@ -98,6 +100,11 @@ let make = (~onClose) => {
           value=options.hideSearcherButton
           label="Hide Searcher button"
           shortKey="?"
+        />
+        <Item
+          name="reverse-bookmarks-order"
+          value=options.reverseBookmarksOrder
+          label="Reverse bookmarks order"
         />
       </div>
       <div

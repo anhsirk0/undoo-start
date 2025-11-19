@@ -1,6 +1,7 @@
 type t
 
 module Options = {
+  // Todo: type this better
   type t
   external fromObj: Js.t<{..}> => t = "%identity"
 }
@@ -17,6 +18,11 @@ module Toaster = {
 
   let make = (options, msg) => toast(msg, options)
 )
+
+@module("react-hot-toast") @scope("toast")
+external custom: (React.element, Options.t) => unit = "custom"
+
+@module("react-hot-toast") @scope("toast") external dismiss: string => unit = "dismiss"
 
 let success = make(
   Options.fromObj({
