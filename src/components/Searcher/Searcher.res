@@ -41,14 +41,6 @@ let make = (~query, ~setQuery) => {
         Utils.searchLink(item.url, query)
       }
     }
-    React.useEffect2(() => {
-      if useBg {
-        Document.querySelectorAll("[name=searcher-item]")->Array.forEach(
-          el => el->Utils.setBg(options.searcherOpacity),
-        )
-      }
-      None
-    }, (options.searcherOpacity, useBg))
 
     // let opacity = checked ? "bg-primary/20" : "opacity-80"
 
@@ -94,6 +86,15 @@ let make = (~query, ~setQuery) => {
         : React.null}
     </div>
   })
+
+  React.useEffect2(() => {
+    if useBg {
+      Document.querySelectorAll("[name=searcher-item]")->Array.forEach(el =>
+        el->Utils.setBg(options.searcherOpacity)
+      )
+    }
+    None
+  }, (options.searcherOpacity, useBg))
 
   <React.Fragment>
     <form

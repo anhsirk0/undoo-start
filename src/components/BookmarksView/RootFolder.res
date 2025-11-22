@@ -15,6 +15,13 @@ let make = (~folder: Bookmarks.treeNode) => {
     })
   }, (query, folder.children, reverseBookmarksOrder))
 
+  let childrenCount = React.useMemo(() => {
+    switch folder.children {
+    | Some(kids) => kids->Array.length
+    | None => 0
+    }
+  }, folder.children)
+
   let onChange = evt => {
     let target = ReactEvent.Form.target(evt)
     let newQuery: string = target["value"]
@@ -37,7 +44,7 @@ let make = (~folder: Bookmarks.treeNode) => {
   <div
     className="p-4 flex flex-1 flex-col gap-4 border border-base-content/10 min-h-0 rounded-box min-w-[24%]">
     <div
-      className="flex flex-row items-center pb-3 gap-4 border-b border-base-content/10 overflow-hidden relative">
+      className="flex flex-row items-center pb-3 gap-4 border-b border-base-content/10 overflow-hidden relative shrink-0">
       <div className>
         <InputBase
           id={`search-${folder.id}`}
@@ -47,7 +54,9 @@ let make = (~folder: Bookmarks.treeNode) => {
           className="input border-none focus:outline-none w-full bg-transparent"
           placeholder={`Search in ${folder.title}`}
         />
-        <p className="resp-title font-bold w-full truncate"> {folder.title->React.string} </p>
+        <p className="resp-title font-bold w-full truncate">
+          {`${folder.title} (${childrenCount->Int.toString})`->React.string}
+        </p>
       </div>
       <button onClick=onSearchClick className="btn btn-circle btn-ghost ml-auto">
         <Icon.magnifyingGlass className="size-5" />
