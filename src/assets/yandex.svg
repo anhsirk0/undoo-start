@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+
+<svg
+   width="800px"
+   height="800px"
+   viewBox="0 0 48 48"
+   id="a"
+   version="1.1"
+   sodipodi:docname="yandex-start-svgrepo-com.svg"
+   inkscape:version="1.3.2 (091e20ef0f, 2023-11-25, custom)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="1.05625"
+     inkscape:cx="399.52663"
+     inkscape:cy="400"
+     inkscape:window-width="1920"
+     inkscape:window-height="1058"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="a" />
+  <defs
+     id="defs1">
+    <style
+       id="style1">.c{fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;}</style>
+  </defs>
+  <rect
+     style="fill:#161617;fill-rule:evenodd;stroke-width:0.06;fill-opacity:1"
+     id="rect1"
+     width="48"
+     height="48"
+     x="0"
+     y="0" />
+  <g
+     id="g1"
+     transform="matrix(0.78410551,0,0,0.78410551,5.1814677,5.1814677)">
+    <line
+       class="c"
+       x1="31.6187"
+       y1="12.5"
+       x2="26.403"
+       y2="22.3729"
+       id="line1"
+       style="stroke:#ffffff" />
+    <polyline
+       class="c"
+       points="24 35.5 24 26 16.3813 12.5"
+       id="polyline1"
+       style="stroke:#ffffff" />
+    <circle
+       id="b"
+       class="c"
+       cx="24"
+       cy="24"
+       r="21.5"
+       style="stroke:#ffffff" />
+  </g>
+</svg>

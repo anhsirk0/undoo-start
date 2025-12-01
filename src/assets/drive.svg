@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+
+<svg
+   width="800px"
+   height="800px"
+   viewBox="0 -3 48 48"
+   version="1.1"
+   id="svg2"
+   sodipodi:docname="drive.svg"
+   inkscape:version="1.3.2 (091e20ef0f, 2023-11-25, custom)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview2"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="1.05625"
+     inkscape:cx="399.52663"
+     inkscape:cy="400"
+     inkscape:window-width="1920"
+     inkscape:window-height="1058"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2" />
+  <title
+     id="title1">drive-color</title>
+  <desc
+     id="desc1">Created with Sketch.</desc>
+  <defs
+     id="defs1" />
+  <rect
+     style="fill:#f9f9f9;fill-rule:evenodd;stroke-width:0.06"
+     id="rect2"
+     width="48"
+     height="48"
+     x="0"
+     y="-3" />
+  <g
+     id="Icons"
+     stroke="none"
+     stroke-width="1"
+     fill="none"
+     fill-rule="evenodd"
+     transform="matrix(0.68681839,0,0,0.68681839,7.5163587,6.5768138)">
+    <g
+       id="Color-"
+       transform="translate(-601,-955)">
+      <g
+         id="drive"
+         transform="translate(601,955)">
+        <polygon
+           id="Shape"
+           fill="#3777e3"
+           points="48,28 39.99988,42 8.0004806,42 15.99988,28 " />
+        <polygon
+           id="polygon1"
+           fill="#ffcf63"
+           points="32.000481,0 15.99988,0 32.000481,28 48,28 " />
+        <polygon
+           id="polygon2"
+           fill="#11a861"
+           points="24,14 15.99988,0 0,28 8.0004806,42 " />
+      </g>
+    </g>
+  </g>
+</svg>

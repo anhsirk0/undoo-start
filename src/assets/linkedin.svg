@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+
+<svg
+   width="800px"
+   height="800px"
+   viewBox="0 0 16 16"
+   fill="none"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="linkedin.svg"
+   inkscape:version="1.4 (e7c3feb100, 2024-10-09)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="0.60885878"
+     inkscape:cx="436.88292"
+     inkscape:cy="492.7251"
+     inkscape:window-width="1920"
+     inkscape:window-height="1058"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg1" />
+  <rect
+     style="fill:#0a66c2;fill-opacity:1;fill-rule:evenodd;stroke-width:0.02"
+     id="rect1"
+     width="16"
+     height="16"
+     x="0"
+     y="0" />
+  <path
+     id="rect3"
+     style="fill:#ffffff;fill-rule:evenodd;stroke-width:0.0350556"
+     d="m 5.2454285,4.3802928 c -0.477955,0 -0.871485,0.3934893 -0.871485,0.8714453 a 0.87568889,0.87568889 0 0 0 0.871485,0.870625 v 8.594e-4 c 0.477956,0 0.871445,-0.3935294 0.871445,-0.8714844 -8.44e-4,-0.477956 -0.393489,-0.8714453 -0.871445,-0.8714453 z m 4.469219,2.2831641 C 9.1747425,6.6809262 8.6765925,6.974535 8.4010925,7.444785 h -0.02027 V 6.783574 h -1.441446 v 4.836133 h 1.501407 V 9.2265429 c 0,-0.629956 0.119919,-1.2413282 0.901875,-1.2413282 0.7709815,0 0.7810925,0.7220233 0.7810925,1.2827343 v 2.351758 h 1.501447 v -8.6e-4 l 8.58e-4,-2.651523 c 0,-1.302977 -0.281203,-2.3036718 -1.8028905,-2.3036718 -0.03631,-0.00132 -0.07252,-0.00136 -0.108515,-1.953e-4 z M 4.4930065,6.783574 v 4.836133 h 1.503125 V 6.783574 Z" />
+</svg>

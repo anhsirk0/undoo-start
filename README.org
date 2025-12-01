@@ -1,0 +1,72 @@
+#+title:                 Undoo-Startpage
+#+author:                Krishna (Anshirk0)
+#+email:                 krishna404@yandex.com
+#+language:              en
+
++ Git repo on Codeberg: <https://codeberg.org/anhsirk0/undoo-start>
+  - Mirrors:
+    + GitHub: <https://github.com/anhsirk0/undoo-start>
+
+* About
+#+CAPTION: Logo
+#+NAME: logo.svg
+[[https://codeberg.org/anhsirk0/undoo-start/raw/branch/main/public/undoo.svg]]
+Minimal elegant startpage
+* Screnshots
+#+CAPTION: Screenshot
+#+NAME: main.png
+[[https://codeberg.org/anhsirk0/undoo-start/raw/branch/main/screenshots/main.png]]
+#+CAPTION: Screenshot Square Icons
+#+NAME: square.png
+[[https://codeberg.org/anhsirk0/undoo-start/raw/branch/main/screenshots/square.png]]
+#+CAPTION: Screenshot Searcher
+#+NAME: searcher.png
+[[https://codeberg.org/anhsirk0/undoo-start/raw/branch/main/screenshots/searcher.png]]
+#+CAPTION: Screenshot Options
+#+NAME: options.png
+[[https://codeberg.org/anhsirk0/undoo-start/raw/branch/main/screenshots/options.png]]
+#+CAPTION: Screenshot Themes
+#+NAME: themes.png
+[[https://codeberg.org/anhsirk0/undoo-start/raw/branch/main/screenshots/themes.png]]
+* Keyboard/Mouse shortcuts
+** SPACE
+Show hints
+** [1-9]
+Switch to the page by index
+** [a-z]
+Open link by index
+** /
+Focuses the seachbar
+** ?
+Switch to Searcher
+** Right-click, - (MinusKey)
+Toggle Edit mode
+** + (PlusKey), = (EqualKey)
+Add new site
+** . (PeriodKey)
+Open options
+** , (CommaKey)
+Focus theme switcher
+** Scroll Up/down
+Switches page Up/down
+
+* Adding as a browser extension
+** Chromium
+Switch to the =chromium-extension= branch and download the code
+  - [[https://codeberg.org/anhsirk0/undoo-start/src/branch/chromium-extension][chromium-extension branch on codeberg]] 
+  - [[https://github.com/anhsirk0/undoo-start/tree/chromium-extension][chromium-extension branch on github]] 
+
+manually add the extension using the files.
+click =load unpacked= in manage extensions page in chromium (you have to toggle on dev mode)
+** Firefox
+Extension is available as [[https://addons.mozilla.org/en-US/firefox/addon/undoo-startpage][undoo-start]]
+
+* Development
+** Run rescript in watch mode
+#+BEGIN_SRC shell
+pnpm run res:dev
+#+END_SRC
+** Run vite server
+#+BEGIN_SRC shell
+pnpm run dev
+#+END_SRC

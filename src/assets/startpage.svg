@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="501"
+   height="501"
+   viewBox="0 0 501 501"
+   fill="none"
+   version="1.1"
+   id="svg2"
+   sodipodi:docname="startpage.svg"
+   inkscape:version="1.4.1 (93de688d07, 2025-03-30)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview2"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="1.090508"
+     inkscape:cx="195.78032"
+     inkscape:cy="268.68212"
+     inkscape:window-width="1920"
+     inkscape:window-height="1058"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2" />
+  <rect
+     style="fill:#ffffff;fill-rule:evenodd"
+     id="rect3"
+     width="500"
+     height="500"
+     x="0.25781199"
+     y="0.66552699" />
+  <g
+     clip-path="url(#clip0_11_308)"
+     id="g2"
+     transform="matrix(0.72856687,0,0,0.72856687,68.091862,68.038929)">
+    <path
+       d="m 106.89,179.149 c 2.083,-53.999 47.48,-97.692 102.874,-97.692 53.311,0 97.041,39.984 102.456,91.509 27.488,0.412 54.56,0.824 82.05,2.061 C 389.27,78.1593 308.473,0.665527 209.764,0.665527 108.14,0.665527 25.2578,82.6935 25.2578,183.271 c 0,1.236 0,2.473 0,3.71 27.072,-3.298 54.5605,-5.771 81.6322,-7.832 z"
+       fill="#6677fb"
+       id="path1" />
+    <path
+       d="m 353.043,297.863 0.832,-1.235 c 21.243,-26.38 34.153,-56.884 38.735,-89.86 -27.905,0 -55.395,0 -83.3,0.824 -11.245,44.518 -51.645,77.081 -99.54,77.081 -42.899,0 -79.967,-26.38 -95.377,-63.478 -27.4885,2.885 -54.977,6.595 -82.4653,10.717 21.6575,77.081 93.2943,133.553 177.8423,133.553 27.071,0 53.728,-5.77 78.3,-17.312 l 1.25,-0.413 0.833,0.825 114.117,137.675 c 7.915,9.48 19.16,14.84 31.655,14.84 9.578,0 18.743,-3.3 25.823,-9.07 8.33,-7.007 13.742,-16.487 14.577,-27.205 0.833,-10.717 -2.082,-21.022 -9.165,-29.677 z"
+       fill="#202c46"
+       id="path2" />
+  </g>
+  <defs
+     id="defs2">
+    <clipPath
+       id="clip0_11_308">
+      <rect
+         width="500"
+         height="500"
+         fill="white"
+         transform="translate(0.257812 0.665527)"
+         id="rect2" />
+    </clipPath>
+  </defs>
+</svg>

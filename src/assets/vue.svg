@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+
+<svg
+   width="800px"
+   height="800px"
+   viewBox="0 0 73 73"
+   version="1.1"
+   id="svg2"
+   sodipodi:docname="vue-svgrepo-com.svg"
+   inkscape:version="1.3.2 (091e20ef0f, 2023-11-25, custom)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview2"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="1.05625"
+     inkscape:cx="399.52663"
+     inkscape:cy="400"
+     inkscape:window-width="1920"
+     inkscape:window-height="1058"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2" />
+  <title
+     id="title1">frameworks-and-libraries/vue</title>
+  <desc
+     id="desc1">Created with Sketch.</desc>
+  <defs
+     id="defs1" />
+  <g
+     id="frameworks-and-libraries/vue"
+     stroke="none"
+     stroke-width="1"
+     fill="none"
+     fill-rule="evenodd">
+    <g
+       id="container"
+       transform="translate(2.000000, 2.000000)"
+       fill="#FFFFFF"
+       fill-rule="nonzero"
+       stroke="#34495E"
+       stroke-width="2">
+      <rect
+         id="mask"
+         x="-1"
+         y="-1"
+         width="71"
+         height="71"
+         rx="0"
+         style="stroke:none" />
+    </g>
+    <g
+       id="Vue.js_Logo_2"
+       transform="translate(11.000000, 14.000000)"
+       fill-rule="nonzero">
+      <g
+         id="Group"
+         transform="translate(26.036066, 22.633736) scale(-1, 1) rotate(-180.000000) translate(-26.036066, -22.633736) translate(0.134827, 0.133669)">
+        <g
+           transform="translate(0.015698, 0.002616)"
+           fill="#41B883"
+           id="Shape">
+          <polygon
+             points="31.6570702 44.7385042 25.7262097 34.4659157 19.7953491 44.7385042 0.0447385042 44.7385042 25.7262097 0.256396106 51.4076808 44.7385042"
+             id="polygon1" />
+        </g>
+        <g
+           transform="translate(10.219216, 17.793366)"
+           fill="#34495E"
+           id="g2">
+          <polygon
+             points="21.4535517 26.947754 15.5226912 16.6751655 9.59183064 26.947754 0.113808475 26.947754 15.5226912 0.259012392 30.9315739 26.947754"
+             id="polygon2" />
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
