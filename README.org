@@ -52,15 +52,17 @@ Switches page Up/down
 
 * Adding as a browser extension
 ** Chromium
-Switch to the =chromium-extension= branch and download the code
-  - [[https://codeberg.org/anhsirk0/undoo-start/src/branch/chromium-extension][chromium-extension branch on codeberg]] 
-  - [[https://github.com/anhsirk0/undoo-start/tree/chromium-extension][chromium-extension branch on github]] 
+Switch to the =chromium-extension= repo and download the code
+  - [[https://codeberg.org/anhsirk0/undoo-start-chromium][chromium-extension repo on codeberg]]
+  - [[https://github.com/anhsirk0/undoo-start-chromium][chromium-extension repo on github]]
 
 manually add the extension using the files.
 click =load unpacked= in manage extensions page in chromium (you have to toggle on dev mode)
 ** Firefox
 Extension is available as [[https://addons.mozilla.org/en-US/firefox/addon/undoo-startpage][undoo-start]]
-
+*** Source code
+  - [[https://codeberg.org/anhsirk0/undoo-start-firefox][firefox-extension repo on codeberg]]
+  - [[https://github.com/anhsirk0/undoo-start-firefox][firefox-extension repo on github]]
 * Development
 ** Run rescript in watch mode
 #+BEGIN_SRC shell
