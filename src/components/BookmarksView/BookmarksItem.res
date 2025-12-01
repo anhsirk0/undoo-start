@@ -3,14 +3,13 @@ module Item = {
   let make = (~item: Bookmarks.treeNode, ~depth=0) => {
     let {options} = Store.Options.use()
     let {options: bgOptions} = Store.Bg.use()
-    let useBg = bgOptions.image->String.length > 20
 
     let target = options.openLinkInNewTab ? "_blank" : "_self"
     let favicon =
       item.url->Option.map(url =>
         `https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${url}&size=32`
       )
-    let bgcolor = if useBg {
+    let bgcolor = if bgOptions.image->String.length > 20 {
       bgOptions.bookmarkOpacity->Utils.getBgcolor
     } else if depth > 0 {
       "bg-base-300"
@@ -40,14 +39,13 @@ module rec Folder: {
   let make = (~item: Bookmarks.treeNode, ~depth) => {
     let {options: {reverseBookmarksOrder}} = Store.Options.use()
     let {options: bgOptions} = Store.Bg.use()
-    let useBg = bgOptions.image->String.length > 20
 
-    let bgcolor = if useBg {
+    let bgcolor = if bgOptions.image->String.length > 20 {
       bgOptions.bookmarkOpacity->Utils.getBgcolor(~base=depth > 0 ? #300 : #200)
     } else if depth > 0 {
-      "bg-base-300"
+      "var(--color-base-300)"
     } else {
-      "bg-base-200"
+      "var(--color-base-200)"
     }
 
     switch item.children {

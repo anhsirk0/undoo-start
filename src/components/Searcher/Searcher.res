@@ -3,7 +3,6 @@ let make = (~query, ~setQuery) => {
   Hook.useDocTitle(Some("Searcher"))
   let {isEditing} = Store.View.use()
   let {options} = Store.Bg.use()
-  let useBg = options.image->String.length > 20
 
   let onChange = evt => {
     let target = ReactEvent.Form.target(evt)
@@ -30,7 +29,10 @@ let make = (~query, ~setQuery) => {
     "input[name='query']"->Utils.querySelectAndThen(Utils.focus)
   }
 
-  let bgcolor = useBg ? Utils.getBgcolor(options.searcherOpacity) : "var(--color-base-300)"
+  let bgcolor =
+    options.image->String.length > 20
+      ? Utils.getBgcolor(options.searcherOpacity)
+      : "var(--color-base-300)"
 
   let items = store.engines->Array.map(item => {
     let checked = store.checkedIds->Array.includes(item.id)
@@ -89,15 +91,6 @@ let make = (~query, ~setQuery) => {
         : React.null}
     </div>
   })
-
-  // React.useEffect2(() => {
-  //   if useBg {
-  //     Document.querySelectorAll("[name=searcher-item]")->Array.forEach(el =>
-  //       el->Utils.setBg(options.searcherOpacity)
-  //     )
-  //   }
-  //   None
-  // }, (options.searcherOpacity, useBg))
 
   <React.Fragment>
     <form

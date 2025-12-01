@@ -1,9 +1,8 @@
 @react.component
 let make = () => {
   let {options} = Store.Bg.use()
-  let useBg = options.image->String.length > 20
 
-  useBg
+  options.image->String.length > 20
     ? <React.Fragment>
         <figure className="absolute inset-0 transitional">
           <img className="h-full w-full object-cover" src=options.image alt="bg" />
