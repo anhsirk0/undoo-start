@@ -30,12 +30,7 @@ let make = (~query, ~setQuery) => {
     "input[name='query']"->Utils.querySelectAndThen(Utils.focus)
   }
 
-  let bgcolor = if useBg {
-    let opac = options.searcherOpacity->Int.toString
-    `color-mix(in oklab, var(--color-base-100) ${opac}%, transparent)`
-  } else {
-    "var(--color-base-300)"
-  }
+  let bgcolor = useBg ? Utils.getBgcolor(options.searcherOpacity) : "var(--color-base-300)"
 
   let items = store.engines->Array.map(item => {
     let checked = store.checkedIds->Array.includes(item.id)
@@ -109,7 +104,10 @@ let make = (~query, ~setQuery) => {
       onWheel=ReactEvent.Wheel.stopPropagation
       onSubmit
       className="center h-[20vh] p-4 ml-12 w-full max-w-xl xl:wax-w-4xl 2xl:max-w-5xl shrink-0 z-[5]">
-      <div id="searcher" className="center h-10 2xl:h-12 w-16 gap-2 rounded-l-field bg-base-300">
+      <div
+        id="searcher"
+        className="center h-10 2xl:h-12 w-16 gap-2 rounded-l-field"
+        style={{backgroundColor: bgcolor}}>
         <Checkbox checked=isAllChecked onChange=toggleAll />
         {count > 0
           ? <p className="text-lg text-primary"> {count->Int.toString->React.string} </p>
@@ -117,7 +115,8 @@ let make = (~query, ~setQuery) => {
       </div>
       <label
         id="search-input"
-        className="input border-none has-[:focus]:outline-none bg-base-300 2xl:input-lg flex items-center join-item grow rounded-none">
+        className="input border-none has-[:focus]:outline-none 2xl:input-lg flex items-center join-item grow rounded-none ms-0"
+        style={{backgroundColor: bgcolor}}>
         <InputBase
           required=true name="query" className="grow" value=query onChange placeholder="Search"
         />
@@ -132,7 +131,8 @@ let make = (~query, ~setQuery) => {
       </label>
       <button
         id="search-btn"
-        className="btn btn-ghost bg-base-300 2xl:btn-lg join-item no-animation rounded-l-none">
+        className="btn btn-ghost 2xl:btn-lg join-item no-animation rounded-l-none ms-0"
+        style={{backgroundColor: bgcolor}}>
         <Icon.magnifyingGlass className="resp-icon" />
       </button>
     </form>

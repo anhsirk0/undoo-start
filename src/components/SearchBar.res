@@ -8,6 +8,7 @@ module SearchForm = {
     }
 
     let store = Store.Options.use()
+    let {options: bgOptions} = Store.Bg.use()
     let {engines} = Store.SearchEngine.use()
 
     let options = engines->Array.mapWithIndex((e, idx) => {
@@ -35,6 +36,11 @@ module SearchForm = {
       "input[name='query']"->Utils.querySelectAndThen(Utils.focus)
     }
 
+    let bgcolor =
+      bgOptions.image->String.length > 20
+        ? Utils.getBgcolor(bgOptions.searchOpacity)
+        : "var(--color-base-300)"
+
     <form
       onSubmit
       onWheel=ReactEvent.Wheel.stopPropagation
@@ -42,14 +48,16 @@ module SearchForm = {
       <select
         ariaLabel="select-search-engine"
         id="select-search-engine"
-        className="select border-none focus:outline-none 2xl:select-lg bg-base-300 rounded-r-none w-20"
+        className="select border-none focus:outline-none 2xl:select-lg rounded-r-none w-20"
         value={store.searchEngineIdx->Int.toString}
-        onChange=onSelect>
+        onChange=onSelect
+        style={{backgroundColor: bgcolor}}>
         {React.array(options)}
       </select>
       <label
         id="search-input"
-        className="input bg-base-300 border-none has-[:focus]:outline-none 2xl:input-lg flex items-center grow w-full rounded-none">
+        className="input border-none has-[:focus]:outline-none 2xl:input-lg flex items-center grow w-full rounded-none"
+        style={{backgroundColor: bgcolor}}>
         <InputBase
           value=query
           onChange
@@ -70,7 +78,8 @@ module SearchForm = {
       </label>
       <button
         id="search-btn"
-        className="btn btn-ghost bg-base-300 2xl:btn-lg no-animation rounded-l-none shadow-none">
+        className="btn btn-ghost 2xl:btn-lg no-animation rounded-l-none shadow-none"
+        style={{backgroundColor: bgcolor}}>
         <Icon.magnifyingGlass className="resp-icon" />
       </button>
     </form>
