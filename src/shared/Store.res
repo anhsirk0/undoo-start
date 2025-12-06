@@ -4,11 +4,11 @@ module Zustand = {
   }
 
   module MakeStore = (Config: StoreConfig) => {
-    type set = (. Config.state => Config.state) => unit
+    type set = (Config.state => Config.state) => unit
     type selector<'a> = Config.state => 'a
     type store
     external unsafeStoreToAny: store => 'a = "%identity"
-    let use = (store: store, selector: selector<'a>): 'a => unsafeStoreToAny(store)(. selector)
+    let use = (store: store, selector: selector<'a>): 'a => unsafeStoreToAny(store)(selector)
     type createFnParam = set => Config.state
     type persistOptions = {name: string}
     @module("zustand")
@@ -26,6 +26,7 @@ module View = {
       view: Shape.View.t,
       setView: Shape.View.t => unit,
       setIsEditing: bool => unit,
+      toggleEditing: unit => unit,
       setIsVisiting: bool => unit,
     }
   }
@@ -34,11 +35,12 @@ module View = {
 
   let store = AppStore.create(set => {
     view: Loading,
-    setView: view => set(.state => {...state, view}),
+    setView: view => set(state => {...state, view}),
     isEditing: false,
     isVisiting: false,
-    setIsEditing: isEditing => set(.state => {...state, isEditing}),
-    setIsVisiting: isVisiting => set(.state => {...state, isVisiting}),
+    setIsEditing: isEditing => set(state => {...state, isEditing}),
+    setIsVisiting: isVisiting => set(state => {...state, isVisiting}),
+    toggleEditing: () => set(state => {...state, isEditing: !state.isEditing}),
   })
 
   let use = _ => store->AppStore.use(state => state)
@@ -92,18 +94,18 @@ module Options = {
 
   let store = AppStore.create(AppStore.persist(set => {
       options: defaultOptions,
-      updateOptions: options => set(.state => {...state, options}),
+      updateOptions: options => set(state => {...state, options}),
       searchEngineIdx: 0,
-      updateSearchEngineIdx: idx => set(.state => {...state, searchEngineIdx: idx}),
+      updateSearchEngineIdx: idx => set(state => {...state, searchEngineIdx: idx}),
       // pages: Shape.Page.defaultPages,
       pages: [],
-      addPage: page => set(.state => {...state, pages: state.pages->Array.concat([page])}),
+      addPage: page => set(state => {...state, pages: state.pages->Array.concat([page])}),
       updatePage: page =>
-        set(.state => {
+        set(state => {
           ...state,
           pages: state.pages->Array.map(p => p.id == page.id ? page : p),
         }),
-      setPages: pages => set(.state => {...state, pages}),
+      setPages: pages => set(state => {...state, pages}),
     }, {name: "undoo-startpage"}))
 
   let use = _ => store->AppStore.use(state => state)
@@ -141,9 +143,9 @@ module Bg = {
 
   let store = AppStore.create(AppStore.persist(set => {
       options: StoreData.defaultOptions,
-      update: options => set(.state => {...state, options}),
+      update: options => set(state => {...state, options}),
       removeImage: () =>
-        set(.state => {...state, options: {...state.options, imageName: "", image: ""}}),
+        set(state => {...state, options: {...state.options, imageName: "", image: ""}}),
     }, {name: "undoo-background"}))
 
   let use = _ => store->AppStore.use(state => state)
@@ -168,25 +170,24 @@ module Searcher = {
   let store = AppStore.create(AppStore.persist(set => {
       checkedIds: [0., 1.],
       engines: Shape.SearchEngine.defaultEngines,
-      setEngines: engines => set(.state => {...state, engines}),
-      addEngine: engine =>
-        set(.state => {...state, engines: state.engines->Array.concat([engine])}),
+      setEngines: engines => set(state => {...state, engines}),
+      addEngine: engine => set(state => {...state, engines: state.engines->Array.concat([engine])}),
       updateEngine: engine =>
-        set(.state => {
+        set(state => {
           ...state,
           engines: state.engines->Array.map(e => e.id == engine.id ? engine : e),
         }),
       deleteEngine: id =>
-        set(.state => {...state, engines: state.engines->Array.filter(e => e.id != id)}),
+        set(state => {...state, engines: state.engines->Array.filter(e => e.id != id)}),
       toggleOne: (id, exists) =>
-        set(.state => {
+        set(state => {
           ...state,
           checkedIds: exists
             ? state.checkedIds->Array.filter(i => i != id)
             : state.checkedIds->Array.concat([id]),
         }),
       toggleAll: all =>
-        set(.state => {...state, checkedIds: all ? [] : state.engines->Array.map(e => e.id)}),
+        set(state => {...state, checkedIds: all ? [] : state.engines->Array.map(e => e.id)}),
     }, {name: "undoo-searcher"}))
 
   let use = _ => store->AppStore.use(state => state)
@@ -207,16 +208,15 @@ module SearchEngine = {
 
   let store = AppStore.create(AppStore.persist(set => {
       engines: Shape.SearchEngine.defaultEngines,
-      setEngines: engines => set(.state => {...state, engines}),
-      addEngine: engine =>
-        set(.state => {...state, engines: state.engines->Array.concat([engine])}),
+      setEngines: engines => set(state => {...state, engines}),
+      addEngine: engine => set(state => {...state, engines: state.engines->Array.concat([engine])}),
       updateEngine: engine =>
-        set(.state => {
+        set(state => {
           ...state,
           engines: state.engines->Array.map(e => e.id == engine.id ? engine : e),
         }),
       deleteEngine: id =>
-        set(.state => {...state, engines: state.engines->Array.filter(e => e.id != id)}),
+        set(state => {...state, engines: state.engines->Array.filter(e => e.id != id)}),
     }, {name: "undoo-search-engines"}))
 
   let use = _ => store->AppStore.use(state => state)

@@ -3,7 +3,7 @@ open ReactEvent
 @react.component
 let make = () => {
   let store = Store.Options.use()
-  let {view, setView, isEditing, setIsEditing, setIsVisiting} = Store.View.use()
+  let {view, setView, isEditing, toggleEditing, setIsVisiting} = Store.View.use()
   let firstView = () => store.pages->Shape.View.first
 
   let findPage = id => store.pages->Array.find(p => p.id == id)
@@ -15,8 +15,8 @@ let make = () => {
   let afterDelete = pages => setView(pages->Shape.View.first)
 
   let onContextMenu = evt => {
-    setIsEditing(!isEditing)
     Mouse.preventDefault(evt)
+    toggleEditing()
   }
 
   let onWheel = evt => {
@@ -66,7 +66,7 @@ let make = () => {
       } else if key == "?" {
         setView(Action(Searcher))
       } else if key == "-" {
-        setIsEditing(!isEditing)
+        toggleEditing()
       } else if key == "=" || key == "+" {
         "#add-btn"->Utils.querySelectAndThen(Utils.click)
       } else if key == "." {
@@ -137,10 +137,11 @@ let make = () => {
       ? React.null
       : <button
           ariaLabel="toggle-edit-mode-btn"
-          onClick={_ => setIsEditing(!isEditing)}
+          onClick={_ => toggleEditing()}
           className={`fixed top-2 right-2 btn btn-circle btn-resp ${isEditing
               ? "btn-accent"
-              : "btn-ghost"}`}>
+              : "btn-ghost"}`}
+        >
           <Icon.pencil className="resp-icon" />
         </button>}
     <Sidebar />

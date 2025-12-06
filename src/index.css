@@ -45,6 +45,12 @@
   }
 }
 
+/* Fix modal overlay padding */
+html {
+  scrollbar-gutter: auto !important;
+  overflow-x: hidden;
+}
+
 .main {
   @apply center h-screen w-screen transitional bg-base-100;
 }
