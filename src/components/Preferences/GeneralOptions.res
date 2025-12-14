@@ -41,12 +41,8 @@ let make = (~onClose) => {
     let title = target["title"]["value"]
     let openLinkInNewTab = target["link-in-new-tab"]["checked"]
     let showPageTitle = target["page-title-in-document-title"]["checked"]
-    let hideSearcherButton = target["hide-searcher-btn"]["checked"]
     let hideEditButton = target["hide-edit-btn"]["checked"]
     let hideAddButton = target["hide-add-btn"]["checked"]
-    let hideOptionsButton = target["hide-options-btn"]["checked"]
-    let hideThemeButton = target["hide-theme-btn"]["checked"]
-    let hidePageSwitcher = target["hide-page-switcher"]["checked"]
     let alwaysShowHints = target["always-show-hints"]["checked"]
     let alwaysShowSidebar = target["always-show-sidebar"]["checked"]
     let circleIcons = target["circle-icons"]["checked"]
@@ -55,12 +51,8 @@ let make = (~onClose) => {
     updateOptions({
       title,
       showPageTitle,
-      hideSearcherButton,
       hideEditButton,
       hideAddButton,
-      hideOptionsButton,
-      hideThemeButton,
-      hidePageSwitcher,
       alwaysShowHints,
       alwaysShowSidebar,
       circleIcons,
@@ -73,11 +65,13 @@ let make = (~onClose) => {
   <form
     onSubmit
     className="flex flex-col 2xl:gap-2 [&>div]:min-w-[100%] min-h-[60vh] pt-2 2xl:pt-4"
-    tabIndex=0>
+    tabIndex=0
+  >
     <Input name="title" label="Document title" required=true defaultValue=options.title />
     <div className="grid grid-cols-2 grow gap-4 2xl:gap-6 pt-4">
       <div
-        className="col-span-1 flex flex-col gap-2 2xl:gap-4 h-full border border-base-content/20 rounded-box p-4">
+        className="col-span-1 flex flex-col gap-2 2xl:gap-4 h-full border border-base-content/20 rounded-box p-4"
+      >
         <Item
           name="page-title-in-document-title"
           value=options.showPageTitle
@@ -96,19 +90,14 @@ let make = (~onClose) => {
           keyMsg=" to show hints temporarily"
         />
         <Item
-          name="hide-searcher-btn"
-          value=options.hideSearcherButton
-          label="Hide Searcher button"
-          shortKey="?"
-        />
-        <Item
           name="reverse-bookmarks-order"
           value=options.reverseBookmarksOrder
           label="Reverse bookmarks order"
         />
       </div>
       <div
-        className="col-span-1 flex flex-col gap-2 2xl:gap-4 h-full border border-base-content/20 rounded-box p-4">
+        className="col-span-1 flex flex-col gap-2 2xl:gap-4 h-full border border-base-content/20 rounded-box p-4"
+      >
         <Item
           name="hide-edit-btn"
           value=options.hideEditButton
@@ -118,21 +107,6 @@ let make = (~onClose) => {
         />
         <Item
           name="hide-add-btn" value=options.hideAddButton label="Hide add button" shortKey="+"
-        />
-        <Item
-          name="hide-page-switcher"
-          value=options.hidePageSwitcher
-          label="Hide page switcher"
-          keyMsg="you can always use ScrollUp/ScrollDown"
-        />
-        <Item
-          name="hide-options-btn"
-          value=options.hideOptionsButton
-          label="Hide options button"
-          shortKey="."
-        />
-        <Item
-          name="hide-theme-btn" value=options.hideThemeButton label="Hide theme button" shortKey=","
         />
       </div>
     </div>
