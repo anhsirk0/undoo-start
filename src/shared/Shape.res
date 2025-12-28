@@ -13,7 +13,7 @@ module Site = {
     title: "",
     url: "",
     icon: "",
-    showLabel: true,
+    showLabel: false,
   }
 
   let guessIconFromUrl = url => {
