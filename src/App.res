@@ -2,12 +2,22 @@ open ReactEvent
 
 @react.component
 let make = () => {
-  let store = Store.Options.use()
-  let {view, setView, isEditing, toggleEditing, setIsVisiting} = Store.View.use()
-  let firstView = () => store.pages->Shape.View.first
+  let (pages, setPages, openLinkInNewTab) = Store.Options.useShallow(s => (
+    s.pages,
+    s.setPages,
+    s.options.openLinkInNewTab,
+  ))
 
-  let findPage = id => store.pages->Array.find(p => p.id == id)
-  // let (view, setView) = React.useState(_ => store.pages->Array.length > 0 ? firstView() : Loading)
+  let (view, setView, toggleEditing, setIsVisiting) = Store.View.useShallow(s => (
+    s.view,
+    s.setView,
+    s.toggleEditing,
+    s.setIsVisiting,
+  ))
+  let firstView = () => pages->Shape.View.first
+
+  let findPage = id => pages->Array.find(p => p.id == id)
+  // let (view, setView) = React.useState(_ => pages->Array.length > 0 ? firstView() : Loading)
   let (query, setQuery) = React.useState(_ => "")
 
   let (isDebounced, setIsDebounced) = React.useState(_ => true)
@@ -27,11 +37,11 @@ let make = () => {
       let nextView = switch view {
       | Page(pageId) => {
           let nextIdx =
-            store.pages
+            pages
             ->Array.findIndex(p => p.id == pageId)
-            ->Utils.getNextIndex(store.pages->Array.length, deltaY)
+            ->Utils.getNextIndex(pages->Array.length, deltaY)
 
-          store.pages[nextIdx]
+          pages[nextIdx]
           ->Option.map(p => Shape.View.Page(p.id))
           ->Option.getOr(firstView())
         }
@@ -40,7 +50,6 @@ let make = () => {
       | Loading => Loading
       }
       setView(nextView)
-
       let _ = setTimeout(_ => setIsDebounced(_ => true), 200)
     }
   }
@@ -74,9 +83,9 @@ let make = () => {
       } else if key == "," {
         "#theme-btn"->Utils.querySelectAndThen(Utils.click)
       } else if digit->Option.isSome {
-        switch digit->Option.filter(i => i > 0 && i <= store.pages->Array.length) {
+        switch digit->Option.filter(i => i > 0 && i <= pages->Array.length) {
         | Some(i) =>
-          switch store.pages[i - 1] {
+          switch pages[i - 1] {
           | Some(p) => setView(Page(p.id))
           | None => ()
           }
@@ -95,7 +104,7 @@ let make = () => {
               let _ = el->Utils.addClass("animate-shake")
               let _ = setTimeout(_ => el->Utils.removeClass("animate-shake"), 800)
             })
-            let target = store.options.openLinkInNewTab ? "_blank" : "_self"
+            let target = openLinkInNewTab ? "_blank" : "_self"
             switch s.url->Shape.Action.fromUrlString {
             | Some(Searcher) => setView(Action(Searcher))
             | Some(History) => setView(Action(Searcher))
@@ -115,12 +124,12 @@ let make = () => {
   }, [view])
 
   React.useEffect0(() => {
-    if store.pages->Array.length == 0 {
+    if pages->Array.length == 0 {
       Browser.getTopSites()
       ->Promise.then(async sites => {
         let pages =
           sites->Array.length > 0 ? sites->Shape.Page.fromTopSites : Shape.Page.defaultPages
-        pages->store.setPages
+        pages->setPages
         setTimeout(() => setView(pages->Shape.View.first), 100)
       })
       ->ignore
@@ -133,17 +142,7 @@ let make = () => {
   <div onContextMenu onWheel className="main flex-col pl-8 p-4 relative">
     <Toast.Toaster />
     <BackgroundImage />
-    {store.options.hideEditButton || view == Action(Bookmarks)
-      ? React.null
-      : <button
-          ariaLabel="toggle-edit-mode-btn"
-          onClick={_ => toggleEditing()}
-          className={`fixed top-2 right-2 btn btn-circle btn-resp ${isEditing
-              ? "btn-accent"
-              : "btn-ghost"}`}
-        >
-          <Icon.pencil className="resp-icon" />
-        </button>}
+    <EditButton />
     <Sidebar />
     {switch view {
     | Loading => React.null

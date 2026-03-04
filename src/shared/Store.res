@@ -11,9 +11,9 @@ module View = {
     }
   }
 
-  module AppStore = Zustand.MakeStore(StoreData)
+  module Store = Zustand.MakeStore(StoreData)
 
-  let store = AppStore.create(set => {
+  let store = Store.create(set => {
     view: Loading,
     setView: view => set(state => {...state, view}),
     isEditing: false,
@@ -23,7 +23,8 @@ module View = {
     toggleEditing: () => set(state => {...state, isEditing: !state.isEditing}),
   })
 
-  let use = _ => store->AppStore.use(state => state)
+  let use = _ => store->Store.use(state => state)
+  let useShallow = selector => store->Store.use(Store.useShallow(selector))
 }
 
 module Options = {
@@ -62,9 +63,9 @@ module Options = {
       updateOptions: t => unit,
     }
   }
-  module AppStore = Zustand.MakeStore(StoreData)
+  module Store = Zustand.MakeStore(StoreData)
 
-  let store = AppStore.create(AppStore.persist(set => {
+  let store = Store.create(Store.persist(set => {
       options: defaultOptions,
       updateOptions: options => set(state => {...state, options}),
       searchEngineIdx: 0,
@@ -80,7 +81,8 @@ module Options = {
       setPages: pages => set(state => {...state, pages}),
     }, {name: "undoo-startpage"}))
 
-  let use = _ => store->AppStore.use(state => state)
+  let use = _ => store->Store.use(state => state)
+  let useShallow = selector => store->Store.use(Store.useShallow(selector))
 }
 
 module Bg = {
@@ -111,16 +113,17 @@ module Bg = {
     }
   }
 
-  module AppStore = Zustand.MakeStore(StoreData)
+  module Store = Zustand.MakeStore(StoreData)
 
-  let store = AppStore.create(AppStore.persist(set => {
+  let store = Store.create(Store.persist(set => {
       options: StoreData.defaultOptions,
       update: options => set(state => {...state, options}),
       removeImage: () =>
         set(state => {...state, options: {...state.options, imageName: "", image: ""}}),
     }, {name: "undoo-background"}))
 
-  let use = _ => store->AppStore.use(state => state)
+  let use = _ => store->Store.use(state => state)
+  let useShallow = selector => store->Store.use(Store.useShallow(selector))
 }
 
 module Searcher = {
@@ -137,9 +140,9 @@ module Searcher = {
     }
   }
 
-  module AppStore = Zustand.MakeStore(StoreData)
+  module Store = Zustand.MakeStore(StoreData)
 
-  let store = AppStore.create(AppStore.persist(set => {
+  let store = Store.create(Store.persist(set => {
       checkedIds: [0., 1.],
       engines: Shape.SearchEngine.defaultEngines,
       setEngines: engines => set(state => {...state, engines}),
@@ -162,7 +165,8 @@ module Searcher = {
         set(state => {...state, checkedIds: all ? [] : state.engines->Array.map(e => e.id)}),
     }, {name: "undoo-searcher"}))
 
-  let use = _ => store->AppStore.use(state => state)
+  let use = _ => store->Store.use(state => state)
+  let useShallow = selector => store->Store.use(Store.useShallow(selector))
 }
 
 module SearchEngine = {
@@ -176,9 +180,9 @@ module SearchEngine = {
     }
   }
 
-  module AppStore = Zustand.MakeStore(StoreData)
+  module Store = Zustand.MakeStore(StoreData)
 
-  let store = AppStore.create(AppStore.persist(set => {
+  let store = Store.create(Store.persist(set => {
       engines: Shape.SearchEngine.defaultEngines,
       setEngines: engines => set(state => {...state, engines}),
       addEngine: engine => set(state => {...state, engines: state.engines->Array.concat([engine])}),
@@ -191,5 +195,6 @@ module SearchEngine = {
         set(state => {...state, engines: state.engines->Array.filter(e => e.id != id)}),
     }, {name: "undoo-search-engines"}))
 
-  let use = _ => store->AppStore.use(state => state)
+  let use = _ => store->Store.use(state => state)
+  let useShallow = selector => store->Store.use(Store.useShallow(selector))
 }

@@ -1,8 +1,18 @@
 @react.component
 let make = (~query, ~setQuery) => {
   Hook.useDocTitle(Some("Searcher"))
-  let {isEditing} = Store.View.use()
-  let {options} = Store.Bg.use()
+  let isEditing = Store.View.useShallow(s => s.isEditing)
+  let (image, searcherOpacity) = Store.Bg.useShallow(s => (
+    s.options.image,
+    s.options.searcherOpacity,
+  ))
+  let (engines, checkedIds, toggleOne, toggleAll, deleteEngine) = Store.Searcher.useShallow(s => (
+    s.engines,
+    s.checkedIds,
+    s.toggleOne,
+    s.toggleAll,
+    s.deleteEngine,
+  ))
 
   let onChange = evt => {
     let target = ReactEvent.Form.target(evt)
@@ -10,17 +20,16 @@ let make = (~query, ~setQuery) => {
     setQuery(_ => newQuery)
   }
 
-  let store = Store.Searcher.use()
-  let isAllChecked = store.engines->Array.every(e => store.checkedIds->Array.includes(e.id))
-  let toggleAll = _ => store.toggleAll(isAllChecked)
-  let count = store.engines->Array.filter(e => store.checkedIds->Array.includes(e.id))->Array.length
+  let isAllChecked = engines->Array.every(e => checkedIds->Array.includes(e.id))
+  let toggleAll = _ => toggleAll(isAllChecked)
+  let count = engines->Array.filter(e => checkedIds->Array.includes(e.id))->Array.length
 
   let onSubmit = evt => {
     ReactEvent.Form.preventDefault(evt)
     // let q = ReactEvent.Form.target(evt)["query"]["value"]
 
-    store.engines
-    ->Array.filter(e => store.checkedIds->Array.includes(e.id))
+    engines
+    ->Array.filter(e => checkedIds->Array.includes(e.id))
     ->Array.forEach(e => Utils.searchLink(e.url, query))
   }
 
@@ -30,14 +39,12 @@ let make = (~query, ~setQuery) => {
   }
 
   let bgcolor =
-    options.image->String.length > 20
-      ? Utils.getBgcolor(options.searcherOpacity)
-      : "var(--color-base-300)"
+    image->String.length > 20 ? Utils.getBgcolor(searcherOpacity) : "var(--color-base-300)"
 
-  let items = store.engines->Array.map(item => {
-    let checked = store.checkedIds->Array.includes(item.id)
-    let toggleOne = _ => store.toggleOne(item.id, checked)
-    let onDelete = _ => store.deleteEngine(item.id)
+  let items = engines->Array.map(item => {
+    let checked = checkedIds->Array.includes(item.id)
+    let toggleOne = _ => toggleOne(item.id, checked)
+    let onDelete = _ => deleteEngine(item.id)
 
     let onClick = evt => {
       evt->ReactEvent.Mouse.stopPropagation

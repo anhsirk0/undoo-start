@@ -1,6 +1,6 @@
 @react.component
 let make = (~folder: Bookmarks.treeNode) => {
-  let {options: {reverseBookmarksOrder}} = Store.Options.use()
+  let reverseBookmarksOrder = Store.Options.useShallow(s => s.options.reverseBookmarksOrder)
   let (isSearching, toggleSearching, _) = Hook.useToggle()
   let (query, setQuery) = React.useState(_ => "")
 

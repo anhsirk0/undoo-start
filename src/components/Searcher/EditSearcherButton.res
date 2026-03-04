@@ -1,6 +1,6 @@
 @react.component
 let make = (~engine: Shape.SearchEngine.t) => {
-  let store = Store.Searcher.use()
+  let updateEngine = Store.Searcher.useShallow(s => s.updateEngine)
 
   let (isOpen, toggleOpen, _) = Hook.useToggle()
 
@@ -9,7 +9,7 @@ let make = (~engine: Shape.SearchEngine.t) => {
     let title = ReactEvent.Form.target(evt)["title"]["value"]
     let url = ReactEvent.Form.target(evt)["url"]["value"]
 
-    store.updateEngine({...engine, title, url})
+    updateEngine({...engine, title, url})
     toggleOpen()
   }
 
@@ -17,7 +17,8 @@ let make = (~engine: Shape.SearchEngine.t) => {
     <button
       ariaLabel={`edit-${engine.title}`}
       onClick={_ => toggleOpen()}
-      className="center p-2 bg-primary text-primary-content absolute top-0 left-0 rounded-br-box">
+      className="center p-2 bg-primary text-primary-content absolute top-0 left-0 rounded-br-box"
+    >
       <Icon.pencil className="resp-icon" />
     </button>
     {isOpen

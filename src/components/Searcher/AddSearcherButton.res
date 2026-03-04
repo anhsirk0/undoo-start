@@ -1,7 +1,7 @@
 @react.component
 let make = () => {
-  let store = Store.Options.use()
-  let searcherStore = Store.Searcher.use()
+  let hideAddButton = Store.Options.useShallow(s => s.options.hideAddButton)
+  let addEngine = Store.Searcher.useShallow(s => s.addEngine)
 
   let (isOpen, toggleOpen, _) = Hook.useToggle()
 
@@ -10,7 +10,7 @@ let make = () => {
     let title = ReactEvent.Form.target(evt)["title"]["value"]
     let url = ReactEvent.Form.target(evt)["url"]["value"]
 
-    searcherStore.addEngine({title, url, icon: url, id: Date.now()})
+    addEngine({title, url, icon: url, id: Date.now()})
     toggleOpen()
   }
 
@@ -19,9 +19,10 @@ let make = () => {
       id="add-btn"
       ariaLabel="add-searcher-btn"
       onClick={_ => toggleOpen()}
-      className={store.options.hideAddButton
+      className={hideAddButton
         ? "hidden"
-        : "fixed bottom-2 right-2 btn btn-ghost resp-btn btn-circle"}>
+        : "fixed bottom-2 right-2 btn btn-ghost resp-btn btn-circle"}
+    >
       <Icon.plus className="resp-icon" />
     </button>
     {isOpen

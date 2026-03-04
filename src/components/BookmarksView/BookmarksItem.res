@@ -1,16 +1,20 @@
 module Item = {
   @react.component
   let make = (~item: Bookmarks.treeNode, ~depth=0) => {
-    let {options} = Store.Options.use()
-    let {options: bgOptions} = Store.Bg.use()
+    let openLinkInNewTab = Store.Options.useShallow(s => s.options.openLinkInNewTab)
 
-    let target = options.openLinkInNewTab ? "_blank" : "_self"
+    let (image, bookmarkOpacity) = Store.Bg.useShallow(s => (
+      s.options.image,
+      s.options.bookmarkOpacity,
+    ))
+
+    let target = openLinkInNewTab ? "_blank" : "_self"
     let favicon =
       item.url->Option.map(url =>
         `https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${url}&size=32`
       )
-    let bgcolor = if bgOptions.image->String.length > 20 {
-      bgOptions.bookmarkOpacity->Utils.getBgcolor
+    let bgcolor = if image->String.length > 20 {
+      bookmarkOpacity->Utils.getBgcolor
     } else if depth > 0 {
       "bg-base-300"
     } else {
@@ -37,11 +41,15 @@ module rec Folder: {
 } = {
   @react.component
   let make = (~item: Bookmarks.treeNode, ~depth) => {
-    let {options: {reverseBookmarksOrder}} = Store.Options.use()
-    let {options: bgOptions} = Store.Bg.use()
+    let reverseBookmarksOrder = Store.Options.useShallow(s => s.options.reverseBookmarksOrder)
 
-    let bgcolor = if bgOptions.image->String.length > 20 {
-      bgOptions.bookmarkOpacity->Utils.getBgcolor(~base=depth > 0 ? #300 : #200)
+    let (image, bookmarkOpacity) = Store.Bg.useShallow(s => (
+      s.options.image,
+      s.options.bookmarkOpacity,
+    ))
+
+    let bgcolor = if image->String.length > 20 {
+      bookmarkOpacity->Utils.getBgcolor(~base=depth > 0 ? #300 : #200)
     } else if depth > 0 {
       "var(--color-base-300)"
     } else {

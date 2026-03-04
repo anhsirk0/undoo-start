@@ -14,4 +14,7 @@ module MakeStore = (Config: StoreConfig) => {
   external create: createFnParam => store = "create"
   @module("zustand/middleware")
   external persist: (createFnParam, persistOptions) => createFnParam = "persist"
+
+  @module("zustand/react/shallow")
+  external useShallow: selector<'a> => selector<'a> = "useShallow"
 }

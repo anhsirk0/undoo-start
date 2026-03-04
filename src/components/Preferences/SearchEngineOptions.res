@@ -1,10 +1,11 @@
 module Item = {
   @react.component
   let make = (~item: Shape.SearchEngine.t, ~setNewEngines) => {
-    let store = Store.SearchEngine.use()
+    let (engines, deleteEngine) = Store.SearchEngine.useShallow(s => (s.engines, s.deleteEngine))
+
     let onDelete = _ => {
-      if store.engines->Array.some(Shape.SearchEngine.eq(item, _)) {
-        store.deleteEngine(item.id)
+      if engines->Array.some(Shape.SearchEngine.eq(item, _)) {
+        deleteEngine(item.id)
       } else {
         setNewEngines(es => es->Array.filter(e => !Shape.SearchEngine.eq(item, e)))
       }
@@ -21,12 +22,14 @@ module Item = {
         <Input name="url" label="Url" defaultValue=item.url required=true />
         <div className="dropdown dropdown-end dropdown-left">
           <label
-            ariaLabel={`delete-${item.title}`} tabIndex=0 className="btn btn-square btn-error mb-2">
+            ariaLabel={`delete-${item.title}`} tabIndex=0 className="btn btn-square btn-error mb-2"
+          >
             <Icon.trash className="resp-icon" />
           </label>
           <div
             tabIndex=0
-            className="dropdown-content z-[1] card card-compact w-64 xl:w-72 -ml-6 px-2 py-1 shadow bg-error">
+            className="dropdown-content z-[1] card card-compact w-64 xl:w-72 -ml-6 px-2 py-1 shadow bg-error"
+          >
             <div className="flex flex-row items-center justify-between p-2">
               <h3 className="text-base xl:text-xl font-bold"> {"Are you sure?"->React.string} </h3>
               <button onClick=onDelete className="btn btn-neutral resp-btn">
@@ -43,8 +46,8 @@ module Item = {
 @react.component
 let make = (~onClose) => {
   let (newEngines, setNewEngines) = React.useState(_ => [])
+  let (engines, setEngines) = Store.SearchEngine.useShallow(s => (s.engines, s.setEngines))
 
-  let {engines, setEngines} = Store.SearchEngine.use()
   let allEngines = engines->Array.concat(newEngines)
   let onAdd = _ => setNewEngines(prev => prev->Array.concat([Shape.SearchEngine.make()]))
   let id = "search-engines-options"

@@ -1,6 +1,10 @@
 @react.component
 let make = (~page: Shape.Page.t, ~isEditing, ~isVisiting) => {
-  let {options, updatePage} = Store.Options.use()
+  let (circleIcons, alwaysShowHints, updatePage) = Store.Options.useShallow(s => (
+    s.options.circleIcons,
+    s.options.alwaysShowHints,
+    s.updatePage,
+  ))
 
   let updateSite = (site: Shape.Site.t) =>
     updatePage({...page, sites: page.sites->Array.map(s => s.id == site.id ? site : s)})
@@ -24,15 +28,16 @@ let make = (~page: Shape.Page.t, ~isEditing, ~isVisiting) => {
       updatePage({...page, sites: page.sites->Utils.moveRight(index)})
     }
 
-    let index = Some(index + 97)->Option.filter(_ => isVisiting || options.alwaysShowHints)
-    let pos = options.circleIcons ? "top-2 right-2" : "top-0 right-0"
+    let index = Some(index + 97)->Option.filter(_ => isVisiting || alwaysShowHints)
+    let pos = circleIcons ? "top-2 right-2" : "top-0 right-0"
 
     <SiteCard site key={site.id->Float.toString} isEditing updateSite index>
       <div
         role="button"
         ariaLabel={`delete-site-${site.title}-btn`}
         onClick=onDelete
-        className={`absolute ${pos} size-8 lg:size-10 2xl:size-12 center rounded-bl-box`}>
+        className={`absolute ${pos} size-8 lg:size-10 2xl:size-12 center rounded-bl-box`}
+      >
         <Icon.trash className="text-error resp-icon" />
       </div>
       {page.sites->Array.length > 1

@@ -39,7 +39,8 @@ module Item = {
   @react.component
   let make = (~title, ~info, ~onExport, ~onImport) => {
     <div
-      className="col-span-1 flex flex-col gap-2 h-full border border-base-content/20 rounded-box p-4">
+      className="col-span-1 flex flex-col gap-2 h-full border border-base-content/20 rounded-box p-4"
+    >
       <div className="flex gap-2">
         <div className="flex flex-col gap-2 grow">
           <p className="resp-title -mt-2"> {title->React.string} </p>
@@ -65,43 +66,50 @@ module Item = {
 
 @react.component
 let make = () => {
-  let store = Store.Options.use()
-  let bgStore = Store.Bg.use()
-  let searcherStore = Store.Searcher.use()
+  let (options, pages, setPages, updateOptions) = Store.Options.useShallow(s => (
+    s.options,
+    s.pages,
+    s.setPages,
+    s.updateOptions,
+  ))
 
-  let exportOptions = Helper.makeOnExport(store.options, data => {
+  let (bgOptions, bgUpdate) = Store.Bg.useShallow(s => (s.options, s.update))
+
+  let (engines, setEngines) = Store.Searcher.useShallow(s => (s.engines, s.setEngines))
+
+  let exportOptions = Helper.makeOnExport(options, data => {
     data->Utils.downloadJson(Helper.makeName("Undoo-Startpage-Options"))
     Toast.success("Options data exported successfully")
   })
   let onImportOptions = Helper.makeOnImport(Decode.appOptions, data => {
-    store.updateOptions(data)
+    updateOptions(data)
     Toast.success("Options data imported successfully")
   })
 
-  let exportPages = Helper.makeOnExport(store.pages, data => {
+  let exportPages = Helper.makeOnExport(pages, data => {
     data->Utils.downloadJson(Helper.makeName("Undoo-Startpage-Pages"))
     Toast.success("Pages data exported successfully")
   })
   let onImportPages = Helper.makeOnImport(Decode.appPages, data => {
-    store.setPages(data)
+    setPages(data)
     Toast.success("Pages data imported successfully")
   })
 
-  let exportBgData = Helper.makeOnExport(bgStore.options, data => {
+  let exportBgData = Helper.makeOnExport(bgOptions, data => {
     data->Utils.downloadJson(Helper.makeName("Undoo-Startpage-Background"))
     Toast.success("Background data exported successfully")
   })
   let onImportBg = Helper.makeOnImport(Decode.appBgOptions, data => {
-    bgStore.update(data)
+    bgUpdate(data)
     Toast.success("Background data imported successfully")
   })
 
-  let exportSearcher = Helper.makeOnExport(searcherStore.engines, data => {
+  let exportSearcher = Helper.makeOnExport(engines, data => {
     data->Utils.downloadJson(Helper.makeName("Undoo-Startpage-Searcher"))
     Toast.success("Searcher data exported successfully")
   })
   let onImportSearcher = Helper.makeOnImport(Decode.appSearcher, data => {
-    searcherStore.setEngines(data)
+    setEngines(data)
     Toast.success("Searcher data imported successfully")
   })
 

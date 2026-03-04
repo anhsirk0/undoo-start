@@ -33,7 +33,7 @@ module Item = {
 
 @react.component
 let make = (~onClose) => {
-  let {options, updateOptions} = Store.Options.use()
+  let (options, updateOptions) = Store.Options.useShallow(s => (s.options, s.updateOptions))
 
   let onSubmit = evt => {
     evt->ReactEvent.Form.preventDefault

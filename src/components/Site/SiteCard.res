@@ -22,7 +22,8 @@ module LabelIcon = {
 
     <div
       className="absolute inset-0 size-full bg-primary center"
-      style={backgroundColor: site.bgcolor->Option.getOr("#fff")}>
+      style={backgroundColor: site.bgcolor->Option.getOr("#fff")}
+    >
       <p className={`text-4xl font-bold ${textColor} group-hover:scale-105 transitional`}>
         {React.string(site.icon)}
       </p>
@@ -54,7 +55,8 @@ module SiteHint = {
     let margin = circleIcons ? "" : "-ml-1/2 -mt-1/2 2xl:-ml-1 2xl:-mt-1"
 
     <div
-      className={`bg-base-100/80 absolute ${pos} size-6 lg:size-6 xl:size-8 center animate-fade ${radius}`}>
+      className={`bg-base-100/80 absolute ${pos} size-6 lg:size-6 xl:size-8 center animate-fade ${radius}`}
+    >
       <p className={`xl:text-2xl ${margin}`}> {React.string(idx->String.fromCharCode)} </p>
     </div>
   }
@@ -62,41 +64,47 @@ module SiteHint = {
 
 @react.component
 let make = (~site: Shape.Site.t, ~isEditing, ~updateSite, ~children, ~index) => {
-  let {options} = Store.Options.use()
-  let {setView} = Store.View.use()
+  let (openLinkInNewTab, circleIcons) = Store.Options.useShallow(s => (
+    s.options.openLinkInNewTab,
+    s.options.circleIcons,
+  ))
+  let setView = Store.View.useShallow(s => s.setView)
 
   let (isOpen, toggleOpen, _) = Hook.useToggle()
 
   let isIconUrl = Utils.startsWith(site.icon, ["http", "/src", "/assets", "data:image"])
-  let target = options.openLinkInNewTab ? "_blank" : "_self"
+  let target = openLinkInNewTab ? "_blank" : "_self"
 
   let cardSize = "square-24 md:square-28 xl:square-32 2xl:square-40"
-  let radius = options.circleIcons ? "rounded-full" : ""
+  let radius = circleIcons ? "rounded-full" : ""
 
   <React.Fragment>
     <div
       onContextMenu=ReactEvent.Mouse.stopPropagation
-      className="col-span-6 xs:col-span-4 sm:col-span-3 md:col-span-2 relative">
+      className="col-span-6 xs:col-span-4 sm:col-span-3 md:col-span-2 relative"
+    >
       <div
         id={"site-" ++ site.id->Float.toString}
-        className={`card w-full isolate has-[a:active]:animate-shake overflow-hidden mx-auto ${cardSize} ${radius}`}>
+        className={`card w-full isolate has-[a:active]:animate-shake overflow-hidden mx-auto ${cardSize} ${radius}`}
+      >
         {switch site.url->Shape.Action.fromUrlString {
         | Some(action) =>
           <div
             tabIndex=0
             onClick={_ => setView(Action(action))}
-            className="relative size-full group cursor-pointer">
+            className="relative size-full group cursor-pointer"
+          >
             <IconImage site />
-            <SiteLabel title=site.title show=site.showLabel circleIcons=options.circleIcons />
+            <SiteLabel title=site.title show=site.showLabel circleIcons />
           </div>
         | _ =>
           <a href=site.url target className="relative size-full group cursor-pointer">
             {isIconUrl ? <IconImage site /> : <LabelIcon site />}
-            <SiteLabel title=site.title show=site.showLabel circleIcons=options.circleIcons />
+            <SiteLabel title=site.title show=site.showLabel circleIcons=circleIcons />
           </a>
         }}
         {switch index {
-        | Some(idx) => <SiteHint idx circleIcons=options.circleIcons />
+        | Some(idx) => <SiteHint idx circleIcons=circleIcons />
         | None => React.null
         }}
         {isEditing
@@ -104,7 +112,8 @@ let make = (~site: Shape.Site.t, ~isEditing, ~updateSite, ~children, ~index) => 
               role="button"
               ariaLabel={`edit-site-${site.title}-btn`}
               onClick={_ => toggleOpen()}
-              className="bg-base-100/70 absolute inset-0 size-full center animate-fade">
+              className="bg-base-100/70 absolute inset-0 size-full center animate-fade"
+            >
               <Icon.pencil className="size-8 2xl:size-10 text-base-content" />
               {children}
             </div>

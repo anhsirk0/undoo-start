@@ -3,11 +3,10 @@ let make = () => {
   let (isPrefsOpen, togglePrefsOpen, _) = Hook.useToggle()
   let (isThemeOpen, toggleThemeOpen, _) = Hook.useToggle()
 
-  let {options} = Store.Options.use()
-  let {view, setView, isEditing} = Store.View.use()
+  let alwaysShowSidebar = Store.Options.useShallow(s => s.options.alwaysShowSidebar)
+  let (view, setView, isEditing) = Store.View.useShallow(s => (s.view, s.setView, s.isEditing))
 
-  let opacity =
-    isEditing || options.alwaysShowSidebar ? "opacity-100" : "opacity-0 hover:opacity-100"
+  let opacity = isEditing || alwaysShowSidebar ? "opacity-100" : "opacity-0 hover:opacity-100"
 
   <div className={`fixed top-0 left-0 z-10 w-fit h-full flex flex-row transitional ${opacity}`}>
     <div className="p-1 flex flex-col gap-1 h-full">

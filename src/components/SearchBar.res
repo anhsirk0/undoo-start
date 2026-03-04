@@ -1,15 +1,22 @@
 module SearchForm = {
   @react.component
   let make = (~engine: Shape.SearchEngine.t, ~query, ~setQuery) => {
+    let (openLinkInNewTab, searchEngineIdx, updateSearchEngineIdx) = Store.Options.useShallow(s => (
+      s.options.openLinkInNewTab,
+      s.searchEngineIdx,
+      s.updateSearchEngineIdx,
+    ))
+    let (image, searchOpacity) = Store.Bg.useShallow(s => (
+      s.options.image,
+      s.options.searchOpacity,
+    ))
+    let engines = Store.SearchEngine.useShallow(s => s.engines)
+
     let onChange = evt => {
       let target = ReactEvent.Form.target(evt)
       let newQuery: string = target["value"]
       setQuery(_ => newQuery)
     }
-
-    let store = Store.Options.use()
-    let {options: bgOptions} = Store.Bg.use()
-    let {engines} = Store.SearchEngine.use()
 
     let options = engines->Array.mapWithIndex((e, idx) => {
       let value = idx->Int.toString
@@ -19,7 +26,7 @@ module SearchForm = {
     let onSelect = evt => {
       let id = ReactEvent.Form.target(evt)["value"]
       switch id->Int.fromString {
-      | Some(id) => store.updateSearchEngineIdx(id)
+      | Some(id) => updateSearchEngineIdx(id)
       | None => ()
       }
     }
@@ -27,7 +34,7 @@ module SearchForm = {
     let onSubmit = evt => {
       ReactEvent.Form.preventDefault(evt)
       // let q = ReactEvent.Form.target(evt)["query"]["value"]
-      let target = store.options.openLinkInNewTab ? "_blank" : "_self"
+      let target = openLinkInNewTab ? "_blank" : "_self"
       Utils.searchLink(engine.url, query, ~target)
     }
 
@@ -37,9 +44,7 @@ module SearchForm = {
     }
 
     let bgcolor =
-      bgOptions.image->String.length > 20
-        ? Utils.getBgcolor(bgOptions.searchOpacity)
-        : "var(--color-base-300)"
+      image->String.length > 20 ? Utils.getBgcolor(searchOpacity) : "var(--color-base-300)"
 
     <form
       onSubmit
@@ -51,7 +56,7 @@ module SearchForm = {
         ariaLabel="select-search-engine"
         id="select-search-engine"
         className="select border-none focus:outline-none 2xl:select-lg rounded-r-none w-20"
-        value={store.searchEngineIdx->Int.toString}
+        value={searchEngineIdx->Int.toString}
         onChange=onSelect
         style={{backgroundColor: bgcolor}}
       >
@@ -94,9 +99,10 @@ module SearchForm = {
 
 @react.component
 let make = (~query, ~setQuery) => {
-  let {engines} = Store.SearchEngine.use()
-  let store = Store.Options.use()
-  let engine = engines->Array.findWithIndex((_, idx) => idx == store.searchEngineIdx)
+  let engines = Store.SearchEngine.useShallow(s => s.engines)
+  let searchEngineIdx = Store.Options.useShallow(s => s.searchEngineIdx)
+
+  let engine = engines->Array.findWithIndex((_, idx) => idx == searchEngineIdx)
 
   switch engine {
   | Some(engine) => <SearchForm engine query setQuery />

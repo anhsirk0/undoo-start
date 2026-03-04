@@ -3,8 +3,7 @@ open ReactEvent
 @react.component
 let make = (~page: Shape.Page.t, ~afterDelete, ~query, ~setQuery) => {
   Hook.useDocTitle(Some(page.title))
-  let {isEditing, isVisiting} = Store.View.use()
-
+  let (isEditing, isVisiting) = Store.View.useShallow(s => (s.isEditing, s.isVisiting))
   let (isOpen, toggleOpen, _) = Hook.useToggle()
 
   let onEdit = evt => {
@@ -27,7 +26,8 @@ let make = (~page: Shape.Page.t, ~afterDelete, ~query, ~setQuery) => {
             role="button"
             className="btn resp-btn fixed top-4 left-12 z-20"
             ariaLabel={`edit-page-${page.id->Float.toString}-btn`}
-            onClick=onEdit>
+            onClick=onEdit
+          >
             <Icon.pencil className="resp-icon text-base-content" />
             {"Edit page"->React.string}
           </div>

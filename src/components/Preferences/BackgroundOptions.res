@@ -1,6 +1,10 @@
 @react.component
 let make = (~onClose) => {
-  let {options, removeImage, update} = Store.Bg.use()
+  let (options, removeImage, update) = Store.Bg.useShallow(s => (
+    s.options,
+    s.removeImage,
+    s.update,
+  ))
   let (img, setImg) = React.useState(_ => "")
   let (imgName, setImgName) = React.useState(_ => "")
 
@@ -51,7 +55,8 @@ let make = (~onClose) => {
   <form
     onSubmit
     className="flex flex-col 2xl:gap-2 [&>div]:min-w-[100%] min-h-[60vh] pt-2 2xl:pt-4"
-    tabIndex=0>
+    tabIndex=0
+  >
     <FormControl label="Image (max size: 3MB)">
       <div className="flex flex-row gap-4">
         <input
@@ -59,7 +64,8 @@ let make = (~onClose) => {
         />
         {options.image->String.length > 20
           ? <button
-              type_="button" className="btn btn-outline btn-error max-w-[40%]" onClick=onRemove>
+              type_="button" className="btn btn-outline btn-error max-w-[40%]" onClick=onRemove
+            >
               <div className="flex flex-row gap-2 w-full items-center">
                 <Icon.trash className="resp-icon" />
                 <p className="truncate grow title"> {options.imageName->React.string} </p>

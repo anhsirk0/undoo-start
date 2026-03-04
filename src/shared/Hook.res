@@ -1,9 +1,12 @@
 let useDocTitle = (title: option<string>) => {
-  let store = Store.Options.use()
+  let (showTitle, storeTitle) = Store.Options.useShallow(s => (
+    s.options.showPageTitle,
+    s.options.title,
+  ))
 
-  let docTitle = switch title->Option.filter(_ => store.options.showPageTitle) {
-  | Some(title) => `${title} - ${store.options.title}`
-  | None => store.options.title
+  let docTitle = switch title->Option.filter(_ => showTitle) {
+  | Some(title) => `${title} - ${storeTitle}`
+  | None => storeTitle
   }
 
   React.useEffectOnEveryRender(() => {

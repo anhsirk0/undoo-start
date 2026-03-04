@@ -1,13 +1,13 @@
 @react.component
 let make = () => {
-  let store = Store.Options.use()
+  let addPage = Store.Options.useShallow(s => s.addPage)
   let (isOpen, toggleOpen, _) = Hook.useToggle()
 
   let onSubmit = evt => {
     ReactEvent.Form.preventDefault(evt)
     let title = ReactEvent.Form.target(evt)["title"]["value"]
 
-    store.addPage({title, id: Date.now(), sites: []})
+    addPage({title, id: Date.now(), sites: []})
     toggleOpen()
   }
 
