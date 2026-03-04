@@ -24,6 +24,9 @@ let toItem: treeNode => option<item> = node => {
 @send external getTree: t => promise<array<treeNode>> = "getTree"
 @send external remove: (t, string) => promise<unit> = "remove"
 
+let isNodeEmpty = node =>
+  node.children->Option.map(arr => arr->Array.length == 0)->Option.getOr(true)
+
 let rec collect = node => {
   let base = node->toItem->Option.map(i => [i])->Option.getOr([])
   switch node.children {

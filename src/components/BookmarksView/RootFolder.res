@@ -37,14 +37,16 @@ let make = (~folder: Bookmarks.treeNode) => {
     toggleSearching()
   }
 
-  let className = `flex flex-col gap-4 w-[80%] transitional absolute left-0 ${!isSearching
+  let className = `flex flex-col gap-4 w-[90%] transitional absolute left-0 ${!isSearching
       ? "-top-[100%]"
       : "top-0"}`
 
   <div
-    className="p-4 flex flex-1 flex-col gap-4 border border-base-content/10 min-h-0 rounded-box min-w-[24%]">
+    className="p-4 pt-2 flex flex-1 flex-col gap-4 border border-base-content/10 min-h-0 rounded-box min-w-[24%]"
+  >
     <div
-      className="flex flex-row items-center pb-3 gap-4 border-b border-base-content/10 overflow-hidden relative shrink-0">
+      className="flex flex-row items-center pb-2 gap-4 border-b border-base-content/10 overflow-hidden relative shrink-0"
+    >
       <div className>
         <InputBase
           id={`search-${folder.id}`}
@@ -54,7 +56,7 @@ let make = (~folder: Bookmarks.treeNode) => {
           className="input border-none focus:outline-none w-full bg-transparent"
           placeholder={`Search in ${folder.title}`}
         />
-        <p className="resp-title font-bold w-full truncate">
+        <p className="title font-bold w-full truncate">
           {`${folder.title} (${childrenCount->Int.toString})`->React.string}
         </p>
       </div>

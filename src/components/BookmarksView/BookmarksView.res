@@ -7,8 +7,10 @@ module RootView = {
 
     <div
       className="size-full flex flex-row gap-4 overflow-x-auto animate-fade"
-      onWheel=ReactEvent.Wheel.stopPropagation>
+      onWheel=ReactEvent.Wheel.stopPropagation
+    >
       {bookmarks
+      ->Array.filter(node => !Bookmarks.isNodeEmpty(node))
       ->Array.map(folder => <RootFolder folder key=folder.id />)
       ->React.array}
     </div>

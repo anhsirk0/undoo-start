@@ -13,9 +13,10 @@ let make = () => {
 
   <React.Fragment>
     <button
-      ariaLabel="add-page-btn"
       onClick={_ => toggleOpen()}
-      className={`btn btn-xs btn-square ${isOpen ? "btn-accent" : "btn-ghost"} mt-1`}>
+      className={`btn btn-xs btn-square ${isOpen ? "btn-accent" : "btn-ghost"} mt-1`}
+      ariaLabel="add-page-btn"
+    >
       <Icon.plus className="size-6" />
     </button>
     {isOpen

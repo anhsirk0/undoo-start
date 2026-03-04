@@ -130,7 +130,7 @@ let make = () => {
     None
   })
 
-  <div onContextMenu onWheel className="main flex-col p-8 relative">
+  <div onContextMenu onWheel className="main flex-col pl-8 p-4 relative">
     <Toast.Toaster />
     <BackgroundImage />
     {store.options.hideEditButton || view == Action(Bookmarks)
